@@ -68,10 +68,21 @@ class _MyHomePageState extends State<MyHomePage> {
   // String _password = '';
   // Googleアカウントの表示名
   String _displayName = "";
-  static final googleLogin = GoogleSignIn(scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ]);
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Create a new provider
+    GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+    googleProvider
+        .addScope('https://www.googleapis.com/auth/contacts.readonly');
+    googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+
+    // Or use signInWithRedirect
+    // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,25 +93,46 @@ class _MyHomePageState extends State<MyHomePage> {
         TextButton(
           // ボタンを押した時のイベント
           onPressed: () async {
-            // Google認証
-            GoogleSignInAccount? signinAccount = await googleLogin.signIn();
-            if (signinAccount == null) return;
-            GoogleSignInAuthentication auth =
-                await signinAccount.authentication;
-            final OAuthCredential credential = GoogleAuthProvider.credential(
-              idToken: auth.idToken,
-              accessToken: auth.accessToken,
-            );
-            // 認証情報をFirebaseに登録
-            User? user =
-                (await FirebaseAuth.instance.signInWithCredential(credential))
-                    .user;
-            if (user != null) {
-              setState(() {
-                // 画面を更新
-                _displayName = user.displayName!;
-              });
+            try {
+              final credential = await signInWithGoogle();
+              // final credential = await FirebaseAuth.instance
+              //     .signInWithEmailAndPassword(
+              //         email: emailAddress, password: password);
+
+              // 認証情報をFirebaseに登録
+              User? user = credential.user;
+              if (user != null) {
+                setState(() {
+                  // 画面を更新
+                  _displayName = user.displayName!;
+                });
+              }
+            } on FirebaseAuthException catch (e) {
+              if (e.code == 'user-not-found') {
+                print('No user found for that email.');
+              } else if (e.code == 'wrong-password') {
+                print('Wrong password provided for that user.');
+              }
             }
+            // // Google認証
+            // GoogleSignInAccount? signinAccount = await googleLogin.signIn();
+            // if (signinAccount == null) return;
+            // GoogleSignInAuthentication auth =
+            //     await signinAccount.authentication;
+            // final OAuthCredential credential = GoogleAuthProvider.credential(
+            //   idToken: auth.idToken,
+            //   accessToken: auth.accessToken,
+            // );
+            // // 認証情報をFirebaseに登録
+            // User? user =
+            //     (await FirebaseAuth.instance.signInWithCredential(credential))
+            //         .user;
+            // if (user != null) {
+            //   setState(() {
+            //     // 画面を更新
+            //     _displayName = user.displayName!;
+            //   });
+            // }
           },
           child: const Text(
             'login',
