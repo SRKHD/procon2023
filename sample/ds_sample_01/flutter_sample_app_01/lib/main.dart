@@ -142,6 +142,22 @@ class GeneratorPage extends StatelessWidget {
               ),
             ],
           ),
+          
+          SizedBox(width: 330,height:100),
+          SizedBox(
+          width: 200, 
+          height: 50,
+          child:ElevatedButton(
+                onPressed: () {
+                  // 押したときの処理
+                },
+                style: ElevatedButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0))), // 角を直角
+                child: Text('記録する'),
+          ),
+          ),
         ],
       ),
     );
