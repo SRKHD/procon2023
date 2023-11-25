@@ -2,6 +2,8 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'views/RunningRecordForm.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -149,7 +151,8 @@ class GeneratorPage extends StatelessWidget {
           height: 50,
           child:ElevatedButton(
                 onPressed: () {
-                  // 押したときの処理
+                  Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) => RunningRecordForm()));
                 },
                 style: ElevatedButton.styleFrom(
                   textStyle: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),
