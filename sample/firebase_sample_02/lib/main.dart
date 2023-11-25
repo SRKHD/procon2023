@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -137,6 +138,36 @@ class _MyHomePageState extends State<MyHomePage> {
           child: const Text(
             'login',
             style: const TextStyle(fontSize: 50),
+          ),
+        ),
+        TextButton(
+          // ボタンを押した時のイベント
+          onPressed: () {
+            FirebaseFirestore.instance
+                .doc('testCollection1/testDocument1')
+                .get()
+                .then((ref) {
+              print(ref.get("testField1"));
+            });
+            /* ここにプログラムを記載 */
+            // データの取得
+            // final collection =
+            //     FirebaseFirestore.instance.collection('testCollection1');
+            // final doc = collection.doc('testDocument1');
+            // doc.get().then((value) {
+            //   print(value.get('testField1'));
+            // });
+            // FirebaseFirestore.instance
+            //     .collection('testCollection1')
+            //     .doc('testDocument1')
+            //     .get()
+            //     .then((ref) {
+            //   print(ref.get("testField1"));
+            // });
+          },
+          child: const Text(
+            '実行',
+            style: TextStyle(fontSize: 50),
           ),
         ),
       ]),
