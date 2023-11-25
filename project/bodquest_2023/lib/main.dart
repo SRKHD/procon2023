@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:bodquest_2023/presentation/component/main_widget.dart';
 import 'package:bodquest_2023/presentation/component/main_left_drawer.dart';
 
@@ -33,11 +34,29 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  // Stream
+  final _counterStream = StreamController<int>();
+
+  // 初期化時にConsumerのコンストラクタにStreamを渡す
+  @override
+  void initState() {
+    super.initState();
+    Consumer(_counterStream);
+  }
+
+  // 終了時にStreamを解放する
+  @override
+  void dispose() {
+    super.dispose();
+    _counterStream.close();
+  }
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+    // カウントアップした後に、Streamにカウンタ値を流す
+    _counterStream.sink.add(_counter);
   }
 
   @override
@@ -57,5 +76,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+
+// Consumerクラス
+class Consumer {
+  //コンストラクタでint型のStreamを受け取る
+  Consumer(StreamController<int> consumeStream) {
+    // Streamをlistenしてデータが来たらターミナルに表示する
+    consumeStream.stream.listen((data) async {
+      print("consumerが$dataを使ったよ");
+    });
   }
 }
