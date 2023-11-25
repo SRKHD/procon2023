@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bodquest_2023/presentation/component/main_widget.dart';
+import 'package:bodquest_2023/presentation/component/main_left_drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -87,35 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(color: Colors.blue),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 3'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: MainLeftDrawer(),
       body: MainWidget(
         counter: _counter,
       ),
