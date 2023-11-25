@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class MainWidget extends StatefulWidget {
   int counter = 0;
+  StreamController<String> stringStream;
 
-  MainWidget({Key? key, required this.counter}) : super(key: key);
+  MainWidget({Key? key, required this.counter, required this.stringStream})
+      : super(key: key);
 
   @override
   State<MainWidget> createState() => _MainWidgetState();
@@ -22,6 +25,16 @@ class _MainWidgetState extends State<MainWidget> {
           Text(
             '${widget.counter}',
             style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          StreamBuilder<String>(
+            stream: widget.stringStream.stream,
+            initialData: "",
+            builder: (context, snapshot) {
+              return Text(
+                '${snapshot.data}',
+                style: Theme.of(context).textTheme.headline4,
+              );
+            },
           ),
         ],
       ),
