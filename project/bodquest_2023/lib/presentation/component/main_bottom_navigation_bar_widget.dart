@@ -1,53 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:bodquest_2023/presentation/component/component_types.dart';
 
 // ignore: must_be_immutable
-class MainBottomNavigationBar extends StatefulWidget {
-  int mode = 0;
-  MainBottomNavigationBar({Key? key}) : super(key: key);
+class MainBottomNavigationBar extends StatelessWidget {
+  MainBottomNavigationBar(
+      {Key? key, required this.currentTab, required this.onSelect})
+      : super(key: key);
+  final TabItem currentTab;
+  final ValueChanged<TabItem> onSelect;
+  final items = <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.home),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.person),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.scale),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.cloud),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.settings),
+    ),
+  ];
 
-  @override
-  State<MainBottomNavigationBar> createState() =>
-      _MainBottomNavigationBarState();
-}
-
-class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildBttomNavigator(BuildContext context) {
     return BottomNavigationBar(
-      items: [
-        BottomNavigationBarItem(
-          label: "",
-          icon: Icon(Icons.home),
-        ),
-        BottomNavigationBarItem(
-          label: "",
-          icon: Icon(Icons.person),
-        ),
-        BottomNavigationBarItem(
-          label: "",
-          icon: Icon(Icons.scale),
-        ),
-        BottomNavigationBarItem(
-          label: "",
-          icon: Icon(Icons.cloud),
-        ),
-        BottomNavigationBarItem(
-          label: "",
-          icon: Icon(Icons.settings),
-        ),
-      ],
+      items: items,
+      fixedColor: Colors.red,
+      // 選択中フッターメニューの色
       type: BottomNavigationBarType.fixed,
       // 現在選択されているフッターメニューのインデックス
-      currentIndex: widget.mode,
+      currentIndex: 0,
       // フッター領域の影
       elevation: 0,
-      // フッターメニュータップ時の処理
-      onTap: (int index) {
-        widget.mode = index;
-        setState(() {});
+      onTap: (index) {
+        onSelect(TabItem.values[index]);
       },
-      // 選択中フッターメニューの色
-      fixedColor: Colors.red,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildBttomNavigator(context);
   }
 }

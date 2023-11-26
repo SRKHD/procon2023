@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:bodquest_2023/presentation/component/main_widget.dart';
 import 'package:bodquest_2023/presentation/component/main_left_drawer.dart';
 import 'package:bodquest_2023/presentation/component/main_bottom_navigation_bar_widget.dart';
-import 'package:bodquest_2023/presentation/bloc/bloc_sample.dart';
+import 'package:bodquest_2023/presentation/component/component_types.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,26 +34,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _mode = 0;
-  // Stream
-  var intStream = StreamController<int>();
-  var stringStream = StreamController<String>.broadcast();
+  TabItem _currentTab = TabItem.home;
+  Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
+    TabItem.home: GlobalKey<NavigatorState>(),
+    TabItem.setting: GlobalKey<NavigatorState>(),
+    TabItem.view1: GlobalKey<NavigatorState>(),
+    TabItem.view2: GlobalKey<NavigatorState>(),
+    TabItem.sampleCounter: GlobalKey<NavigatorState>(),
+  };
 
-  // 初期化時にConsumerのコンストラクタにStreamを渡す
-  @override
-  void initState() {
-    super.initState();
-    Generator(intStream);
-    Coordinator(intStream, stringStream);
-    Consumer(stringStream);
-  }
-
-  // 終了時にStreamを解放する
-  @override
-  void dispose() {
-    super.dispose();
-    intStream.close();
-    stringStream.close();
+  void _selectTab(TabItem tabItem) {
+    if (tabItem == _currentTab) {
+      _navigatorKeys[tabItem]?.currentState?.popUntil((route) => route.isFirst);
+    } else {
+      setState(() => _currentTab = tabItem);
+    }
   }
 
   @override
@@ -65,11 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       drawer: MainLeftDrawer(),
-      body: MainWidget(
-        mode: _mode,
-        stringStream: stringStream,
+      body: MainWidget(currentTab: _currentTab, navigatorKeys: _navigatorKeys),
+      bottomNavigationBar: MainBottomNavigationBar(
+        currentTab: _currentTab,
+        onSelect: _selectTab,
       ),
-      bottomNavigationBar: MainBottomNavigationBar(),
     );
   }
 }

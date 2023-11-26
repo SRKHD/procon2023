@@ -1,43 +1,52 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:bodquest_2023/presentation/component/sample_counter_widget.dart';
-import 'package:bodquest_2023/presentation/page/home_page.dart';
+import 'package:bodquest_2023/presentation/component/main_tabnavigator.dart';
+import 'package:bodquest_2023/presentation/component/component_types.dart';
 
-// ignore: must_be_immutable
-class MainWidget extends StatefulWidget {
-  int mode = 0;
-  StreamController<String> stringStream;
-
-  MainWidget({Key? key, required this.mode, required this.stringStream})
+class MainWidget extends StatelessWidget {
+  MainWidget({Key? key, required this.currentTab, required this.navigatorKeys})
       : super(key: key);
+  final TabItem currentTab;
+  final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys;
 
-  @override
-  State<MainWidget> createState() => _MainWidgetState();
-}
+  Widget _buildTabItem(
+    TabItem tabItem,
+    String root,
+  ) {
+    return Offstage(
+      offstage: currentTab != tabItem,
+      child: TabNavigator(
+        navigationKey: navigatorKeys[tabItem],
+        tabItem: tabItem,
+        routerName: root,
+      ),
+    );
+  }
 
-class _MainWidgetState extends State<MainWidget> {
   @override
   Widget build(BuildContext context) {
-    Widget page = HomePage();
-    switch (widget.mode) {
-      case 0:
-        page = HomePage();
-        break;
-      case 1:
-        page = Placeholder();
-        break;
-      case 2:
-        page = SampleCounterWidget(
-          stringStream: widget.stringStream,
-        );
-        break;
-      case 3:
-        page = Placeholder();
-        break;
-      case 4:
-        page = Placeholder();
-        break;
-    }
-    return page;
+    return Stack(
+      children: <Widget>[
+        _buildTabItem(
+          TabItem.home,
+          '/home',
+        ),
+        _buildTabItem(
+          TabItem.setting,
+          '/setting',
+        ),
+        _buildTabItem(
+          TabItem.sampleCounter,
+          '/sampleCounter',
+        ),
+        _buildTabItem(
+          TabItem.view1,
+          '/view1',
+        ),
+        _buildTabItem(
+          TabItem.view2,
+          '/view2',
+        ),
+      ],
+    );
   }
 }
