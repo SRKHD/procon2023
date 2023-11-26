@@ -2,7 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'views/RunningRecordForm.dart';
+import 'views/MealRecordForm.dart';
 
 void main() {
   runApp(MyApp());
@@ -152,7 +152,7 @@ class GeneratorPage extends StatelessWidget {
           child:ElevatedButton(
                 onPressed: () {
                   Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => RunningRecordForm()));
+                  MaterialPageRoute(builder: (context) => MealRecordForm()));
                 },
                 style: ElevatedButton.styleFrom(
                   textStyle: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),

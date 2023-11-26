@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RunningRecordForm extends StatelessWidget {
+class MealRecordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
