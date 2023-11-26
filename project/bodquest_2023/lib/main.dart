@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:bodquest_2023/presentation/component/main_widget.dart';
 import 'package:bodquest_2023/presentation/component/main_left_drawer.dart';
+import 'package:bodquest_2023/presentation/component/main_floating_action_button_widget.dart';
 import 'package:bodquest_2023/presentation/bloc/bloc_sample.dart';
 
 void main() {
@@ -68,10 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         counter: _counter,
         stringStream: stringStream,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.cloud),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: MainFloatingActionButtonWidget(),
     );
   }
 }
