@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MealRecordForm extends StatelessWidget {
+  String _memo = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,17 +13,20 @@ class MealRecordForm extends StatelessWidget {
           children: [
             SizedBox(
               width: 300,
-              child:TextField(
+              child: TextField(
                 decoration: InputDecoration(
                   hintText: 'メモ',
                 ),
+                onChanged: (value) {
+                  _memo = value;
+                },
               ),
             ),
             SizedBox(height: 10),
             ElevatedButton(
               child: Text('登録'),
               onPressed: () {
-                // TODO: 
+                Navigator.of(context).pop(_memo);
               },
             ),
           ],

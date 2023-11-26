@@ -36,6 +36,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   var favorites = <WordPair>[];
+  var meals = <String>[];
 
   void toggleFavorite() {
     if (favorites.contains(current)) {
@@ -43,6 +44,11 @@ class MyAppState extends ChangeNotifier {
     } else {
       favorites.add(current);
     }
+    notifyListeners();
+  }
+
+  void addMeal(String memo) {
+    meals.add(memo);
     notifyListeners();
   }
 }
@@ -65,6 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         page = FavoritesPage();
         break;
+      case 2:
+        page = MealManagePage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -83,6 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                     icon: Icon(Icons.favorite),
                     label: Text('Favorites'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.food_bank),
+                    label: Text('Meals'),
                   ),
                 ],
                 selectedIndex: selectedIndex,
@@ -144,23 +157,6 @@ class GeneratorPage extends StatelessWidget {
               ),
             ],
           ),
-          
-          SizedBox(width: 330,height:100),
-          SizedBox(
-          width: 200, 
-          height: 50,
-          child:ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => MealRecordForm()));
-                },
-                style: ElevatedButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),
-                  shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0))), // 角を直角
-                child: Text('記録する'),
-          ),
-          ),
         ],
       ),
     );
@@ -217,6 +213,47 @@ class FavoritesPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text(pair.asLowerCase),
+          ),
+      ],
+    );
+  }
+}
+
+class MealManagePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    return ListView(
+      children: [
+        SizedBox(
+          width: 200,
+          height: 50,
+          child: ElevatedButton(
+            onPressed: () async {
+              var result = await Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) {
+                  return MealRecordForm();
+                }),
+              );
+              appState.addMeal(result);
+            },
+            style: ElevatedButton.styleFrom(
+                textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0))), // 角を直角
+            child: Text('記録する'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text('You have '
+              '${appState.meals.length} meals:'),
+        ),
+        for (var meal in appState.meals)
+          ListTile(
+            leading: Icon(Icons.food_bank),
+            title: Text(meal.toString()),
           ),
       ],
     );
