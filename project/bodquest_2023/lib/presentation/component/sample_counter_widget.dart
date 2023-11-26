@@ -14,6 +14,12 @@ class SampleCounterWidget extends StatefulWidget {
 }
 
 class _SampleCounterWidgetState extends State<SampleCounterWidget> {
+  void _incrementCounter() {
+    setState(() {
+      widget.counter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,6 +32,11 @@ class _SampleCounterWidgetState extends State<SampleCounterWidget> {
           Text(
             '${widget.counter}',
             style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          ElevatedButton.icon(
+            onPressed: _incrementCounter,
+            label: Text('Increment'),
+            icon: const Icon(Icons.add),
           ),
           StreamBuilder<String>(
             stream: widget.stringStream.stream,

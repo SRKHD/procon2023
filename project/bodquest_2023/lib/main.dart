@@ -56,12 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     stringStream.close();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,9 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
         stringStream: stringStream,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: () {},
+        child: const Icon(Icons.cloud),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
