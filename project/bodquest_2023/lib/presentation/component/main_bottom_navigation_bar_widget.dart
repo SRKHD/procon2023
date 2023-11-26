@@ -36,6 +36,7 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
           icon: Icon(Icons.settings),
         ),
       ],
+      type: BottomNavigationBarType.fixed,
       // 現在選択されているフッターメニューのインデックス
       currentIndex: widget.mode,
       // フッター領域の影
