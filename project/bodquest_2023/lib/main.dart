@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:bodquest_2023/presentation/component/main_widget.dart';
 import 'package:bodquest_2023/presentation/component/main_left_drawer.dart';
-import 'package:bodquest_2023/presentation/component/main_floating_action_button_widget.dart';
+import 'package:bodquest_2023/presentation/component/main_bottom_navigation_bar_widget.dart';
 import 'package:bodquest_2023/presentation/bloc/bloc_sample.dart';
 
 void main() {
@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _mode = 0;
   // Stream
   var intStream = StreamController<int>();
   var stringStream = StreamController<String>.broadcast();
@@ -66,10 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: MainLeftDrawer(),
       body: MainWidget(
-        counter: _counter,
+        mode: _mode,
         stringStream: stringStream,
       ),
-      floatingActionButton: MainFloatingActionButtonWidget(),
+      bottomNavigationBar: MainBottomNavigationBar(),
     );
   }
 }

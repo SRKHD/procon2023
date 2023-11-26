@@ -15,8 +15,8 @@ class _MainLeftDrawerState extends State<MainLeftDrawer> {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            child: Text('Drawer Header'),
             decoration: BoxDecoration(color: Colors.blue),
+            child: Text('Drawer Header'),
           ),
           ListTile(
             title: Text('Item 1'),
