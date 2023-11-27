@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     TabItem.view1: GlobalKey<NavigatorState>(),
     TabItem.view2: GlobalKey<NavigatorState>(),
     TabItem.sampleCounter: GlobalKey<NavigatorState>(),
+    TabItem.weight: GlobalKey<NavigatorState>(),
   };
 
   void _selectTab(TabItem tabItem) {

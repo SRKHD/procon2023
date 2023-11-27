@@ -23,6 +23,10 @@ class MainBottomNavigationBar extends StatelessWidget {
     ),
     BottomNavigationBarItem(
       label: "",
+      icon: Icon(Icons.arrow_upward),
+    ),
+    BottomNavigationBarItem(
+      label: "",
       icon: Icon(Icons.cloud),
     ),
     BottomNavigationBarItem(

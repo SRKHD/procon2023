@@ -35,6 +35,10 @@ class MainWidget extends StatelessWidget {
           '/setting',
         ),
         _buildTabItem(
+          TabItem.weight,
+          '/weight',
+        ),
+        _buildTabItem(
           TabItem.sampleCounter,
           '/sampleCounter',
         ),
