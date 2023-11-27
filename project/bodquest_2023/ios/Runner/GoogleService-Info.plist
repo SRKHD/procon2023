@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAT2ByMwwun4tRj3tbAkl2DTpfHyvGS4Iw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>663590594175</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.bodquest2023</string>
+	<key>PROJECT_ID</key>
+	<string>bod-quest-2023-11-17</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bod-quest-2023-11-17.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:663590594175:ios:2eb93efb873b86e9d8814a</string>
+</dict>
+</plist>

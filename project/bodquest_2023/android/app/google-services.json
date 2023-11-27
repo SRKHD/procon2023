@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663590594175",
+    "project_id": "bod-quest-2023-11-17",
+    "storage_bucket": "bod-quest-2023-11-17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663590594175:android:46f348df0ef6236ad8814a",
+        "android_client_info": {
+          "package_name": "com.example.bodquest_2023"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMCBLz3Q0msK0RhN4S-t_p37rsviGduro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
