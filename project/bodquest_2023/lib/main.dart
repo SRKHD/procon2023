@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 import 'package:bodquest_2023/presentation/component/main_widget.dart';
 import 'package:bodquest_2023/presentation/component/main_left_drawer.dart';
 import 'package:bodquest_2023/presentation/component/main_bottom_navigation_bar_widget.dart';
 import 'package:bodquest_2023/presentation/component/component_types.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
