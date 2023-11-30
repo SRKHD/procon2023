@@ -44,12 +44,15 @@ class _WeightPageState extends State<WeightPage> {
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
                   }
+                  //参考
+                  //https://www.flutter-study.dev/firebase/cloud-firestore-try
                   //3
                   final list = snapshot.requireData.docs
                       .map<String>((DocumentSnapshot document) {
-                    final documentData =
-                        document.data()! as Map<String, dynamic>;
-                    return documentData['content']! as String;
+                    return document['value'].toString();
+                    // final documentData =
+                    //     document.data()! as Map<String, dynamic>;
+                    // return documentData['content']! as String;
                   }).toList();
 
                   final reverseList = list.reversed.toList();
