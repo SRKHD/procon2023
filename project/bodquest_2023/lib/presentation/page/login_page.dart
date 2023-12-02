@@ -1,3 +1,4 @@
+import 'package:bodquest_2023/main.dart';
 import 'package:bodquest_2023/presentation/page/registration_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class _LogInPage extends State<LogInPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 // todo：ログイン画面
+                
                 Padding(
                   padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 0),
                   // アカウント作成ボタン
@@ -30,7 +32,23 @@ class _LogInPage extends State<LogInPage> {
                       ),
                     );
                   }),
+                  ),
+
+                  // 開発用
+                  Padding(
+                  padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 0),
+                  child:ElevatedButton(
+                  child: const Text('開発用：ログインスキップ'),
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (BuildContext context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+                      ),
+                    );
+                  }),
                   )
+                  
               ],
             ),
         ),
