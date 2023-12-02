@@ -1,4 +1,4 @@
-import '../../domain/entity/user.dart';
+import '../entity/user.dart';
 
 abstract interface class IUserRepository {
   /// ユーザー一覧の取得
