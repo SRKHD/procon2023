@@ -1,3 +1,4 @@
+import 'package:bodquest_2023/presentation/page/registration_page.dart';
 import 'package:flutter/material.dart';
 
 class LogInPage extends StatefulWidget {
@@ -21,8 +22,13 @@ class _LogInPage extends State<LogInPage> {
                   // アカウント作成ボタン
                   child:ElevatedButton(
                   child: const Text('アカウントを作成する'),
-                  onPressed: () {
-                    // todo
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (BuildContext context) => RegistrationPage(),
+                      ),
+                    );
                   }),
                   )
               ],
