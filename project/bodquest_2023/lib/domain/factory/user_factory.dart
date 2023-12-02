@@ -1,4 +1,4 @@
-import '../../infrastructure/model/rug_user.dart';
+import '../../infrastructure/model/firestore/rug_user.dart';
 import '../entity/user.dart';
 
 abstract interface class IUserFactory {
