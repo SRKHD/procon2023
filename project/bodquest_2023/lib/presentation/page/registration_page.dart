@@ -111,6 +111,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     },
                   ),
                 ),
+
+                Padding(
+                padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 0),
+                child:ElevatedButton(
+                  child: const Text('ログイン画面に戻る'),
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  }),
+                ),
               ],
             ),
         ),
