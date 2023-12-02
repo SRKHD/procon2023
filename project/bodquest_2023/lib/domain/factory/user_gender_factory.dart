@@ -1,7 +1,7 @@
 import '../../infrastructure/model/firestore/rug_user_gender.dart';
 import '../value/user_gender.dart';
 
-abstract class UserGenderFactory {
+abstract interface class IUserGenderFactory {
   /// [UserGender]を生成する
   UserGender create(String value);
 
