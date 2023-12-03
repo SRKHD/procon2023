@@ -65,11 +65,11 @@ class WeightPageState extends ConsumerState<WeightPage> {
                 onPressed: () async {
                   // ドキュメント作成
                   await FirebaseFirestore.instance
-                      .collection('weight') // コレクションID
+                      .collection('weights') // コレクションID
                       .doc() // ドキュメントID
                       .set({
                     'value': double.parse(inputValue),
-                    'id': userId
+                    'userId': userId
                   }); // データ
                   editingController.text = '';
                 },

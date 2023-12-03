@@ -8,10 +8,10 @@ class RugGetWeightsResponse {
   });
 
   factory RugGetWeightsResponse.fromJson(Map<String, dynamic>? json) {
-    return RugGetWeightsResponse(
-      results: json?['results']
-          .map<RugWeight>((e) => RugWeight.fromJson(e))
-          .toList(),
-    );
+    return RugGetWeightsResponse(results: [RugWeight.fromJson(json)]
+        // results: json?['results']
+        //     .map<RugWeight>((e) => RugWeight.fromJson(e))
+        //     .toList(),
+        );
   }
 }
