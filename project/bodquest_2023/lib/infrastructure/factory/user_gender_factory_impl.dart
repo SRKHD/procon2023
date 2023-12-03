@@ -2,7 +2,7 @@ import '../../domain/factory/user_gender_factory.dart';
 import '../../domain/value/user_gender.dart';
 import '../model/firestore/rug_user_gender.dart';
 
-class IUserGenderFactoryImpl implements IUserGenderFactory {
+class UserGenderFactoryImpl implements IUserGenderFactory {
   @override
   UserGender create(String value) {
     switch (value) {
