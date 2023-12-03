@@ -1,15 +1,15 @@
 import '../../domain/entity/user.dart';
 import '../../domain/factory/user_factory.dart';
 import '../../domain/repository/user_repository.dart';
-import '../datasource/firestore_datasource.dart';
+import '../datasource/firestore_users_datasource.dart';
 
 class UserRepositoryImpl implements IUserRepository {
   UserRepositoryImpl({
-    required IFirestoreDataSource dataSource,
+    required IFirestoreUsersDataSource dataSource,
     required IUserFactory factory,
   })  : fireStoreDataSource = dataSource,
         userFactory = factory;
-  final IFirestoreDataSource fireStoreDataSource;
+  final IFirestoreUsersDataSource fireStoreDataSource;
   final IUserFactory userFactory;
 
   @override

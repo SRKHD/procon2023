@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../core/exception/network_exception.dart';
 import '../model/firestore/rug_get_users_response.dart';
-import 'firestore_datasource.dart';
+import 'firestore_users_datasource.dart';
 
-class FirestoreDataSourceImpl implements IFirestoreDataSource {
+class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
   @override
   Future<RugGetUsersResponse> getUsers({int results = 10}) async {
     const userId = 'srkhd.2023@gmail.com';
@@ -17,7 +17,10 @@ class FirestoreDataSourceImpl implements IFirestoreDataSource {
           if (docSnapshot.exists)
             {result = RugGetUsersResponse.fromJson(docSnapshot.data())}
           else
-            {throw NetworkException('FirestoreDataSourceImpl getUsers() "/"')}
+            {
+              throw NetworkException(
+                  'FirestoreUsersDataSourceImpl getUsers() "/"')
+            }
         });
     return result;
   }
