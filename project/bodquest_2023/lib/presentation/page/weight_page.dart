@@ -22,7 +22,7 @@ class _WeightPageState extends State<WeightPage> {
   Widget build(BuildContext context) {
     const userId = 'srkhd.2023@gmail.com';
     String inputValue = '0';
-    final _editingController = TextEditingController();
+    final editingController = TextEditingController();
 
     return Center(
       child: Column(
@@ -76,7 +76,7 @@ class _WeightPageState extends State<WeightPage> {
               FilteringTextInputFormatter.allow(
                   RegExp(r'^[1-9]+[0-9]*(\.([1-9]*|[0-9]+[1-9]+))?$'))
             ],
-            controller: _editingController,
+            controller: editingController,
             onChanged: (value) {
               inputValue = value;
             },
@@ -89,7 +89,7 @@ class _WeightPageState extends State<WeightPage> {
                   .doc() // ドキュメントID
                   .set(
                       {'value': double.parse(inputValue), 'id': userId}); // データ
-              _editingController.text = '';
+              editingController.text = '';
             },
             label: Text('登録'),
             icon: const Icon(Icons.add),
