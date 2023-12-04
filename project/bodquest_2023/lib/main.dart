@@ -7,6 +7,7 @@ import 'package:bodquest_2023/presentation/component/main_widget.dart';
 import 'package:bodquest_2023/presentation/component/main_left_drawer.dart';
 import 'package:bodquest_2023/presentation/component/main_bottom_navigation_bar_widget.dart';
 import 'package:bodquest_2023/presentation/component/component_types.dart';
+import 'package:bodquest_2023/presentation/page/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: LogInPage(),//const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
