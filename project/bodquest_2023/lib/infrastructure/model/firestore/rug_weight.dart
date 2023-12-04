@@ -10,7 +10,7 @@ class RugWeight {
   factory RugWeight.fromJson(json) {
     return RugWeight(
       userId: json['userId'],
-      value: json['value'],
+      value: json['value'].toDouble(),
     );
   }
 }
