@@ -43,10 +43,14 @@ dependencies:
   # freezed
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
-  
+  #test
+  fake_cloud_firestore: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver: # firestoreのテスト用のpackageを追加
+    sdk: flutter   # firestoreのテスト用のpackageを追加
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
