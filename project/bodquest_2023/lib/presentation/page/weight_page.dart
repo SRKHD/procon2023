@@ -7,7 +7,7 @@ import '../component/weight_list_item.dart';
 import '../notifier/weight_list_notifier.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
-  const WeightPage({Key? key}) : super(key: key);
+  const WeightPage({super.key});
 
   @override
   WeightPageState createState() => WeightPageState();

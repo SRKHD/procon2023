@@ -4,8 +4,7 @@ import 'package:bodquest_2023/presentation/component/component_types.dart';
 // ignore: must_be_immutable
 class MainBottomNavigationBar extends StatelessWidget {
   MainBottomNavigationBar(
-      {Key? key, required this.currentTab, required this.onSelect})
-      : super(key: key);
+      {super.key, required this.currentTab, required this.onSelect});
   final TabItem currentTab;
   final ValueChanged<TabItem> onSelect;
   final items = <BottomNavigationBarItem>[
