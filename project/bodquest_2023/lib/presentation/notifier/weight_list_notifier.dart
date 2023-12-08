@@ -21,9 +21,9 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
 
   /// ユーザー一覧の同期
   Future<void> _fetch() async {
-    state = await AsyncValue.guard(() async {
-      final res = await _getWeightsUsecase.execute();
-      return res.map((e) => WeightState.fromEntity(e)).toList();
+    _getWeightsUsecase.execute().listen((weights) {
+      state = AsyncValue.data(
+          weights.map((weight) => WeightState.fromEntity(weight)).toList());
     });
   }
 }

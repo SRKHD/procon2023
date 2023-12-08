@@ -10,7 +10,7 @@ class GetWeightsUsecaseImpl implements IGetWeightsUsecase {
   }) : weightRepository = repository;
 
   @override
-  Future<List<Weight>> execute() async {
-    return await weightRepository.findAll();
+  Stream<List<Weight>> execute() {
+    return weightRepository.findAll();
   }
 }

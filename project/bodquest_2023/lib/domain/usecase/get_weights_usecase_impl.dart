@@ -12,5 +12,5 @@ final getWeightsUsecaseProvider = Provider<IGetWeightsUsecase>(
 
 /// ユーザー一覧を取得する
 abstract interface class IGetWeightsUsecase {
-  Future<List<Weight>> execute();
+  Stream<List<Weight>> execute();
 }

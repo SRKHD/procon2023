@@ -6,19 +6,15 @@ import 'firestore_weights_datasource.dart';
 
 class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
   @override
-  Future<RugGetWeightsResponse> getWeights({int results = 10}) async {
-    RugGetWeightsResponse result = RugGetWeightsResponse(results: []);
+  Stream<RugGetWeightsResponse> getWeights({int results = 10}) {
     const userId = 'srkhd.2023@gmail.com';
 
-    await FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection('weights')
         .where('userId', isEqualTo: userId)
-        .get()
-        .then((value) => {
-              for (var doc in value.docs)
-                {result.results.add(RugWeight.fromJson(doc.data()))}
-            });
-
-    return result;
+        .snapshots()
+        .map((value) => RugGetWeightsResponse(results: [
+              ...value.docs.map((doc) => RugWeight.fromJson(doc.data()))
+            ]));
   }
 }

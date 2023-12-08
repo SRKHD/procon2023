@@ -9,5 +9,5 @@ final fireStoreWeightsDataSourceProvider =
 );
 
 abstract interface class IFirestoreWeightsDataSource {
-  Future<RugGetWeightsResponse> getWeights({int results});
+  Stream<RugGetWeightsResponse> getWeights({int results});
 }
