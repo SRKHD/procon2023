@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeightPage extends StatefulWidget {
+import '../component/weight_list_item.dart';
+import '../notifier/weight_list_notifier.dart';
+
+class WeightPage extends ConsumerStatefulWidget {
   const WeightPage({Key? key}) : super(key: key);
 
   @override
-  State<WeightPage> createState() => _WeightPageState();
+  WeightPageState createState() => WeightPageState();
 }
 
-class _WeightPageState extends State<WeightPage> {
+class WeightPageState extends ConsumerState<WeightPage> {
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -20,10 +24,76 @@ class _WeightPageState extends State<WeightPage> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(weightListNotifierProvider);
     const userId = 'srkhd.2023@gmail.com';
     String inputValue = '0';
     final editingController = TextEditingController();
 
+    return state.when(
+      data: (weights) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  children: weights
+                      .map(
+                        (e) => WeightLiteItem(
+                          useId: e.userId,
+                          value: e.value,
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+              TextField(
+                textAlign: TextAlign.right,
+                decoration: const InputDecoration(hintText: '体重を入力'),
+                keyboardType: const TextInputType.numberWithOptions(
+                    signed: true, decimal: true),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(
+                      RegExp(r'^[1-9]+[0-9]*(\.([1-9]*|[0-9]+[1-9]+))?$'))
+                ],
+                controller: editingController,
+                onChanged: (value) {
+                  inputValue = value;
+                },
+              ),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  // ドキュメント作成
+                  await FirebaseFirestore.instance
+                      .collection('weights') // コレクションID
+                      .doc() // ドキュメントID
+                      .set({
+                    'value': double.parse(inputValue),
+                    'userId': userId
+                  }); // データ
+                  editingController.text = '';
+                },
+                label: Text('登録'),
+                icon: const Icon(Icons.add),
+              ),
+            ],
+          ),
+        );
+      },
+      error: (error, _) {
+        return Center(
+          child: Text(
+            error.toString(),
+          ),
+        );
+      },
+      loading: () {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    /*
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,5 +167,6 @@ class _WeightPageState extends State<WeightPage> {
         ],
       ),
     );
+    */
   }
 }
