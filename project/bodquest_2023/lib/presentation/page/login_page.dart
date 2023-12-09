@@ -54,13 +54,10 @@ class _LogInPage extends State<LogInPage> {
                     child: const Text('ログイン'),
                   onPressed: (){
                     // todo
-                  }
-                  ),
-                  ),
-                  
-
-                    
-                  Padding(
+                  }),
+                ),
+                                      
+                Padding(
                   padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 0),
                   // アカウント作成ボタン
                   child:ElevatedButton(
@@ -72,7 +69,7 @@ class _LogInPage extends State<LogInPage> {
                         builder: (BuildContext context) => RegistrationPage(),
                       ),
                     );
-                  }),
+                    }),
                   ),
 
                   // 開発用
