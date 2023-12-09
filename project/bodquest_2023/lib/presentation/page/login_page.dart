@@ -17,9 +17,50 @@ class _LogInPage extends State<LogInPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                // todo：ログイン画面
-                
+
+                // メールアドレスの入力フォーム
                 Padding(
+                  padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 0),
+                  child:TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "メールアドレス"
+                    ),
+                    onChanged: (String value) {
+                      //todo
+                    },
+                  )
+                ),
+
+                // パスワードの入力フォーム
+                Padding(
+                  padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 20.0),
+                  child:TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "パスワード（8～20文字）"
+                    ),
+                    onChanged: (String value) {
+                      // todo
+                    },
+                  ),
+                ),
+                
+                // ログイン失敗時のエラーメッセージ
+                // todo
+
+                // ログインボタン
+                Padding(
+                  padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 50),
+                  child: ElevatedButton(
+                    child: const Text('ログイン'),
+                  onPressed: (){
+                    // todo
+                  }
+                  ),
+                  ),
+                  
+
+                    
+                  Padding(
                   padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 0),
                   // アカウント作成ボタン
                   child:ElevatedButton(
