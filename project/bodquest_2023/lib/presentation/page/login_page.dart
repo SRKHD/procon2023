@@ -14,6 +14,7 @@ class LogInPage extends StatefulWidget {
 class _LogInPage extends State<LogInPage> {
   String _email = "";
   String _password = "";
+  String _infoText = ""; 
 
   late UserCredential _result;
   late User _user;
@@ -42,7 +43,7 @@ class _LogInPage extends State<LogInPage> {
 
                 // パスワードの入力フォーム
                 Padding(
-                  padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 20.0),
+                  padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 10.0),
                   child:TextFormField(
                     decoration: InputDecoration(
                       labelText: "パスワード（8～20文字）"
@@ -57,7 +58,11 @@ class _LogInPage extends State<LogInPage> {
                 ),
                 
                 // ログイン失敗時のエラーメッセージ
-                // todo
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0.0),
+                  child:Text(_infoText,
+                    style: TextStyle(color: Colors.red),),
+                ),
 
                 // ログインボタン
                 Padding(
@@ -71,21 +76,22 @@ class _LogInPage extends State<LogInPage> {
                         email: _email,
                         password: _password);
                         
-                        // ログイン成功
-                        // ホーム画面に遷移
-                        _user = _result.user!;
-                        if (context.mounted) {Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
-                          )
-                        );
-                        }
+                      // ログイン成功
+                      // ホーム画面に遷移
+                      _user = _result.user!;
+                      if (context.mounted) {Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+                        )
+                      );
+                      }
                     }
                     catch(e)
                     {
-                      setState((){
-                        // todo
+                      // ログインに失敗した場合
+                      setState(() {
+                        _infoText = '有効ではありません。';
                       });
                     }
                   }),
