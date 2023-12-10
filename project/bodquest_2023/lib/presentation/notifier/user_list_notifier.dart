@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../domain/usecase/get_users_usecase_impl.dart';
+import '../../domain/usecase/get_users_usecase.dart';
 import '../state/user_state.dart';
 
 final userListNotifierProvider =

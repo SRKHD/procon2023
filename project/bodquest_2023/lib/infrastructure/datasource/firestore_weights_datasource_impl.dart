@@ -17,4 +17,13 @@ class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
               ...value.docs.map((doc) => RugWeight.fromJson(doc.data()))
             ]));
   }
+
+  @override
+  Future<int> addWeight(String userId, double value) async {
+    await FirebaseFirestore.instance
+        .collection('weights') // コレクションID
+        .doc() // ドキュメントID
+        .set({'value': value, 'userId': userId}); // データ
+    return 0;
+  }
 }
