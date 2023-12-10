@@ -47,6 +47,8 @@ dependencies:
   json_annotation:
   #test
   fake_cloud_firestore: ^2.1.0
+  # ios ヘルスケア
+  health:
 
 dev_dependencies:
   flutter_test:
