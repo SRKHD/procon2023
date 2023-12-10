@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainLeftDrawer extends StatefulWidget {
-  MainLeftDrawer({Key? key}) : super(key: key);
+  MainLeftDrawer({super.key});
 
   @override
   State<MainLeftDrawer> createState() => _MainLeftDrawerState();

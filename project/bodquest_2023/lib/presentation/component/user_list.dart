@@ -5,7 +5,7 @@ import '../notifier/user_list_notifier.dart';
 import 'user_list_item.dart';
 
 class UserList extends ConsumerWidget {
-  const UserList({Key? key}) : super(key: key);
+  const UserList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

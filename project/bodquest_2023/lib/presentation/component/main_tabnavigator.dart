@@ -6,11 +6,11 @@ import 'package:bodquest_2023/presentation/component/sample_counter_widget.dart'
 
 class TabNavigator extends StatelessWidget {
   const TabNavigator({
-    Key? key,
+    super.key,
     required this.tabItem,
     required this.routerName,
     required this.navigationKey,
-  }) : super(key: key);
+  });
 
   final TabItem tabItem;
   final String routerName;
