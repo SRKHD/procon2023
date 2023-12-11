@@ -22,6 +22,10 @@ class MainBottomNavigationBar extends StatelessWidget {
     ),
     BottomNavigationBarItem(
       label: "",
+      icon: Icon(Icons.sports_handball),
+    ),
+    BottomNavigationBarItem(
+      label: "",
       icon: Icon(Icons.arrow_upward),
     ),
     BottomNavigationBarItem(
