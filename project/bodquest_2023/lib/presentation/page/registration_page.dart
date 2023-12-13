@@ -97,10 +97,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           )
                         );
                         }
-                      } catch (e) {
+                    } on FirebaseAuthException catch (e) {
                         // 登録に失敗した場合
                         setState(() {
-                          _infoText = '有効ではありません。';
+                        _infoText = AuthException(e.code).toString();
                         });
                       }
                       }else{

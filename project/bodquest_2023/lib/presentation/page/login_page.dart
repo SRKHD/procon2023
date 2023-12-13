@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field
 
+import 'package:bodquest_2023/core/exception/firebasse_auth_exception.dart';
 import 'package:bodquest_2023/main.dart';
 import 'package:bodquest_2023/presentation/page/registration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -87,11 +88,11 @@ class _LogInPage extends State<LogInPage> {
                       );
                       }
                     }
-                    catch(e)
+                    on FirebaseAuthException catch (e)
                     {
                       // ログインに失敗した場合
                       setState(() {
-                        _infoText = '有効ではありません。';
+                        _infoText = AuthException(e.code).toString();
                       });
                     }
                   }),
