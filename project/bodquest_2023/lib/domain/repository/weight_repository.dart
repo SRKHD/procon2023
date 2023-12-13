@@ -15,4 +15,8 @@ final weightRepositoryProvider = Provider<IWeightRepository>(
 abstract interface class IWeightRepository {
   /// ユーザー一覧の取得
   Stream<List<Weight>> findAll();
+  Future<int> addUser(
+    String userId,
+    double value,
+  );
 }

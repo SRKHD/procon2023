@@ -4,13 +4,15 @@ import 'package:bodquest_2023/presentation/page/home_page.dart';
 import 'package:bodquest_2023/presentation/page/weight_page.dart';
 import 'package:bodquest_2023/presentation/component/sample_counter_widget.dart';
 
+import 'health_sample_wedget.dart';
+
 class TabNavigator extends StatelessWidget {
   const TabNavigator({
-    Key? key,
+    super.key,
     required this.tabItem,
     required this.routerName,
     required this.navigationKey,
-  }) : super(key: key);
+  });
 
   final TabItem tabItem;
   final String routerName;
@@ -23,7 +25,7 @@ class TabNavigator extends StatelessWidget {
         '/setting': (context) => Placeholder(),
         '/weight': (context) => WeightPage(),
         '/sampleCounter': (context) => SampleCounterWidget(),
-        '/view1': (context) => Placeholder(),
+        '/view1': (context) => HealthWidget(),
         '/view2': (context) => Placeholder(),
       };
 

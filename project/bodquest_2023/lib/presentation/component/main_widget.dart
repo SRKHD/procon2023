@@ -3,8 +3,8 @@ import 'package:bodquest_2023/presentation/component/main_tabnavigator.dart';
 import 'package:bodquest_2023/presentation/component/component_types.dart';
 
 class MainWidget extends StatelessWidget {
-  MainWidget({Key? key, required this.currentTab, required this.navigatorKeys})
-      : super(key: key);
+  MainWidget(
+      {super.key, required this.currentTab, required this.navigatorKeys});
   final TabItem currentTab;
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys;
 

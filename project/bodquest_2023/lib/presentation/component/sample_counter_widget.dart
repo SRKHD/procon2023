@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SampleCounterWidget extends StatefulWidget {
   int counter = 0;
 
-  SampleCounterWidget({Key? key}) : super(key: key);
+  SampleCounterWidget({super.key});
 
   @override
   State<SampleCounterWidget> createState() => _SampleCounterWidgetState();
