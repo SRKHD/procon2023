@@ -23,7 +23,7 @@ class WeightRepositoryImpl implements IWeightRepository {
   }
 
   @override
-  Future<int> addUser(String userId, double value) {
+  Future<int> addWeight(String userId, double value) {
     return fireStoreDataSource.addWeight(userId, value);
   }
 }
