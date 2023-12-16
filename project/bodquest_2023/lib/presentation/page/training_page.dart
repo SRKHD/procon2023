@@ -34,7 +34,6 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
 
     print(logInUserState.userId);
     print(logInUserState.userName);
-    //const userId = 'srkhd.2023@gmail.com';
     final dateState = ref.watch(dateTimeNotifierProvider);
 
     final textField = NumberTextField(

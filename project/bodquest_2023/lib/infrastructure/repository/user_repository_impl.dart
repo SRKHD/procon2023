@@ -8,12 +8,10 @@ import '../datasource/firestore_users_datasource.dart';
 
 class UserRepositoryImpl implements IUserRepository {
   UserRepositoryImpl({
-    required IFirestoreUsersDataSource fireStoreDataSource,
-    required IFirebaseAuthUserDataSource firebaseDataSource,
+    required this.fireStoreDataSource,
+    required this.firebaseDataSource,
     required IUserFactory factory,
-  })  : fireStoreDataSource = fireStoreDataSource,
-        firebaseDataSource = firebaseDataSource,
-        userFactory = factory;
+  }) : userFactory = factory;
   final IFirestoreUsersDataSource fireStoreDataSource;
   final IFirebaseAuthUserDataSource firebaseDataSource;
   final IUserFactory userFactory;

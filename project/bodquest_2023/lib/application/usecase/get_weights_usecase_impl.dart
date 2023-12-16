@@ -10,7 +10,7 @@ class GetWeightsUsecaseImpl implements IGetWeightsUsecase {
   }) : weightRepository = repository;
 
   @override
-  Stream<List<Weight>> execute() {
-    return weightRepository.findAll();
+  Stream<List<Weight>> execute(String userId) {
+    return weightRepository.findAll(userId);
   }
 }
