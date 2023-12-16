@@ -49,7 +49,9 @@ dependencies:
   fake_cloud_firestore: ^2.1.0
   # ios ヘルスケア
   health:
-
+  # google
+  google_sign_in:
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
