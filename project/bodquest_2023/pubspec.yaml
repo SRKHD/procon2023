@@ -42,6 +42,7 @@ dependencies:
   flutter_riverpod:
   flutter_hooks:
   riverpod_annotation:
+  sign_in_button:
   # freezed
   freezed_annotation:
   json_annotation:

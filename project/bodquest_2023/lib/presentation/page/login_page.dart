@@ -6,6 +6,7 @@ import 'package:bodquest_2023/presentation/page/registration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -63,7 +64,7 @@ class _LogInPage extends State<LogInPage> {
 
             // ログインボタン
             Padding(
-              padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 50),
+              padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 25.0),
               child: ElevatedButton(
                   child: const Text('ログイン'),
                   onPressed: () async {
@@ -91,6 +92,20 @@ class _LogInPage extends State<LogInPage> {
                       });
                     }
                   }),
+            ),
+
+            // Googleログインボタン
+            Padding(
+                padding: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 25.0),
+                child: SignInButton(Buttons.google, onPressed: () {})),
+
+            // 区切り線
+            Divider(
+              color: Colors.grey,
+              thickness: 1,
+              height: 50,
+              indent: 20,
+              endIndent: 20,
             ),
 
             Padding(
