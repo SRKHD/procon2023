@@ -64,21 +64,8 @@ class WeightPageState extends ConsumerState<WeightPage> {
                   final notifier =
                       ref.read(weightListNotifierProvider.notifier);
                   notifier.addWeight(userId, double.parse(inputValue));
-                  // weights.add(WeightState(
-                  //     userId: userId, value: double.parse(inputValue)));
                   _controller.text = '';
                 },
-                // onPressed: () async {
-                //   // ドキュメント作成
-                //   await FirebaseFirestore.instance
-                //       .collection('weights') // コレクションID
-                //       .doc() // ドキュメントID
-                //       .set({
-                //     'value': double.parse(inputValue),
-                //     'userId': userId
-                //   }); // データ
-                //   editingController.text = '';
-                // },
                 label: Text('登録'),
                 icon: const Icon(Icons.add),
               ),

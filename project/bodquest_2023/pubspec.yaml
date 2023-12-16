@@ -49,6 +49,9 @@ dependencies:
   fake_cloud_firestore: ^2.1.0
   # ios ヘルスケア
   health:
+  shared_preferences:
+  intl:
+  flutter_datetime_picker_plus:
 
 dev_dependencies:
   flutter_test:

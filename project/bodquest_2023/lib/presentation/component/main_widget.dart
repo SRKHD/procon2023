@@ -39,6 +39,10 @@ class MainWidget extends StatelessWidget {
           '/weight',
         ),
         _buildTabItem(
+          TabItem.training,
+          '/training',
+        ),
+        _buildTabItem(
           TabItem.sampleCounter,
           '/sampleCounter',
         ),

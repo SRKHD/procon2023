@@ -4,6 +4,7 @@ import 'package:bodquest_2023/presentation/page/home_page.dart';
 import 'package:bodquest_2023/presentation/page/weight_page.dart';
 import 'package:bodquest_2023/presentation/component/sample_counter_widget.dart';
 
+import '../page/training_page.dart';
 import 'health_sample_wedget.dart';
 
 class TabNavigator extends StatelessWidget {
@@ -24,6 +25,7 @@ class TabNavigator extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/setting': (context) => Placeholder(),
         '/weight': (context) => WeightPage(),
+        '/training': (context) => TrainingPage(),
         '/sampleCounter': (context) => SampleCounterWidget(),
         '/view1': (context) => HealthWidget(),
         '/view2': (context) => Placeholder(),
