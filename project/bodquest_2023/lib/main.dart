@@ -14,11 +14,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    ProviderScope(
-      child: const MyApp(),
-    ),
-  );
+  const app = MaterialApp(home: MyApp());
+  const scope = ProviderScope(child: app);
+  runApp(scope);
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LogInPage(),//const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: LogInPage(), //const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

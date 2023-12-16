@@ -51,6 +51,7 @@ dependencies:
   health:
   shared_preferences:
   intl:
+  flutter_datetime_picker_plus:
 
 dev_dependencies:
   flutter_test:
