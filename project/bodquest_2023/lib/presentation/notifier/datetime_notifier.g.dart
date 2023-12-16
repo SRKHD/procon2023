@@ -6,7 +6,7 @@ part of 'datetime_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dateTimeNotifierHash() => r'8417080d17dd2b5ad99662164053d099f7b8cdaa';
+String _$dateTimeNotifierHash() => r'1c79514e5a79d9217beb13935757e640f3028567';
 
 /// -----------------------------------------------------------
 /// ノティファイヤー & 自動で作られるプロバイダー - 文字を保存しておく
