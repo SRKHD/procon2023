@@ -7,10 +7,9 @@ import 'firestore_users_datasource.dart';
 class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
   @override
   Future<RugGetUsersResponse> getUsers({int results = 10}) async {
-    const userId = 'srkhd.2023@gmail.com';
     final usersRef = FirebaseFirestore.instance
         .collection('users') // コレクションID
-        .doc(userId);
+        .doc();
 
     RugGetUsersResponse result = RugGetUsersResponse(results: []);
     usersRef.get().then((docSnapshot) => {

@@ -13,9 +13,9 @@ class WeightRepositoryImpl implements IWeightRepository {
   final IWeightFactory userFactory;
 
   @override
-  Stream<List<Weight>> findAll() {
+  Stream<List<Weight>> findAll(String userId) {
     try {
-      return fireStoreDataSource.getWeights().map((event) =>
+      return fireStoreDataSource.getWeights(userId).map((event) =>
           [...event.results.map((res) => userFactory.createFromModel(res))]);
     } catch (e) {
       rethrow;
@@ -23,7 +23,7 @@ class WeightRepositoryImpl implements IWeightRepository {
   }
 
   @override
-  Future<int> addUser(String userId, double value) {
+  Future<int> addWeight(String userId, double value) {
     return fireStoreDataSource.addWeight(userId, value);
   }
 }

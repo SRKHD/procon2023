@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../component/component_types.dart';
 import '../component/number_textfield_widget.dart';
 import '../component/training_kind_dropdown_widget.dart';
+import '../notifier/login_user_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../notifier/training_kind_notifier.dart';
 import '../notifier/weight_list_notifier.dart';
@@ -29,7 +30,10 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(weightListNotifierProvider);
     final kind = ref.watch(trainingKindNotifierProvider);
-    const userId = 'srkhd.2023@gmail.com';
+    final logInUserState = ref.watch(logInUserNotifierProvider);
+
+    print(logInUserState.userId);
+    print(logInUserState.userName);
     final dateState = ref.watch(dateTimeNotifierProvider);
 
     final textField = NumberTextField(
