@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../component/weight_list_item.dart';
+import '../notifier/login_user_notifier.dart';
 import '../notifier/weight_list_notifier.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
@@ -26,7 +27,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(weightListNotifierProvider);
-    const userId = 'srkhd.2023@gmail.com';
+    final logInUserState = ref.watch(logInUserNotifierProvider);
     String inputValue = '0';
 
     return state.when(
@@ -88,22 +89,10 @@ class WeightPageState extends ConsumerState<WeightPage> {
                 onPressed: () {
                   final notifier =
                       ref.read(weightListNotifierProvider.notifier);
-                  notifier.addWeight(userId, double.parse(inputValue));
-                  // weights.add(WeightState(
-                  //     userId: userId, value: double.parse(inputValue)));
+                  notifier.addWeight(
+                      logInUserState.userId, double.parse(inputValue));
                   _controller.text = '';
                 },
-                // onPressed: () async {
-                //   // ドキュメント作成
-                //   await FirebaseFirestore.instance
-                //       .collection('weights') // コレクションID
-                //       .doc() // ドキュメントID
-                //       .set({
-                //     'value': double.parse(inputValue),
-                //     'userId': userId
-                //   }); // データ
-                //   editingController.text = '';
-                // },
                 label: Text('登録'),
                 icon: const Icon(Icons.add),
               ),

@@ -49,10 +49,11 @@ dependencies:
   fake_cloud_firestore: ^2.1.0
   # ios ヘルスケア
   health:
+  shared_preferences:
+  intl:
+  flutter_datetime_picker_plus:
   # chart
   fl_chart:
-  # localization (for date time formatting)
-  intl:
 
 dev_dependencies:
   flutter_test:

@@ -6,9 +6,7 @@ import 'firestore_weights_datasource.dart';
 
 class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
   @override
-  Stream<RugGetWeightsResponse> getWeights({int results = 10}) {
-    const userId = 'srkhd.2023@gmail.com';
-
+  Stream<RugGetWeightsResponse> getWeights(String userId) {
     return FirebaseFirestore.instance
         .collection('weights')
         .where('userId', isEqualTo: userId)
@@ -23,7 +21,10 @@ class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
     await FirebaseFirestore.instance
         .collection('weights') // コレクションID
         .doc() // ドキュメントID
-        .set({'value': value, 'userId': userId}); // データ
+        .set({
+      'userId': userId,
+      'value': value,
+    }); // データ
     return 0;
   }
 }
