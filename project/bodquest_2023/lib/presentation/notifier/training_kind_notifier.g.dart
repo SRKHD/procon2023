@@ -7,7 +7,7 @@ part of 'training_kind_notifier.dart';
 // **************************************************************************
 
 String _$trainingKindNotifierHash() =>
-    r'e7ce49cf5eb119388c9e06922ebd19cc5be52523';
+    r'76d4b11a206f024527e8e017b12acf6464965d00';
 
 /// トレーニング種類を状態管理
 ///

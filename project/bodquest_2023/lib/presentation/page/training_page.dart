@@ -1,14 +1,16 @@
-import 'package:bodquest_2023/presentation/notifier/datetime_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../component/component_types.dart';
 import '../component/number_textfield_widget.dart';
 import '../component/training_kind_dropdown_widget.dart';
+import '../component/training_list_item.dart';
+import '../notifier/datetime_notifier.dart';
 import '../notifier/login_user_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../notifier/training_kind_notifier.dart';
-import '../notifier/weight_list_notifier.dart';
+import '../notifier/training_list_notifier.dart';
+import '../state/training_state.dart';
 
 class TrainingPage extends ConsumerStatefulWidget {
   const TrainingPage({super.key});
@@ -28,8 +30,8 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(weightListNotifierProvider);
-    final kind = ref.watch(trainingKindNotifierProvider);
+    final trainingState = ref.watch(trainingListNotifierProvider);
+    final kindState = ref.watch(trainingKindNotifierProvider);
     final logInUserState = ref.watch(logInUserNotifierProvider);
 
     print(logInUserState.userId);
@@ -40,7 +42,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       controller: _controller,
       notifier: ref.watch(textNotifierProvider.notifier),
       labelText: 'トレーニング量',
-      hintText: switch (kind) {
+      hintText: switch (kindState) {
         TrainingKind.walk => '歩いた時間',
         TrainingKind.run => '走った時間',
         TrainingKind.workOut => '筋トレ時間',
@@ -55,7 +57,11 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
     final button = ElevatedButton.icon(
       onPressed: () {
         final text = ref.watch(textNotifierProvider);
-        print('保存されている文字は: $text');
+        // print('保存されている文字は: $text');
+        final notifier = ref.read(trainingListNotifierProvider.notifier);
+        notifier.addTraining(
+            logInUserState.userId, kindState.name, dateState, int.parse(text));
+        _controller.text = '';
       },
       label: Text('登録'),
       icon: const Icon(Icons.add),
@@ -88,24 +94,13 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       ],
     );
 
-    return state.when(
-      data: (weights) {
+    return trainingState.when(
+      data: (trainings) {
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              // Expanded(
-              //   child: ListView(
-              //       // children: weights
-              //       //     .map(
-              //       //       (e) => TrainingLiteItem(
-              //       //         useId: e.userId,
-              //       //         value: e.value,
-              //       //       ),
-              //       //     )
-              //       //     .toList(),
-              //       ),
-              // ),
+              listView(trainings),
               TrainingKindDropdown(),
               calenderComponents,
               textComponents,
@@ -126,6 +121,22 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
           child: CircularProgressIndicator(),
         );
       },
+    );
+  }
+
+  Expanded listView(List<TrainingState> trainings) {
+    return Expanded(
+      child: ListView(
+        children: trainings
+            .map(
+              (e) => TrainingLiteItem(
+                kind: e.kind,
+                date: e.date,
+                value: e.value,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
