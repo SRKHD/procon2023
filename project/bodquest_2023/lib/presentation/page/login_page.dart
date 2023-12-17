@@ -3,8 +3,10 @@
 import 'package:bodquest_2023/core/exception/firebasse_auth_exception.dart';
 import 'package:bodquest_2023/presentation/page/registration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 import 'myhome_page.dart';
@@ -21,6 +23,7 @@ class _LogInPage extends State<LogInPage> {
 
   late UserCredential _result;
   late User _user;
+  late bool _isSigningIn;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +101,26 @@ class _LogInPage extends State<LogInPage> {
             // Googleログインボタン
             Padding(
                 padding: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 25.0),
-                child: SignInButton(Buttons.google, onPressed: () {})),
+                child: SignInButton(Buttons.google, onPressed: () async {
+                  setState(() {
+                    _isSigningIn = true;
+                  });
+
+                  User? user = await _signInGoogle(context: context);
+
+                  setState(() {
+                    _isSigningIn = false;
+                  });
+
+                  if (user != null && context.mounted) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const MyHomePage(title: 'Flutter Demo Home Page'),
+                        ));
+                  }
+                })),
 
             // 区切り線
             Divider(
@@ -143,5 +165,53 @@ class _LogInPage extends State<LogInPage> {
         ),
       ),
     );
+  }
+
+  Future<User?> _signInGoogle({required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+
+    if (kIsWeb) {
+      GoogleAuthProvider authProvider = GoogleAuthProvider();
+
+      try {
+        final UserCredential userCredential =
+            await auth.signInWithPopup(authProvider);
+
+        user = userCredential.user;
+      } catch (e) {
+        print(e);
+      }
+    } else {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
+
+        try {
+          final UserCredential userCredential =
+              await auth.signInWithCredential(credential);
+
+          user = userCredential.user;
+        } on FirebaseAuthException catch (e) {
+          setState(() {
+            _infoText = AuthException(e.code).toString();
+          });
+        } catch (e) {
+          // ...
+        }
+      }
+    }
+
+    return user;
   }
 }
