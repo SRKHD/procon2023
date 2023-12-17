@@ -9,12 +9,10 @@ part 'training_kind_notifier.g.dart';
 class TrainingKindNotifier extends _$TrainingKindNotifier {
   @override
   TrainingKind build() {
-    // 春からスタート
     return TrainingKind.walk;
   }
 
-  /// 季節を変更する
-  void updateTrainingKind(TrainingKind trainingKind) {
-    state = trainingKind;
+  void updateTrainingKind(String value) {
+    state = TrainingKind.from(value);
   }
 }

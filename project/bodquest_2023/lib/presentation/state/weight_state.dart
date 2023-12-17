@@ -11,10 +11,10 @@ class WeightState with _$WeightState {
     required double value,
   }) = _WeightState;
 
-  factory WeightState.fromEntity(Weight user) {
+  factory WeightState.fromEntity(Weight target) {
     return WeightState(
-      userId: user.userId,
-      value: user.value,
+      userId: target.userId,
+      value: target.value,
     );
   }
 }

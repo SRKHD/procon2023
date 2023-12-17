@@ -1,7 +1,7 @@
-import 'package:bodquest_2023/domain/usecase/add_weight_usecase.dart';
-import 'package:bodquest_2023/domain/usecase/get_login_user_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../domain/usecase/add_weight_usecase.dart';
+import '../../domain/usecase/get_login_user_usecase.dart';
 import '../../domain/usecase/get_weights_usecase.dart';
 import '../state/weight_state.dart';
 
@@ -30,7 +30,7 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
   final IGetWeightsUsecase _getWeightsUsecase;
   final IAddWeightUsecase _addWeightsUsecase;
 
-  /// ユーザー一覧の同期
+  /// 一覧の同期
   Future<void> _fetch(String userId) async {
     _getWeightsUsecase.execute(userId).listen((weights) {
       state = AsyncValue.data(

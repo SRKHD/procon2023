@@ -21,7 +21,10 @@ class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
     await FirebaseFirestore.instance
         .collection('weights') // コレクションID
         .doc() // ドキュメントID
-        .set({'value': value, 'userId': userId}); // データ
+        .set({
+      'userId': userId,
+      'value': value,
+    }); // データ
     return 0;
   }
 }

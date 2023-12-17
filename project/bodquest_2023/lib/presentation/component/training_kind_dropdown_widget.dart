@@ -36,7 +36,7 @@ class TrainingKindDropdown extends ConsumerWidget {
       onChanged: (newValue) {
         // 状態管理 --> 季節を変更
         final notifier = ref.read(trainingKindNotifierProvider.notifier);
-        notifier.updateTrainingKind(newValue!);
+        notifier.updateTrainingKind(newValue!.value);
       },
       focusColor: Colors.transparent, // 余計な影をなくす
     );
