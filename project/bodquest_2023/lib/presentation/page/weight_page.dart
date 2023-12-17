@@ -1,6 +1,8 @@
+import 'package:bodquest_2023/presentation/component/chart/scrollable_line_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../component/weight_list_item.dart';
 import '../notifier/login_user_notifier.dart';
@@ -34,6 +36,29 @@ class WeightPageState extends ConsumerState<WeightPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              Expanded(
+                child: ScrollableLineChart(
+                  dataSeries:
+                      weights.where((weight) => weight.timestamp != null),
+                  fx: (weight) =>
+                      weight.timestamp!.millisecondsSinceEpoch.toDouble(),
+                  fy: (weight) => weight.value,
+                  dataFormatter: (weight) {
+                    final formatter = DateFormat("M/d");
+                    return "${formatter.format(weight.timestamp!)}\n${weight.value}kg";
+                  },
+                  xFormatter: (x) {
+                    final formatter = DateFormat("M/d");
+                    final dtInMs = x.toInt();
+                    final dt = DateTime.fromMillisecondsSinceEpoch(dtInMs);
+
+                    return formatter.format(dt);
+                  },
+                  verticalGridInterval:
+                      Duration(days: 1).inMilliseconds.toDouble(),
+                  marginTop: 80,
+                ),
+              ),
               Expanded(
                 child: ListView(
                   children: weights
