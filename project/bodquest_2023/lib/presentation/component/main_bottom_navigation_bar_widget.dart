@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bodquest_2023/presentation/component/component_types.dart';
+
+import 'component_types.dart';
 
 // ignore: must_be_immutable
 class MainBottomNavigationBar extends StatelessWidget {
@@ -19,6 +20,10 @@ class MainBottomNavigationBar extends StatelessWidget {
     BottomNavigationBarItem(
       label: "",
       icon: Icon(Icons.scale),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.sports_handball),
     ),
     BottomNavigationBarItem(
       label: "",

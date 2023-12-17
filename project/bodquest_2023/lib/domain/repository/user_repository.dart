@@ -1,3 +1,4 @@
+import 'package:bodquest_2023/infrastructure/datasource/firebase_auth_user_datasource.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../infrastructure/datasource/firestore_users_datasource.dart';
@@ -7,7 +8,8 @@ import '../factory/user_factory.dart';
 
 final userRepositoryProvider = Provider<IUserRepository>(
   (ref) => UserRepositoryImpl(
-    dataSource: ref.watch(fireStoreUsersDataSourceProvider),
+    fireStoreDataSource: ref.watch(fireStoreUsersDataSourceProvider),
+    firebaseDataSource: ref.watch(firebaseAuthUserDataSourceProvider),
     factory: ref.watch(userFactoryProvider),
   ),
 );
@@ -15,4 +17,5 @@ final userRepositoryProvider = Provider<IUserRepository>(
 abstract interface class IUserRepository {
   /// ユーザー一覧の取得
   Future<List<User>> findAll();
+  Future<User> getLogInUser();
 }

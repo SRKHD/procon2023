@@ -13,6 +13,6 @@ class AddWeightUsecaseImpl implements IAddWeightUsecase {
     String userId,
     double value,
   ) {
-    return weightRepository.addUser(userId, value);
+    return weightRepository.addWeight(userId, value);
   }
 }

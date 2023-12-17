@@ -1,8 +1,11 @@
+import 'package:bodquest_2023/presentation/component/chart/scrollable_line_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../component/weight_list_item.dart';
+import '../notifier/login_user_notifier.dart';
 import '../notifier/weight_list_notifier.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
@@ -24,7 +27,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(weightListNotifierProvider);
-    const userId = 'srkhd.2023@gmail.com';
+    final logInUserState = ref.watch(logInUserNotifierProvider);
     String inputValue = '0';
 
     return state.when(
@@ -33,6 +36,29 @@ class WeightPageState extends ConsumerState<WeightPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              Expanded(
+                child: ScrollableLineChart(
+                  dataSeries:
+                      weights.where((weight) => weight.timestamp != null),
+                  fx: (weight) =>
+                      weight.timestamp!.millisecondsSinceEpoch.toDouble(),
+                  fy: (weight) => weight.value,
+                  dataFormatter: (weight) {
+                    final formatter = DateFormat("M/d");
+                    return "${formatter.format(weight.timestamp!)}\n${weight.value}kg";
+                  },
+                  xFormatter: (x) {
+                    final formatter = DateFormat("M/d");
+                    final dtInMs = x.toInt();
+                    final dt = DateTime.fromMillisecondsSinceEpoch(dtInMs);
+
+                    return formatter.format(dt);
+                  },
+                  verticalGridInterval:
+                      Duration(days: 1).inMilliseconds.toDouble(),
+                  marginTop: 80,
+                ),
+              ),
               Expanded(
                 child: ListView(
                   children: weights
@@ -63,22 +89,10 @@ class WeightPageState extends ConsumerState<WeightPage> {
                 onPressed: () {
                   final notifier =
                       ref.read(weightListNotifierProvider.notifier);
-                  notifier.addWeight(userId, double.parse(inputValue));
-                  // weights.add(WeightState(
-                  //     userId: userId, value: double.parse(inputValue)));
+                  notifier.addWeight(
+                      logInUserState.userId, double.parse(inputValue));
                   _controller.text = '';
                 },
-                // onPressed: () async {
-                //   // ドキュメント作成
-                //   await FirebaseFirestore.instance
-                //       .collection('weights') // コレクションID
-                //       .doc() // ドキュメントID
-                //       .set({
-                //     'value': double.parse(inputValue),
-                //     'userId': userId
-                //   }); // データ
-                //   editingController.text = '';
-                // },
                 label: Text('登録'),
                 icon: const Icon(Icons.add),
               ),

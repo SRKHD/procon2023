@@ -1,12 +1,13 @@
 // ignore_for_file: unused_field
 
 import 'package:bodquest_2023/core/exception/firebasse_auth_exception.dart';
-import 'package:bodquest_2023/main.dart';
 import 'package:bodquest_2023/presentation/page/registration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sign_in_button/sign_in_button.dart';
+
+import 'myhome_page.dart';
 
 class LogInPage extends StatefulWidget {
   @override
