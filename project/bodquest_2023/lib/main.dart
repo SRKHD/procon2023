@@ -10,7 +10,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  const app = MaterialApp(home: MyApp());
-  const scope = ProviderScope(child: app);
+  final app = MyApp();
+  final scope = ProviderScope(child: app);
   runApp(scope);
 }
