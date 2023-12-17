@@ -9,12 +9,14 @@ class WeightState with _$WeightState {
   factory WeightState({
     required String userId,
     required double value,
+    required DateTime? timestamp,
   }) = _WeightState;
 
   factory WeightState.fromEntity(Weight user) {
     return WeightState(
       userId: user.userId,
       value: user.value,
+      timestamp: user.timestamp,
     );
   }
 }
