@@ -30,7 +30,7 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
     _getWeightsUsecase.execute().listen((weights) {
       state = AsyncValue.data(
           weights.map((weight) => WeightState.fromEntity(weight)).toList());
-    });
+    }).onError((e) => print(e));
   }
 
   void addWeight(
