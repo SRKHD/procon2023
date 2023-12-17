@@ -1,7 +1,8 @@
-import 'package:bodquest_2023/presentation/notifier/text_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../notifier/text_notifier.dart';
 
 class NumberTextField extends ConsumerWidget {
   const NumberTextField({

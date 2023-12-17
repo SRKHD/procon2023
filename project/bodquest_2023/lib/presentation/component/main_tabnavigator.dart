@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:bodquest_2023/presentation/component/component_types.dart';
-import 'package:bodquest_2023/presentation/page/home_page.dart';
-import 'package:bodquest_2023/presentation/page/weight_page.dart';
-import 'package:bodquest_2023/presentation/component/sample_counter_widget.dart';
 
+import '../page/home_page.dart';
 import '../page/training_page.dart';
+import '../page/weight_page.dart';
+import 'component_types.dart';
 import 'health_sample_wedget.dart';
+import 'sample_counter_widget.dart';
 
 class TabNavigator extends StatelessWidget {
   const TabNavigator({

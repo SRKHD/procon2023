@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bodquest_2023/presentation/component/component_types.dart';
+
+import 'component_types.dart';
 
 // ignore: must_be_immutable
 class MainBottomNavigationBar extends StatelessWidget {

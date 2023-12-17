@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:bodquest_2023/presentation/component/main_tabnavigator.dart';
-import 'package:bodquest_2023/presentation/component/component_types.dart';
+
+import 'component_types.dart';
+import 'main_tabnavigator.dart';
 
 class MainWidget extends StatelessWidget {
   MainWidget(
