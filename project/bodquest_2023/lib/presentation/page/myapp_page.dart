@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'login_page.dart';
+import 'myhome_page.dart';
+import 'registration_page.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final router = GoRouter(
+    // パス (アプリが起動したとき)
+    initialLocation: '/login',
+    // パスと画面の組み合わせ
+    routes: [
+      GoRoute(
+        path: '/login',
+        builder: (context, state) => LogInPage(),
+      ),
+      GoRoute(
+        path: '/registration',
+        builder: (context, state) => RegistrationPage(),
+      ),
+      GoRoute(
+        path: '/main',
+        builder: (context, state) =>
+            const MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bodquest 2023',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: LogInPage(), //const MyHomePage(title: 'Flutter Demo Home Page'),
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
     );
   }
 }
