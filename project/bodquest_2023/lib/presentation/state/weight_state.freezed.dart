@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$WeightState {
   String get userId => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
+  DateTime? get timestamp => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeightStateCopyWith<WeightState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $WeightStateCopyWith<$Res> {
           WeightState value, $Res Function(WeightState) then) =
       _$WeightStateCopyWithImpl<$Res, WeightState>;
   @useResult
-  $Res call({String userId, double value});
+  $Res call({String userId, double value, DateTime? timestamp});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$WeightStateCopyWithImpl<$Res, $Val extends WeightState>
   $Res call({
     Object? userId = null,
     Object? value = null,
+    Object? timestamp = freezed,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -58,6 +60,10 @@ class _$WeightStateCopyWithImpl<$Res, $Val extends WeightState>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as double,
+      timestamp: freezed == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$WeightStateImplCopyWith<$Res>
       __$$WeightStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, double value});
+  $Res call({String userId, double value, DateTime? timestamp});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$WeightStateImplCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? value = null,
+    Object? timestamp = freezed,
   }) {
     return _then(_$WeightStateImpl(
       userId: null == userId
@@ -96,6 +103,10 @@ class __$$WeightStateImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as double,
+      timestamp: freezed == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -103,16 +114,19 @@ class __$$WeightStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WeightStateImpl implements _WeightState {
-  _$WeightStateImpl({required this.userId, required this.value});
+  _$WeightStateImpl(
+      {required this.userId, required this.value, required this.timestamp});
 
   @override
   final String userId;
   @override
   final double value;
+  @override
+  final DateTime? timestamp;
 
   @override
   String toString() {
-    return 'WeightState(userId: $userId, value: $value)';
+    return 'WeightState(userId: $userId, value: $value, timestamp: $timestamp)';
   }
 
   @override
@@ -121,11 +135,13 @@ class _$WeightStateImpl implements _WeightState {
         (other.runtimeType == runtimeType &&
             other is _$WeightStateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, value);
+  int get hashCode => Object.hash(runtimeType, userId, value, timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -137,12 +153,15 @@ class _$WeightStateImpl implements _WeightState {
 abstract class _WeightState implements WeightState {
   factory _WeightState(
       {required final String userId,
-      required final double value}) = _$WeightStateImpl;
+      required final double value,
+      required final DateTime? timestamp}) = _$WeightStateImpl;
 
   @override
   String get userId;
   @override
   double get value;
+  @override
+  DateTime? get timestamp;
   @override
   @JsonKey(ignore: true)
   _$$WeightStateImplCopyWith<_$WeightStateImpl> get copyWith =>

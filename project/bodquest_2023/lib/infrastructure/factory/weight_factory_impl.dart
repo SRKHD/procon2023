@@ -7,10 +7,12 @@ class WeightFactoryImpl implements IWeightFactory {
   Weight create({
     required String userId,
     required double value,
+    DateTime? timestamp,
   }) {
     return Weight(
       userId: userId,
       value: value,
+      timestamp: timestamp,
     );
   }
 
@@ -19,6 +21,7 @@ class WeightFactoryImpl implements IWeightFactory {
     return Weight(
       userId: weight.userId,
       value: weight.value,
+      timestamp: weight.timestamp,
     );
   }
 }
