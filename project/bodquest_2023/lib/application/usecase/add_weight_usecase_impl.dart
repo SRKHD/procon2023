@@ -11,8 +11,9 @@ class AddWeightUsecaseImpl implements IAddWeightUsecase {
   @override
   Future<int> execute(
     String userId,
+    DateTime date,
     double value,
   ) {
-    return weightRepository.addWeight(userId, value);
+    return weightRepository.addWeight(userId, date, value);
   }
 }

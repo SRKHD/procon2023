@@ -1,11 +1,14 @@
 import 'package:bodquest_2023/presentation/component/chart/scrollable_line_chart.dart';
+import 'package:bodquest_2023/presentation/state/weight_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../component/number_textfield_widget.dart';
 import '../component/weight_list_item.dart';
+import '../notifier/datetime_notifier.dart';
 import '../notifier/login_user_notifier.dart';
+import '../notifier/text_notifier.dart';
 import '../notifier/weight_list_notifier.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
@@ -28,74 +31,104 @@ class WeightPageState extends ConsumerState<WeightPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(weightListNotifierProvider);
     final logInUserState = ref.watch(logInUserNotifierProvider);
-    String inputValue = '0';
+    final dateState = ref.watch(dateTimeNotifierProvider);
+
+    Expanded weightChart(List<WeightState> weights) {
+      return Expanded(
+        child: ScrollableLineChart(
+          dataSeries: weights,
+          fx: (weight) => weight.timestamp.toDouble(),
+          fy: (weight) => weight.value,
+          dataFormatter: (weight) {
+            return "${weight.date}\n${weight.value}kg";
+          },
+          xFormatter: (x) {
+            final formatter = DateFormat("M/d");
+            final dtInMs = x.toInt();
+            final dt = DateTime.fromMillisecondsSinceEpoch(dtInMs);
+
+            return formatter.format(dt);
+          },
+          verticalGridInterval: Duration(days: 1).inMilliseconds.toDouble(),
+          marginTop: 80,
+        ),
+      );
+    }
+
+    Expanded listView(List<WeightState> weights) {
+      return Expanded(
+        child: ListView(
+          children: weights
+              .map(
+                (e) => WeightLiteItem(
+                  userId: e.userId,
+                  date: e.date,
+                  value: e.value,
+                ),
+              )
+              .toList(),
+        ),
+      );
+    }
+
+    final textField = NumberTextField(
+      controller: _controller,
+      notifier: ref.watch(textNotifierProvider.notifier),
+      labelText: '体重',
+      hintText: '体重を入力',
+    );
+
+    Future<void> selectDate(BuildContext context) async {
+      final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: dateState,
+        firstDate: DateTime(2020),
+        lastDate: DateTime(2025),
+      );
+
+      if (picked != null) {
+        setState(() {
+          final notifier = ref.watch(dateTimeNotifierProvider.notifier);
+          notifier.update(picked);
+        });
+      }
+    }
+
+    final calenderComponents = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('選択した日付: ${dateState.year}/${dateState.month}/${dateState.day}'),
+        ElevatedButton(
+          onPressed: () => selectDate(context),
+          child: const Text('日付選択'),
+        ),
+      ],
+    );
+
+    final button = ElevatedButton.icon(
+      onPressed: () {
+        final text = ref.watch(textNotifierProvider);
+        final notifier = ref.read(weightListNotifierProvider.notifier);
+        notifier.addWeight(
+            logInUserState.userId, dateState, double.parse(text));
+        _controller.text = '';
+      },
+      label: Text('登録'),
+      icon: const Icon(Icons.add),
+    );
 
     return state.when(
       data: (weights) {
+        weights.sort((a, b) => a.date.compareTo(b.date));
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Expanded(
-                child: ScrollableLineChart(
-                  dataSeries:
-                      weights.where((weight) => weight.timestamp != null),
-                  fx: (weight) =>
-                      weight.timestamp!.millisecondsSinceEpoch.toDouble(),
-                  fy: (weight) => weight.value,
-                  dataFormatter: (weight) {
-                    final formatter = DateFormat("M/d");
-                    return "${formatter.format(weight.timestamp!)}\n${weight.value}kg";
-                  },
-                  xFormatter: (x) {
-                    final formatter = DateFormat("M/d");
-                    final dtInMs = x.toInt();
-                    final dt = DateTime.fromMillisecondsSinceEpoch(dtInMs);
-
-                    return formatter.format(dt);
-                  },
-                  verticalGridInterval:
-                      Duration(days: 1).inMilliseconds.toDouble(),
-                  marginTop: 80,
-                ),
-              ),
-              Expanded(
-                child: ListView(
-                  children: weights
-                      .map(
-                        (e) => WeightLiteItem(
-                          useId: e.userId,
-                          value: e.value,
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
-              TextField(
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(hintText: '体重を入力'),
-                keyboardType: const TextInputType.numberWithOptions(
-                    signed: true, decimal: true),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                      RegExp(r'^[1-9]+[0-9]*(\.([1-9]*|[0-9]+[1-9]+))?$'))
-                ],
-                controller: _controller,
-                onChanged: (value) {
-                  inputValue = value;
-                },
-              ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  final notifier =
-                      ref.read(weightListNotifierProvider.notifier);
-                  notifier.addWeight(
-                      logInUserState.userId, double.parse(inputValue));
-                  _controller.text = '';
-                },
-                label: Text('登録'),
-                icon: const Icon(Icons.add),
-              ),
+              weightChart(weights),
+              listView(weights),
+              calenderComponents,
+              textField,
+              button,
             ],
           ),
         );

@@ -1,21 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class RugWeight {
   final String userId;
+  final DateTime date;
+  final int timestamp;
   final double value;
-  final DateTime? timestamp;
 
   RugWeight({
     required this.userId,
+    required this.date,
+    required this.timestamp,
     required this.value,
-    this.timestamp,
   });
 
   factory RugWeight.fromJson(json) {
+    DateTime date = json['date'].toDate();
     return RugWeight(
       userId: json['userId'],
+      date: date,
+      timestamp: date.millisecondsSinceEpoch,
       value: json['value'].toDouble(),
-      timestamp: (json['timestamp'] as Timestamp?)?.toDate(),
     );
   }
 }

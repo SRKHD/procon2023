@@ -38,6 +38,22 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
     print(logInUserState.userName);
     final dateState = ref.watch(dateTimeNotifierProvider);
 
+    Expanded listView(List<TrainingState> trainings) {
+      return Expanded(
+        child: ListView(
+          children: trainings
+              .map(
+                (e) => TrainingLiteItem(
+                  kind: e.kind,
+                  date: e.date,
+                  value: e.value,
+                ),
+              )
+              .toList(),
+        ),
+      );
+    }
+
     final textField = NumberTextField(
       controller: _controller,
       notifier: ref.watch(textNotifierProvider.notifier),
@@ -121,22 +137,6 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
           child: CircularProgressIndicator(),
         );
       },
-    );
-  }
-
-  Expanded listView(List<TrainingState> trainings) {
-    return Expanded(
-      child: ListView(
-        children: trainings
-            .map(
-              (e) => TrainingLiteItem(
-                kind: e.kind,
-                date: e.date,
-                value: e.value,
-              ),
-            )
-            .toList(),
-      ),
     );
   }
 }

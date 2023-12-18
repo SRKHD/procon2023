@@ -17,12 +17,13 @@ class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
   }
 
   @override
-  Future<int> addWeight(String userId, double value) async {
+  Future<int> addWeight(String userId, DateTime date, double value) async {
     await FirebaseFirestore.instance
         .collection('weights') // コレクションID
         .doc() // ドキュメントID
         .set({
       'userId': userId,
+      'date': Timestamp.fromDate(date),
       'value': value,
     }); // データ
     return 0;
