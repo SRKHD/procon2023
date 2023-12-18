@@ -7,12 +7,16 @@ class FirebaseAuthUserDataSourceImpl implements IFirebaseAuthUserDataSource {
   @override
   Future<RugUserLogin> getLoginUser() {
     final currentUser = FirebaseAuth.instance.currentUser;
-    final uid = currentUser == null
-        ? 'tYWPnnG8N0eFGREBP6Io4N5q1Cx2'
-        : currentUser.uid.toString();
+    final isLogin = currentUser != null;
+    final uid =
+        isLogin ? currentUser.uid.toString() : 'tYWPnnG8N0eFGREBP6Io4N5q1Cx2';
 
-    final userName =
-        currentUser == null ? 'no login user' : currentUser.displayName!;
+    String userName = 'no login user';
+    if (isLogin) {
+      userName = currentUser.displayName == null
+          ? 'no displayName'
+          : currentUser.displayName!;
+    }
     return Future.value(RugUserLogin(uuid: uid, username: userName));
   }
 }
