@@ -2,8 +2,7 @@ import 'package:bodquest_2023/core/exception/firebasse_auth_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'myhome_page.dart';
+import 'package:go_router/go_router.dart';
 
 // アカウント登録ページ
 class RegistrationPage extends StatefulWidget {
@@ -90,12 +89,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       // ホーム画面へ遷移
                       _user = _result.user!;
                       if (context.mounted) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MyHomePage(
-                                  title: 'Flutter Demo Home Page'),
-                            ));
+                        context.go('/main');
                       }
                     } on FirebaseAuthException catch (e) {
                       // 登録に失敗した場合
@@ -117,7 +111,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               child: ElevatedButton(
                   child: const Text('ログイン画面に戻る'),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    context.pop();
                   }),
             ),
           ],

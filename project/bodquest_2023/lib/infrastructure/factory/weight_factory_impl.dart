@@ -6,13 +6,15 @@ class WeightFactoryImpl implements IWeightFactory {
   @override
   Weight create({
     required String userId,
+    required DateTime date,
+    required int timestamp,
     required double value,
-    DateTime? timestamp,
   }) {
     return Weight(
       userId: userId,
       value: value,
       timestamp: timestamp,
+      date: date,
     );
   }
 
@@ -20,8 +22,9 @@ class WeightFactoryImpl implements IWeightFactory {
   Weight createFromModel(RugWeight weight) {
     return Weight(
       userId: weight.userId,
-      value: weight.value,
+      date: weight.date,
       timestamp: weight.timestamp,
+      value: weight.value,
     );
   }
 }

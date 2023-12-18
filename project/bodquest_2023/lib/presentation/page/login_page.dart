@@ -1,15 +1,13 @@
 // ignore_for_file: unused_field
 
 import 'package:bodquest_2023/core/exception/firebasse_auth_exception.dart';
-import 'package:bodquest_2023/presentation/page/registration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_button/sign_in_button.dart';
-
-import 'myhome_page.dart';
+import 'package:go_router/go_router.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -82,12 +80,7 @@ class _LogInPage extends State<LogInPage> {
                       // ホーム画面に遷移
                       _user = _result.user!;
                       if (context.mounted) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MyHomePage(
-                                  title: 'Flutter Demo Home Page'),
-                            ));
+                        context.go('/main');
                       }
                     } on FirebaseAuthException catch (e) {
                       // ログインに失敗した場合
@@ -113,12 +106,7 @@ class _LogInPage extends State<LogInPage> {
                   });
 
                   if (user != null && context.mounted) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const MyHomePage(title: 'Flutter Demo Home Page'),
-                        ));
+                    context.go('/main');
                   }
                 })),
 
@@ -137,12 +125,7 @@ class _LogInPage extends State<LogInPage> {
               child: ElevatedButton(
                   child: const Text('アカウントを作成する'),
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (BuildContext context) => RegistrationPage(),
-                      ),
-                    );
+                    context.push('/registration');
                   }),
             ),
 
@@ -152,13 +135,7 @@ class _LogInPage extends State<LogInPage> {
               child: ElevatedButton(
                   child: const Text('開発用：ログインスキップ'),
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (BuildContext context) =>
-                            const MyHomePage(title: 'Flutter Demo Home Page'),
-                      ),
-                    );
+                    context.go('/main');
                   }),
             )
           ],

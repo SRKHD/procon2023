@@ -40,8 +40,9 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
 
   void addWeight(
     String userId,
+    DateTime date,
     double value,
   ) {
-    _addWeightsUsecase.execute(userId, value);
+    _addWeightsUsecase.execute(userId, date, value);
   }
 }
