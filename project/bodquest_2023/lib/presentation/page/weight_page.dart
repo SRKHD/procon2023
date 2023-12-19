@@ -119,7 +119,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
 
     return state.when(
       data: (weights) {
-        weights.sort((a, b) => a.date.compareTo(b.date));
+        weights.sort((a, b) => a.timestamp.compareTo(b.timestamp));
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
