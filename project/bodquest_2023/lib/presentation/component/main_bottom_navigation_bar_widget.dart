@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'component_types.dart';
+import '../notifier/index_notifier.dart';
 
 // ignore: must_be_immutable
-class MainBottomNavigationBar extends StatelessWidget {
-  MainBottomNavigationBar(
-      {super.key, required this.currentTab, required this.onSelect});
-  final TabItem currentTab;
-  final ValueChanged<TabItem> onSelect;
+class MainBottomNavigationBar extends ConsumerWidget {
+  MainBottomNavigationBar({super.key});
+
   final items = <BottomNavigationBarItem>[
     BottomNavigationBarItem(
       label: "",
@@ -39,24 +38,25 @@ class MainBottomNavigationBar extends StatelessWidget {
     ),
   ];
 
-  Widget _buildBttomNavigator(BuildContext context) {
+  @override
+  Widget build(context, WidgetRef ref) {
+    final index = ref.watch(indexNotifierProvider);
     return BottomNavigationBar(
       items: items,
-      fixedColor: Colors.red,
+      backgroundColor: Colors.blue,
+      selectedItemColor: Colors.orange,
+      unselectedItemColor: Colors.white,
+      //fixedColor: Colors.red,
       // 選択中フッターメニューの色
       type: BottomNavigationBarType.fixed,
       // 現在選択されているフッターメニューのインデックス
-      currentIndex: 0,
+      currentIndex: index,
       // フッター領域の影
       elevation: 0,
       onTap: (index) {
-        onSelect(TabItem.values[index]);
+        final notifier = ref.read(indexNotifierProvider.notifier);
+        notifier.save(index);
       },
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildBttomNavigator(context);
   }
 }
