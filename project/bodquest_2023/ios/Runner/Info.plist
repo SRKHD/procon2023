@@ -24,10 +24,17 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>CFBundleURLSchemes</key>
-    <array>
-    <string>com.googleusercontent.apps.663590594175-a7kmd1t1gtun3foetqs19t2k9afitobf</string>
-    </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+   	<dict>
+       <key>CFBundleTypeRole</key>
+       <string>Editor</string>
+       <key>CFBundleURLSchemes</key>
+       <array>
+           <string>com.googleusercontent.apps.663590594175-a7kmd1t1gtun3foetqs19t2k9afitobf</string>
+       </array>
+   	</dict>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
