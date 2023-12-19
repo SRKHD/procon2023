@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/main',
         builder: (context, state) =>
-            const MyHomePage(title: 'Flutter Demo Home Page'),
+            MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     ],
   );

@@ -1,51 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/component_types.dart';
+import '../component/health_sample_wedget.dart';
 import '../component/main_bottom_navigation_bar_widget.dart';
 import '../component/main_left_drawer.dart';
-import '../component/main_widget.dart';
+import '../component/sample_counter_widget.dart';
+import '../notifier/index_notifier.dart';
+import '../page/home_page.dart';
+import '../page/training_page.dart';
+import '../page/weight_page.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MyHomePage extends ConsumerWidget {
+  MyHomePage({super.key, required String title}) : _title = title;
+  final String _title;
 
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  TabItem _currentTab = TabItem.home;
-  Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
-    TabItem.home: GlobalKey<NavigatorState>(),
-    TabItem.setting: GlobalKey<NavigatorState>(),
-    TabItem.view1: GlobalKey<NavigatorState>(),
-    TabItem.view2: GlobalKey<NavigatorState>(),
-    TabItem.sampleCounter: GlobalKey<NavigatorState>(),
-    TabItem.weight: GlobalKey<NavigatorState>(),
-  };
-
-  void _selectTab(TabItem tabItem) {
-    if (tabItem == _currentTab) {
-      _navigatorKeys[tabItem]?.currentState?.popUntil((route) => route.isFirst);
-    } else {
-      setState(() => _currentTab = tabItem);
-    }
-  }
+  final pages = [
+    HomePage(),
+    Placeholder(),
+    WeightPage(),
+    TrainingPage(),
+    SampleCounterWidget(),
+    HealthWidget(),
+    Placeholder(),
+  ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context, WidgetRef ref) {
+    final index = ref.watch(indexNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(_title),
       ),
       drawer: MainLeftDrawer(),
-      body: MainWidget(currentTab: _currentTab, navigatorKeys: _navigatorKeys),
-      bottomNavigationBar: MainBottomNavigationBar(
-        currentTab: _currentTab,
-        onSelect: _selectTab,
-      ),
+      body: pages[index],
+      bottomNavigationBar: MainBottomNavigationBar(),
     );
   }
 }

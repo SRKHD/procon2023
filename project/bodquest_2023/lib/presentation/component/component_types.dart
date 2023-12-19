@@ -1,13 +1,3 @@
-enum TabItem {
-  home,
-  setting,
-  weight,
-  training,
-  sampleCounter,
-  view1,
-  view2,
-}
-
 enum TrainingKind {
   walk('walk'), // 歩く
   run('run'), // ランニング

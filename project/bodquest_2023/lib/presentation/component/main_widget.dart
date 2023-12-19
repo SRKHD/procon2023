@@ -1,61 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'component_types.dart';
-import 'main_tabnavigator.dart';
+import '../notifier/index_notifier.dart';
+import '../page/home_page.dart';
+import '../page/training_page.dart';
+import '../page/weight_page.dart';
+import 'health_sample_wedget.dart';
+import 'sample_counter_widget.dart';
 
-class MainWidget extends StatelessWidget {
-  MainWidget(
-      {super.key, required this.currentTab, required this.navigatorKeys});
-  final TabItem currentTab;
-  final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys;
+class MainWidget extends ConsumerWidget {
+  MainWidget({super.key});
 
-  Widget _buildTabItem(
-    TabItem tabItem,
-    String root,
-  ) {
-    return Offstage(
-      offstage: currentTab != tabItem,
-      child: TabNavigator(
-        navigationKey: navigatorKeys[tabItem],
-        tabItem: tabItem,
-        routerName: root,
-      ),
-    );
-  }
+  final pages = [
+    HomePage(),
+    Placeholder(),
+    WeightPage(),
+    TrainingPage(),
+    SampleCounterWidget(),
+    HealthWidget(),
+    Placeholder(),
+  ];
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        _buildTabItem(
-          TabItem.home,
-          '/home',
-        ),
-        _buildTabItem(
-          TabItem.setting,
-          '/setting',
-        ),
-        _buildTabItem(
-          TabItem.weight,
-          '/weight',
-        ),
-        _buildTabItem(
-          TabItem.training,
-          '/training',
-        ),
-        _buildTabItem(
-          TabItem.sampleCounter,
-          '/sampleCounter',
-        ),
-        _buildTabItem(
-          TabItem.view1,
-          '/view1',
-        ),
-        _buildTabItem(
-          TabItem.view2,
-          '/view2',
-        ),
-      ],
+  Widget build(context, WidgetRef ref) {
+    final index = ref.watch(indexNotifierProvider);
+    return Scaffold(
+      body: pages[index],
     );
   }
 }
