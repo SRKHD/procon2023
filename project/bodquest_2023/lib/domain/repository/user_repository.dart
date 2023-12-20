@@ -1,6 +1,6 @@
-import 'package:bodquest_2023/infrastructure/datasource/firebase_auth_user_datasource.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../infrastructure/datasource/firebase_auth_user_datasource.dart';
 import '../../infrastructure/datasource/firestore_users_datasource.dart';
 import '../../infrastructure/repository/user_repository_impl.dart';
 import '../entity/user.dart';
