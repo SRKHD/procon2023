@@ -50,7 +50,6 @@ class WeightPageState extends ConsumerState<WeightPage> {
             return formatter.format(dt);
           },
           verticalGridInterval: Duration(days: 1).inMilliseconds.toDouble(),
-          marginTop: 80,
         ),
       );
     }
