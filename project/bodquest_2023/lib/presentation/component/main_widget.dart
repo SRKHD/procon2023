@@ -5,8 +5,8 @@ import '../notifier/index_notifier.dart';
 import '../page/home_page.dart';
 import '../page/training_page.dart';
 import '../page/weight_page.dart';
-import 'health_sample_wedget.dart';
-import 'sample_counter_widget.dart';
+import 'health_sample.dart';
+import 'sample_counter.dart';
 
 class MainWidget extends ConsumerWidget {
   MainWidget({super.key});
