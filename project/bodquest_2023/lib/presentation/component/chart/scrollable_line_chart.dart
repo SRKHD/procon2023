@@ -82,10 +82,23 @@ class ScrollableLineChart<T> extends StatefulWidget {
 class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
   late double _minX;
   late double _maxX;
+
+  /// The scale factor of the window size limited in range [0.1, 1].
   num _windowScale = 1;
+
+  /// The adjusted center of the window.
   late double _windowCenter;
 
   LineBarSpot? _selectedSpot;
+
+  double get _windowWidth => (_maxX - _minX) / _windowScale;
+
+  double get _verticalGridInterval {
+    double standardInterval = widget.verticalGridInterval ?? 1;
+
+    return max(1, (_windowWidth / 5 / standardInterval).ceil()) *
+        standardInterval;
+  }
 
   @override
   void initState() {
@@ -109,15 +122,16 @@ class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
           widget.maxX ?? widget.dataSeries.map((d) => widget.fx(d)).reduce(max);
     }
 
-    _windowScale = max(
-        (_maxX - _minX) / (widget.initialWindowWidth ?? (_maxX - _minX)), 1);
+    _windowScale =
+        ((_maxX - _minX) / (widget.initialWindowWidth ?? (_maxX - _minX)))
+            .clamp(0.1, 1);
 
     _windowCenter = widget.initialWindowCenter ?? ((_minX + _maxX) / 2);
     _clampWindowCenter();
   }
 
   void _clampWindowCenter() {
-    final currentHalfWidth = (_maxX - _minX) / _windowScale / 2;
+    final currentHalfWidth = _windowWidth / 2;
 
     _windowCenter = _windowCenter.clamp(
       _minX + currentHalfWidth,
@@ -146,10 +160,8 @@ class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
         },
         child: LineChart(
           LineChartData(
-            minX:
-                max(_minX, _windowCenter - (_maxX - _minX) / _windowScale / 2),
-            maxX:
-                min(_maxX, _windowCenter + (_maxX - _minX) / _windowScale / 2),
+            minX: max(_minX, _windowCenter - _windowWidth / 2),
+            maxX: min(_maxX, _windowCenter + _windowWidth / 2),
             showingTooltipIndicators: [
               ShowingTooltipIndicators(
                   _selectedSpot == null ? [] : [_selectedSpot!])
@@ -192,7 +204,12 @@ class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
                 return List.filled(indexes.length, indicatorData);
               },
               touchTooltipData: LineTouchTooltipData(
-                tooltipBgColor: Theme.of(context).colorScheme.primaryContainer,
+                fitInsideHorizontally: true,
+                fitInsideVertically: true,
+                tooltipBgColor: Theme.of(context)
+                    .colorScheme
+                    .primaryContainer
+                    .withAlpha(200),
                 getTooltipItems: (spots) => [
                   ...spots.map(
                     (spot) {
@@ -236,7 +253,7 @@ class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
             gridData: FlGridData(
               drawHorizontalLine: false,
               drawVerticalLine: widget.verticalGridInterval != null,
-              verticalInterval: widget.verticalGridInterval,
+              verticalInterval: _verticalGridInterval,
             ),
             titlesData: FlTitlesData(
               topTitles: AxisTitles(
@@ -263,7 +280,7 @@ class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   reservedSize: widget.marginBottom,
-                  interval: widget.verticalGridInterval,
+                  interval: _verticalGridInterval,
                   showTitles: widget.verticalGridInterval != null,
                   getTitlesWidget: (x, meta) {
                     // Except end points.
@@ -277,7 +294,7 @@ class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
               ),
             ),
           ),
-          duration: Duration(days: 0),
+          duration: Duration(milliseconds: 0),
         ),
       ),
     );
