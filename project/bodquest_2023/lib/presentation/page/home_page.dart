@@ -1,3 +1,5 @@
+import 'package:bodquest_2023/domain/value/evaluation_rank.dart';
+import 'package:bodquest_2023/presentation/component/chara_image.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,6 +7,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox();
+    final image = Center(
+      child: CharaImage(rank: EvaluationRank.g),
+    );
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [image],
+    );
   }
 }
