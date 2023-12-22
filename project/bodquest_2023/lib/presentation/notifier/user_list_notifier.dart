@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../domain/domain_module.dart';
 import '../../domain/usecase/get_users_usecase.dart';
 import '../state/user_state.dart';
 

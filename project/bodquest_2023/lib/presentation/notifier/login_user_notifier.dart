@@ -1,6 +1,7 @@
 import 'package:bodquest_2023/presentation/state/loginuser_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../domain/domain_module.dart';
 import '../../domain/usecase/get_login_user_usecase.dart';
 
 final logInUserNotifierProvider =

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../domain/domain_module.dart';
 import '../../domain/usecase/add_training_usecase.dart';
 import '../../domain/usecase/get_login_user_usecase.dart';
 import '../../domain/usecase/get_trainings_usecase.dart';

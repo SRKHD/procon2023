@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../application/usecase/get_weights_usecase_impl.dart';
+import '../application/usecase/get_weights_usecase_impl.dart';
 import '../entity/weight.dart';
 import '../repository/weight_repository.dart';
 

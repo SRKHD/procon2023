@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../application/usecase/add_weight_usecase_impl.dart';
+import '../application/usecase/add_weight_usecase_impl.dart';
 import '../repository/weight_repository.dart';
 
 final addWeightUsecaseProvider = Provider<IAddWeightUsecase>(

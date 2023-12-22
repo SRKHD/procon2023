@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../application/usecase/add_training_usecase_impl.dart';
+import '../application/usecase/add_training_usecase_impl.dart';
 import '../repository/training_repository.dart';
 
 final addTrainingUsecaseProvider = Provider<IAddTrainingUsecase>(

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../application/usecase/get_trainings_usecase_impl.dart';
+import '../application/usecase/get_trainings_usecase_impl.dart';
 import '../entity/training.dart';
 import '../repository/training_repository.dart';
 
