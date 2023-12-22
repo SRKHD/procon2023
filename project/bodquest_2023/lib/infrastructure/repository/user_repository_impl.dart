@@ -1,9 +1,8 @@
-import 'package:bodquest_2023/infrastructure/datasource/firebase_auth_user_datasource.dart';
-
 import '../../domain/entity/user.dart';
 import '../../domain/factory/user_factory.dart';
 import '../../domain/repository/user_repository.dart';
 import '../../domain/value/user_gender.dart';
+import '../datasource/firebase_auth_user_datasource.dart';
 import '../datasource/firestore_users_datasource.dart';
 
 class UserRepositoryImpl implements IUserRepository {
