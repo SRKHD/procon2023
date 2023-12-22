@@ -1,5 +1,5 @@
-import '../../domain/repository/training_repository.dart';
-import '../../domain/usecase/add_training_usecase.dart';
+import '../../repository/training_repository.dart';
+import '../../usecase/add_training_usecase.dart';
 
 class AddTrainingUsecaseImpl implements IAddTrainingUsecase {
   final ITrainingRepository weightRepository;
