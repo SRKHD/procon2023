@@ -1,15 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../infrastructure/factory/training_factory_impl.dart';
 import '../../infrastructure/model/firestore/rug_training.dart';
 import '../entity/training.dart';
-import 'training_kind_factory.dart';
-
-final trainingFactoryProvider = Provider<ITrainingFactory>(
-  (ref) => TrainingFactoryImpl(
-    factory: ref.watch(trainingKindFactoryProvider),
-  ),
-);
 
 abstract interface class ITrainingFactory {
   /// [Training]を生成する
