@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../component/component_types.dart';
-import '../component/number_textfield.dart';
-import '../component/training_kind_dropdown.dart';
-import '../component/training_list_item.dart';
+import '../component/control/number_textfield.dart';
+import '../component/training/training_kind_dropdown.dart';
+import '../component/training/training_list_item.dart';
 import '../notifier/datetime_notifier.dart';
-import '../notifier/login_user_notifier.dart';
+import '../notifier/user/login_user_notifier.dart';
 import '../notifier/text_notifier.dart';
-import '../notifier/training_kind_notifier.dart';
-import '../notifier/training_list_notifier.dart';
-import '../state/training_state.dart';
+import '../notifier/training/training_kind_notifier.dart';
+import '../notifier/training/training_list_notifier.dart';
+import '../state/training/training_state.dart';
 
 class TrainingPage extends ConsumerStatefulWidget {
   const TrainingPage({super.key});

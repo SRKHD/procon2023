@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../model/firestore/rug_user_login.dart';
+import '../../model/firestore/user/rug_user_login.dart';
 import 'user_datasource.dart';
 
 class FirebaseAuthUserDataSourceImpl implements IFirebaseAuthUserDataSource {

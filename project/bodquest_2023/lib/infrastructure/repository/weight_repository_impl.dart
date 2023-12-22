@@ -1,7 +1,7 @@
 import '../../domain/entity/weight.dart';
-import '../../domain/factory/weight_factory.dart';
+import '../../domain/factory/weight/weight_factory.dart';
 import '../../domain/repository/weight_repository.dart';
-import '../datasource/firestore_weights_datasource.dart';
+import '../datasource/firestore/weights_datasource.dart';
 
 class WeightRepositoryImpl implements IWeightRepository {
   WeightRepositoryImpl({

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/health_sample.dart';
-import '../component/main_bottom_navigation_bar.dart';
-import '../component/main_left_drawer.dart';
+import '../component/weight/health_sample.dart';
+import '../component/main/main_bottom_navigation_bar.dart';
+import '../component/main/main_left_drawer.dart';
 import '../component/sample_counter.dart';
 import '../notifier/index_notifier.dart';
 import '../page/home_page.dart';

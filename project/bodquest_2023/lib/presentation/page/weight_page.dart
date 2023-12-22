@@ -1,15 +1,15 @@
-import 'package:bodquest_2023/presentation/component/chart/scrollable_line_chart.dart';
-import 'package:bodquest_2023/presentation/state/weight_state.dart';
+import 'package:bodquest_2023/presentation/component/control/chart/scrollable_line_chart.dart';
+import 'package:bodquest_2023/presentation/state/weight/weight_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../component/number_textfield.dart';
-import '../component/weight_list_item.dart';
+import '../component/control/number_textfield.dart';
+import '../component/weight/weight_list_item.dart';
 import '../notifier/datetime_notifier.dart';
-import '../notifier/login_user_notifier.dart';
+import '../notifier/user/login_user_notifier.dart';
 import '../notifier/text_notifier.dart';
-import '../notifier/weight_list_notifier.dart';
+import '../notifier/weight/weight_list_notifier.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
   const WeightPage({super.key});
