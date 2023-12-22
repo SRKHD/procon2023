@@ -1,7 +1,7 @@
 import '../../domain/entity/training.dart';
-import '../../domain/factory/training_factory.dart';
+import '../../domain/factory/training/training_factory.dart';
 import '../../domain/repository/training_repository.dart';
-import '../datasource/firestore_trainings_datasource.dart';
+import '../datasource/firestore/trainings_datasource.dart';
 
 class TrainingRepositoryImpl implements ITrainingRepository {
   TrainingRepositoryImpl({
