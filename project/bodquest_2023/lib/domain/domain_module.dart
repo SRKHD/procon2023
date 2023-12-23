@@ -7,6 +7,7 @@ import '../infrastructure/factory/user/user_factory_impl.dart';
 import '../infrastructure/factory/user/user_gender_factory_impl.dart';
 import '../infrastructure/factory/weight/weight_factory_impl.dart';
 import 'application/usecase/training/add_training_usecase_impl.dart';
+import 'application/usecase/user/add_user_usecase_impl.dart';
 import 'application/usecase/weight/add_weight_usecase_impl.dart';
 import 'application/usecase/user/get_login_user_usecase_impl.dart';
 import 'application/usecase/training/get_trainings_usecase_impl.dart';
@@ -18,6 +19,7 @@ import 'factory/user/user_factory.dart';
 import 'factory/user/user_gender_factory.dart';
 import 'factory/weight/weight_factory.dart';
 import 'usecase/training/add_training_usecase.dart';
+import 'usecase/user/add_user_usecase.dart';
 import 'usecase/weight/add_weight_usecase.dart';
 import 'usecase/user/get_login_user_usecase.dart';
 import 'usecase/training/get_trainings_usecase.dart';
@@ -47,6 +49,12 @@ final userFactoryProvider = Provider<IUserFactory>(
 
 final userGenderFactoryProvider = Provider<IUserGenderFactory>(
   (ref) => UserGenderFactoryImpl(),
+);
+
+final addUserUsecaseProvider = Provider<IAddUserUsecase>(
+  (ref) => AddUserUsecaseImpl(
+    repository: ref.watch(userRepositoryProvider),
+  ),
 );
 
 /// Weight

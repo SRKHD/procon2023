@@ -23,4 +23,15 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
         });
     return result;
   }
+
+  @override
+  Future<int> addUser(String userId) async {
+    await FirebaseFirestore.instance
+        .collection('users') // コレクションID
+        .doc(userId) // ドキュメントID = ユーザーID
+        .set({
+      'first': "プロコン",
+    }); // データ
+    return 0;
+  }
 }

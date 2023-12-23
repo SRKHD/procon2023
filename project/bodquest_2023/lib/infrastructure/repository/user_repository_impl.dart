@@ -38,4 +38,9 @@ class UserRepositoryImpl implements IUserRepository {
         thumbnail: "thumbnail",
         birthday: DateTime.now())));
   }
+
+  @override
+  Future<int> addUser(String userId) {
+    return fireStoreDataSource.addUser(userId);
+  }
 }
