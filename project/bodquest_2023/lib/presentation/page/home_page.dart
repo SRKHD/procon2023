@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../domain/value/evaluation_rank.dart';
 import '../component/control/item_evaluation_panel.dart';
 import '../component/home/chara_image.dart';
+import '../component/home/level_text.dart';
 import '../component/home/pace_text.dart';
 import '../component/home/rank_text.dart';
 import '../theme/sizes.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     const tempRank = EvaluationRank.g;
     const tempWeight = 67.5;
+    const tempLevel = 17;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -34,6 +36,9 @@ class HomePage extends StatelessWidget {
           perceentBarGraphWidth: RawSize.p200,
           perceentBarGraphHeight: RawSize.p32,
           perceentBarGraphValue: 90,
+        ),
+        LevelText(
+          level: tempLevel,
         ),
         CharaImage(rank: tempRank)
       ],
