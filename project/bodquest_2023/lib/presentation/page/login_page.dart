@@ -5,16 +5,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:go_router/go_router.dart';
 
-class LogInPage extends StatefulWidget {
+import '../notifier/user/user_list_notifier.dart';
+
+class LogInPage extends ConsumerStatefulWidget {
   @override
-  State<LogInPage> createState() => _LogInPage();
+  LogInPageState createState() => LogInPageState();
 }
 
-class _LogInPage extends State<LogInPage> {
+class LogInPageState extends ConsumerState<LogInPage> {
   String _email = "";
   String _password = "";
   String _infoText = "";
@@ -155,7 +158,9 @@ class _LogInPage extends State<LogInPage> {
         final UserCredential userCredential =
             await auth.signInWithPopup(authProvider);
 
-        user = userCredential.user;
+        user = userCredential.user!;
+        final notifier = ref.read(userListNotifierProvider.notifier);
+        notifier.addUser(user.uid);
       } catch (e) {
         print(e);
       }
@@ -178,7 +183,9 @@ class _LogInPage extends State<LogInPage> {
           final UserCredential userCredential =
               await auth.signInWithCredential(credential);
 
-          user = userCredential.user;
+          user = userCredential.user!;
+          final notifier = ref.read(userListNotifierProvider.notifier);
+          notifier.addUser(user.uid);
         } on FirebaseAuthException catch (e) {
           setState(() {
             _infoText = AuthException(e.code).toString();
