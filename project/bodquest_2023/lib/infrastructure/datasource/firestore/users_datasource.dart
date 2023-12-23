@@ -9,4 +9,5 @@ final fireStoreUsersDataSourceProvider = Provider<IFirestoreUsersDataSource>(
 
 abstract interface class IFirestoreUsersDataSource {
   Future<RugGetUsersResponse> getUsers({int results});
+  Future<int> addUser(String userId);
 }

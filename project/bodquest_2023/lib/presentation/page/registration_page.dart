@@ -2,15 +2,18 @@ import 'package:bodquest_2023/core/exception/firebasse_auth_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../notifier/user/user_list_notifier.dart';
+
 // アカウント登録ページ
-class RegistrationPage extends StatefulWidget {
+class RegistrationPage extends ConsumerStatefulWidget {
   @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
+  RegistrationPageState createState() => RegistrationPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class RegistrationPageState extends ConsumerState<RegistrationPage> {
   String _email = "";
   String _password = "";
   String _infoText = ""; // 登録に関する情報を表示
@@ -88,6 +91,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       // 登録成功
                       // ホーム画面へ遷移
                       _user = _result.user!;
+                      final notifier =
+                          ref.read(userListNotifierProvider.notifier);
+                      notifier.addUser(_user.uid);
                       if (context.mounted) {
                         context.go('/main');
                       }
