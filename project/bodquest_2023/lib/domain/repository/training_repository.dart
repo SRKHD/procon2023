@@ -1,7 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../infrastructure/datasource/firestore/trainings_datasource.dart';
-import '../../infrastructure/repository/training_repository_impl.dart';
 import '../entity/training.dart';
 
 abstract interface class ITrainingRepository {

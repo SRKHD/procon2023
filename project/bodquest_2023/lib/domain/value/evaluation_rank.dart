@@ -1,33 +1,33 @@
 enum EvaluationRank {
-  g('g'),
-  f('f'),
-  e('e'),
-  d('d'),
-  c('c'),
-  b('b'),
-  a('a'),
-  s('s');
+  g('G'),
+  f('F'),
+  e('E'),
+  d('D'),
+  c('C'),
+  b('B'),
+  a('A'),
+  s('S');
 
   final String value;
   const EvaluationRank(this.value);
 
   factory EvaluationRank.from(String value) {
     switch (value) {
-      case 'g':
+      case 'G':
         return EvaluationRank.g;
-      case 'f':
+      case 'F':
         return EvaluationRank.f;
-      case 'e':
+      case 'E':
         return EvaluationRank.e;
-      case 'd':
+      case 'D':
         return EvaluationRank.d;
-      case 'c':
+      case 'C':
         return EvaluationRank.c;
-      case 'b':
+      case 'B':
         return EvaluationRank.b;
-      case 'a':
+      case 'A':
         return EvaluationRank.a;
-      case 's':
+      case 'S':
         return EvaluationRank.s;
       default:
         throw UnimplementedError();
