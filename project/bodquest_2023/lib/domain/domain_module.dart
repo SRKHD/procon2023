@@ -1,23 +1,31 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../infrastructure/data_module.dart';
+import '../infrastructure/factory/meal/meal_factory_impl.dart';
 import '../infrastructure/factory/training/training_factory_impl.dart';
 import '../infrastructure/factory/training/training_kind_factory_impl.dart';
 import '../infrastructure/factory/user/user_factory_impl.dart';
 import '../infrastructure/factory/user/user_gender_factory_impl.dart';
 import '../infrastructure/factory/weight/weight_factory_impl.dart';
+import 'application/usecase/meal/add_meal_usecase_impl.dart';
+import 'application/usecase/meal/get_meals_usecase_impl.dart';
 import 'application/usecase/training/add_training_usecase_impl.dart';
+import 'application/usecase/user/add_user_usecase_impl.dart';
 import 'application/usecase/weight/add_weight_usecase_impl.dart';
 import 'application/usecase/user/get_login_user_usecase_impl.dart';
 import 'application/usecase/training/get_trainings_usecase_impl.dart';
 import 'application/usecase/user/get_users_usecase_impl.dart';
 import 'application/usecase/weight/get_weights_usecase_impl.dart';
+import 'factory/meal/meal_factory.dart';
 import 'factory/training/training_factory.dart';
 import 'factory/training/training_kind_factory.dart';
 import 'factory/user/user_factory.dart';
 import 'factory/user/user_gender_factory.dart';
 import 'factory/weight/weight_factory.dart';
+import 'usecase/meal/add_meal_usecase.dart';
+import 'usecase/meal/get_meals_usecase.dart';
 import 'usecase/training/add_training_usecase.dart';
+import 'usecase/user/add_user_usecase.dart';
 import 'usecase/weight/add_weight_usecase.dart';
 import 'usecase/user/get_login_user_usecase.dart';
 import 'usecase/training/get_trainings_usecase.dart';
@@ -47,6 +55,12 @@ final userFactoryProvider = Provider<IUserFactory>(
 
 final userGenderFactoryProvider = Provider<IUserGenderFactory>(
   (ref) => UserGenderFactoryImpl(),
+);
+
+final addUserUsecaseProvider = Provider<IAddUserUsecase>(
+  (ref) => AddUserUsecaseImpl(
+    repository: ref.watch(userRepositoryProvider),
+  ),
 );
 
 /// Weight
@@ -91,4 +105,23 @@ final trainingFactoryProvider = Provider<ITrainingFactory>(
 
 final trainingKindFactoryProvider = Provider<ITrainingKindFactory>(
   (ref) => TrainingKindFactoryImpl(),
+);
+
+/// Meal
+///
+///
+final getMealsUsecaseProvider = Provider<IGetMealsUsecase>(
+  (ref) => GetMealsUsecaseImpl(
+    repository: ref.watch(mealRepositoryProvider),
+  ),
+);
+
+final addMealUsecaseProvider = Provider<IAddMealUsecase>(
+  (ref) => AddMealUsecaseImpl(
+    repository: ref.watch(mealRepositoryProvider),
+  ),
+);
+
+final mealFactoryProvider = Provider<IMealFactory>(
+  (ref) => MealFactoryImpl(),
 );
