@@ -11,6 +11,7 @@ import 'application/usecase/meal/add_meal_usecase_impl.dart';
 import 'application/usecase/meal/get_meals_usecase_impl.dart';
 import 'application/usecase/training/add_training_usecase_impl.dart';
 import 'application/usecase/user/add_user_usecase_impl.dart';
+import 'application/usecase/user/update_user_name_impl.dart';
 import 'application/usecase/weight/add_weight_usecase_impl.dart';
 import 'application/usecase/user/get_login_user_usecase_impl.dart';
 import 'application/usecase/training/get_trainings_usecase_impl.dart';
@@ -26,6 +27,7 @@ import 'usecase/meal/add_meal_usecase.dart';
 import 'usecase/meal/get_meals_usecase.dart';
 import 'usecase/training/add_training_usecase.dart';
 import 'usecase/user/add_user_usecase.dart';
+import 'usecase/user/update_user_name_usecase.dart';
 import 'usecase/weight/add_weight_usecase.dart';
 import 'usecase/user/get_login_user_usecase.dart';
 import 'usecase/training/get_trainings_usecase.dart';
@@ -59,6 +61,12 @@ final userGenderFactoryProvider = Provider<IUserGenderFactory>(
 
 final addUserUsecaseProvider = Provider<IAddUserUsecase>(
   (ref) => AddUserUsecaseImpl(
+    repository: ref.watch(userRepositoryProvider),
+  ),
+);
+
+final updateUserInfoUsecaseProvider = Provider<IUpdateUserInfoUsecase>(
+  (ref) => UpdateUserInfoUsecaseImpl(
     repository: ref.watch(userRepositoryProvider),
   ),
 );
