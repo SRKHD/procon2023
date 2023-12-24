@@ -1,4 +1,4 @@
-import '../../../infrastructure/model/firestore/weight/rug_weight.dart';
+import '../../../infrastructure/model/firestore/weight/fug_weight.dart';
 import '../../entity/weight.dart';
 
 abstract interface class IWeightFactory {
@@ -10,6 +10,6 @@ abstract interface class IWeightFactory {
     required double value,
   });
 
-  /// [RugWeight]から[Weight]を生成する
-  Weight createFromModel(RugWeight weight);
+  /// [FugWeight]から[Weight]を生成する
+  Weight createFromModel(FugWeight weight);
 }

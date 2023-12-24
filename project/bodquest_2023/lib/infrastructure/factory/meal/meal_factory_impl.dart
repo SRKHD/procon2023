@@ -1,6 +1,6 @@
 import '../../../domain/entity/meal.dart';
 import '../../../domain/factory/meal/meal_factory.dart';
-import '../../model/firestore/meal/rug_meal.dart';
+import '../../model/firestore/meal/fug_meal.dart';
 
 class MealFactoryImpl implements IMealFactory {
   @override
@@ -21,7 +21,7 @@ class MealFactoryImpl implements IMealFactory {
   }
 
   @override
-  Meal createFromModel(RugMeal weight) {
+  Meal createFromModel(FugMeal weight) {
     return Meal(
       userId: weight.userId,
       name: weight.name,

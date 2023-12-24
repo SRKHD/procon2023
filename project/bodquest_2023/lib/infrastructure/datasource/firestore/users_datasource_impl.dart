@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../core/exception/network_exception.dart';
-import '../../model/firestore/user/rug_get_users_response.dart';
+import '../../model/firestore/user/fug_get_users_response.dart';
 import 'users_datasource.dart';
 
 class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
   @override
-  Future<RugGetUsersResponse> getUsers({int results = 10}) async {
+  Future<FugGetUsersResponse> getUsers({int results = 10}) async {
     final usersRef = FirebaseFirestore.instance
         .collection('users') // コレクションID
         .doc();
 
-    RugGetUsersResponse result = RugGetUsersResponse(results: []);
+    FugGetUsersResponse result = FugGetUsersResponse(results: []);
     usersRef.get().then((docSnapshot) => {
           if (docSnapshot.exists)
-            {result = RugGetUsersResponse.fromJson(docSnapshot.data())}
+            {result = FugGetUsersResponse.fromJson(docSnapshot.data())}
           else
             {
               throw NetworkException(

@@ -1,19 +1,19 @@
-class RugWeight {
+class FugWeight {
   final String userId;
   final DateTime date;
   final int timestamp;
   final double value;
 
-  RugWeight({
+  FugWeight({
     required this.userId,
     required this.date,
     required this.timestamp,
     required this.value,
   });
 
-  factory RugWeight.fromJson(json) {
+  factory FugWeight.fromJson(json) {
     DateTime date = json['date'].toDate();
-    return RugWeight(
+    return FugWeight(
       userId: json['userId'],
       date: date,
       timestamp: date.millisecondsSinceEpoch,

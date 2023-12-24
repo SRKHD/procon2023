@@ -1,16 +1,16 @@
-class RugUserName {
+class FugUserName {
   final String title;
   final String first;
   final String last;
 
-  RugUserName({
+  FugUserName({
     required this.first,
     required this.last,
     required this.title,
   });
 
-  factory RugUserName.fromJson(Map<String, dynamic> json) {
-    return RugUserName(
+  factory FugUserName.fromJson(Map<String, dynamic> json) {
+    return FugUserName(
       first: json['first'],
       last: json['last'],
       title: json['title'],

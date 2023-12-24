@@ -1,4 +1,4 @@
-import '../../../infrastructure/model/firestore/user/rug_user.dart';
+import '../../../infrastructure/model/firestore/user/fug_user.dart';
 import '../../entity/user.dart';
 
 abstract interface class IUserFactory {
@@ -8,8 +8,9 @@ abstract interface class IUserFactory {
     required String gender,
     required String thumbnail,
     required DateTime birthday,
+    required double targetWeight,
   });
 
-  /// [RugUser]から[User]を生成する
-  User createFromModel(RugUser user);
+  /// [FugUser]から[User]を生成する
+  User createFromModel(FugUser user);
 }

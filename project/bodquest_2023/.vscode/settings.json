@@ -10,5 +10,6 @@
   
     "[dart]": {
       "editor.rulers": [0]
-    }
+    },
+    "workbench.editor.wrapTabs": true
   }

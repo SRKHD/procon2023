@@ -1,7 +1,7 @@
 import '../../../domain/entity/training.dart';
 import '../../../domain/factory/training/training_factory.dart';
 import '../../../domain/factory/training/training_kind_factory.dart';
-import '../../model/firestore/training/rug_training.dart';
+import '../../model/firestore/training/fug_training.dart';
 
 class TrainingFactoryImpl implements ITrainingFactory {
   TrainingFactoryImpl({
@@ -25,7 +25,7 @@ class TrainingFactoryImpl implements ITrainingFactory {
   }
 
   @override
-  Training createFromModel(RugTraining training) {
+  Training createFromModel(FugTraining training) {
     return Training(
       userId: training.userId,
       kind: trainingKindFactory.createFromModel(training.kind),

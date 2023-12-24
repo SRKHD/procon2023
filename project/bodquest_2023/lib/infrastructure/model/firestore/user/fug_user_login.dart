@@ -1,14 +1,14 @@
-class RugUserLogin {
+class FugUserLogin {
   final String uuid;
   final String username;
 
-  RugUserLogin({
+  FugUserLogin({
     required this.uuid,
     required this.username,
   });
 
-  factory RugUserLogin.fromJson(Map<String, dynamic> json) {
-    return RugUserLogin(
+  factory FugUserLogin.fromJson(Map<String, dynamic> json) {
+    return FugUserLogin(
       uuid: json['uuid'],
       username: json['username'],
     );

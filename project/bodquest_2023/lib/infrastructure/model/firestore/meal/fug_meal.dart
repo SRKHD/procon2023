@@ -1,11 +1,11 @@
-class RugMeal {
+class FugMeal {
   final String userId;
   final String name;
   final DateTime date;
   final int timestamp;
   final int calorie;
 
-  RugMeal({
+  FugMeal({
     required this.userId,
     required this.name,
     required this.date,
@@ -13,9 +13,9 @@ class RugMeal {
     required this.calorie,
   });
 
-  factory RugMeal.fromJson(json) {
+  factory FugMeal.fromJson(json) {
     DateTime date = json['date'].toDate();
-    return RugMeal(
+    return FugMeal(
       userId: json['userId'],
       name: json['name'],
       date: date,

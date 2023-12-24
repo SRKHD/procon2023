@@ -1,14 +1,14 @@
-class RugUserDob {
+class FugUserDob {
   final DateTime date;
   final int age;
 
-  RugUserDob({
+  FugUserDob({
     required this.age,
     required this.date,
   });
 
-  factory RugUserDob.fromJson(Map<String, dynamic> json) {
-    return RugUserDob(
+  factory FugUserDob.fromJson(Map<String, dynamic> json) {
+    return FugUserDob(
       age: json['age'],
       date: DateTime.parse(json['date']),
     );

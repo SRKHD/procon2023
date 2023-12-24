@@ -1,6 +1,6 @@
 import '../../../domain/entity/weight.dart';
 import '../../../domain/factory/weight/weight_factory.dart';
-import '../../model/firestore/weight/rug_weight.dart';
+import '../../model/firestore/weight/fug_weight.dart';
 
 class WeightFactoryImpl implements IWeightFactory {
   @override
@@ -19,7 +19,7 @@ class WeightFactoryImpl implements IWeightFactory {
   }
 
   @override
-  Weight createFromModel(RugWeight weight) {
+  Weight createFromModel(FugWeight weight) {
     return Weight(
       userId: weight.userId,
       date: weight.date,

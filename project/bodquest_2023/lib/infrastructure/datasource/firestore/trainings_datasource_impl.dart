@@ -1,19 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../model/firestore/training/rug_get_trainings_response.dart';
-import '../../model/firestore/training/rug_training.dart';
+import '../../model/firestore/training/fug_get_trainings_response.dart';
+import '../../model/firestore/training/fug_training.dart';
 import 'trainings_datasource.dart';
 
 class FirestoreTrainingsDataSourceImpl
     implements IFirestoreTrainingsDataSource {
   @override
-  Stream<RugGetTrainingsResponse> getTrainings(String userId) {
+  Stream<FugGetTrainingsResponse> getTrainings(String userId) {
     return FirebaseFirestore.instance
         .collection('trainings')
         .where('userId', isEqualTo: userId)
         .snapshots()
-        .map((value) => RugGetTrainingsResponse(results: [
-              ...value.docs.map((doc) => RugTraining.fromJson(doc.data()))
+        .map((value) => FugGetTrainingsResponse(results: [
+              ...value.docs.map((doc) => FugTraining.fromJson(doc.data()))
             ]));
   }
 

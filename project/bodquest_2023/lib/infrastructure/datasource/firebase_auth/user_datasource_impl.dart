@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../model/firestore/user/rug_user_login.dart';
+import '../../model/firestore/user/fug_user_login.dart';
 import 'user_datasource.dart';
 
 class FirebaseAuthUserDataSourceImpl implements IFirebaseAuthUserDataSource {
   @override
-  Future<RugUserLogin> getLoginUser() {
+  Future<FugUserLogin> getLoginUser() {
     final currentUser = FirebaseAuth.instance.currentUser;
     final isLogin = currentUser != null;
     final uid =
@@ -17,6 +17,6 @@ class FirebaseAuthUserDataSourceImpl implements IFirebaseAuthUserDataSource {
           ? 'no displayName'
           : currentUser.displayName!;
     }
-    return Future.value(RugUserLogin(uuid: uid, username: userName));
+    return Future.value(FugUserLogin(uuid: uid, username: userName));
   }
 }

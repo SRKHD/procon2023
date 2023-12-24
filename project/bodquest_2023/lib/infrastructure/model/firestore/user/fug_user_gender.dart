@@ -1,16 +1,16 @@
-enum RugUserGender {
+enum FugUserGender {
   male('male'),
   female('female');
 
   final String value;
-  const RugUserGender(this.value);
+  const FugUserGender(this.value);
 
-  factory RugUserGender.from(String value) {
+  factory FugUserGender.from(String value) {
     switch (value) {
       case 'male':
-        return RugUserGender.male;
+        return FugUserGender.male;
       case 'female':
-        return RugUserGender.female;
+        return FugUserGender.female;
       default:
         throw UnimplementedError();
     }

@@ -1,4 +1,4 @@
-import '../../../infrastructure/model/firestore/training/rug_training.dart';
+import '../../../infrastructure/model/firestore/training/fug_training.dart';
 import '../../entity/training.dart';
 
 abstract interface class ITrainingFactory {
@@ -10,6 +10,6 @@ abstract interface class ITrainingFactory {
     required int value,
   });
 
-  /// [RugTraining]から[Training]を生成する
-  Training createFromModel(RugTraining target);
+  /// [FugTraining]から[Training]を生成する
+  Training createFromModel(FugTraining target);
 }

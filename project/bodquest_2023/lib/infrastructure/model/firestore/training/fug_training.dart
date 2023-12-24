@@ -1,22 +1,22 @@
-import 'rug_training_kind.dart';
+import 'fug_training_kind.dart';
 
-class RugTraining {
+class FugTraining {
   final String userId;
-  final RugTrainingKind kind;
+  final FugTrainingKind kind;
   final DateTime date;
   final int value;
 
-  RugTraining({
+  FugTraining({
     required this.userId,
     required this.kind,
     required this.date,
     required this.value,
   });
 
-  factory RugTraining.fromJson(json) {
-    return RugTraining(
+  factory FugTraining.fromJson(json) {
+    return FugTraining(
       userId: json['userId'],
-      kind: RugTrainingKind.from(json['kind']),
+      kind: FugTrainingKind.from(json['kind']),
       date: json['date'].toDate(),
       value: json['value'].toInt(),
     );
