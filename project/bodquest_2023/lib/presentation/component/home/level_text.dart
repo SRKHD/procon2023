@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/sizes.dart';
-
 class LevelText extends StatelessWidget {
   const LevelText({super.key, required this.level});
 

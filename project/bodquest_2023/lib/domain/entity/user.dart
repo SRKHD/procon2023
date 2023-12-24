@@ -7,6 +7,7 @@ class User {
   final UserGender gender; // 性別
   final String thumbnail; // サムネイルリンク
   final DateTime birthday; // 生年月日
+  final double targetWeight; // 目標体重
 
   User({
     required this.id,
@@ -14,6 +15,7 @@ class User {
     required this.gender,
     required this.thumbnail,
     required this.birthday,
+    required this.targetWeight,
   });
 
   /// [User]が誕生日であるか判定する

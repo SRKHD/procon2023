@@ -32,11 +32,13 @@ class UserRepositoryImpl implements IUserRepository {
   @override
   Future<User> getLogInUser() {
     return firebaseDataSource.getLoginUser().then((value) => Future.value(User(
-        id: value.uuid,
-        name: value.username,
-        gender: UserGender.other,
-        thumbnail: "thumbnail",
-        birthday: DateTime.now())));
+          id: value.uuid,
+          name: value.username,
+          gender: UserGender.other,
+          thumbnail: "thumbnail",
+          birthday: DateTime.now(),
+          targetWeight: 0,
+        )));
   }
 
   @override

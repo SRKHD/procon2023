@@ -2,11 +2,10 @@ import '../../../repository/training_repository.dart';
 import '../../../usecase/training/add_training_usecase.dart';
 
 class AddTrainingUsecaseImpl implements IAddTrainingUsecase {
-  final ITrainingRepository weightRepository;
-
   AddTrainingUsecaseImpl({
     required ITrainingRepository repository,
-  }) : weightRepository = repository;
+  }) : trainingRepository = repository;
+  final ITrainingRepository trainingRepository;
 
   @override
   Future<int> execute(
@@ -15,6 +14,6 @@ class AddTrainingUsecaseImpl implements IAddTrainingUsecase {
     DateTime date,
     int value,
   ) {
-    return weightRepository.addTraining(userId, kind, date, value);
+    return trainingRepository.addTraining(userId, kind, date, value);
   }
 }

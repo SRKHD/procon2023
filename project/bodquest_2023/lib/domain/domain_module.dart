@@ -7,10 +7,13 @@ import '../infrastructure/factory/training/training_kind_factory_impl.dart';
 import '../infrastructure/factory/user/user_factory_impl.dart';
 import '../infrastructure/factory/user/user_gender_factory_impl.dart';
 import '../infrastructure/factory/weight/weight_factory_impl.dart';
+import 'application/usecase/evaluation/get_activity_evaluation_impl.dart';
 import 'application/usecase/meal/add_meal_usecase_impl.dart';
 import 'application/usecase/meal/get_meals_usecase_impl.dart';
 import 'application/usecase/training/add_training_usecase_impl.dart';
+import 'application/usecase/training/get_calories_consumed_usecase_impl.dart';
 import 'application/usecase/user/add_user_usecase_impl.dart';
+import 'application/usecase/user/get_ideal_usecase_impl.dart';
 import 'application/usecase/weight/add_weight_usecase_impl.dart';
 import 'application/usecase/user/get_login_user_usecase_impl.dart';
 import 'application/usecase/training/get_trainings_usecase_impl.dart';
@@ -22,10 +25,13 @@ import 'factory/training/training_kind_factory.dart';
 import 'factory/user/user_factory.dart';
 import 'factory/user/user_gender_factory.dart';
 import 'factory/weight/weight_factory.dart';
+import 'usecase/evaluation/get_activity_evaluation_usecase.dart';
 import 'usecase/meal/add_meal_usecase.dart';
 import 'usecase/meal/get_meals_usecase.dart';
 import 'usecase/training/add_training_usecase.dart';
+import 'usecase/training/get_calories_consumed_usecase.dart';
 import 'usecase/user/add_user_usecase.dart';
+import 'usecase/user/get_ideal_usecase.dart';
 import 'usecase/weight/add_weight_usecase.dart';
 import 'usecase/user/get_login_user_usecase.dart';
 import 'usecase/training/get_trainings_usecase.dart';
@@ -47,6 +53,16 @@ final getLogInUserUsecaseProvider = Provider<IGetLogInUserUsecase>(
   ),
 );
 
+final addUserUsecaseProvider = Provider<IAddUserUsecase>(
+  (ref) => AddUserUsecaseImpl(
+    repository: ref.watch(userRepositoryProvider),
+  ),
+);
+
+final getIdealUsecaseProvider = Provider<IGetIdealUsecase>(
+  (ref) => GetIdealUsecaseImpl(),
+);
+
 final userFactoryProvider = Provider<IUserFactory>(
   (ref) => UserFactoryImpl(
     factory: ref.watch(userGenderFactoryProvider),
@@ -55,12 +71,6 @@ final userFactoryProvider = Provider<IUserFactory>(
 
 final userGenderFactoryProvider = Provider<IUserGenderFactory>(
   (ref) => UserGenderFactoryImpl(),
-);
-
-final addUserUsecaseProvider = Provider<IAddUserUsecase>(
-  (ref) => AddUserUsecaseImpl(
-    repository: ref.watch(userRepositoryProvider),
-  ),
 );
 
 /// Weight
@@ -97,6 +107,11 @@ final addTrainingUsecaseProvider = Provider<IAddTrainingUsecase>(
   ),
 );
 
+final getCaloriesConsumedUsecaseProvider =
+    Provider<IGetCaloriesConsumedUsecase>(
+  (ref) => GetCaloriesConsumedUsecaseImpl(),
+);
+
 final trainingFactoryProvider = Provider<ITrainingFactory>(
   (ref) => TrainingFactoryImpl(
     factory: ref.watch(trainingKindFactoryProvider),
@@ -125,3 +140,22 @@ final addMealUsecaseProvider = Provider<IAddMealUsecase>(
 final mealFactoryProvider = Provider<IMealFactory>(
   (ref) => MealFactoryImpl(),
 );
+
+/// Evaluation
+///
+///
+final getActivityEvaluationUsecase = Provider<IGetActivityEvaluationUsecase>(
+  (ref) => GetActivityEvaluationUsecaseImpl(
+    getLogInUserUsecase: ref.watch(getLogInUserUsecaseProvider),
+    trainingRepository: ref.watch(trainingRepositoryProvider),
+    weightRepository: ref.watch(weightRepositoryProvider),
+    userRepository: ref.watch(userRepositoryProvider),
+    getIdealUsecase: ref.watch(getIdealUsecaseProvider),
+    mealRepository: ref.watch(mealRepositoryProvider),
+    getCaloriesConsumedUsecase: ref.watch(getCaloriesConsumedUsecaseProvider),
+  ),
+);
+
+/// I
+///
+///

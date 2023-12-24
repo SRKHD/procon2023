@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/value/evaluation_rank.dart';
 import '../component/control/item_evaluation_panel.dart';
@@ -6,14 +7,17 @@ import '../component/home/chara_image.dart';
 import '../component/home/level_text.dart';
 import '../component/home/pace_text.dart';
 import '../component/home/rank_text.dart';
+import '../notifier/evaluation/evaluation_notifier.dart';
 import '../theme/sizes.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const tempRank = EvaluationRank.g;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final evaluationState = ref.watch(evaluationNotifierProvider);
+    // const tempRank = EvaluationRank.g;
+    final tempRank = EvaluationRank.from(evaluationState.rank);
     const tempWeight = 67.5;
     const tempLevel = 17;
     return Column(
