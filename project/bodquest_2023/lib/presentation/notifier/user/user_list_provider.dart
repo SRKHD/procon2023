@@ -9,5 +9,6 @@ final userListNotifierProvider =
   (ref) => UserListNotifier(
     getUsersUsecase: ref.read(getUsersUsecaseProvider),
     addUserUsecase: ref.read(addUserUsecaseProvider),
+    updateUserInfoUsecase: ref.read(updateUserInfoUsecaseProvider),
   ),
 );

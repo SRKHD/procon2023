@@ -1,3 +1,4 @@
+import 'package:bodquest_2023/presentation/page/user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,7 +14,7 @@ class MainWidget extends ConsumerWidget {
 
   final pages = [
     HomePage(),
-    Placeholder(),
+    UserPage(),
     WeightPage(),
     TrainingPage(),
     SampleCounterWidget(),

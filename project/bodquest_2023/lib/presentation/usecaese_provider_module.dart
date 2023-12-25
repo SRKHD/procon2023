@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../application/usecase/user/update_user_name_impl.dart';
+import '../domain/usecase/user/update_user_name_usecase.dart';
 import 'notifier/evaluation/evaluation_provider.dart';
 import 'repository_module.dart';
 import '../application/usecase/evaluation/get_activity_evaluation_impl.dart';
@@ -44,6 +46,12 @@ final getLogInUserUsecaseProvider = Provider<IGetLogInUserUsecase>(
 
 final addUserUsecaseProvider = Provider<IAddUserUsecase>(
   (ref) => AddUserUsecaseImpl(
+    repository: ref.watch(userRepositoryProvider),
+  ),
+);
+
+final updateUserInfoUsecaseProvider = Provider<IUpdateUserInfoUsecase>(
+  (ref) => UpdateUserInfoUsecaseImpl(
     repository: ref.watch(userRepositoryProvider),
   ),
 );

@@ -45,4 +45,10 @@ class UserRepositoryImpl implements IUserRepository {
   Future<int> addUser(String userId) {
     return fireStoreDataSource.addUser(userId);
   }
+
+  @override
+  Future<int> updateUserInfo(
+      String userId, String userName, DateTime birthday) {
+    return fireStoreDataSource.updateUserInfo(userId, userName, birthday);
+  }
 }
