@@ -26,6 +26,7 @@ class CharaImage extends StatelessWidget {
           EvaluationRank.b => RankImage.rankB.path,
           EvaluationRank.a => RankImage.rankA.path,
           EvaluationRank.s => RankImage.rankS.path,
+          EvaluationRank.unknown => RankImage.rankUnknown.path,
         },
       ),
     ));

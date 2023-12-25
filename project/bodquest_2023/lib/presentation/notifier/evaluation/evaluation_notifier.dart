@@ -29,7 +29,7 @@ class EvaluationNotifier extends StateNotifier<EvaluationState> {
   Future<void> _fetch(String userId) async {
     final rank = await _getEvaluationUsecase.getRank(userId);
     final score = await _getEvaluationUsecase.getScore(userId);
-    state = EvaluationState(rank: rank.name, score: score);
+    state = EvaluationState(rank: rank.value, score: score);
     //state = _getEvaluationUsecase.execute();
   }
 }
