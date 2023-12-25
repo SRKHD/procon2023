@@ -1,6 +1,6 @@
 import '../../../domain/factory/user/user_gender_factory.dart';
 import '../../../domain/value/user_gender.dart';
-import '../../model/firestore/user/rug_user_gender.dart';
+import '../../model/firestore/user/fug_user_gender.dart';
 
 class UserGenderFactoryImpl implements IUserGenderFactory {
   @override
@@ -18,11 +18,11 @@ class UserGenderFactoryImpl implements IUserGenderFactory {
   }
 
   @override
-  UserGender createFromModel(RugUserGender gender) {
+  UserGender createFromModel(FugUserGender gender) {
     switch (gender) {
-      case RugUserGender.male:
+      case FugUserGender.male:
         return UserGender.male;
-      case RugUserGender.female:
+      case FugUserGender.female:
         return UserGender.female;
       default:
         return UserGender.other;

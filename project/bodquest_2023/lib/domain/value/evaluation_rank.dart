@@ -1,4 +1,5 @@
 enum EvaluationRank {
+  unknown('unknown'),
   g('G'),
   f('F'),
   e('E'),
@@ -30,7 +31,7 @@ enum EvaluationRank {
       case 'S':
         return EvaluationRank.s;
       default:
-        throw UnimplementedError();
+        return EvaluationRank.unknown;
     }
   }
 }

@@ -1,5 +1,5 @@
-import '../../model/firestore/user/rug_user_login.dart';
+import '../../model/firestore/user/fug_user_login.dart';
 
 abstract interface class IFirebaseAuthUserDataSource {
-  Future<RugUserLogin> getLoginUser();
+  Future<FugUserLogin> getLoginUser();
 }

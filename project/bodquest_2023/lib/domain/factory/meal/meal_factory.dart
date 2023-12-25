@@ -1,4 +1,4 @@
-import '../../../infrastructure/model/firestore/meal/rug_meal.dart';
+import '../../../infrastructure/model/firestore/meal/fug_meal.dart';
 import '../../entity/meal.dart';
 
 abstract interface class IMealFactory {
@@ -11,6 +11,6 @@ abstract interface class IMealFactory {
     required int calorie,
   });
 
-  /// [RugMeal]から[Meal]を生成する
-  Meal createFromModel(RugMeal weight);
+  /// [FugMeal]から[Meal]を生成する
+  Meal createFromModel(FugMeal weight);
 }

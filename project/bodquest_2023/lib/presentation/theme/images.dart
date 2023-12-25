@@ -1,4 +1,5 @@
 enum RankImage {
+  rankUnknown('unknown.png'),
   rankG('rank_g.png'),
   rankF('rank_f.png'),
   rankE('rank_e.png'),

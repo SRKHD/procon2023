@@ -1,7 +1,7 @@
 import '../../../domain/entity/user.dart';
 import '../../../domain/factory/user/user_factory.dart';
 import '../../../domain/factory/user/user_gender_factory.dart';
-import '../../model/firestore/user/rug_user.dart';
+import '../../model/firestore/user/fug_user.dart';
 
 class UserFactoryImpl implements IUserFactory {
   UserFactoryImpl({
@@ -15,6 +15,7 @@ class UserFactoryImpl implements IUserFactory {
     required String gender,
     required String thumbnail,
     required DateTime birthday,
+    required double targetWeight,
   }) {
     return User(
       id: '12345', // uuid等で自動で生成する
@@ -22,17 +23,19 @@ class UserFactoryImpl implements IUserFactory {
       gender: genderFactory.create(gender),
       thumbnail: thumbnail,
       birthday: birthday,
+      targetWeight: targetWeight,
     );
   }
 
   @override
-  User createFromModel(RugUser user) {
+  User createFromModel(FugUser user) {
     return User(
       id: user.login.uuid,
       name: '${user.name.title} ${user.name.first} ${user.name.last}',
       gender: genderFactory.createFromModel(user.gender),
       thumbnail: user.picture.thumbnail,
       birthday: user.dob.date,
+      targetWeight: user.targetWeight,
     );
   }
 }

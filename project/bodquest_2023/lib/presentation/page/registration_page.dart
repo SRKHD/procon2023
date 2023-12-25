@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../notifier/user/user_list_notifier.dart';
+import '../notifier/user/user_list_provider.dart';
 
 // アカウント登録ページ
 class RegistrationPage extends ConsumerStatefulWidget {

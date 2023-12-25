@@ -1,6 +1,6 @@
 import '../../../domain/factory/training/training_kind_factory.dart';
 import '../../../domain/value/training_kind.dart';
-import '../../model/firestore/training/rug_training_kind.dart';
+import '../../model/firestore/training/fug_training_kind.dart';
 
 class TrainingKindFactoryImpl implements ITrainingKindFactory {
   @override
@@ -18,11 +18,11 @@ class TrainingKindFactoryImpl implements ITrainingKindFactory {
   }
 
   @override
-  TrainingKind createFromModel(RugTrainingKind gender) {
+  TrainingKind createFromModel(FugTrainingKind gender) {
     switch (gender) {
-      case RugTrainingKind.run:
+      case FugTrainingKind.run:
         return TrainingKind.run;
-      case RugTrainingKind.workOut:
+      case FugTrainingKind.workOut:
         return TrainingKind.workOut;
       default:
         return TrainingKind.walk;
