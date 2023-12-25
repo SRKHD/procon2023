@@ -6,10 +6,10 @@ import '../component/control/number_textfield.dart';
 import '../component/training/training_kind_dropdown.dart';
 import '../component/training/training_list_item.dart';
 import '../notifier/datetime_notifier.dart';
-import '../notifier/user/login_user_notifier.dart';
+import '../notifier/training/training_list_provider.dart';
 import '../notifier/text_notifier.dart';
 import '../notifier/training/training_kind_notifier.dart';
-import '../notifier/training/training_list_notifier.dart';
+import '../notifier/user/login_user_provider.dart';
 import '../state/training/training_state.dart';
 
 class TrainingPage extends ConsumerStatefulWidget {

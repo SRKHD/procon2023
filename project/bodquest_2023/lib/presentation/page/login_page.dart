@@ -10,7 +10,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:go_router/go_router.dart';
 
-import '../notifier/user/user_list_notifier.dart';
+import '../notifier/user/user_list_provider.dart';
 
 class LogInPage extends ConsumerStatefulWidget {
   @override

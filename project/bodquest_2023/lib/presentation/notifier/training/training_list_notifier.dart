@@ -1,19 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../usecaese_provider_module.dart';
 import '../../../domain/usecase/training/add_training_usecase.dart';
 import '../../../domain/usecase/user/get_login_user_usecase.dart';
 import '../../../domain/usecase/training/get_trainings_usecase.dart';
 import '../../state/training/training_state.dart';
-
-final trainingListNotifierProvider = StateNotifierProvider<TrainingListNotifier,
-    AsyncValue<List<TrainingState>>>(
-  (ref) => TrainingListNotifier(
-    getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-    getTrainingsUsecase: ref.read(getTrainingsUsecaseProvider),
-    addTrainingUsecase: ref.read(addTrainingUsecaseProvider),
-  ),
-);
 
 class TrainingListNotifier
     extends StateNotifier<AsyncValue<List<TrainingState>>> {

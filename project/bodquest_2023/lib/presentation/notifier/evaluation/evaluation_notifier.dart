@@ -1,17 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../provider_module.dart';
 import '../../../domain/usecase/evaluation/get_activity_evaluation_usecase.dart';
 import '../../../domain/usecase/user/get_login_user_usecase.dart';
 import '../../state/evaluation/evaluation_state.dart';
-
-final evaluationNotifierProvider =
-    StateNotifierProvider<EvaluationNotifier, EvaluationState>(
-  (ref) => EvaluationNotifier(
-    getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-    getEvaluationUsecase: ref.read(getActivityEvaluationUsecase),
-  ),
-);
 
 class EvaluationNotifier extends StateNotifier<EvaluationState> {
   EvaluationNotifier({

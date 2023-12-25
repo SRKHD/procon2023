@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../notifier/user/user_list_notifier.dart';
+import '../../notifier/user/user_list_provider.dart';
 import 'user_list_item.dart';
 
 class UserList extends ConsumerWidget {

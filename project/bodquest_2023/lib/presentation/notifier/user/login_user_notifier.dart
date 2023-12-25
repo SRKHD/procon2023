@@ -1,15 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../usecaese_provider_module.dart';
 import '../../../domain/usecase/user/get_login_user_usecase.dart';
 import '../../state/user/loginuser_state.dart';
-
-final logInUserNotifierProvider =
-    StateNotifierProvider<LogInUserNotifier, LogInUserState>(
-  (ref) => LogInUserNotifier(
-    getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-  ),
-);
 
 class LogInUserNotifier extends StateNotifier<LogInUserState> {
   LogInUserNotifier({

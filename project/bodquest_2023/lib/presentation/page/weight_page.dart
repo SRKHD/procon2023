@@ -7,9 +7,9 @@ import 'package:intl/intl.dart';
 import '../component/control/number_textfield.dart';
 import '../component/weight/weight_list_item.dart';
 import '../notifier/datetime_notifier.dart';
-import '../notifier/user/login_user_notifier.dart';
 import '../notifier/text_notifier.dart';
-import '../notifier/weight/weight_list_notifier.dart';
+import '../notifier/user/login_user_provider.dart';
+import '../notifier/weight/weight_list_provider.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
   const WeightPage({super.key});

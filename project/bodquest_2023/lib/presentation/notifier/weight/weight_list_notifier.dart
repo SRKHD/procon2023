@@ -1,19 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../usecaese_provider_module.dart';
 import '../../../domain/usecase/weight/add_weight_usecase.dart';
 import '../../../domain/usecase/user/get_login_user_usecase.dart';
 import '../../../domain/usecase/weight/get_weights_usecase.dart';
 import '../../state/weight/weight_state.dart';
-
-final weightListNotifierProvider =
-    StateNotifierProvider<WeightListNotifier, AsyncValue<List<WeightState>>>(
-  (ref) => WeightListNotifier(
-    getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-    getWeightsUsecase: ref.read(getWeightsUsecaseProvider),
-    addWeightUsecase: ref.read(addWeightUsecaseProvider),
-  ),
-);
 
 class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
   WeightListNotifier({

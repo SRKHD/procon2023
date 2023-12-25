@@ -1,6 +1,5 @@
 import 'package:bodquest_2023/domain/value/evaluation_rank.dart';
 
-import '../../../domain/entity/weight.dart';
 import '../../../domain/repository/meal_repository.dart';
 import '../../../domain/repository/training_repository.dart';
 import '../../../domain/repository/user_repository.dart';
@@ -87,7 +86,7 @@ class GetActivityEvaluationUsecaseImpl
     final thresholdDay = oneDayThisMonth();
 
     final trainingsStream = trainingRepository.findAll(userId);
-    final mealsStream = mealRepository.findAll(userId);
+    //final mealsStream = mealRepository.findAll(userId);
     // await for (final values in trainingsStream) {
     //   for (var value in values) {
     //     if (value.date.isAfter(thresholdDay)) {

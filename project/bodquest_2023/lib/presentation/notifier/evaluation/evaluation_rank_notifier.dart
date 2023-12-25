@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../domain/value/evaluation_rank.dart';
+import '../../../domain/value/evaluation_rank.dart';
 
 part 'evaluation_rank_notifier.g.dart';
 
