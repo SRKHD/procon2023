@@ -1,5 +1,5 @@
-import '../../../repository/user_repository.dart';
-import '../../../usecase/user/add_user_usecase.dart';
+import '../../../domain/repository/user_repository.dart';
+import '../../../domain/usecase/user/add_user_usecase.dart';
 
 class AddUserUsecaseImpl implements IAddUserUsecase {
   final IUserRepository userRepository;

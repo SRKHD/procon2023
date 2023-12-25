@@ -1,14 +1,14 @@
 import 'package:bodquest_2023/domain/value/evaluation_rank.dart';
 
-import '../../../entity/weight.dart';
-import '../../../repository/meal_repository.dart';
-import '../../../repository/training_repository.dart';
-import '../../../repository/user_repository.dart';
-import '../../../repository/weight_repository.dart';
-import '../../../usecase/evaluation/get_activity_evaluation_usecase.dart';
-import '../../../usecase/training/get_calories_consumed_usecase.dart';
-import '../../../usecase/user/get_ideal_usecase.dart';
-import '../../../usecase/user/get_login_user_usecase.dart';
+import '../../../domain/entity/weight.dart';
+import '../../../domain/repository/meal_repository.dart';
+import '../../../domain/repository/training_repository.dart';
+import '../../../domain/repository/user_repository.dart';
+import '../../../domain/repository/weight_repository.dart';
+import '../../../domain/usecase/evaluation/get_activity_evaluation_usecase.dart';
+import '../../../domain/usecase/training/get_calories_consumed_usecase.dart';
+import '../../../domain/usecase/user/get_ideal_usecase.dart';
+import '../../../domain/usecase/user/get_login_user_usecase.dart';
 
 class GetActivityEvaluationUsecaseImpl
     implements IGetActivityEvaluationUsecase {

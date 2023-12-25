@@ -1,6 +1,6 @@
-import '../../../entity/user.dart';
-import '../../../repository/user_repository.dart';
-import '../../../usecase/user/get_login_user_usecase.dart';
+import '../../../domain/entity/user.dart';
+import '../../../domain/repository/user_repository.dart';
+import '../../../domain/usecase/user/get_login_user_usecase.dart';
 
 class GetLogInUserUsecaseImpl implements IGetLogInUserUsecase {
   final IUserRepository _userRepository;

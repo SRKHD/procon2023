@@ -1,5 +1,5 @@
-import '../../../repository/weight_repository.dart';
-import '../../../usecase/weight/add_weight_usecase.dart';
+import '../../../domain/repository/weight_repository.dart';
+import '../../../domain/usecase/weight/add_weight_usecase.dart';
 
 class AddWeightUsecaseImpl implements IAddWeightUsecase {
   final IWeightRepository weightRepository;

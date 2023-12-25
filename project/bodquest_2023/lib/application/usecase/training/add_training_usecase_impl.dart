@@ -1,5 +1,5 @@
-import '../../../repository/training_repository.dart';
-import '../../../usecase/training/add_training_usecase.dart';
+import '../../../domain/repository/training_repository.dart';
+import '../../../domain/usecase/training/add_training_usecase.dart';
 
 class AddTrainingUsecaseImpl implements IAddTrainingUsecase {
   AddTrainingUsecaseImpl({

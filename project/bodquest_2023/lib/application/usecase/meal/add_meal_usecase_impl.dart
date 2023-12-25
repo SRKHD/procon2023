@@ -1,5 +1,5 @@
-import '../../../repository/meal_repository.dart';
-import '../../../usecase/meal/add_meal_usecase.dart';
+import '../../../domain/repository/meal_repository.dart';
+import '../../../domain/usecase/meal/add_meal_usecase.dart';
 
 class AddMealUsecaseImpl implements IAddMealUsecase {
   final IMealRepository weightRepository;

@@ -1,6 +1,6 @@
-import '../../../entity/meal.dart';
-import '../../../repository/meal_repository.dart';
-import '../../../usecase/meal/get_meals_usecase.dart';
+import '../../../domain/entity/meal.dart';
+import '../../../domain/repository/meal_repository.dart';
+import '../../../domain/usecase/meal/get_meals_usecase.dart';
 
 class GetMealsUsecaseImpl implements IGetMealsUsecase {
   final IMealRepository weightRepository;

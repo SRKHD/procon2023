@@ -1,6 +1,6 @@
-import '../../../entity/training.dart';
-import '../../../repository/training_repository.dart';
-import '../../../usecase/training/get_trainings_usecase.dart';
+import '../../../domain/entity/training.dart';
+import '../../../domain/repository/training_repository.dart';
+import '../../../domain/usecase/training/get_trainings_usecase.dart';
 
 class GetTrainingsUsecaseImpl implements IGetTrainingsUsecase {
   final ITrainingRepository weightRepository;
