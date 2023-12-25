@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'notifier/evaluation/evaluation_provider.dart';
 import 'repository_module.dart';
 import '../application/usecase/evaluation/get_activity_evaluation_impl.dart';
 import '../application/usecase/meal/add_meal_usecase_impl.dart';
@@ -113,5 +114,6 @@ final getActivityEvaluationUsecase = Provider<IGetActivityEvaluationUsecase>(
     getIdealUsecase: ref.watch(getIdealUsecaseProvider),
     mealRepository: ref.watch(mealRepositoryProvider),
     getCaloriesConsumedUsecase: ref.watch(getCaloriesConsumedUsecaseProvider),
+    evaluationNotifier: ref.watch(evaluationNotifierProvider.notifier),
   ),
 );

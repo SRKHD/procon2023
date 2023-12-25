@@ -8,6 +8,7 @@ import '../../../domain/usecase/evaluation/get_activity_evaluation_usecase.dart'
 import '../../../domain/usecase/training/get_calories_consumed_usecase.dart';
 import '../../../domain/usecase/user/get_ideal_usecase.dart';
 import '../../../domain/usecase/user/get_login_user_usecase.dart';
+import '../../../presentation/notifier/evaluation/evaluation_notifier.dart';
 
 class GetActivityEvaluationUsecaseImpl
     implements IGetActivityEvaluationUsecase {
@@ -19,6 +20,7 @@ class GetActivityEvaluationUsecaseImpl
     required this.getIdealUsecase,
     required this.mealRepository,
     required this.getCaloriesConsumedUsecase,
+    required this.evaluationNotifier,
   });
 
   final IGetLogInUserUsecase getLogInUserUsecase;
@@ -28,12 +30,14 @@ class GetActivityEvaluationUsecaseImpl
   final IGetIdealUsecase getIdealUsecase;
   final IMealRepository mealRepository;
   final IGetCaloriesConsumedUsecase getCaloriesConsumedUsecase;
+  final EvaluationNotifier evaluationNotifier;
 
   @override
-  Future<EvaluationRank> getRank(String userId) async {
+  Future<EvaluationRank> getRank() async {
     // TODO: implement getRank
     EvaluationRank result = EvaluationRank.s;
-    final score = await getScore(userId);
+    //final score = await getScore(userId);
+    final score = evaluationNotifier.value.score;
     if (score < 100) {
       result = EvaluationRank.g;
     } else if (score < 200) {
@@ -69,7 +73,7 @@ class GetActivityEvaluationUsecaseImpl
   // }
 
   @override
-  Future<int> getScore(String userId) async {
+  Future<int> getScore() async {
     // TODO: implement getScore
     double result = 0;
     var user = await getLogInUserUsecase.execute();
@@ -85,7 +89,7 @@ class GetActivityEvaluationUsecaseImpl
 
     final thresholdDay = oneDayThisMonth();
 
-    final trainingsStream = trainingRepository.findAll(userId);
+    final trainingsStream = trainingRepository.findAll(user.id);
     //final mealsStream = mealRepository.findAll(userId);
     // await for (final values in trainingsStream) {
     //   for (var value in values) {
@@ -98,6 +102,9 @@ class GetActivityEvaluationUsecaseImpl
       for (final value in x) {
         if (value.date.isAfter(thresholdDay)) {
           result += getCaloriesConsumedUsecase.get(value) - standardCalorie;
+          final newValue =
+              evaluationNotifier.value.copyWith(score: result.toInt());
+          evaluationNotifier.update(newValue);
         }
       }
     });
