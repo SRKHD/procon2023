@@ -1,3 +1,5 @@
+import 'package:bodquest_2023/infrastructure/datasource/firebase_storage/storage_datasource.dart';
+
 import '../../domain/entity/meal.dart';
 import '../../domain/factory/meal/meal_factory.dart';
 import '../../domain/repository/meal_repository.dart';
@@ -6,10 +8,13 @@ import '../datasource/firestore/meals_datasource.dart';
 class MealRepositoryImpl implements IMealRepository {
   MealRepositoryImpl({
     required IFirestoreMealsDataSource dataSource,
+    required IFirebaseStorageDataSource dataStorage,
     required IMealFactory factory,
   })  : fireStoreDataSource = dataSource,
+        firebaseStorageSource = dataStorage,
         weightFactory = factory;
   final IFirestoreMealsDataSource fireStoreDataSource;
+  final IFirebaseStorageDataSource firebaseStorageSource;
   final IMealFactory weightFactory;
 
   @override
@@ -25,6 +30,10 @@ class MealRepositoryImpl implements IMealRepository {
   @override
   Future<int> addMeal(
       String userId, String name, DateTime date, int calorie, String imageURL) {
+    if (imageURL != '') {
+      firebaseStorageSource.addFile('${userId}_${name}_image', imageURL);
+    }
+
     return fireStoreDataSource.addMeal(userId, name, date, calorie, imageURL);
   }
 }

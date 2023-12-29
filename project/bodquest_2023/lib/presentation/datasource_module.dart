@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../infrastructure/datasource/firebase_auth/user_datasource.dart';
 import '../infrastructure/datasource/firebase_auth/user_datasource_impl.dart';
+import '../infrastructure/datasource/firebase_storage/storage_datasource.dart';
+import '../infrastructure/datasource/firebase_storage/storage_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/meals_datasource.dart';
 import '../infrastructure/datasource/firestore/meals_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/trainings_datasource_impl.dart';
@@ -10,6 +12,13 @@ import '../infrastructure/datasource/firestore/trainings_datasource.dart';
 import '../infrastructure/datasource/firestore/users_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/weights_datasource.dart';
 import '../infrastructure/datasource/firestore/weights_datasource_impl.dart';
+
+/// Firebae Storage
+///
+///
+final firebaseStorageDataSourceProvider = Provider<IFirebaseStorageDataSource>(
+  (ref) => FirebaseStorageDataSourceImpl(),
+);
 
 /// User
 ///

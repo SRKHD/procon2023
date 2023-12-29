@@ -12,6 +12,7 @@ import '../domain/factory/training/training_kind_factory.dart';
 import '../domain/factory/user/user_factory.dart';
 import '../domain/factory/user/user_gender_factory.dart';
 import '../domain/factory/weight/weight_factory.dart';
+import 'datasource_module.dart';
 
 /// User
 ///
@@ -50,7 +51,9 @@ final trainingKindFactoryProvider = Provider<ITrainingKindFactory>(
 ///
 ///
 final mealFactoryProvider = Provider<IMealFactory>(
-  (ref) => MealFactoryImpl(),
+  (ref) => MealFactoryImpl(
+    firebaseStorageSource: ref.watch(firebaseStorageDataSourceProvider),
+  ),
 );
 
 /// Evaluation

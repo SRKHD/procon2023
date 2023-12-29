@@ -47,6 +47,7 @@ final trainingRepositoryProvider = Provider<ITrainingRepository>(
 final mealRepositoryProvider = Provider<IMealRepository>(
   (ref) => MealRepositoryImpl(
     dataSource: ref.watch(fireStoreMealsDataSourceProvider),
+    dataStorage: ref.watch(firebaseStorageDataSourceProvider),
     factory: ref.watch(mealFactoryProvider),
   ),
 );
