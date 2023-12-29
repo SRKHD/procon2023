@@ -4,7 +4,7 @@ import '../application/usecase/user/update_user_name_impl.dart';
 import '../domain/usecase/user/update_user_name_usecase.dart';
 import 'notifier/evaluation/evaluation_provider.dart';
 import 'repository_module.dart';
-import '../application/usecase/evaluation/get_activity_evaluation_impl.dart';
+import '../application/usecase/evaluation/calculate_evaluation_impl.dart';
 import '../application/usecase/meal/add_meal_usecase_impl.dart';
 import '../application/usecase/meal/get_meals_usecase_impl.dart';
 import '../application/usecase/training/add_training_usecase_impl.dart';
@@ -16,7 +16,7 @@ import '../application/usecase/user/get_login_user_usecase_impl.dart';
 import '../application/usecase/training/get_trainings_usecase_impl.dart';
 import '../application/usecase/user/get_users_usecase_impl.dart';
 import '../application/usecase/weight/get_weights_usecase_impl.dart';
-import '../domain/usecase/evaluation/get_activity_evaluation_usecase.dart';
+import '../domain/usecase/evaluation/calculate_evaluation_usecase.dart';
 import '../domain/usecase/meal/add_meal_usecase.dart';
 import '../domain/usecase/meal/get_meals_usecase.dart';
 import '../domain/usecase/training/add_training_usecase.dart';
@@ -113,8 +113,8 @@ final addMealUsecaseProvider = Provider<IAddMealUsecase>(
 /// Evaluation
 ///
 ///
-final getActivityEvaluationUsecase = Provider<IGetActivityEvaluationUsecase>(
-  (ref) => GetActivityEvaluationUsecaseImpl(
+final calculateEvaluationUsecase = Provider<ICalculateEvaluationUsecase>(
+  (ref) => CalculateEvaluationUsecaseImpl(
     getLogInUserUsecase: ref.watch(getLogInUserUsecaseProvider),
     trainingRepository: ref.watch(trainingRepositoryProvider),
     weightRepository: ref.watch(weightRepositoryProvider),

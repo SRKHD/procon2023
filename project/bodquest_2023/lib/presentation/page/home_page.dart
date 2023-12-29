@@ -7,6 +7,7 @@ import '../component/home/chara_image.dart';
 import '../component/home/level_text.dart';
 import '../component/home/pace_text.dart';
 import '../component/home/rank_text.dart';
+import '../notifier/evaluation/evaluation_provider.dart';
 import '../theme/sizes.dart';
 import '../usecaese_provider_module.dart';
 
@@ -15,11 +16,10 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //final evaluationState = ref.watch(evaluationNotifierProvider);
-    const tempRank = EvaluationRank.g;
-    //final tempRank = EvaluationRank.from(evaluationState.rank);
-    final usecase = ref.watch(getActivityEvaluationUsecase);
-    final tempScore = usecase.getScore();
+    final usecase = ref.watch(calculateEvaluationUsecase);
+    usecase.execute();
+    final evaluationState = ref.watch(evaluationNotifierProvider);
+    final tempRank = EvaluationRank.from(evaluationState.rank);
     const tempWeight = 67.5;
     const tempLevel = 17;
     return Column(
