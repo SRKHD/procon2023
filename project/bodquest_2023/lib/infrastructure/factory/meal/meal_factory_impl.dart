@@ -10,6 +10,7 @@ class MealFactoryImpl implements IMealFactory {
     required DateTime date,
     required int timestamp,
     required int calorie,
+    required String imageURL,
   }) {
     return Meal(
       userId: userId,
@@ -17,17 +18,19 @@ class MealFactoryImpl implements IMealFactory {
       calorie: calorie,
       timestamp: timestamp,
       date: date,
+      imageURL: imageURL,
     );
   }
 
   @override
-  Meal createFromModel(FugMeal weight) {
+  Meal createFromModel(FugMeal meal) {
     return Meal(
-      userId: weight.userId,
-      name: weight.name,
-      date: weight.date,
-      timestamp: weight.timestamp,
-      calorie: weight.calorie,
+      userId: meal.userId,
+      name: meal.name,
+      date: meal.date,
+      timestamp: meal.timestamp,
+      calorie: meal.calorie,
+      imageURL: meal.imageURL,
     );
   }
 }

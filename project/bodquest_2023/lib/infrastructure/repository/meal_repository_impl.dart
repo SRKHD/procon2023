@@ -23,7 +23,8 @@ class MealRepositoryImpl implements IMealRepository {
   }
 
   @override
-  Future<int> addMeal(String userId, String name, DateTime date, int calorie) {
-    return fireStoreDataSource.addMeal(userId, name, date, calorie);
+  Future<int> addMeal(
+      String userId, String name, DateTime date, int calorie, String imageURL) {
+    return fireStoreDataSource.addMeal(userId, name, date, calorie, imageURL);
   }
 }

@@ -9,8 +9,9 @@ abstract interface class IMealFactory {
     required DateTime date,
     required int timestamp,
     required int calorie,
+    required String imageURL,
   });
 
   /// [FugMeal]から[Meal]を生成する
-  Meal createFromModel(FugMeal weight);
+  Meal createFromModel(FugMeal meal);
 }
