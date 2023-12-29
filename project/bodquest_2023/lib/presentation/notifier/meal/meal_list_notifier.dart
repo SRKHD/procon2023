@@ -34,8 +34,8 @@ class MealListNotifier extends StateNotifier<AsyncValue<List<MealState>>> {
     String name,
     DateTime date,
     int calorie,
-    String imageURL,
+    String imageFilePath,
   ) {
-    _addMealsUsecase.execute(userId, name, date, calorie, imageURL);
+    _addMealsUsecase.execute(userId, name, date, calorie, imageFilePath);
   }
 }

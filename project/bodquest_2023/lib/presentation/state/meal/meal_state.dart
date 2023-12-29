@@ -22,7 +22,7 @@ class MealState with _$MealState {
       date: '${target.date.year}年${target.date.month}月${target.date.day}日',
       timestamp: target.timestamp,
       calorie: target.calorie,
-      imageURL: target.imageURL,
+      imageURL: target.imageFilePath,
     );
   }
 }

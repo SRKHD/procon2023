@@ -28,12 +28,14 @@ class MealRepositoryImpl implements IMealRepository {
   }
 
   @override
-  Future<int> addMeal(
-      String userId, String name, DateTime date, int calorie, String imageURL) {
-    if (imageURL != '') {
-      firebaseStorageSource.addFile('${userId}_${name}_image', imageURL);
+  Future<int> addMeal(String userId, String name, DateTime date, int calorie,
+      String imageFilePath) {
+    final storagePath = '${userId}_${name}_image';
+    if (imageFilePath != '') {
+      firebaseStorageSource.addFile(storagePath, imageFilePath);
     }
 
-    return fireStoreDataSource.addMeal(userId, name, date, calorie, imageURL);
+    return fireStoreDataSource.addMeal(
+        userId, name, date, calorie, storagePath);
   }
 }

@@ -9,7 +9,7 @@ abstract interface class IMealFactory {
     required DateTime date,
     required int timestamp,
     required int calorie,
-    required String imageURL,
+    required String imageFilePath,
   });
 
   /// [FugMeal]から[Meal]を生成する

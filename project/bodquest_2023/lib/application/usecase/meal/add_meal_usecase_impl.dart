@@ -14,8 +14,8 @@ class AddMealUsecaseImpl implements IAddMealUsecase {
     String name,
     DateTime date,
     int calorie,
-    String imageURL,
+    String imageFilePath,
   ) {
-    return weightRepository.addMeal(userId, name, date, calorie, imageURL);
+    return weightRepository.addMeal(userId, name, date, calorie, imageFilePath);
   }
 }

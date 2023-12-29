@@ -4,7 +4,7 @@ class FugMeal {
   final DateTime date;
   final int timestamp;
   final int calorie;
-  final String imageURL;
+  final String imageFilePath;
 
   FugMeal({
     required this.userId,
@@ -12,7 +12,7 @@ class FugMeal {
     required this.date,
     required this.timestamp,
     required this.calorie,
-    required this.imageURL,
+    required this.imageFilePath,
   });
 
   factory FugMeal.fromJson(json) {
@@ -23,7 +23,7 @@ class FugMeal {
       date: date,
       timestamp: date.millisecondsSinceEpoch,
       calorie: json['calorie'].toInt(),
-      imageURL: json['imageURL'],
+      imageFilePath: json['imageFilePath'],
     );
   }
 }

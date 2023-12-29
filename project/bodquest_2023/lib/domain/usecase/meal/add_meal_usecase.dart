@@ -5,6 +5,6 @@ abstract interface class IAddMealUsecase {
     String name,
     DateTime date,
     int calorie,
-    String imageURL,
+    String imageFilePath,
   );
 }

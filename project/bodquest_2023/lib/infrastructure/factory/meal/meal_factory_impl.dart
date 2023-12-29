@@ -15,7 +15,7 @@ class MealFactoryImpl implements IMealFactory {
     required DateTime date,
     required int timestamp,
     required int calorie,
-    required String imageURL,
+    required String imageFilePath,
   }) {
     return Meal(
       userId: userId,
@@ -23,21 +23,29 @@ class MealFactoryImpl implements IMealFactory {
       calorie: calorie,
       timestamp: timestamp,
       date: date,
-      imageURL: imageURL,
+      imageFilePath: imageFilePath,
     );
   }
 
   @override
   Meal createFromModel(FugMeal meal) {
-    var url = '';
-    firebaseStorageSource.getURL(meal.imageURL).then((value) => url);
+    // TODO: MealFactoryImpl createFromModel 非同期で上手く動作するか怪しい
+    firebaseStorageSource.getURL(meal.imageFilePath).then((value) => Meal(
+          userId: meal.userId,
+          name: meal.name,
+          date: meal.date,
+          timestamp: meal.timestamp,
+          calorie: meal.calorie,
+          imageFilePath: value,
+        ));
+
     return Meal(
       userId: meal.userId,
       name: meal.name,
       date: meal.date,
       timestamp: meal.timestamp,
       calorie: meal.calorie,
-      imageURL: url,
+      imageFilePath: '',
     );
   }
 }
