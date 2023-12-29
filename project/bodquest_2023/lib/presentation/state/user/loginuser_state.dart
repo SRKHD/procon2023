@@ -7,5 +7,6 @@ class LogInUserState with _$LogInUserState {
   factory LogInUserState({
     required String userId,
     required String userName,
+    required double userHeight,
   }) = _LogInUserState;
 }
