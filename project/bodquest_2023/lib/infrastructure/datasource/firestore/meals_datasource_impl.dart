@@ -17,8 +17,8 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
   }
 
   @override
-  Future<int> addMeal(
-      String userId, String name, DateTime date, int calorie) async {
+  Future<int> addMeal(String userId, String name, DateTime date, int calorie,
+      String imageFilePath) async {
     await FirebaseFirestore.instance
         .collection('meals') // コレクションID
         .doc() // ドキュメントID
@@ -27,6 +27,7 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
       'name': name,
       'date': Timestamp.fromDate(date),
       'calorie': calorie,
+      'imageFilePath': imageFilePath,
     }); // データ
     return 0;
   }

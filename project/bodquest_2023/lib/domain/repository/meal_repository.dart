@@ -8,5 +8,6 @@ abstract interface class IMealRepository {
     String name,
     DateTime date,
     int calorie,
+    String imageFilePath,
   );
 }

@@ -57,7 +57,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
     return DateTime(now.year, now.month, 1);
   }
 
-  void UpdateState(int score) {
+  void updateState(int score) {
     final newValue = evaluationNotifier.value
         .copyWith(score: score, rank: getRank(score).value);
     evaluationNotifier.update(newValue);
@@ -93,7 +93,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
               getCaloriesConsumedUsecase.get(training) - standardCalorie;
         }
       }
-      UpdateState(calculatedScore.toInt());
+      updateState(calculatedScore.toInt());
     });
 
     mealsStream.listen((y) {
@@ -102,7 +102,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
           calculatedScore -= meal.calorie;
         }
       }
-      UpdateState(calculatedScore.toInt());
+      updateState(calculatedScore.toInt());
     });
 
     weightsStream.listen((z) {
@@ -114,7 +114,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
           calculatedScore += (idealWeight - weight.value) * 10;
         }
       }
-      UpdateState(calculatedScore.toInt());
+      updateState(calculatedScore.toInt());
     });
   }
 
