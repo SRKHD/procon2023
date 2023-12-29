@@ -10,6 +10,7 @@ class UserState with _$UserState {
     required String name,
     required String thumbnailLink,
     required String birthday,
+    required double height,
   }) = _UserState;
 
   factory UserState.fromEntity(User user) {
@@ -18,6 +19,7 @@ class UserState with _$UserState {
       thumbnailLink: user.thumbnail,
       birthday:
           '${user.birthday.year}年${user.birthday.month}月${user.birthday.day}日',
+      height: user.height,
     );
   }
 }
