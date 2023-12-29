@@ -16,6 +16,7 @@ class UserFactoryImpl implements IUserFactory {
     required String thumbnail,
     required DateTime birthday,
     required double targetWeight,
+    required double height,
   }) {
     return User(
       id: '12345', // uuid等で自動で生成する
@@ -24,6 +25,7 @@ class UserFactoryImpl implements IUserFactory {
       thumbnail: thumbnail,
       birthday: birthday,
       targetWeight: targetWeight,
+      height: height,
     );
   }
 
@@ -36,6 +38,7 @@ class UserFactoryImpl implements IUserFactory {
       thumbnail: user.picture.thumbnail,
       birthday: user.dob.date,
       targetWeight: user.targetWeight,
+      height: user.height,
     );
   }
 }

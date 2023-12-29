@@ -9,6 +9,7 @@ abstract interface class IUserFactory {
     required String thumbnail,
     required DateTime birthday,
     required double targetWeight,
+    required double height,
   });
 
   /// [FugUser]から[User]を生成する

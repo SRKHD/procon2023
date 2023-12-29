@@ -37,13 +37,14 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
 
   @override
   Future<int> updateUserInfo(
-      String userId, String userName, DateTime birthday) async {
+      String userId, String userName, DateTime birthday, double height) async {
     await FirebaseFirestore.instance
         .collection('users') // コレクションID
         .doc(userId) // ドキュメントID
         .set({
       'userName': userName,
       'birthday': Timestamp.fromDate(birthday),
+      'height': height,
     }); // データ
     return 0;
   }

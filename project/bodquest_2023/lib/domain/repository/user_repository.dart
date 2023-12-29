@@ -5,5 +5,6 @@ abstract interface class IUserRepository {
   Future<List<User>> findAll();
   Future<User> getLogInUser();
   Future<int> addUser(String userId);
-  Future<int> updateUserInfo(String userId, String userName, DateTime birthday);
+  Future<int> updateUserInfo(
+      String userId, String userName, DateTime birthday, double height);
 }

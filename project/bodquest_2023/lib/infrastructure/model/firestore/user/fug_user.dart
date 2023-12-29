@@ -11,6 +11,7 @@ class FugUser {
   final FugUserPicture picture;
   final FugUserDob dob;
   final double targetWeight;
+  final double height;
 
   FugUser({
     required this.gender,
@@ -19,6 +20,7 @@ class FugUser {
     required this.picture,
     required this.dob,
     required this.targetWeight,
+    required this.height,
   });
 
   factory FugUser.fromJson(json) {
@@ -29,6 +31,7 @@ class FugUser {
       picture: FugUserPicture.fromJson(json['picture']),
       dob: FugUserDob.fromJson(json['dob']),
       targetWeight: json['targetWeight'].toDouble(),
+      height: json['height'].toDouble(),
     );
   }
 }

@@ -33,7 +33,8 @@ class UserListNotifier extends StateNotifier<AsyncValue<List<UserState>>> {
     _addUserUsecase.execute(userId);
   }
 
-  void updateUserInfo(String userId, String userName, DateTime birthday) {
-    _updateUserInfoUsecase.execute(userId, userName, birthday);
+  void updateUserInfo(
+      String userId, String userName, DateTime birthday, double height) {
+    _updateUserInfoUsecase.execute(userId, userName, birthday, height);
   }
 }
