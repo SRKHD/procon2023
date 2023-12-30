@@ -1,6 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../application/usecase/menu/add_menu_usecase_impl.dart';
+import '../application/usecase/menu/get_menus_usecase_impl.dart';
 import '../application/usecase/user/update_user_name_impl.dart';
+import '../domain/usecase/menu/add_menu_usecase.dart';
+import '../domain/usecase/menu/get_menus_usecase.dart';
 import '../domain/usecase/user/update_user_name_usecase.dart';
 import 'notifier/evaluation/evaluation_provider.dart';
 import 'repository_module.dart';
@@ -123,5 +127,20 @@ final calculateEvaluationUsecase = Provider<ICalculateEvaluationUsecase>(
     mealRepository: ref.watch(mealRepositoryProvider),
     getCaloriesConsumedUsecase: ref.watch(getCaloriesConsumedUsecaseProvider),
     evaluationNotifier: ref.watch(evaluationNotifierProvider.notifier),
+  ),
+);
+
+/// Menu
+///
+///
+final getMenusUsecaseProvider = Provider<IGetMenusUsecase>(
+  (ref) => GetMenusUsecaseImpl(
+    repository: ref.watch(menuRepositoryProvider),
+  ),
+);
+
+final addMenuUsecaseProvider = Provider<IAddMenuUsecase>(
+  (ref) => AddMenuUsecaseImpl(
+    repository: ref.watch(menuRepositoryProvider),
   ),
 );

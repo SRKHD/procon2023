@@ -6,6 +6,8 @@ import '../infrastructure/datasource/firebase_storage/storage_datasource.dart';
 import '../infrastructure/datasource/firebase_storage/storage_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/meals_datasource.dart';
 import '../infrastructure/datasource/firestore/meals_datasource_impl.dart';
+import '../infrastructure/datasource/firestore/menus_datasource.dart';
+import '../infrastructure/datasource/firestore/menus_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/trainings_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/users_datasource.dart';
 import '../infrastructure/datasource/firestore/trainings_datasource.dart';
@@ -53,4 +55,11 @@ final fireStoreTrainingsDataSourceProvider =
 ///
 final fireStoreMealsDataSourceProvider = Provider<IFirestoreMealsDataSource>(
   (ref) => FirestoreMealsDataSourceImpl(),
+);
+
+/// Menu
+///
+///
+final fireStoreMenusDataSourceProvider = Provider<IFirestoreMenusDataSource>(
+  (ref) => FirestoreMenusDataSourceImpl(),
 );

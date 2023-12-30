@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../domain/repository/menu_repository.dart';
+import '../infrastructure/repository/menu_repository_impl.dart';
 import 'datasource_module.dart';
 import 'factory_provider_module.dart';
 import '../domain/repository/meal_repository.dart';
@@ -49,5 +51,16 @@ final mealRepositoryProvider = Provider<IMealRepository>(
     dataSource: ref.watch(fireStoreMealsDataSourceProvider),
     dataStorage: ref.watch(firebaseStorageDataSourceProvider),
     factory: ref.watch(mealFactoryProvider),
+  ),
+);
+
+/// Menu
+///
+///
+final menuRepositoryProvider = Provider<IMenuRepository>(
+  (ref) => MenuRepositoryImpl(
+    dataSource: ref.watch(fireStoreMenusDataSourceProvider),
+    dataStorage: ref.watch(firebaseStorageDataSourceProvider),
+    factory: ref.watch(menuFactoryProvider),
   ),
 );
