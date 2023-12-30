@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../domain/factory/menu/menu_factory.dart';
 import '../infrastructure/factory/meal/meal_factory_impl.dart';
+import '../infrastructure/factory/menu/menu_factory_impl.dart';
 import '../infrastructure/factory/training/training_factory_impl.dart';
 import '../infrastructure/factory/training/training_kind_factory_impl.dart';
 import '../infrastructure/factory/user/user_factory_impl.dart';
@@ -56,6 +58,11 @@ final mealFactoryProvider = Provider<IMealFactory>(
   ),
 );
 
-/// Evaluation
+/// Menu
 ///
 ///
+final menuFactoryProvider = Provider<IMenuFactory>(
+  (ref) => MenuFactoryImpl(
+    firebaseStorageSource: ref.watch(firebaseStorageDataSourceProvider),
+  ),
+);

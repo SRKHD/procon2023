@@ -23,9 +23,9 @@ class MealListNotifier extends StateNotifier<AsyncValue<List<MealState>>> {
 
   /// 一覧の同期
   Future<void> _fetch(String userId) async {
-    _getMealsUsecase.execute(userId).listen((weights) {
+    _getMealsUsecase.execute(userId).listen((values) {
       state = AsyncValue.data(
-          weights.map((weight) => MealState.fromEntity(weight)).toList());
+          values.map((weight) => MealState.fromEntity(weight)).toList());
     }).onError((e) => print(e));
   }
 

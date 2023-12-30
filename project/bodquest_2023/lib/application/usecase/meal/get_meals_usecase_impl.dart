@@ -3,14 +3,14 @@ import '../../../domain/repository/meal_repository.dart';
 import '../../../domain/usecase/meal/get_meals_usecase.dart';
 
 class GetMealsUsecaseImpl implements IGetMealsUsecase {
-  final IMealRepository weightRepository;
+  final IMealRepository mealRepository;
 
   GetMealsUsecaseImpl({
     required IMealRepository repository,
-  }) : weightRepository = repository;
+  }) : mealRepository = repository;
 
   @override
   Stream<List<Meal>> execute(String userId) {
-    return weightRepository.findAll(userId);
+    return mealRepository.findAll(userId);
   }
 }
