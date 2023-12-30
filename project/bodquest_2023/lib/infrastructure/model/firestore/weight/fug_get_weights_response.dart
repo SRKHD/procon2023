@@ -8,10 +8,6 @@ class FugGetWeightsResponse {
   });
 
   factory FugGetWeightsResponse.fromJson(Map<String, dynamic>? json) {
-    return FugGetWeightsResponse(results: [FugWeight.fromJson(json)]
-        // results: json?['results']
-        //     .map<FugWeight>((e) => FugWeight.fromJson(e))
-        //     .toList(),
-        );
+    return FugGetWeightsResponse(results: [FugWeight.fromJson(json)]);
   }
 }

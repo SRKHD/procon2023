@@ -8,10 +8,6 @@ class FugGetMealsResponse {
   });
 
   factory FugGetMealsResponse.fromJson(Map<String, dynamic>? json) {
-    return FugGetMealsResponse(results: [FugMeal.fromJson(json)]
-        // results: json?['results']
-        //     .map<FugMeal>((e) => FugMeal.fromJson(e))
-        //     .toList(),
-        );
+    return FugGetMealsResponse(results: [FugMeal.fromJson(json)]);
   }
 }

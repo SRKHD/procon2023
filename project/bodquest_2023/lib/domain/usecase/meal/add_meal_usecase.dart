@@ -1,4 +1,3 @@
-/// ユーザー一覧を取得する
 abstract interface class IAddMealUsecase {
   Future<int> execute(
     String userId,
