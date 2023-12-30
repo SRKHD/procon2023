@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LogInUserState {
   String get userId => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
+  double get userHeight => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LogInUserStateCopyWith<LogInUserState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $LogInUserStateCopyWith<$Res> {
           LogInUserState value, $Res Function(LogInUserState) then) =
       _$LogInUserStateCopyWithImpl<$Res, LogInUserState>;
   @useResult
-  $Res call({String userId, String userName});
+  $Res call({String userId, String userName, double userHeight});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$LogInUserStateCopyWithImpl<$Res, $Val extends LogInUserState>
   $Res call({
     Object? userId = null,
     Object? userName = null,
+    Object? userHeight = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -58,6 +60,10 @@ class _$LogInUserStateCopyWithImpl<$Res, $Val extends LogInUserState>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      userHeight: null == userHeight
+          ? _value.userHeight
+          : userHeight // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$LogInUserStateImplCopyWith<$Res>
       __$$LogInUserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String userName});
+  $Res call({String userId, String userName, double userHeight});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$LogInUserStateImplCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? userName = null,
+    Object? userHeight = null,
   }) {
     return _then(_$LogInUserStateImpl(
       userId: null == userId
@@ -96,6 +103,10 @@ class __$$LogInUserStateImplCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
+      userHeight: null == userHeight
+          ? _value.userHeight
+          : userHeight // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -103,16 +114,19 @@ class __$$LogInUserStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LogInUserStateImpl implements _LogInUserState {
-  _$LogInUserStateImpl({required this.userId, required this.userName});
+  _$LogInUserStateImpl(
+      {required this.userId, required this.userName, required this.userHeight});
 
   @override
   final String userId;
   @override
   final String userName;
+  @override
+  final double userHeight;
 
   @override
   String toString() {
-    return 'LogInUserState(userId: $userId, userName: $userName)';
+    return 'LogInUserState(userId: $userId, userName: $userName, userHeight: $userHeight)';
   }
 
   @override
@@ -122,11 +136,13 @@ class _$LogInUserStateImpl implements _LogInUserState {
             other is _$LogInUserStateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userName, userName) ||
-                other.userName == userName));
+                other.userName == userName) &&
+            (identical(other.userHeight, userHeight) ||
+                other.userHeight == userHeight));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, userName);
+  int get hashCode => Object.hash(runtimeType, userId, userName, userHeight);
 
   @JsonKey(ignore: true)
   @override
@@ -139,12 +155,15 @@ class _$LogInUserStateImpl implements _LogInUserState {
 abstract class _LogInUserState implements LogInUserState {
   factory _LogInUserState(
       {required final String userId,
-      required final String userName}) = _$LogInUserStateImpl;
+      required final String userName,
+      required final double userHeight}) = _$LogInUserStateImpl;
 
   @override
   String get userId;
   @override
   String get userName;
+  @override
+  double get userHeight;
   @override
   @JsonKey(ignore: true)
   _$$LogInUserStateImplCopyWith<_$LogInUserStateImpl> get copyWith =>

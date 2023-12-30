@@ -15,6 +15,7 @@ class UserPage extends ConsumerStatefulWidget {
 class UserPageState extends ConsumerState<UserPage> {
   String _userName = "";
   DateTime _dateTime = DateTime.now();
+  double _height = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class UserPageState extends ConsumerState<UserPage> {
 
         // ユーザー名
         Padding(
-            padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 0),
+            padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 15.0),
             child: TextFormField(
               decoration: InputDecoration(labelText: "ユーザー名"),
               onChanged: (String value) {
@@ -64,12 +65,22 @@ class UserPageState extends ConsumerState<UserPage> {
               ],
             )),
 
+        // 身長
+        Padding(
+            padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 25.0),
+            child: TextFormField(
+              decoration: InputDecoration(labelText: "身長 (cm)"),
+              onChanged: (String value) {
+                _height = double.parse(value);
+              },
+            )),
+
         // 保存
         ElevatedButton.icon(
           onPressed: () {
             final notifier = ref.read(userListNotifierProvider.notifier);
             notifier.updateUserInfo(
-                logInUserState.userId, _userName, _dateTime);
+                logInUserState.userId, _userName, _dateTime, _height);
           },
           label: Text('保存'),
           icon: const Icon(Icons.save),

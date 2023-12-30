@@ -19,6 +19,7 @@ mixin _$UserState {
   String get name => throw _privateConstructorUsedError;
   String get thumbnailLink => throw _privateConstructorUsedError;
   String get birthday => throw _privateConstructorUsedError;
+  double get height => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStateCopyWith<UserState> get copyWith =>
@@ -30,7 +31,8 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({String name, String thumbnailLink, String birthday});
+  $Res call(
+      {String name, String thumbnailLink, String birthday, double height});
 }
 
 /// @nodoc
@@ -49,6 +51,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
     Object? name = null,
     Object? thumbnailLink = null,
     Object? birthday = null,
+    Object? height = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -63,6 +66,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
               as String,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -75,7 +82,8 @@ abstract class _$$UserStateImplCopyWith<$Res>
       __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String thumbnailLink, String birthday});
+  $Res call(
+      {String name, String thumbnailLink, String birthday, double height});
 }
 
 /// @nodoc
@@ -92,6 +100,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
     Object? name = null,
     Object? thumbnailLink = null,
     Object? birthday = null,
+    Object? height = null,
   }) {
     return _then(_$UserStateImpl(
       name: null == name
@@ -106,6 +115,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
               as String,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -116,7 +129,8 @@ class _$UserStateImpl implements _UserState {
   _$UserStateImpl(
       {required this.name,
       required this.thumbnailLink,
-      required this.birthday});
+      required this.birthday,
+      required this.height});
 
   @override
   final String name;
@@ -124,10 +138,12 @@ class _$UserStateImpl implements _UserState {
   final String thumbnailLink;
   @override
   final String birthday;
+  @override
+  final double height;
 
   @override
   String toString() {
-    return 'UserState(name: $name, thumbnailLink: $thumbnailLink, birthday: $birthday)';
+    return 'UserState(name: $name, thumbnailLink: $thumbnailLink, birthday: $birthday, height: $height)';
   }
 
   @override
@@ -139,11 +155,13 @@ class _$UserStateImpl implements _UserState {
             (identical(other.thumbnailLink, thumbnailLink) ||
                 other.thumbnailLink == thumbnailLink) &&
             (identical(other.birthday, birthday) ||
-                other.birthday == birthday));
+                other.birthday == birthday) &&
+            (identical(other.height, height) || other.height == height));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, thumbnailLink, birthday);
+  int get hashCode =>
+      Object.hash(runtimeType, name, thumbnailLink, birthday, height);
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +174,8 @@ abstract class _UserState implements UserState {
   factory _UserState(
       {required final String name,
       required final String thumbnailLink,
-      required final String birthday}) = _$UserStateImpl;
+      required final String birthday,
+      required final double height}) = _$UserStateImpl;
 
   @override
   String get name;
@@ -164,6 +183,8 @@ abstract class _UserState implements UserState {
   String get thumbnailLink;
   @override
   String get birthday;
+  @override
+  double get height;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>

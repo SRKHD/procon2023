@@ -38,6 +38,7 @@ class UserRepositoryImpl implements IUserRepository {
           thumbnail: "thumbnail",
           birthday: DateTime.now(),
           targetWeight: 0,
+          height: 0,
         )));
   }
 
@@ -48,7 +49,8 @@ class UserRepositoryImpl implements IUserRepository {
 
   @override
   Future<int> updateUserInfo(
-      String userId, String userName, DateTime birthday) {
-    return fireStoreDataSource.updateUserInfo(userId, userName, birthday);
+      String userId, String userName, DateTime birthday, double height) {
+    return fireStoreDataSource.updateUserInfo(
+        userId, userName, birthday, height);
   }
 }
