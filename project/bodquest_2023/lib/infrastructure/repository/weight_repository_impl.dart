@@ -17,6 +17,7 @@ class WeightRepositoryImpl implements IWeightRepository {
   final IWeightFactory weightFactory;
   final IFirestoreWeightsDataSource fireStoreDataSource;
   final IiOSHealthiaWeightDatasource iOSHealthiaWeightDatasource;
+  final List<DateTime> _registeredDates = [];
 
   @override
   Stream<List<Weight>> findAll(String userId) {
@@ -37,7 +38,6 @@ class WeightRepositoryImpl implements IWeightRepository {
   Future<int> synchronizeHealthiaWeights(String userId, DateTime date) async {
     print('-----1');
     final prevMonth = getPrevMonth(date);
-    List<DateTime> registeredDates = [];
     // final registeredWeightsResponse = await fireStoreDataSource
     //     .getWeights(userId)
     //     .any((element) => false);
@@ -45,6 +45,23 @@ class WeightRepositoryImpl implements IWeightRepository {
     print('-----2');
     final stream = fireStoreDataSource.getWeights(userId);
     print('-----2-0');
+    stream.listen(
+      (event) {
+        print('-----2-1');
+        print(event.results.length);
+        event.results.forEach((element) {
+          print('-----2-2');
+          _registeredDates.add(element.date);
+        });
+      },
+    );
+    print(_registeredDates.length);
+    print('-----2-3');
+
+    // final a = stream.firstWhere((x) => x.results.any((element) => false));
+    // print('-----2-1');
+    // final b = await a;
+    // print('-----2-2');
     // stream.listen((x) {
     //   print('-----2-1 $x');
     //   final length = x.results.length;
@@ -89,8 +106,8 @@ class WeightRepositoryImpl implements IWeightRepository {
         //         .any((weight) => weight.date.isAtSameMomentAs(value.date)));
         // final b = isResistered;
         // if (isResistered.) continue;
-        print('-----4-1 $registeredDates');
-        if (registeredDates.contains(value.date)) continue;
+        print('-----4-1 $_registeredDates');
+        if (_registeredDates.contains(value.date)) continue;
 
         if (value.date.isAfter(prevMonth)) {
           addWeight(userId, value.date, value.value);
