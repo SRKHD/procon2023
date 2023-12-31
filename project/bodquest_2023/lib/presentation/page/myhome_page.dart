@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/weight/health_sample.dart';
+import 'health_sample_page.dart';
 import '../component/main/main_bottom_navigation_bar.dart';
 import '../component/main/main_left_drawer.dart';
-import '../component/sample_counter.dart';
+import 'sample_counter_page.dart';
 import '../notifier/index_notifier.dart';
 import '../page/home_page.dart';
 import '../page/training_page.dart';
@@ -20,8 +20,8 @@ class MyHomePage extends ConsumerWidget {
     UserPage(),
     WeightPage(),
     TrainingPage(),
-    SampleCounterWidget(),
-    HealthWidget(),
+    SampleCounterPage(),
+    HealthSamplePage(),
     Placeholder(),
   ];
 

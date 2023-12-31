@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class SampleCounterWidget extends StatefulWidget {
+class SampleCounterPage extends StatefulWidget {
   int counter = 0;
 
-  SampleCounterWidget({super.key});
+  SampleCounterPage({super.key});
 
   @override
-  State<SampleCounterWidget> createState() => _SampleCounterWidgetState();
+  State<SampleCounterPage> createState() => _SampleCounterPageState();
 }
 
-class _SampleCounterWidgetState extends State<SampleCounterWidget> {
+class _SampleCounterPageState extends State<SampleCounterPage> {
   void _incrementCounter() {
     setState(() {
       widget.counter++;

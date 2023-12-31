@@ -18,14 +18,14 @@ enum AppState {
   STEPS_READY,
 }
 
-class HealthWidget extends StatefulWidget {
-  HealthWidget({super.key});
+class HealthSamplePage extends StatefulWidget {
+  HealthSamplePage({super.key});
 
   @override
-  State<HealthWidget> createState() => _HealthAppState();
+  State<HealthSamplePage> createState() => _HealthAppState();
 }
 
-class _HealthAppState extends State<HealthWidget> {
+class _HealthAppState extends State<HealthSamplePage> {
   List<HealthDataPoint> _healthDataList = [];
   AppState _state = AppState.DATA_NOT_FETCHED;
   int _nofSteps = 10;
