@@ -2,10 +2,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../application/usecase/menu/add_menu_usecase_impl.dart';
 import '../application/usecase/menu/get_menus_usecase_impl.dart';
+import '../application/usecase/training/synchronize_healthia_trainings_usecase_impl.dart';
 import '../application/usecase/user/update_user_name_impl.dart';
 import '../application/usecase/weight/synchronize_healthia_weights_usecase_impl.dart';
 import '../domain/usecase/menu/add_menu_usecase.dart';
 import '../domain/usecase/menu/get_menus_usecase.dart';
+import '../domain/usecase/training/synchronize_healthia_trainings_usecase.dart';
 import '../domain/usecase/user/update_user_name_usecase.dart';
 import '../domain/usecase/weight/synchronize_healthia_weights_usecase.dart';
 import 'notifier/evaluation/evaluation_provider.dart';
@@ -106,6 +108,12 @@ final getCaloriesConsumedUsecaseProvider =
     Provider<IGetCaloriesConsumedUsecase>(
   (ref) => GetCaloriesConsumedUsecaseImpl(),
 );
+
+final synchronizeHealthiaTrainingsUsecaseProvider =
+    Provider<ISynchronizeHealthiaTrainingsUsecase>(
+        (ref) => SynchronizeHealthiaTrainingsUsecaseImpl(
+              repository: ref.watch(trainingRepositoryProvider),
+            ));
 
 /// Meal
 ///

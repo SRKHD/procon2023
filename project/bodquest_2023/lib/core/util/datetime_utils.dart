@@ -9,5 +9,9 @@ DateTime getPrevMonth(DateTime baseDate) {
 }
 
 DateTime getPreWeek(DateTime baseDate) {
-  return baseDate.subtract(const Duration(days: 7));
+  return baseDate.subtract(const Duration(days: 1));
+}
+
+DateTime getDayOnly(DateTime baseDate) {
+  return DateTime(baseDate.year, baseDate.month, baseDate.day);
 }
