@@ -2,11 +2,11 @@ import '../../../domain/repository/meal_repository.dart';
 import '../../../domain/usecase/meal/add_meal_usecase.dart';
 
 class AddMealUsecaseImpl implements IAddMealUsecase {
-  final IMealRepository weightRepository;
+  final IMealRepository mealRepository;
 
   AddMealUsecaseImpl({
     required IMealRepository repository,
-  }) : weightRepository = repository;
+  }) : mealRepository = repository;
 
   @override
   Future<int> execute(
@@ -16,6 +16,6 @@ class AddMealUsecaseImpl implements IAddMealUsecase {
     int calorie,
     String imageFilePath,
   ) {
-    return weightRepository.addMeal(userId, name, date, calorie, imageFilePath);
+    return mealRepository.addMeal(userId, name, date, calorie, imageFilePath);
   }
 }

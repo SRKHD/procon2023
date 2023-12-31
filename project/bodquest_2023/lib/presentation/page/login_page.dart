@@ -1,6 +1,5 @@
 // ignore_for_file: unused_field
 
-import 'package:bodquest_2023/core/exception/firebasse_auth_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/exception/firebasse_auth_exception.dart';
 import '../notifier/user/user_list_provider.dart';
 
 class LogInPage extends ConsumerStatefulWidget {

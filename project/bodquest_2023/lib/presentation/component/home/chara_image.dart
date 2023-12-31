@@ -1,6 +1,6 @@
-import 'package:bodquest_2023/domain/value/evaluation_rank.dart';
 import 'package:flutter/material.dart';
 
+import '../../../domain/value/evaluation_rank.dart';
 import '../../theme/images.dart';
 
 class CharaImage extends StatelessWidget {

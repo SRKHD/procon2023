@@ -2,11 +2,11 @@ import '../../../domain/repository/menu_repository.dart';
 import '../../../domain/usecase/menu/add_menu_usecase.dart';
 
 class AddMenuUsecaseImpl implements IAddMenuUsecase {
-  final IMenuRepository weightRepository;
+  final IMenuRepository menuRepository;
 
   AddMenuUsecaseImpl({
     required IMenuRepository repository,
-  }) : weightRepository = repository;
+  }) : menuRepository = repository;
 
   @override
   Future<int> execute(
@@ -18,7 +18,7 @@ class AddMenuUsecaseImpl implements IAddMenuUsecase {
     int calorie,
     String imageFilePath,
   ) {
-    return weightRepository.addMenu(
+    return menuRepository.addMenu(
         userId, name, date, recipe, ingredient, calorie, imageFilePath);
   }
 }
