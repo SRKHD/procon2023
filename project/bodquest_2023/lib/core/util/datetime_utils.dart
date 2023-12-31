@@ -7,3 +7,7 @@ DateTime getPrevMonth(DateTime baseDate) {
   // 基準日の1ヶ月前の月の日数より基準日の日付が大きい場合は前月の月末にするために基準日の日付を引く。
   return baseDate.subtract(Duration(days: prevDiff)); // 1ヶ月前
 }
+
+DateTime getPreWeek(DateTime baseDate) {
+  return baseDate.subtract(const Duration(days: 7));
+}

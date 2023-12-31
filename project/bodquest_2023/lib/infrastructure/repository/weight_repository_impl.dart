@@ -4,7 +4,6 @@ import '../../domain/factory/weight/weight_factory.dart';
 import '../../domain/repository/weight_repository.dart';
 import '../datasource/firestore/weights_datasource.dart';
 import '../datasource/ios_healthia/ios_healthia_weight_datasource.dart';
-import '../model/firestore/weight/fug_get_weights_response.dart';
 
 class WeightRepositoryImpl implements IWeightRepository {
   WeightRepositoryImpl({
@@ -36,77 +35,19 @@ class WeightRepositoryImpl implements IWeightRepository {
 
   @override
   Future<int> synchronizeHealthiaWeights(String userId, DateTime date) async {
-    print('-----1');
     final prevMonth = getPrevMonth(date);
-    // final registeredWeightsResponse = await fireStoreDataSource
-    //     .getWeights(userId)
-    //     .any((element) => false);
-    // final registeredWeights = registeredWeightsResponse.results;
-    print('-----2');
     final stream = fireStoreDataSource.getWeights(userId);
-    print('-----2-0');
     stream.listen(
       (event) {
-        print('-----2-1');
-        print(event.results.length);
-        event.results.forEach((element) {
-          print('-----2-2');
+        for (var element in event.results) {
           _registeredDates.add(element.date);
-        });
+        }
       },
     );
-    print(_registeredDates.length);
-    print('-----2-3');
-
-    // final a = stream.firstWhere((x) => x.results.any((element) => false));
-    // print('-----2-1');
-    // final b = await a;
-    // print('-----2-2');
-    // stream.listen((x) {
-    //   print('-----2-1 $x');
-    //   final length = x.results.length;
-    //   print('-----2-2 $length');
-    //   x.results.map((e) {
-    //     print('-----2-3 $e');
-    //     registeredDates.add(e.date);
-    //     print('-----2-4 $registeredDates');
-    //   });
-    //   print('-----2-5 $registeredDates');
-    // });
-    /*
-    await fireStoreDataSource.getWeights(userId).forEach((element) {
-      //
-      //
-      print('-----2-1 $element');
-      element.results.map((e) => registeredDates.add(e.date));
-      print('-----2-2 $registeredDates');
-      return;
-    });
-     */
-    /*
-    await a.then((value) {
-      //
-      print('-----2-1 $value');
-      if (value is FugGetWeightsResponse) {
-        value.results.map((e) => registeredDates.add(e.date));
-        print('-----2-2 $registeredDates');
-      }
-    });
-    */
-    print('-----3');
     final healthiaWeightsStream =
         iOSHealthiaWeightDatasource.getWeights(userId);
     healthiaWeightsStream.listen((value) {
       for (final value in value.results) {
-        print('-----4 $value');
-        // if (!registeredWeights.any(
-        //     (element) => element.date.isAtSameMomentAs(value.date))) continue;
-        // final isResistered = fireStoreDataSource.getWeights(userId).any(
-        //     (weights) => weights.results
-        //         .any((weight) => weight.date.isAtSameMomentAs(value.date)));
-        // final b = isResistered;
-        // if (isResistered.) continue;
-        print('-----4-1 $_registeredDates');
         if (_registeredDates.contains(value.date)) continue;
 
         if (value.date.isAfter(prevMonth)) {
@@ -114,7 +55,6 @@ class WeightRepositoryImpl implements IWeightRepository {
         }
       }
     });
-    print('-----5');
     return Future.value(0);
   }
 }
