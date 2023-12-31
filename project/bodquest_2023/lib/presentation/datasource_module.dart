@@ -14,6 +14,8 @@ import '../infrastructure/datasource/firestore/trainings_datasource.dart';
 import '../infrastructure/datasource/firestore/users_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/weights_datasource.dart';
 import '../infrastructure/datasource/firestore/weights_datasource_impl.dart';
+import '../infrastructure/datasource/ios_healthia/ios_healthia_weight_datasource.dart';
+import '../infrastructure/datasource/ios_healthia/ios_healthia_weight_datasource_impl.dart';
 
 /// Firebae Storage
 ///
@@ -40,6 +42,11 @@ final fireStoreUsersDataSourceProvider = Provider<IFirestoreUsersDataSource>(
 final fireStoreWeightsDataSourceProvider =
     Provider<IFirestoreWeightsDataSource>(
   (ref) => FirestoreWeightsDataSourceImpl(),
+);
+
+final iOSHealthiaWeightsDataSourceProvider =
+    Provider<IiOSHealthiaWeightDatasource>(
+  (ref) => IOSHealthiaWeightDatasourceImpl(),
 );
 
 /// Training

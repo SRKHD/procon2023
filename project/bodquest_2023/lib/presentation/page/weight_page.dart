@@ -1,15 +1,15 @@
-import 'package:bodquest_2023/presentation/component/control/chart/scrollable_line_chart.dart';
-import 'package:bodquest_2023/presentation/state/weight/weight_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../component/control/chart/scrollable_line_chart.dart';
 import '../component/control/number_textfield.dart';
 import '../component/weight/weight_list_item.dart';
 import '../notifier/datetime_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../notifier/user/login_user_provider.dart';
 import '../notifier/weight/weight_list_provider.dart';
+import '../state/weight/weight_state.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
   const WeightPage({super.key});
@@ -104,7 +104,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
       ],
     );
 
-    final button = ElevatedButton.icon(
+    final resisterButton = ElevatedButton.icon(
       onPressed: () {
         final text = ref.watch(textNotifierProvider);
         final notifier = ref.read(weightListNotifierProvider.notifier);
@@ -114,6 +114,20 @@ class WeightPageState extends ConsumerState<WeightPage> {
       },
       label: Text('登録'),
       icon: const Icon(Icons.add),
+    );
+
+    final synchronizeHealthiaButton = ElevatedButton.icon(
+      onPressed: () {
+        final notifier = ref.read(weightListNotifierProvider.notifier);
+        notifier.synchronizeHealthia(logInUserState.userId, dateState);
+      },
+      label: Text(''),
+      icon: const Icon(Icons.downloading),
+    );
+
+    final buttons = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [resisterButton, synchronizeHealthiaButton],
     );
 
     return state.when(
@@ -127,7 +141,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
               listView(weights),
               calenderComponents,
               textField,
-              button,
+              buttons,
             ],
           ),
         );
