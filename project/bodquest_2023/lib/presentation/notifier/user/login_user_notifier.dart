@@ -7,7 +7,7 @@ class LogInUserNotifier extends StateNotifier<LogInUserState> {
   LogInUserNotifier({
     required IGetLogInUserUsecase getLogInUserUsecase,
   })  : _getLogInUserUsecase = getLogInUserUsecase,
-        super(LogInUserState(userId: '', userName: '')) {
+        super(LogInUserState(userId: '', userName: '', userHeight: 0)) {
     _fetch();
   }
 
@@ -16,7 +16,8 @@ class LogInUserNotifier extends StateNotifier<LogInUserState> {
   /// ログインユーザーの同期
   Future<void> _fetch() async {
     final user = await _getLogInUserUsecase.execute();
-    state = LogInUserState(userId: user.id, userName: user.name);
+    state = LogInUserState(
+        userId: user.id, userName: user.name, userHeight: user.height);
     //state = _getLogInUserUsecase.execute();
   }
 }
