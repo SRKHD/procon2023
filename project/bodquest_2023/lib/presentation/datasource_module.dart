@@ -14,6 +14,8 @@ import '../infrastructure/datasource/firestore/trainings_datasource.dart';
 import '../infrastructure/datasource/firestore/users_datasource_impl.dart';
 import '../infrastructure/datasource/firestore/weights_datasource.dart';
 import '../infrastructure/datasource/firestore/weights_datasource_impl.dart';
+import '../infrastructure/datasource/ios_healthia/ios_healthia_training_datasource.dart';
+import '../infrastructure/datasource/ios_healthia/ios_healthia_training_datasource_impl.dart';
 import '../infrastructure/datasource/ios_healthia/ios_healthia_weight_datasource.dart';
 import '../infrastructure/datasource/ios_healthia/ios_healthia_weight_datasource_impl.dart';
 
@@ -55,6 +57,11 @@ final iOSHealthiaWeightsDataSourceProvider =
 final fireStoreTrainingsDataSourceProvider =
     Provider<IFirestoreTrainingsDataSource>(
   (ref) => FirestoreTrainingsDataSourceImpl(),
+);
+
+final iOSHealthiaTrainingsDataSourceProvider =
+    Provider<IiOSHealthiaTrainingDatasource>(
+  (ref) => IOSHealthiaTrainingDatasourceImpl(),
 );
 
 /// Meal

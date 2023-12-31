@@ -59,28 +59,15 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       notifier: ref.watch(textNotifierProvider.notifier),
       labelText: 'トレーニング量',
       hintText: switch (kindState) {
-        TrainingKind.walk => '歩いた時間',
-        TrainingKind.run => '走った時間',
-        TrainingKind.workOut => '筋トレ時間',
+        TrainingKind.walk => '歩いた歩数',
+        TrainingKind.run => '走った距離(m)',
+        TrainingKind.workOut => '筋トレ時間(分)',
       },
     );
 
     final textComponents = SizedBox(
       width: 300,
       child: textField,
-    );
-
-    final button = ElevatedButton.icon(
-      onPressed: () {
-        final text = ref.watch(textNotifierProvider);
-        // print('保存されている文字は: $text');
-        final notifier = ref.read(trainingListNotifierProvider.notifier);
-        notifier.addTraining(
-            logInUserState.userId, kindState.name, dateState, int.parse(text));
-        _controller.text = '';
-      },
-      label: Text('登録'),
-      icon: const Icon(Icons.add),
     );
 
     Future<void> selectDate(BuildContext context) async {
@@ -110,6 +97,33 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       ],
     );
 
+    final resisterButton = ElevatedButton.icon(
+      onPressed: () {
+        final text = ref.watch(textNotifierProvider);
+        // print('保存されている文字は: $text');
+        final notifier = ref.read(trainingListNotifierProvider.notifier);
+        notifier.addTraining(
+            logInUserState.userId, kindState.name, dateState, int.parse(text));
+        _controller.text = '';
+      },
+      label: Text('登録'),
+      icon: const Icon(Icons.add),
+    );
+
+    final synchronizeHealthiaButton = ElevatedButton.icon(
+      onPressed: () {
+        final notifier = ref.read(trainingListNotifierProvider.notifier);
+        notifier.synchronizeHealthia(logInUserState.userId, dateState);
+      },
+      label: Text(''),
+      icon: const Icon(Icons.downloading),
+    );
+
+    final buttons = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [resisterButton, synchronizeHealthiaButton],
+    );
+
     return trainingState.when(
       data: (trainings) {
         return Center(
@@ -120,7 +134,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
               TrainingKindDropdown(),
               calenderComponents,
               textComponents,
-              button,
+              buttons,
             ],
           ),
         );

@@ -41,6 +41,7 @@ final trainingRepositoryProvider = Provider<ITrainingRepository>(
   (ref) => TrainingRepositoryImpl(
     dataSource: ref.watch(fireStoreTrainingsDataSourceProvider),
     factory: ref.watch(trainingFactoryProvider),
+    iOSDatasource: ref.watch(iOSHealthiaTrainingsDataSourceProvider),
   ),
 );
 

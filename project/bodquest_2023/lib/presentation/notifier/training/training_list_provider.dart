@@ -10,5 +10,7 @@ final trainingListNotifierProvider = StateNotifierProvider<TrainingListNotifier,
     getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
     getTrainingsUsecase: ref.read(getTrainingsUsecaseProvider),
     addTrainingUsecase: ref.read(addTrainingUsecaseProvider),
+    synchronizeHealthiaTrainingUsecase:
+        ref.read(synchronizeHealthiaTrainingsUsecaseProvider),
   ),
 );

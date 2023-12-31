@@ -26,7 +26,13 @@ class TrainingLiteItem extends StatelessWidget {
           TrainingKind.workOut => '筋トレ',
         },
       ),
-      subtitle: Text('$_date $_value 分'),
+      subtitle: Text(
+        switch (TrainingKind.from(_kind)) {
+          TrainingKind.walk => '$_date　　　$_value 歩',
+          TrainingKind.run => '$_date　　　$_value m',
+          TrainingKind.workOut => '$_date　　　$_value 分',
+        },
+      ),
     );
   }
 }
