@@ -33,7 +33,7 @@ class MenuFactoryImpl implements IMenuFactory {
 
   @override
   Menu createFromModel(FugMenu meal) {
-    // TODO: MenuFactoryImpl createFromModel 非同期で上手く動作するか怪しい
+    // TODO: 非同期で上手く動作するか怪しい
     firebaseStorageSource.getURL(meal.imageFilePath).then((value) => Menu(
           userId: meal.userId,
           name: meal.name,

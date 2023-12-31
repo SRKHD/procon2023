@@ -10,5 +10,7 @@ final weightListNotifierProvider =
     getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
     getWeightsUsecase: ref.read(getWeightsUsecaseProvider),
     addWeightUsecase: ref.read(addWeightUsecaseProvider),
+    synchronizeHealthiaWeightUsecase:
+        ref.read(synchronizeHealthiaWeightsUsecaseProvider),
   ),
 );

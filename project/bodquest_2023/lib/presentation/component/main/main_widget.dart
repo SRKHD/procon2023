@@ -1,10 +1,10 @@
-import 'package:bodquest_2023/presentation/page/user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../notifier/index_notifier.dart';
 import '../../page/home_page.dart';
 import '../../page/training_page.dart';
+import '../../page/user_page.dart';
 import '../../page/weight_page.dart';
 import '../weight/health_sample.dart';
 import '../sample_counter.dart';

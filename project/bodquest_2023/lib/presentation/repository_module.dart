@@ -28,8 +28,9 @@ final userRepositoryProvider = Provider<IUserRepository>((ref) {
 ///
 final weightRepositoryProvider = Provider<IWeightRepository>(
   (ref) => WeightRepositoryImpl(
-    dataSource: ref.watch(fireStoreWeightsDataSourceProvider),
     factory: ref.watch(weightFactoryProvider),
+    dataSource: ref.watch(fireStoreWeightsDataSourceProvider),
+    iOSDatasource: ref.watch(iOSHealthiaWeightsDataSourceProvider),
   ),
 );
 

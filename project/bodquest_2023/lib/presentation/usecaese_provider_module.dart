@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../application/usecase/menu/add_menu_usecase_impl.dart';
 import '../application/usecase/menu/get_menus_usecase_impl.dart';
 import '../application/usecase/user/update_user_name_impl.dart';
+import '../application/usecase/weight/synchronize_healthia_weights_usecase_impl.dart';
 import '../domain/usecase/menu/add_menu_usecase.dart';
 import '../domain/usecase/menu/get_menus_usecase.dart';
 import '../domain/usecase/user/update_user_name_usecase.dart';
+import '../domain/usecase/weight/synchronize_healthia_weights_usecase.dart';
 import 'notifier/evaluation/evaluation_provider.dart';
 import 'repository_module.dart';
 import '../application/usecase/evaluation/calculate_evaluation_impl.dart';
@@ -78,6 +80,12 @@ final addWeightUsecaseProvider = Provider<IAddWeightUsecase>(
     repository: ref.watch(weightRepositoryProvider),
   ),
 );
+
+final synchronizeHealthiaWeightsUsecaseProvider =
+    Provider<ISynchronizeHealthiaWeightsUsecase>(
+        (ref) => SynchronizeHealthiaWeightsUsecaseImpl(
+              repository: ref.watch(weightRepositoryProvider),
+            ));
 
 /// Training
 ///

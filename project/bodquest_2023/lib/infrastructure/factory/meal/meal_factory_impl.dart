@@ -29,7 +29,7 @@ class MealFactoryImpl implements IMealFactory {
 
   @override
   Meal createFromModel(FugMeal meal) {
-    // TODO: MealFactoryImpl createFromModel 非同期で上手く動作するか怪しい
+    // TODO: 非同期で上手く動作するか怪しい
     firebaseStorageSource.getURL(meal.imageFilePath).then((value) => Meal(
           userId: meal.userId,
           name: meal.name,

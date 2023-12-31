@@ -1,5 +1,3 @@
-import 'package:bodquest_2023/domain/value/evaluation_rank.dart';
-
 import '../../../domain/repository/meal_repository.dart';
 import '../../../domain/repository/training_repository.dart';
 import '../../../domain/repository/user_repository.dart';
@@ -8,6 +6,7 @@ import '../../../domain/usecase/evaluation/calculate_evaluation_usecase.dart';
 import '../../../domain/usecase/training/get_calories_consumed_usecase.dart';
 import '../../../domain/usecase/user/get_ideal_usecase.dart';
 import '../../../domain/usecase/user/get_login_user_usecase.dart';
+import '../../../domain/value/evaluation_rank.dart';
 import '../../../presentation/notifier/evaluation/evaluation_notifier.dart';
 
 class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
@@ -32,7 +31,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   final EvaluationNotifier evaluationNotifier;
 
   EvaluationRank getRank(int score) {
-    // TODO: implement getRank
+    // TODO: 未完成(実装者募集中) getRank
     if (score < 100) {
       return EvaluationRank.g;
     } else if (score < 200) {
@@ -64,7 +63,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   }
 
   Future<void> calcScore() async {
-    // TODO: implement getScore
+    // TODO: 未完成(実装者募集中) getScore
     var user = await getLogInUserUsecase.execute();
 
     /// カロリー評価
