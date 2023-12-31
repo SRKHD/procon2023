@@ -45,19 +45,17 @@ class WeightRepositoryImpl implements IWeightRepository {
     print('-----2');
     final stream = fireStoreDataSource.getWeights(userId);
     print('-----2-0');
-    final len = await stream.length;
-    await for (final element in stream) {
-      //
-      print('-----2-1 $element');
-      final length = element.results.length;
-      print('-----2-2 $length');
-      element.results.map((e) {
-        print('-----2-3 $e');
-        registeredDates.add(e.date);
-        print('-----2-4 $registeredDates');
-      });
-      print('-----2-5 $registeredDates');
-    }
+    // stream.listen((x) {
+    //   print('-----2-1 $x');
+    //   final length = x.results.length;
+    //   print('-----2-2 $length');
+    //   x.results.map((e) {
+    //     print('-----2-3 $e');
+    //     registeredDates.add(e.date);
+    //     print('-----2-4 $registeredDates');
+    //   });
+    //   print('-----2-5 $registeredDates');
+    // });
     /*
     await fireStoreDataSource.getWeights(userId).forEach((element) {
       //

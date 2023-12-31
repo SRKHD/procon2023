@@ -38,7 +38,7 @@ class IOSHealthiaWeightDatasourceImpl implements IiOSHealthiaWeightDatasource {
     // 過去24時間以内のデータを取得する
     final now = DateTime.now();
     // final prevMonth = getPrevMonth(now);
-    final prevMonth = now.subtract(const Duration(days: 3));
+    final prevMonth = now.subtract(const Duration(days: 1));
 
     final controller = StreamController<FugGetWeightsResponse>();
     List<FugWeight> items = [];
