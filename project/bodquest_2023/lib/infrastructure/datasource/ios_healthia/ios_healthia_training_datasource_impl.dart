@@ -31,7 +31,6 @@ class IOSHealthiaTrainingDatasourceImpl
 
   @override
   Stream<FugGetTrainingsResponse> getTrainings(String userId) {
-    print('-----01');
     // 取得する型を定義する
     final types = [
       HealthDataType.STEPS,
@@ -52,7 +51,6 @@ class IOSHealthiaTrainingDatasourceImpl
       HealthDataAccess.READ,
     ];
 
-    print('-----02');
     // 過去24時間以内のデータを取得する
     final now = DateTime.now();
     //final prevDays = getPrevMonth(now);
@@ -75,33 +73,21 @@ class IOSHealthiaTrainingDatasourceImpl
                 ? healthData
                 : healthData.sublist(0, 100));
 
-            print('-----03');
             // 重複データは除外する
             _healthDataList = HealthFactory.removeDuplicates(_healthDataList);
 
-            print('-----03-01');
             final Map<DateTime, int> walkMap = {};
             final Map<DateTime, int> runMap = {};
             for (var x in _healthDataList) {
-              print('-----03-02');
               final day = getDayOnly(x.dateFrom);
-              print('-----03-02-2 $day');
               if (x.type == HealthDataType.STEPS) {
-                print('-----03-03 $x');
-                final n = x.value;
-                print('-----03-03-2 $n');
                 double value = double.parse(x.value.toString());
-                print('-----03-04');
                 if (walkMap.containsKey(day)) {
                   value += walkMap[day]!;
                 }
                 walkMap[day] = value.toInt();
               } else {
-                print('-----03-05 $x');
-                final n = x.value;
-                print('-----03-05-2 $n');
                 double value = double.parse(x.value.toString());
-                print('-----03-06');
                 if (runMap.containsKey(day)) {
                   value += runMap[day]!;
                 }
@@ -111,28 +97,8 @@ class IOSHealthiaTrainingDatasourceImpl
                 print(x);
               }
             }
-            int length = runMap.length;
-            print('-----04 $length');
-            int length2 = walkMap.length;
-            print('-----04-2 $length2');
             addItems(userId, FugTrainingKind.walk, walkMap);
-            print('-----05');
             addItems(userId, FugTrainingKind.run, runMap);
-            print('-----06');
-            // for (var x in _healthDataList) {
-            //   final kind = x.type == HealthDataType.STEPS
-            //       ? FugTrainingKind.walk
-            //       : FugTrainingKind.run;
-            //   _items.add(FugTraining(
-            //     userId: userId,
-            //     kind: kind,
-            //     date: x.dateFrom,
-            //     timestamp: 0,
-            //     value: int.parse(x.value.toString()),
-            //   ));
-            // }
-            int length3 = _items.length;
-            print('-----07 $length3');
             controller.add(FugGetTrainingsResponse(results: _items));
             return controller.stream;
           });
