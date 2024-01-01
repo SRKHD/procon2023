@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../page/login_page.dart';
 import '../page/myhome_page.dart';
 import '../page/registration_page.dart';
+import '../page/training/training_list_page.dart';
 import '../page/weight/weight_list_page.dart';
 import 'page_path.dart';
 
@@ -37,6 +38,14 @@ final goRouterProvider = Provider(
         builder: (context, state) {
           //final weights = state.pathParameters['weights']!;
           return WeightListPage();
+        },
+      ),
+      GoRoute(
+        path: PageId.traininglist.path,
+        name: PageId.traininglist.routeName,
+        builder: (context, state) {
+          //final weights = state.pathParameters['weights']!;
+          return TrainingListPage();
         },
       ),
     ];

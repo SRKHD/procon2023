@@ -14,18 +14,13 @@ class TrainingListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Expanded(
-      child: ListView(
-        children: trainings
-            .map(
-              (e) => TrainingLiteItem(
-                kind: e.kind,
-                date: e.date,
-                value: e.value,
-              ),
-            )
-            .toList(),
+    return ListView.builder(
+      itemCount: trainings.length,
+      itemBuilder: (ctx, index) => TrainingLiteItem(
+        kind: trainings[index].kind,
+        date: trainings[index].date,
+        value: trainings[index].value,
       ),
-    );
+    ); // return Expanded(
   }
 }

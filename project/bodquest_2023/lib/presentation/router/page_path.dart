@@ -4,6 +4,7 @@ enum PageId {
   registration,
   main,
   weightlist,
+  traininglist,
 }
 
 /// 画面パス
@@ -13,6 +14,7 @@ extension PagePath on PageId {
         PageId.registration => '/registration',
         PageId.main => '/main',
         PageId.weightlist => '/weight/list',
+        PageId.traininglist => '/training/list',
       };
 }
 
@@ -23,5 +25,6 @@ extension PageName on PageId {
         PageId.registration => 'registration',
         PageId.main => 'main',
         PageId.weightlist => 'weightlist',
+        PageId.traininglist => 'traininglist',
       };
 }
