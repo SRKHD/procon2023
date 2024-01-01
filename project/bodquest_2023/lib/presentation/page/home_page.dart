@@ -8,6 +8,8 @@ import '../component/home/level_text.dart';
 import '../component/home/pace_text.dart';
 import '../component/home/rank_text.dart';
 import '../notifier/evaluation/evaluation_provider.dart';
+import '../router/go_router.dart';
+import '../router/page_path.dart';
 import '../theme/sizes.dart';
 import '../usecaese_provider_module.dart';
 
@@ -33,12 +35,31 @@ class HomePage extends ConsumerWidget {
         ),
         ItemEvaluationPanel(
           title: '体重',
+          onPressed: () {
+            final router = ref.read(goRouterProvider);
+            router.pushNamed(
+              PageId.weightlist.routeName,
+            );
+          },
           perceentBarGraphWidth: RawSize.p200,
           perceentBarGraphHeight: RawSize.p32,
-          perceentBarGraphValue: 30,
+          perceentBarGraphValue: 77,
+        ),
+        ItemEvaluationPanel(
+          title: '運動',
+          onPressed: () {
+            final router = ref.read(goRouterProvider);
+            router.pushNamed(
+              PageId.traininglist.routeName,
+            );
+          },
+          perceentBarGraphWidth: RawSize.p200,
+          perceentBarGraphHeight: RawSize.p32,
+          perceentBarGraphValue: 45,
         ),
         ItemEvaluationPanel(
           title: '食事',
+          onPressed: () {},
           perceentBarGraphWidth: RawSize.p200,
           perceentBarGraphHeight: RawSize.p32,
           perceentBarGraphValue: 90,

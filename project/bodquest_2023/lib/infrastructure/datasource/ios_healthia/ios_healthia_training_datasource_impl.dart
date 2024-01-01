@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:bodquest_2023/infrastructure/model/firestore/training/fug_training_kind.dart';
 import 'package:flutter/foundation.dart';
 import 'package:health/health.dart';
 
 import '../../../core/util/datetime_utils.dart';
 import '../../model/firestore/training/fug_get_trainings_response.dart';
 import '../../model/firestore/training/fug_training.dart';
+import '../../model/firestore/training/fug_training_kind.dart';
 import 'ios_healthia_training_datasource.dart';
 
 class IOSHealthiaTrainingDatasourceImpl

@@ -10,6 +10,7 @@ class TrainingState with _$TrainingState {
     required String userId,
     required String kind,
     required String date,
+    required int timestamp,
     required int value,
   }) = _TrainingState;
 
@@ -18,6 +19,7 @@ class TrainingState with _$TrainingState {
       userId: target.userId,
       kind: target.kind.name,
       date: '${target.date.year}年${target.date.month}月${target.date.day}日',
+      timestamp: target.timestamp,
       value: target.value,
     );
   }

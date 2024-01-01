@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../notifier/index_notifier.dart';
+import '../../theme/colors.dart';
 
 // ignore: must_be_immutable
 class MainBottomNavigationBar extends ConsumerWidget {
@@ -43,7 +44,7 @@ class MainBottomNavigationBar extends ConsumerWidget {
     final index = ref.watch(indexNotifierProvider);
     return BottomNavigationBar(
       items: items,
-      backgroundColor: Colors.blue,
+      backgroundColor: BrandColor.moriGreen,
       selectedItemColor: Colors.orange,
       unselectedItemColor: Colors.white,
       //fixedColor: Colors.red,

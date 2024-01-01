@@ -1,40 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'login_page.dart';
-import 'myhome_page.dart';
-import 'registration_page.dart';
+import '../component/control/browser_adapter.dart';
+import '../router/go_router.dart';
+import '../theme/fonts.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   MyApp({super.key});
 
-  final router = GoRouter(
-    // パス (アプリが起動したとき)
-    initialLocation: '/login',
-    // パスと画面の組み合わせ
-    routes: [
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => LogInPage(),
-      ),
-      GoRoute(
-        path: '/registration',
-        builder: (context, state) => RegistrationPage(),
-      ),
-      GoRoute(
-        path: '/main',
-        builder: (context, state) =>
-            MyHomePage(title: 'Flutter Demo Home Page'),
-      ),
-    ],
-  );
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(goRouterProvider);
     return MaterialApp.router(
-      routeInformationProvider: router.routeInformationProvider,
+      routerDelegate: router.routerDelegate, // GoRouter
       routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
+      debugShowCheckedModeBanner: false,
+      builder: (_, child) {
+        return BrowserAdapter(child: child);
+      },
+      theme: ThemeData(
+        fontFamily: BrandText.bodyS.fontFamily,
+      ),
     );
   }
 }

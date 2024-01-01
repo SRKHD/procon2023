@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../notifier/index_notifier.dart';
 import '../../page/home_page.dart';
-import '../../page/training_page.dart';
+import '../../page/training/training_page.dart';
 import '../../page/user_page.dart';
-import '../../page/weight_page.dart';
-import '../weight/health_sample.dart';
-import '../sample_counter.dart';
+import '../../page/weight/weight_page.dart';
+import '../../page/health_sample_page.dart';
+import '../../page/sample_counter_page.dart';
 
 class MainWidget extends ConsumerWidget {
   MainWidget({super.key});
@@ -17,8 +17,8 @@ class MainWidget extends ConsumerWidget {
     UserPage(),
     WeightPage(),
     TrainingPage(),
-    SampleCounterWidget(),
-    HealthWidget(),
+    SampleCounterPage(),
+    HealthSamplePage(),
     Placeholder(),
   ];
 

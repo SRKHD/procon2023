@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/component_types.dart';
-import '../component/control/number_textfield.dart';
-import '../component/training/training_kind_dropdown.dart';
-import '../component/training/training_list_item.dart';
-import '../notifier/datetime_notifier.dart';
-import '../notifier/training/training_list_provider.dart';
-import '../notifier/text_notifier.dart';
-import '../notifier/training/training_kind_notifier.dart';
-import '../notifier/user/login_user_provider.dart';
-import '../state/training/training_state.dart';
+import '../../component/component_types.dart';
+import '../../component/control/number_textfield.dart';
+import '../../component/training/training_kind_dropdown.dart';
+import '../../component/training/training_list_button.dart';
+import '../../notifier/datetime_notifier.dart';
+import '../../notifier/training/training_list_provider.dart';
+import '../../notifier/text_notifier.dart';
+import '../../notifier/training/training_kind_notifier.dart';
+import '../../notifier/user/login_user_provider.dart';
+import '../../router/go_router.dart';
+import '../../router/page_path.dart';
 
 class TrainingPage extends ConsumerStatefulWidget {
   const TrainingPage({super.key});
@@ -37,22 +38,6 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
     print(logInUserState.userId);
     print(logInUserState.userName);
     final dateState = ref.watch(dateTimeNotifierProvider);
-
-    Expanded listView(List<TrainingState> trainings) {
-      return Expanded(
-        child: ListView(
-          children: trainings
-              .map(
-                (e) => TrainingLiteItem(
-                  kind: e.kind,
-                  date: e.date,
-                  value: e.value,
-                ),
-              )
-              .toList(),
-        ),
-      );
-    }
 
     final textField = NumberTextField(
       controller: _controller,
@@ -124,18 +109,27 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       children: [resisterButton, synchronizeHealthiaButton],
     );
 
+    final listButton = TrainingListButton(onPressed: () {
+      final router = ref.read(goRouterProvider);
+      router.pushNamed(
+        PageId.traininglist.routeName,
+        //pathParameters: {'id': memo.id},
+      );
+    });
     return trainingState.when(
       data: (trainings) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              listView(trainings),
-              TrainingKindDropdown(),
-              calenderComponents,
-              textComponents,
-              buttons,
-            ],
+        return Scaffold(
+          floatingActionButton: listButton,
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TrainingKindDropdown(),
+                calenderComponents,
+                textComponents,
+                buttons,
+              ],
+            ),
           ),
         );
       },

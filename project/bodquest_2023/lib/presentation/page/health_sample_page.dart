@@ -7,6 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 
+import '../theme/colors.dart';
+
 enum AppState {
   DATA_NOT_FETCHED,
   FETCHING_DATA,
@@ -18,14 +20,14 @@ enum AppState {
   STEPS_READY,
 }
 
-class HealthWidget extends StatefulWidget {
-  HealthWidget({super.key});
+class HealthSamplePage extends StatefulWidget {
+  HealthSamplePage({super.key});
 
   @override
-  State<HealthWidget> createState() => _HealthAppState();
+  State<HealthSamplePage> createState() => _HealthAppState();
 }
 
-class _HealthAppState extends State<HealthWidget> {
+class _HealthAppState extends State<HealthSamplePage> {
   List<HealthDataPoint> _healthDataList = [];
   AppState _state = AppState.DATA_NOT_FETCHED;
   int _nofSteps = 10;
@@ -263,6 +265,7 @@ class _HealthAppState extends State<HealthWidget> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
+            backgroundColor: BrandColor.moriGreen,
             title: const Text('Health Example'),
             actions: <Widget>[
               IconButton(

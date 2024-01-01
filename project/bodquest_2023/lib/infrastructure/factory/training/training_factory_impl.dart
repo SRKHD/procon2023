@@ -14,12 +14,14 @@ class TrainingFactoryImpl implements ITrainingFactory {
     required String userId,
     required String kind,
     required DateTime date,
+    required int timestamp,
     required int value,
   }) {
     return Training(
       userId: userId,
       kind: trainingKindFactory.create(kind),
       date: date,
+      timestamp: timestamp,
       value: value,
     );
   }
@@ -30,6 +32,7 @@ class TrainingFactoryImpl implements ITrainingFactory {
       userId: training.userId,
       kind: trainingKindFactory.createFromModel(training.kind),
       date: training.date,
+      timestamp: training.timestamp,
       value: training.value,
     );
   }
