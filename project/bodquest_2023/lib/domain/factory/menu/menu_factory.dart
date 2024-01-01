@@ -15,5 +15,5 @@ abstract interface class IMenuFactory {
   });
 
   /// [FugMenu]から[Menu]を生成する
-  Menu createFromModel(FugMenu meal);
+  Future<Menu> createFromModel(FugMenu meal);
 }
