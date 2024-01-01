@@ -32,28 +32,18 @@ class MenuFactoryImpl implements IMenuFactory {
   }
 
   @override
-  Menu createFromModel(FugMenu meal) {
-    // TODO: 非同期で上手く動作するか怪しい
-    firebaseStorageSource.getURL(meal.imageFilePath).then((value) => Menu(
-          userId: meal.userId,
-          name: meal.name,
-          date: meal.date,
-          timestamp: meal.timestamp,
-          recipe: meal.recipe,
-          ingredient: meal.ingredient,
-          calorie: meal.calorie,
-          imageFilePath: value,
-        ));
-
-    return Menu(
-      userId: meal.userId,
-      name: meal.name,
-      date: meal.date,
-      timestamp: meal.timestamp,
-      recipe: meal.recipe,
-      ingredient: meal.ingredient,
-      calorie: meal.calorie,
-      imageFilePath: '',
-    );
+  Future<Menu> createFromModel(FugMenu meal) {
+    return firebaseStorageSource.getURL(meal.imageFilePath).then(
+          (value) => Menu(
+            userId: meal.userId,
+            name: meal.name,
+            date: meal.date,
+            timestamp: meal.timestamp,
+            recipe: meal.recipe,
+            ingredient: meal.ingredient,
+            calorie: meal.calorie,
+            imageFilePath: value,
+          ),
+        );
   }
 }

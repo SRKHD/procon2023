@@ -13,5 +13,5 @@ abstract interface class IMealFactory {
   });
 
   /// [FugMeal]から[Meal]を生成する
-  Meal createFromModel(FugMeal meal);
+  Future<Meal> createFromModel(FugMeal meal);
 }
