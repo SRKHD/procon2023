@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../page/login_page.dart';
 import '../page/myhome_page.dart';
 import '../page/registration_page.dart';
-import '../page/weight_list_page.dart';
+import '../page/weight/weight_list_page.dart';
 import 'page_path.dart';
 
 /// Provide GoRouter

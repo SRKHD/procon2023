@@ -2,13 +2,13 @@ import 'package:bodquest_2023/presentation/component/weight/weight_list_button.d
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/control/number_textfield.dart';
-import '../notifier/datetime_notifier.dart';
-import '../notifier/text_notifier.dart';
-import '../notifier/user/login_user_provider.dart';
-import '../notifier/weight/weight_list_provider.dart';
-import '../router/go_router.dart';
-import '../router/page_path.dart';
+import '../../component/control/number_textfield.dart';
+import '../../notifier/datetime_notifier.dart';
+import '../../notifier/text_notifier.dart';
+import '../../notifier/user/login_user_provider.dart';
+import '../../notifier/weight/weight_list_provider.dart';
+import '../../router/go_router.dart';
+import '../../router/page_path.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
   const WeightPage({super.key});

@@ -7,8 +7,8 @@ import '../component/main/main_left_drawer.dart';
 import 'sample_counter_page.dart';
 import '../notifier/index_notifier.dart';
 import '../page/home_page.dart';
-import '../page/training_page.dart';
-import '../page/weight_page.dart';
+import 'training/training_page.dart';
+import 'weight/weight_page.dart';
 import 'user_page.dart';
 
 class MyHomePage extends ConsumerWidget {

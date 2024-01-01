@@ -2,10 +2,10 @@ import 'package:bodquest_2023/presentation/component/weight/weight_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../notifier/weight/weight_list_provider.dart';
-import '../component/weight/weight_listview.dart';
-import '../theme/colors.dart';
-import '../theme/l10n.dart';
+import '../../notifier/weight/weight_list_provider.dart';
+import '../../component/weight/weight_listview.dart';
+import '../../theme/colors.dart';
+import '../../theme/l10n.dart';
 
 class WeightListPage extends ConsumerWidget {
   const WeightListPage({super.key});
