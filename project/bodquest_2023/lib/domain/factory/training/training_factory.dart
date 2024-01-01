@@ -7,6 +7,7 @@ abstract interface class ITrainingFactory {
     required String userId,
     required String kind,
     required DateTime date,
+    required int timestamp,
     required int value,
   });
 

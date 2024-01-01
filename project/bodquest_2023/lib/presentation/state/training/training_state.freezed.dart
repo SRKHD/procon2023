@@ -19,6 +19,7 @@ mixin _$TrainingState {
   String get userId => throw _privateConstructorUsedError;
   String get kind => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
   int get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +33,8 @@ abstract class $TrainingStateCopyWith<$Res> {
           TrainingState value, $Res Function(TrainingState) then) =
       _$TrainingStateCopyWithImpl<$Res, TrainingState>;
   @useResult
-  $Res call({String userId, String kind, String date, int value});
+  $Res call(
+      {String userId, String kind, String date, int timestamp, int value});
 }
 
 /// @nodoc
@@ -51,6 +53,7 @@ class _$TrainingStateCopyWithImpl<$Res, $Val extends TrainingState>
     Object? userId = null,
     Object? kind = null,
     Object? date = null,
+    Object? timestamp = null,
     Object? value = null,
   }) {
     return _then(_value.copyWith(
@@ -66,6 +69,10 @@ class _$TrainingStateCopyWithImpl<$Res, $Val extends TrainingState>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -82,7 +89,8 @@ abstract class _$$TrainingStateImplCopyWith<$Res>
       __$$TrainingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String kind, String date, int value});
+  $Res call(
+      {String userId, String kind, String date, int timestamp, int value});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$TrainingStateImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? kind = null,
     Object? date = null,
+    Object? timestamp = null,
     Object? value = null,
   }) {
     return _then(_$TrainingStateImpl(
@@ -114,6 +123,10 @@ class __$$TrainingStateImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -129,6 +142,7 @@ class _$TrainingStateImpl implements _TrainingState {
       {required this.userId,
       required this.kind,
       required this.date,
+      required this.timestamp,
       required this.value});
 
   @override
@@ -138,11 +152,13 @@ class _$TrainingStateImpl implements _TrainingState {
   @override
   final String date;
   @override
+  final int timestamp;
+  @override
   final int value;
 
   @override
   String toString() {
-    return 'TrainingState(userId: $userId, kind: $kind, date: $date, value: $value)';
+    return 'TrainingState(userId: $userId, kind: $kind, date: $date, timestamp: $timestamp, value: $value)';
   }
 
   @override
@@ -153,11 +169,14 @@ class _$TrainingStateImpl implements _TrainingState {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
             (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, kind, date, value);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, kind, date, timestamp, value);
 
   @JsonKey(ignore: true)
   @override
@@ -171,6 +190,7 @@ abstract class _TrainingState implements TrainingState {
       {required final String userId,
       required final String kind,
       required final String date,
+      required final int timestamp,
       required final int value}) = _$TrainingStateImpl;
 
   @override
@@ -179,6 +199,8 @@ abstract class _TrainingState implements TrainingState {
   String get kind;
   @override
   String get date;
+  @override
+  int get timestamp;
   @override
   int get value;
   @override
