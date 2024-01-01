@@ -1,11 +1,14 @@
+import 'package:bodquest_2023/domain/value/user_gender.dart';
+
 import '../../../domain/entity/user.dart';
 import '../../../domain/usecase/user/get_ideal_usecase.dart';
 
 class GetIdealUsecaseImpl implements IGetIdealUsecase {
   @override
   Future<int> getEstimatedEnergyRequirements(User target) {
-    // TODO: 未完成(実装者募集中) getEstimatedEnergyRequirements
-    return Future.value(1800);
+    // 一日の総消費カロリー(Total Daily Energy Expenditure: TDEE)
+    return getBasalMetabolism(target).then(
+        (basalMetabolism) => (1.2 * basalMetabolism).toInt()); // ほぼ運動しないと仮定。
   }
 
   @override
@@ -16,7 +19,13 @@ class GetIdealUsecaseImpl implements IGetIdealUsecase {
 
   @override
   Future<int> getBasalMetabolism(User target) {
-    // TODO: 未完成(実装者募集中) getBasalMetabolism
-    return Future.value(1600);
+    // TODO: Replace constants.
+    const weight = 70;
+    const age = 30;
+
+    return Future.value((target.gender == UserGender.male
+            ? 13.397 * weight + 4.799 * target.height - 5.677 * age + 88.362
+            : 9.247 * weight + 3.098 * target.height - 4.33 * age + 447.593)
+        .toInt());
   }
 }
