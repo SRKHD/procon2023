@@ -7,6 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 
+import '../theme/colors.dart';
+
 enum AppState {
   DATA_NOT_FETCHED,
   FETCHING_DATA,
@@ -263,6 +265,7 @@ class _HealthAppState extends State<HealthSamplePage> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
+            backgroundColor: BrandColor.moriGreen,
             title: const Text('Health Example'),
             actions: <Widget>[
               IconButton(

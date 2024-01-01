@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../component/control/browser_adapter.dart';
 import '../router/go_router.dart';
+import '../theme/fonts.dart';
 
 class MyApp extends ConsumerWidget {
   MyApp({super.key});
@@ -10,9 +12,16 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
     return MaterialApp.router(
-      routeInformationProvider: router.routeInformationProvider,
+      routerDelegate: router.routerDelegate, // GoRouter
       routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
+      debugShowCheckedModeBanner: false,
+      builder: (_, child) {
+        return BrowserAdapter(child: child);
+      },
+      theme: ThemeData(
+        fontFamily: BrandText.bodyS.fontFamily,
+      ),
     );
   }
 }

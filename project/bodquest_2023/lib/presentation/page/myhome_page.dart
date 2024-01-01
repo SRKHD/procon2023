@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../theme/colors.dart';
 import 'health_sample_page.dart';
 import '../component/main/main_bottom_navigation_bar.dart';
 import '../component/main/main_left_drawer.dart';
@@ -29,10 +30,10 @@ class MyHomePage extends ConsumerWidget {
   Widget build(context, WidgetRef ref) {
     final index = ref.watch(indexNotifierProvider);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(_title),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: BrandColor.moriGreen,
+      //   title: Text(_title),
+      // ),
       drawer: MainLeftDrawer(),
       body: pages[index],
       bottomNavigationBar: MainBottomNavigationBar(),
