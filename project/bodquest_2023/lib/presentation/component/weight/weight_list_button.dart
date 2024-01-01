@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/colors.dart';
 import '../../theme/fonts.dart';
 import '../../theme/sizes.dart';
 import '../control/gap.dart';
@@ -27,7 +28,7 @@ class WeightListButton extends StatelessWidget {
     /// レイアウト
     return FloatingActionButton.extended(
       heroTag: null,
-      //backgroundColor: BrandColor.bananaYellow,
+      backgroundColor: BrandColor.moriGreen,
       onPressed: onPressed,
       label: Row(
         children: [

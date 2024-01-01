@@ -1,15 +1,14 @@
+import 'package:bodquest_2023/presentation/component/weight/weight_list_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 
-import '../component/control/chart/scrollable_line_chart.dart';
 import '../component/control/number_textfield.dart';
-import '../component/weight/weight_list_item.dart';
 import '../notifier/datetime_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../notifier/user/login_user_provider.dart';
 import '../notifier/weight/weight_list_provider.dart';
-import '../state/weight/weight_state.dart';
+import '../router/go_router.dart';
+import '../router/page_path.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
   const WeightPage({super.key});
@@ -32,43 +31,6 @@ class WeightPageState extends ConsumerState<WeightPage> {
     final state = ref.watch(weightListNotifierProvider);
     final logInUserState = ref.watch(logInUserNotifierProvider);
     final dateState = ref.watch(dateTimeNotifierProvider);
-
-    Expanded weightChart(List<WeightState> weights) {
-      return Expanded(
-        child: ScrollableLineChart(
-          dataSeries: weights,
-          fx: (weight) => weight.timestamp.toDouble(),
-          fy: (weight) => weight.value,
-          dataFormatter: (weight) {
-            return "${weight.date}\n${weight.value}kg";
-          },
-          xFormatter: (x) {
-            final formatter = DateFormat("M/d");
-            final dtInMs = x.toInt();
-            final dt = DateTime.fromMillisecondsSinceEpoch(dtInMs);
-
-            return formatter.format(dt);
-          },
-          verticalGridInterval: Duration(days: 1).inMilliseconds.toDouble(),
-        ),
-      );
-    }
-
-    Expanded listView(List<WeightState> weights) {
-      return Expanded(
-        child: ListView(
-          children: weights
-              .map(
-                (e) => WeightLiteItem(
-                  userId: e.userId,
-                  date: e.date,
-                  value: e.value,
-                ),
-              )
-              .toList(),
-        ),
-      );
-    }
 
     final textField = NumberTextField(
       controller: _controller,
@@ -130,19 +92,29 @@ class WeightPageState extends ConsumerState<WeightPage> {
       children: [resisterButton, synchronizeHealthiaButton],
     );
 
+    final listButton = WeightListButton(onPressed: () {
+      // 編集画面へ進む
+      final router = ref.read(goRouterProvider);
+      router.pushNamed(
+        PageId.weightlist.routeName,
+        //pathParameters: {'id': memo.id},
+      );
+    });
+
     return state.when(
       data: (weights) {
         weights.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              weightChart(weights),
-              listView(weights),
-              calenderComponents,
-              textField,
-              buttons,
-            ],
+        return Scaffold(
+          floatingActionButton: listButton,
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                calenderComponents,
+                textField,
+                buttons,
+              ],
+            ),
           ),
         );
       },

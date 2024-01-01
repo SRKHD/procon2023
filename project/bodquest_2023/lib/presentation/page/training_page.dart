@@ -128,7 +128,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       data: (trainings) {
         return Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               listView(trainings),
               TrainingKindDropdown(),
