@@ -19,8 +19,9 @@ class MealRepositoryImpl implements IMealRepository {
   @override
   Stream<List<Meal>> findAll(String userId) {
     try {
-      return fireStoreDataSource.getMeals(userId).map((event) =>
-          [...event.results.map((res) => weightFactory.createFromModel(res))]);
+      return fireStoreDataSource.getMeals(userId).asyncMap((response) =>
+          Future.wait(response.results
+              .map((result) => weightFactory.createFromModel(result))));
     } catch (e) {
       rethrow;
     }

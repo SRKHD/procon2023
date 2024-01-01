@@ -19,8 +19,9 @@ class MenuRepositoryImpl implements IMenuRepository {
   @override
   Stream<List<Menu>> findAll(String userId) {
     try {
-      return fireStoreDataSource.getMenus(userId).map((event) =>
-          [...event.results.map((res) => weightFactory.createFromModel(res))]);
+      return fireStoreDataSource.getMenus(userId).asyncMap((response) =>
+          Future.wait(response.results
+              .map((result) => weightFactory.createFromModel(result))));
     } catch (e) {
       rethrow;
     }
