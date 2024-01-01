@@ -93,7 +93,6 @@ class WeightPageState extends ConsumerState<WeightPage> {
     );
 
     final listButton = WeightListButton(onPressed: () {
-      // 編集画面へ進む
       final router = ref.read(goRouterProvider);
       router.pushNamed(
         PageId.weightlist.routeName,
