@@ -42,7 +42,8 @@ dependencies:
   firebase_storage:
   cloud_firestore:
   flutter_riverpod:
-  flutter_hooks:
+  hooks_riverpod: # riverpod + hooks
+  flutter_hooks: # flutter + hooks
   riverpod_annotation:
   sign_in_button:
   # freezed
