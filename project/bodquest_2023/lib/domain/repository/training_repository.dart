@@ -3,14 +3,27 @@ import '../entity/training.dart';
 abstract interface class ITrainingRepository {
   Stream<List<Training>> findAll(String userId);
 
-  Future<int> addTraining(
+  Future<int> add(
     String userId,
     String kind,
     DateTime date,
     int value,
   );
 
-  Future<int> synchronizeHealthiaTrainings(
+  Future<int> delete(
+    String userId,
+    String id,
+  );
+
+  Future<int> update(
+    String userId,
+    String id,
+    String kind,
+    DateTime date,
+    int value,
+  );
+
+  Future<int> synchronizeHealthia(
     String userId,
     DateTime date,
   );

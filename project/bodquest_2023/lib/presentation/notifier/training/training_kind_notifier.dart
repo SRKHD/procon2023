@@ -8,8 +8,8 @@ part 'training_kind_notifier.g.dart';
 @riverpod
 class TrainingKindNotifier extends _$TrainingKindNotifier {
   @override
-  TrainingKind build() {
-    return TrainingKind.walk;
+  TrainingKind build(TrainingKind initValue) {
+    return initValue;
   }
 
   void updateTrainingKind(String value) {

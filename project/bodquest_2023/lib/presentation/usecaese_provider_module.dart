@@ -2,14 +2,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../application/usecase/menu/add_menu_usecase_impl.dart';
 import '../application/usecase/menu/get_menus_usecase_impl.dart';
+import '../application/usecase/training/delete_training_usecase_impl.dart';
 import '../application/usecase/training/synchronize_healthia_trainings_usecase_impl.dart';
+import '../application/usecase/training/update_training_usecase_impl.dart';
 import '../application/usecase/user/update_user_name_impl.dart';
 import '../application/usecase/weight/delete_weight_usecase_impl.dart';
 import '../application/usecase/weight/synchronize_healthia_weights_usecase_impl.dart';
 import '../application/usecase/weight/update_weight_usecase_impl.dart';
 import '../domain/usecase/menu/add_menu_usecase.dart';
 import '../domain/usecase/menu/get_menus_usecase.dart';
+import '../domain/usecase/training/delete_training_usecase.dart';
 import '../domain/usecase/training/synchronize_healthia_trainings_usecase.dart';
+import '../domain/usecase/training/update_training_usecase.dart';
 import '../domain/usecase/user/update_user_name_usecase.dart';
 import '../domain/usecase/weight/delete_weight_usecase.dart';
 import '../domain/usecase/weight/synchronize_healthia_weights_usecase.dart';
@@ -116,6 +120,18 @@ final getTrainingsUsecaseProvider = Provider<IGetTrainingsUsecase>(
 
 final addTrainingUsecaseProvider = Provider<IAddTrainingUsecase>(
   (ref) => AddTrainingUsecaseImpl(
+    repository: ref.watch(trainingRepositoryProvider),
+  ),
+);
+
+final deleteTrainingUsecaseProvider = Provider<IDeleteTrainingUsecase>(
+  (ref) => DeleteTrainingUsecaseImpl(
+    repository: ref.watch(trainingRepositoryProvider),
+  ),
+);
+
+final updateTrainingUsecaseProvider = Provider<IUpdateTrainingUsecase>(
+  (ref) => UpdateTrainingUsecaseImpl(
     repository: ref.watch(trainingRepositoryProvider),
   ),
 );

@@ -11,6 +11,7 @@ class TrainingFactoryImpl implements ITrainingFactory {
 
   @override
   Training create({
+    required String id,
     required String userId,
     required String kind,
     required DateTime date,
@@ -18,6 +19,7 @@ class TrainingFactoryImpl implements ITrainingFactory {
     required int value,
   }) {
     return Training(
+      id: id,
       userId: userId,
       kind: trainingKindFactory.create(kind),
       date: date,
@@ -29,6 +31,7 @@ class TrainingFactoryImpl implements ITrainingFactory {
   @override
   Training createFromModel(FugTraining training) {
     return Training(
+      id: training.id,
       userId: training.userId,
       kind: trainingKindFactory.createFromModel(training.kind),
       date: training.date,

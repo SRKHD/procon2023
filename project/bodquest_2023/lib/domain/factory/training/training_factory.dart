@@ -4,6 +4,7 @@ import '../../entity/training.dart';
 abstract interface class ITrainingFactory {
   /// [Training]を生成する
   Training create({
+    required String id,
     required String userId,
     required String kind,
     required DateTime date,

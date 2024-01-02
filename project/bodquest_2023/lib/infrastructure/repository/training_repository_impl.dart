@@ -21,7 +21,7 @@ class TrainingRepositoryImpl implements ITrainingRepository {
   @override
   Stream<List<Training>> findAll(String userId) {
     try {
-      return fireStoreDataSource.getTrainings(userId).map((event) => [
+      return fireStoreDataSource.get(userId).map((event) => [
             ...event.results.map((res) => trainingFactory.createFromModel(res))
           ]);
     } catch (e) {
@@ -30,19 +30,19 @@ class TrainingRepositoryImpl implements ITrainingRepository {
   }
 
   @override
-  Future<int> addTraining(
+  Future<int> add(
     String userId,
     String kind,
     DateTime date,
     int value,
   ) {
-    return fireStoreDataSource.addTraining(userId, kind, date, value);
+    return fireStoreDataSource.add(userId, kind, date, value);
   }
 
   @override
-  Future<int> synchronizeHealthiaTrainings(String userId, DateTime date) {
+  Future<int> synchronizeHealthia(String userId, DateTime date) {
     final prevMonth = getPrevMonth(date);
-    final stream = fireStoreDataSource.getTrainings(userId);
+    final stream = fireStoreDataSource.get(userId);
     stream.listen(
       (event) {
         for (var element in event.results) {
@@ -57,10 +57,21 @@ class TrainingRepositoryImpl implements ITrainingRepository {
         if (_registeredDates.contains(value.date)) continue;
 
         if (value.date.isAfter(prevMonth)) {
-          addTraining(userId, value.kind.value, value.date, value.value);
+          add(userId, value.kind.value, value.date, value.value);
         }
       }
     });
     return Future.value(0);
+  }
+
+  @override
+  Future<int> delete(String userId, String id) {
+    return fireStoreDataSource.delete(userId, id);
+  }
+
+  @override
+  Future<int> update(
+      String userId, String id, String kind, DateTime date, int value) {
+    return fireStoreDataSource.update(userId, id, kind, date, value);
   }
 }

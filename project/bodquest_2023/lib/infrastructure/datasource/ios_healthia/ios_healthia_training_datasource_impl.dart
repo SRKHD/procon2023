@@ -20,6 +20,7 @@ class IOSHealthiaTrainingDatasourceImpl
       String userId, FugTrainingKind kind, Map<DateTime, int> values) {
     values.forEach((key, value) {
       _items.add(FugTraining(
+        id: '', // 自動生成されるので不要
         userId: userId,
         kind: kind,
         date: key,
