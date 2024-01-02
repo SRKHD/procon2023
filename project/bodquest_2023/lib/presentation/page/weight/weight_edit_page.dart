@@ -14,6 +14,7 @@ class WeightEditPage extends ConsumerStatefulWidget {
   const WeightEditPage(this.id, {super.key});
 
   final String id;
+
   @override
   WeightEditPageState createState() => WeightEditPageState();
 }
@@ -56,7 +57,6 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
             setState(() {
               final dateNotifier =
                   ref.watch(dateTimeNotifierProvider(dateState).notifier);
-              //date = picked;
               dateNotifier.update(picked);
             });
           }
@@ -74,7 +74,7 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
           ],
         );
 
-        final resisterButton = ElevatedButton.icon(
+        final updateButton = ElevatedButton.icon(
           onPressed: () {
             final text = _controller.text; //ref.watch(textNotifierProvider);
             final notifier = ref.read(weightListNotifierProvider.notifier);
@@ -91,7 +91,7 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
 
         final buttons = Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [resisterButton],
+          children: [updateButton],
         );
 
         return Scaffold(

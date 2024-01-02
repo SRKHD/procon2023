@@ -14,6 +14,6 @@ class AddTrainingUsecaseImpl implements IAddTrainingUsecase {
     DateTime date,
     int value,
   ) {
-    return trainingRepository.addTraining(userId, kind, date, value);
+    return trainingRepository.add(userId, kind, date, value);
   }
 }
