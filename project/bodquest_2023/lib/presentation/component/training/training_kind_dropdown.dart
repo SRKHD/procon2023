@@ -6,12 +6,14 @@ import '../component_types.dart';
 
 /// トレーニング種類を選ぶドロップダウン
 class TrainingKindDropdown extends ConsumerWidget {
-  const TrainingKindDropdown({super.key});
+  const TrainingKindDropdown(this.initValue, {super.key});
+
+  final TrainingKind initValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 今の季節
-    final trainingKind = ref.watch(trainingKindNotifierProvider);
+    final state = ref.watch(trainingKindNotifierProvider(initValue));
 
     /// 選択肢たち
     const items = [
@@ -31,11 +33,10 @@ class TrainingKindDropdown extends ConsumerWidget {
 
     /// ドロップダウン本体
     return DropdownButton(
-      value: trainingKind, // 現在の季節
+      value: state,
       items: items, // すべての選択肢たち
       onChanged: (newValue) {
-        // 状態管理 --> 季節を変更
-        final notifier = ref.read(trainingKindNotifierProvider.notifier);
+        final notifier = ref.read(trainingKindNotifierProvider(state).notifier);
         notifier.updateTrainingKind(newValue!.value);
       },
       focusColor: Colors.transparent, // 余計な影をなくす
