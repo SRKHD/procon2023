@@ -7,7 +7,8 @@ class FugGetWeightsResponse {
     required this.results,
   });
 
-  factory FugGetWeightsResponse.fromJson(Map<String, dynamic>? json) {
-    return FugGetWeightsResponse(results: [FugWeight.fromJson(json)]);
+  factory FugGetWeightsResponse.fromJson(
+      String docId, Map<String, dynamic>? json) {
+    return FugGetWeightsResponse(results: [FugWeight.fromJson(docId, json)]);
   }
 }

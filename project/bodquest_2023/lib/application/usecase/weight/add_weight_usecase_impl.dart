@@ -14,6 +14,6 @@ class AddWeightUsecaseImpl implements IAddWeightUsecase {
     DateTime date,
     double value,
   ) {
-    return weightRepository.addWeight(userId, date, value);
+    return weightRepository.add(userId, date, value);
   }
 }

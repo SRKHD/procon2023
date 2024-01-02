@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$WeightState {
   String get userId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   int get timestamp => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
@@ -32,7 +33,8 @@ abstract class $WeightStateCopyWith<$Res> {
           WeightState value, $Res Function(WeightState) then) =
       _$WeightStateCopyWithImpl<$Res, WeightState>;
   @useResult
-  $Res call({String userId, String date, int timestamp, double value});
+  $Res call(
+      {String userId, String id, String date, int timestamp, double value});
 }
 
 /// @nodoc
@@ -49,6 +51,7 @@ class _$WeightStateCopyWithImpl<$Res, $Val extends WeightState>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? date = null,
     Object? timestamp = null,
     Object? value = null,
@@ -57,6 +60,10 @@ class _$WeightStateCopyWithImpl<$Res, $Val extends WeightState>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       date: null == date
           ? _value.date
@@ -82,7 +89,8 @@ abstract class _$$WeightStateImplCopyWith<$Res>
       __$$WeightStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String date, int timestamp, double value});
+  $Res call(
+      {String userId, String id, String date, int timestamp, double value});
 }
 
 /// @nodoc
@@ -97,6 +105,7 @@ class __$$WeightStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? date = null,
     Object? timestamp = null,
     Object? value = null,
@@ -105,6 +114,10 @@ class __$$WeightStateImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       date: null == date
           ? _value.date
@@ -127,12 +140,15 @@ class __$$WeightStateImplCopyWithImpl<$Res>
 class _$WeightStateImpl implements _WeightState {
   _$WeightStateImpl(
       {required this.userId,
+      required this.id,
       required this.date,
       required this.timestamp,
       required this.value});
 
   @override
   final String userId;
+  @override
+  final String id;
   @override
   final String date;
   @override
@@ -142,7 +158,7 @@ class _$WeightStateImpl implements _WeightState {
 
   @override
   String toString() {
-    return 'WeightState(userId: $userId, date: $date, timestamp: $timestamp, value: $value)';
+    return 'WeightState(userId: $userId, id: $id, date: $date, timestamp: $timestamp, value: $value)';
   }
 
   @override
@@ -151,6 +167,7 @@ class _$WeightStateImpl implements _WeightState {
         (other.runtimeType == runtimeType &&
             other is _$WeightStateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
@@ -158,7 +175,8 @@ class _$WeightStateImpl implements _WeightState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, date, timestamp, value);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, id, date, timestamp, value);
 
   @JsonKey(ignore: true)
   @override
@@ -170,12 +188,15 @@ class _$WeightStateImpl implements _WeightState {
 abstract class _WeightState implements WeightState {
   factory _WeightState(
       {required final String userId,
+      required final String id,
       required final String date,
       required final int timestamp,
       required final double value}) = _$WeightStateImpl;
 
   @override
   String get userId;
+  @override
+  String get id;
   @override
   String get date;
   @override

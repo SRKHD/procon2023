@@ -4,6 +4,7 @@ import '../../entity/weight.dart';
 abstract interface class IWeightFactory {
   /// [Weight]を生成する
   Weight create({
+    required String id,
     required String userId,
     required DateTime date,
     required int timestamp,
