@@ -18,7 +18,7 @@ class TrainingListPage extends ConsumerWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: BrandColor.moriGreen,
-            title: const Text(L10n.weightlist),
+            title: const Text(L10n.list),
           ),
           body: Column(
             children: [
