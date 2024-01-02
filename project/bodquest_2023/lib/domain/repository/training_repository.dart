@@ -1,7 +1,7 @@
 import '../entity/training.dart';
 
 abstract interface class ITrainingRepository {
-  Stream<List<Training>> findAll(String userId);
+  Stream<List<Training>> get(String userId);
 
   Future<int> add(
     String userId,

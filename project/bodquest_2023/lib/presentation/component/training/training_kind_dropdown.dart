@@ -37,7 +37,7 @@ class TrainingKindDropdown extends ConsumerWidget {
       items: items, // すべての選択肢たち
       onChanged: (newValue) {
         final notifier = ref.read(trainingKindNotifierProvider(state).notifier);
-        notifier.updateTrainingKind(newValue!.value);
+        notifier.update(newValue!.value);
       },
       focusColor: Colors.transparent, // 余計な影をなくす
     );

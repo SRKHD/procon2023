@@ -11,6 +11,6 @@ class GetMenusUsecaseImpl implements IGetMenusUsecase {
 
   @override
   Stream<List<Menu>> execute(String userId) {
-    return menuRepository.findAll(userId);
+    return menuRepository.get(userId);
   }
 }

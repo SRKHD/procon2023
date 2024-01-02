@@ -5,12 +5,12 @@ class SynchronizeHealthiaWeightsUsecaseImpl
     implements ISynchronizeHealthiaWeightsUsecase {
   SynchronizeHealthiaWeightsUsecaseImpl({
     required IWeightRepository repository,
-  }) : weightRepository = repository;
+  }) : _repository = repository;
 
-  final IWeightRepository weightRepository;
+  final IWeightRepository _repository;
 
   @override
   Future<int> execute(String userId, DateTime date) {
-    return weightRepository.synchronizeHealthia(userId, date);
+    return _repository.synchronizeHealthia(userId, date);
   }
 }

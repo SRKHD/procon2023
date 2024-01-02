@@ -4,13 +4,13 @@ import '../../../domain/usecase/training/update_training_usecase.dart';
 class UpdateTrainingUsecaseImpl implements IUpdateTrainingUsecase {
   UpdateTrainingUsecaseImpl({
     required ITrainingRepository repository,
-  }) : weightRepository = repository;
+  }) : _repository = repository;
 
-  final ITrainingRepository weightRepository;
+  final ITrainingRepository _repository;
 
   @override
   Future<int> execute(
       String userId, String id, String kind, DateTime date, int value) {
-    return weightRepository.update(userId, id, kind, date, value);
+    return _repository.update(userId, id, kind, date, value);
   }
 }

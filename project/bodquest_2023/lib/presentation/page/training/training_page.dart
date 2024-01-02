@@ -91,7 +91,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
         final text = ref.watch(textNotifierProvider);
         // print('保存されている文字は: $text');
         final notifier = ref.read(trainingListNotifierProvider.notifier);
-        notifier.addTraining(
+        notifier.add(
             logInUserState.userId, kindState.name, dateState, int.parse(text));
         _controller.text = '';
       },

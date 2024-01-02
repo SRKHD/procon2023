@@ -18,7 +18,7 @@ class AddMenuUsecaseImpl implements IAddMenuUsecase {
     int calorie,
     String imageFilePath,
   ) {
-    return menuRepository.addMenu(
+    return menuRepository.add(
         userId, name, date, recipe, ingredient, calorie, imageFilePath);
   }
 }

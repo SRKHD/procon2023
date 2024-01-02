@@ -8,11 +8,11 @@ final weightListNotifierProvider =
     StateNotifierProvider<WeightListNotifier, AsyncValue<List<WeightState>>>(
   (ref) => WeightListNotifier(
     getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-    getWeightsUsecase: ref.read(getWeightsUsecaseProvider),
-    addWeightUsecase: ref.read(addWeightUsecaseProvider),
-    deleteWeightUsecase: ref.read(deleteWeightUsecaseProvider),
-    updateWeightUsecase: ref.read(updateWeightUsecaseProvider),
-    synchronizeHealthiaWeightUsecase:
+    getUsecase: ref.read(getWeightsUsecaseProvider),
+    addUsecase: ref.read(addWeightUsecaseProvider),
+    deleteUsecase: ref.read(deleteWeightUsecaseProvider),
+    updateUsecase: ref.read(updateWeightUsecaseProvider),
+    synchronizeHealthiaUsecase:
         ref.read(synchronizeHealthiaWeightsUsecaseProvider),
   ),
 );

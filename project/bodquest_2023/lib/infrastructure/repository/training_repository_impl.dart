@@ -19,7 +19,7 @@ class TrainingRepositoryImpl implements ITrainingRepository {
   final List<DateTime> _registeredDates = [];
 
   @override
-  Stream<List<Training>> findAll(String userId) {
+  Stream<List<Training>> get(String userId) {
     try {
       return fireStoreDataSource.get(userId).map((event) => [
             ...event.results.map((res) => trainingFactory.createFromModel(res))

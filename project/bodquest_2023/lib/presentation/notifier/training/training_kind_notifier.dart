@@ -12,7 +12,7 @@ class TrainingKindNotifier extends _$TrainingKindNotifier {
     return initValue;
   }
 
-  void updateTrainingKind(String value) {
+  void update(String value) {
     state = TrainingKind.from(value);
   }
 }

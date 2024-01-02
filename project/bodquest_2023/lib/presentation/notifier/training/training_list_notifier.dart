@@ -12,53 +12,50 @@ class TrainingListNotifier
     extends StateNotifier<AsyncValue<List<TrainingState>>> {
   TrainingListNotifier({
     required IGetLogInUserUsecase getLogInUserUsecase,
-    required IGetTrainingsUsecase getTrainingsUsecase,
-    required IAddTrainingUsecase addTrainingUsecase,
-    required IDeleteTrainingUsecase deleteTrainingUsecase,
-    required IUpdateTrainingUsecase updateTrainingUsecase,
-    required ISynchronizeHealthiaTrainingsUsecase
-        synchronizeHealthiaTrainingUsecase,
+    required IGetTrainingsUsecase getUsecase,
+    required IAddTrainingUsecase addUsecase,
+    required IDeleteTrainingUsecase deleteUsecase,
+    required IUpdateTrainingUsecase updateUsecase,
+    required ISynchronizeHealthiaTrainingsUsecase synchronizeHealthiaUsecase,
   })  : _getLogInUserUsecase = getLogInUserUsecase,
-        _getTrainingsUsecase = getTrainingsUsecase,
-        _addTrainingsUsecase = addTrainingUsecase,
-        _deleteTrainingUsecase = deleteTrainingUsecase,
-        _updateTrainingUsecase = updateTrainingUsecase,
-        _synchronizeHealthiaTrainingUsecase =
-            synchronizeHealthiaTrainingUsecase,
+        _getUsecase = getUsecase,
+        _addUsecase = addUsecase,
+        _deleteUsecase = deleteUsecase,
+        _updateUsecase = updateUsecase,
+        _synchronizeHealthiaUsecase = synchronizeHealthiaUsecase,
         super(const AsyncLoading()) {
     _getLogInUserUsecase.execute().then((value) => _fetch(value.id));
   }
 
   final IGetLogInUserUsecase _getLogInUserUsecase;
-  final IGetTrainingsUsecase _getTrainingsUsecase;
-  final IAddTrainingUsecase _addTrainingsUsecase;
-  final IDeleteTrainingUsecase _deleteTrainingUsecase;
-  final IUpdateTrainingUsecase _updateTrainingUsecase;
-  final ISynchronizeHealthiaTrainingsUsecase
-      _synchronizeHealthiaTrainingUsecase;
+  final IGetTrainingsUsecase _getUsecase;
+  final IAddTrainingUsecase _addUsecase;
+  final IDeleteTrainingUsecase _deleteUsecase;
+  final IUpdateTrainingUsecase _updateUsecase;
+  final ISynchronizeHealthiaTrainingsUsecase _synchronizeHealthiaUsecase;
 
   /// 一覧の同期
   Future<void> _fetch(String userId) async {
-    _getTrainingsUsecase.execute(userId).listen((values) {
+    _getUsecase.execute(userId).listen((values) {
       state = AsyncValue.data(
           values.map((weight) => TrainingState.fromEntity(weight)).toList());
     });
   }
 
-  void addTraining(
+  void add(
     String userId,
     String kind,
     DateTime date,
     int value,
   ) {
-    _addTrainingsUsecase.execute(userId, kind, date, value);
+    _addUsecase.execute(userId, kind, date, value);
   }
 
   void delete(
     String userId,
     String id,
   ) {
-    _deleteTrainingUsecase.execute(userId, id);
+    _deleteUsecase.execute(userId, id);
   }
 
   void update(
@@ -68,13 +65,13 @@ class TrainingListNotifier
     DateTime date,
     int value,
   ) {
-    _updateTrainingUsecase.execute(userId, id, kind, date, value);
+    _updateUsecase.execute(userId, id, kind, date, value);
   }
 
   void synchronizeHealthia(
     String userId,
     DateTime date,
   ) {
-    _synchronizeHealthiaTrainingUsecase.execute(userId, date);
+    _synchronizeHealthiaUsecase.execute(userId, date);
   }
 }
