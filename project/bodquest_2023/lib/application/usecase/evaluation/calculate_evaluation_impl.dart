@@ -15,6 +15,8 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   double _outgoing = 0;
   double _incoming = 0;
   double _targetActualOutgoing = 0;
+  int _weightScore = 0;
+  int _exerciseScore = 0;
 
   int get score {
     final actualOutgoing = _outgoing - _incoming;
@@ -74,8 +76,13 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   }
 
   void updateState(int score) {
-    final newValue = evaluationNotifier.value
-        .copyWith(score: score, rank: getRank(score).value);
+    final newValue = evaluationNotifier.value.copyWith(
+      score: score.clamp(0, 100),
+      weightScore: _weightScore.clamp(0, 100),
+      exerciseScore: _exerciseScore.clamp(0, 100),
+      rank: getRank(score).value,
+    );
+    print(newValue);
     evaluationNotifier.update(newValue);
   }
 
@@ -91,6 +98,11 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
           .map((training) => getCaloriesConsumedUsecase.get(training))
           .reduce((value, element) => value + element);
 
+      // TODO: Replace constant.
+      const target = 1000; // 今月の目標消費カロリー.
+
+      _exerciseScore = (_outgoing / target * 100).toInt();
+
       updateState(score);
     });
 
@@ -105,23 +117,32 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
     });
 
     weightRepository.findAll(user.id).listen((weights) {
-      final latestWeight = weights
+      weights.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+
+      final baseWeight = weights
           .where((weight) => weight.date.isBefore(thresholdDay))
           .lastOrNull
           ?.value;
 
       // 目標との差分はすべて脂肪と仮定.
-      final fatWeight =
-          latestWeight == null ? 0 : user.targetWeight - latestWeight;
+      final fatWeight = baseWeight == null ? 0 : user.targetWeight - baseWeight;
 
       // TODO: Replace constant.
       const pace = 3; // target pace: 3kg / month
 
       // Target actual outgoing := fat calory ~ 7200 * fat weight.
-      final targetActualOutgoing = 7200 * max(fatWeight, pace);
+      final targetFatWeight = max(fatWeight, pace);
+      final targetActualOutgoing = 7200 * targetFatWeight;
 
       // Decreasing direction only.
       _targetActualOutgoing = max(0, targetActualOutgoing).toDouble();
+
+      // Scoring.
+      final latestWeight = weights.lastOrNull?.value;
+
+      _weightScore = latestWeight == null || baseWeight == null
+          ? 0
+          : ((baseWeight - latestWeight) / targetFatWeight * 100).toInt();
 
       updateState(score);
     });
