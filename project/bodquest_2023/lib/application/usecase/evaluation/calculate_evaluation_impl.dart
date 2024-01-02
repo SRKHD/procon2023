@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../../../domain/repository/meal_repository.dart';
 import '../../../domain/repository/training_repository.dart';
 import '../../../domain/repository/user_repository.dart';
@@ -10,6 +12,20 @@ import '../../../domain/value/evaluation_rank.dart';
 import '../../../presentation/notifier/evaluation/evaluation_notifier.dart';
 
 class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
+  double _outgoing = 0;
+  double _incoming = 0;
+  double _targetActualOutgoing = 0;
+
+  int get score {
+    final actualOutgoing = _outgoing - _incoming;
+
+    final rate = _targetActualOutgoing == 0
+        ? 1.0
+        : actualOutgoing / _targetActualOutgoing;
+
+    return (100 * rate).toInt();
+  }
+
   CalculateEvaluationUsecaseImpl({
     required this.getLogInUserUsecase,
     required this.userRepository,
@@ -19,7 +35,9 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
     required this.mealRepository,
     required this.getCaloriesConsumedUsecase,
     required this.evaluationNotifier,
-  });
+  }) {
+    calcScore();
+  }
 
   final IGetLogInUserUsecase getLogInUserUsecase;
   final IUserRepository userRepository;
@@ -31,27 +49,26 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   final EvaluationNotifier evaluationNotifier;
 
   EvaluationRank getRank(int score) {
-    // TODO: 未完成(実装者募集中) getRank
-    if (score < 100) {
+    if (score < 0) {
       return EvaluationRank.g;
-    } else if (score < 200) {
+    } else if (score < 10) {
       return EvaluationRank.f;
-    } else if (score < 300) {
+    } else if (score < 20) {
       return EvaluationRank.e;
-    } else if (score < 400) {
+    } else if (score < 30) {
       return EvaluationRank.d;
-    } else if (score < 500) {
+    } else if (score < 50) {
       return EvaluationRank.c;
-    } else if (score < 600) {
+    } else if (score < 70) {
       return EvaluationRank.b;
-    } else if (score < 700) {
+    } else if (score < 100) {
       return EvaluationRank.a;
     } else {
       return EvaluationRank.s;
     }
   }
 
-  DateTime oneDayThisMonth() {
+  DateTime _oneDayThisMonth() {
     DateTime now = DateTime.now();
     return DateTime(now.year, now.month, 1);
   }
@@ -63,62 +80,53 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   }
 
   Future<void> calcScore() async {
-    // TODO: 未完成(実装者募集中) getScore
     var user = await getLogInUserUsecase.execute();
 
-    /// カロリー評価
-    // 1日に必要なエネルギー
-    int estimatedEnergyRequirements =
-        await getIdealUsecase.getEstimatedEnergyRequirements(user);
-    // 基礎代謝
-    int basalMetabolism = await getIdealUsecase.getBasalMetabolism(user);
-    // 基準値(この数値をマイナスにした分痩せる？)
-    int standardCalorie = estimatedEnergyRequirements - basalMetabolism;
-
     // 今月一日
-    final thresholdDay = oneDayThisMonth();
-    // 理想体重
-    double idealWeight = await getIdealUsecase.getIdealWeight(user);
+    final thresholdDay = _oneDayThisMonth();
 
-    final trainingsStream = trainingRepository.findAll(user.id);
-    final mealsStream = mealRepository.findAll(user.id);
-    final weightsStream = weightRepository.findAll(user.id);
+    trainingRepository.findAll(user.id).listen((trainings) {
+      _outgoing = trainings
+          .where((training) => training.date.isAfter(thresholdDay))
+          .map((training) => getCaloriesConsumedUsecase.get(training))
+          .reduce((value, element) => value + element);
 
-    double calculatedScore = 0;
-    trainingsStream.listen((x) {
-      for (final training in x) {
-        if (training.date.isAfter(thresholdDay)) {
-          calculatedScore +=
-              getCaloriesConsumedUsecase.get(training) - standardCalorie;
-        }
-      }
-      updateState(calculatedScore.toInt());
+      updateState(score);
     });
 
-    mealsStream.listen((y) {
-      for (final meal in y) {
-        if (meal.date.isAfter(thresholdDay)) {
-          calculatedScore -= meal.calorie;
-        }
-      }
-      updateState(calculatedScore.toInt());
+    mealRepository.findAll(user.id).listen((meals) {
+      _incoming = meals
+          .where((meal) => meal.date.isAfter(thresholdDay))
+          .map((meal) => meal.calorie)
+          .reduce((value, element) => value + element)
+          .toDouble();
+
+      updateState(score);
     });
 
-    weightsStream.listen((z) {
-      for (final weight in z) {
-        //
-        if (weight.value >= idealWeight) {
-          calculatedScore += (weight.value / idealWeight) * 10;
-        } else {
-          calculatedScore += (idealWeight - weight.value) * 10;
-        }
-      }
-      updateState(calculatedScore.toInt());
+    weightRepository.findAll(user.id).listen((weights) {
+      final latestWeight = weights
+          .where((weight) => weight.date.isBefore(thresholdDay))
+          .lastOrNull
+          ?.value;
+
+      // 目標との差分はすべて脂肪と仮定.
+      final fatWeight =
+          latestWeight == null ? 0 : user.targetWeight - latestWeight;
+
+      // TODO: Replace constant.
+      const pace = 3; // target pace: 3kg / month
+
+      // Target actual outgoing := fat calory ~ 7200 * fat weight.
+      final targetActualOutgoing = 7200 * max(fatWeight, pace);
+
+      // Decreasing direction only.
+      _targetActualOutgoing = max(0, targetActualOutgoing).toDouble();
+
+      updateState(score);
     });
   }
 
   @override
-  Future<void> execute() async {
-    await calcScore();
-  }
+  Future<void> execute() async {}
 }
