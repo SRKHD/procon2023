@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TrainingState {
   String get userId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get kind => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   int get timestamp => throw _privateConstructorUsedError;
@@ -34,7 +35,12 @@ abstract class $TrainingStateCopyWith<$Res> {
       _$TrainingStateCopyWithImpl<$Res, TrainingState>;
   @useResult
   $Res call(
-      {String userId, String kind, String date, int timestamp, int value});
+      {String userId,
+      String id,
+      String kind,
+      String date,
+      int timestamp,
+      int value});
 }
 
 /// @nodoc
@@ -51,6 +57,7 @@ class _$TrainingStateCopyWithImpl<$Res, $Val extends TrainingState>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? kind = null,
     Object? date = null,
     Object? timestamp = null,
@@ -60,6 +67,10 @@ class _$TrainingStateCopyWithImpl<$Res, $Val extends TrainingState>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       kind: null == kind
           ? _value.kind
@@ -90,7 +101,12 @@ abstract class _$$TrainingStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId, String kind, String date, int timestamp, int value});
+      {String userId,
+      String id,
+      String kind,
+      String date,
+      int timestamp,
+      int value});
 }
 
 /// @nodoc
@@ -105,6 +121,7 @@ class __$$TrainingStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? kind = null,
     Object? date = null,
     Object? timestamp = null,
@@ -114,6 +131,10 @@ class __$$TrainingStateImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       kind: null == kind
           ? _value.kind
@@ -140,6 +161,7 @@ class __$$TrainingStateImplCopyWithImpl<$Res>
 class _$TrainingStateImpl implements _TrainingState {
   _$TrainingStateImpl(
       {required this.userId,
+      required this.id,
       required this.kind,
       required this.date,
       required this.timestamp,
@@ -147,6 +169,8 @@ class _$TrainingStateImpl implements _TrainingState {
 
   @override
   final String userId;
+  @override
+  final String id;
   @override
   final String kind;
   @override
@@ -158,7 +182,7 @@ class _$TrainingStateImpl implements _TrainingState {
 
   @override
   String toString() {
-    return 'TrainingState(userId: $userId, kind: $kind, date: $date, timestamp: $timestamp, value: $value)';
+    return 'TrainingState(userId: $userId, id: $id, kind: $kind, date: $date, timestamp: $timestamp, value: $value)';
   }
 
   @override
@@ -167,6 +191,7 @@ class _$TrainingStateImpl implements _TrainingState {
         (other.runtimeType == runtimeType &&
             other is _$TrainingStateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.timestamp, timestamp) ||
@@ -176,7 +201,7 @@ class _$TrainingStateImpl implements _TrainingState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, userId, kind, date, timestamp, value);
+      Object.hash(runtimeType, userId, id, kind, date, timestamp, value);
 
   @JsonKey(ignore: true)
   @override
@@ -188,6 +213,7 @@ class _$TrainingStateImpl implements _TrainingState {
 abstract class _TrainingState implements TrainingState {
   factory _TrainingState(
       {required final String userId,
+      required final String id,
       required final String kind,
       required final String date,
       required final int timestamp,
@@ -195,6 +221,8 @@ abstract class _TrainingState implements TrainingState {
 
   @override
   String get userId;
+  @override
+  String get id;
   @override
   String get kind;
   @override
