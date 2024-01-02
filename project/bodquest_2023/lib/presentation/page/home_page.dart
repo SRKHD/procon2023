@@ -11,14 +11,12 @@ import '../notifier/evaluation/evaluation_provider.dart';
 import '../router/go_router.dart';
 import '../router/page_path.dart';
 import '../theme/sizes.dart';
-import '../usecaese_provider_module.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final usecase = ref.watch(calculateEvaluationUsecase);
     final evaluationState = ref.watch(evaluationNotifierProvider);
     final tempRank = EvaluationRank.from(evaluationState.rank);
     const tempWeight = 67.5;
