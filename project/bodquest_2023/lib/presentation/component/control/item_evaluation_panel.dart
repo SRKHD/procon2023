@@ -6,16 +6,16 @@ class ItemEvaluationPanel extends StatelessWidget {
   const ItemEvaluationPanel({
     super.key,
     required this.title,
-    required this.perceentBarGraphWidth,
-    required this.perceentBarGraphHeight,
-    required this.perceentBarGraphValue,
+    required this.percentBarGraphWidth,
+    required this.percentBarGraphHeight,
+    required this.percentBarGraphValue,
     required this.onPressed,
   });
 
   final String title;
-  final double perceentBarGraphWidth;
-  final double perceentBarGraphHeight;
-  final int perceentBarGraphValue;
+  final double percentBarGraphWidth;
+  final double percentBarGraphHeight;
+  final int percentBarGraphValue;
 
   /// コールバック
   final VoidCallback onPressed;
@@ -34,10 +34,10 @@ class ItemEvaluationPanel extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         label,
-        PerceentBarGraph(
-          width: perceentBarGraphWidth,
-          height: perceentBarGraphHeight,
-          percentValue: perceentBarGraphValue,
+        PercentBarGraph(
+          width: percentBarGraphWidth,
+          height: percentBarGraphHeight,
+          percentValue: percentBarGraphValue,
           onPressed: onPressed,
         )
       ],
