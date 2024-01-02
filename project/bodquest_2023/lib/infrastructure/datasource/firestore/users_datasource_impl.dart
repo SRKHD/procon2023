@@ -12,13 +12,18 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
         .doc();
 
     FugGetUsersResponse result = FugGetUsersResponse(results: []);
-    usersRef.get().then((docSnapshot) {
-      if (docSnapshot.exists) {
-        result = FugGetUsersResponse.fromJson(docSnapshot.data());
-      } else {
-        throw NetworkException('FirestoreUsersDataSourceImpl getUsers() "/"');
-      }
-    }).catchError((e) => print(e));
+    usersRef
+        .get()
+        .then((docSnapshot) {
+          if (docSnapshot.exists) {
+            result = FugGetUsersResponse.fromJson(docSnapshot.data());
+          } else {
+            throw NetworkException(
+                'FirestoreUsersDataSourceImpl getUsers() "/"');
+          }
+        })
+        .catchError((e) => print(e))
+        .whenComplete(() => print('get user complete'));
     return result;
   }
 

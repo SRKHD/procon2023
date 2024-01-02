@@ -40,14 +40,18 @@ class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
 
   @override
   Future<int> update(String userId, String id, DateTime date, double value) {
-    FirebaseFirestore.instance
-        .collection('weights') // コレクションID
-        .doc(id) // ドキュメントID
-        .update({
-      'userId': userId,
-      'date': Timestamp.fromDate(date),
-      'value': value,
-    }); // データ
+    try {
+      FirebaseFirestore.instance
+          .collection('weights') // コレクションID
+          .doc(id) // ドキュメントID
+          .update({
+        'userId': userId,
+        'date': Timestamp.fromDate(date),
+        'value': value,
+      }); // データ
+    } catch (e) {
+      print(e);
+    }
     return Future.value(0);
   }
 }

@@ -20,7 +20,6 @@ class UserPageState extends ConsumerState<UserPage> {
   @override
   Widget build(BuildContext context) {
     final logInUserState = ref.watch(logInUserNotifierProvider);
-    final userState = ref.watch(userListNotifierProvider);
     return Scaffold(
         body: Center(
             child: Column(
