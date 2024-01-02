@@ -7,7 +7,7 @@ class Meal {
     required this.calorie,
     required this.imageFilePath,
   });
-  final String userId; // 識別ID
+  final String userId; // ユーザーID
   final String name; //名前
   final DateTime date; // 実施日
   final int timestamp; // タイムスタンプ

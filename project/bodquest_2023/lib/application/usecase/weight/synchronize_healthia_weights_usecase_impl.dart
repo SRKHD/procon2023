@@ -11,6 +11,6 @@ class SynchronizeHealthiaWeightsUsecaseImpl
 
   @override
   Future<int> execute(String userId, DateTime date) {
-    return weightRepository.synchronizeHealthiaWeights(userId, date);
+    return weightRepository.synchronizeHealthia(userId, date);
   }
 }

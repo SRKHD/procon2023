@@ -2,7 +2,7 @@ import '../value/user_gender.dart';
 
 /// ユーザー
 class User {
-  final String id; // 識別ID
+  final String id; // ユーザーID
   final String name; // 名前
   final UserGender gender; // 性別
   final String thumbnail; // サムネイルリンク

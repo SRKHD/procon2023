@@ -1,7 +1,7 @@
 import '../value/training_kind.dart';
 
 class Training {
-  final String userId; // 識別ID
+  final String userId; // ユーザーID
   final TrainingKind kind; // トレーニング種類
   final DateTime date; // 実施日
   final int timestamp; // タイムスタンプ
