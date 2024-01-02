@@ -40,9 +40,9 @@ class HomePage extends ConsumerWidget {
               PageId.weightlist.routeName,
             );
           },
-          perceentBarGraphWidth: RawSize.p200,
-          perceentBarGraphHeight: RawSize.p32,
-          perceentBarGraphValue: 77,
+          percentBarGraphWidth: RawSize.p200,
+          percentBarGraphHeight: RawSize.p32,
+          percentBarGraphValue: evaluationState.weightScore,
         ),
         ItemEvaluationPanel(
           title: '運動',
@@ -52,16 +52,16 @@ class HomePage extends ConsumerWidget {
               PageId.traininglist.routeName,
             );
           },
-          perceentBarGraphWidth: RawSize.p200,
-          perceentBarGraphHeight: RawSize.p32,
-          perceentBarGraphValue: 45,
+          percentBarGraphWidth: RawSize.p200,
+          percentBarGraphHeight: RawSize.p32,
+          percentBarGraphValue: evaluationState.exerciseScore,
         ),
         ItemEvaluationPanel(
           title: '食事',
           onPressed: () {},
-          perceentBarGraphWidth: RawSize.p200,
-          perceentBarGraphHeight: RawSize.p32,
-          perceentBarGraphValue: 90,
+          percentBarGraphWidth: RawSize.p200,
+          percentBarGraphHeight: RawSize.p32,
+          percentBarGraphValue: 90,
         ),
         LevelText(
           level: tempLevel,

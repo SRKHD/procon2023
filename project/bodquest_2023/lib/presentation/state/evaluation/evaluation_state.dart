@@ -7,5 +7,7 @@ class EvaluationState with _$EvaluationState {
   factory EvaluationState({
     required String rank,
     required int score,
+    required int weightScore,
+    required int exerciseScore,
   }) = _EvaluationState;
 }

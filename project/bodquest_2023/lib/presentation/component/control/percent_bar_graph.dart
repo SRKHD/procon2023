@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PerceentBarGraph extends StatelessWidget {
-  const PerceentBarGraph({
+class PercentBarGraph extends StatelessWidget {
+  const PercentBarGraph({
     super.key,
     required this.width,
     required this.height,
@@ -33,12 +33,12 @@ class PerceentBarGraph extends StatelessWidget {
       child: null,
     );
 
-    final persentPanel = Stack(
+    final percentPanel = Stack(
       children: [rangeButton, valueButton],
     );
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [persentPanel, Text('$percentValue %')],
+      children: [percentPanel, Text('$percentValue %')],
     );
   }
 }
