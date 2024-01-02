@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class WeightLiteItem extends StatelessWidget {
-  const WeightLiteItem({
+import '../control/editable_card.dart';
+
+class WeightListCard extends StatelessWidget {
+  const WeightListCard({
     super.key,
     required String userId,
     required String date,
@@ -14,8 +16,11 @@ class WeightLiteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text('$_date $_value Kg'),
+    return EditableCard(
+      title: _date,
+      subtitle: '$_value Kg',
+      onPressed: () => {},
+      onPressedDelete: () => {},
     );
   }
 }
