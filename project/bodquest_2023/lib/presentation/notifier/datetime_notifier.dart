@@ -15,8 +15,8 @@ part 'datetime_notifier.g.dart';
 @riverpod
 class DateTimeNotifier extends _$DateTimeNotifier {
   @override
-  DateTime build() {
-    return DateTime.now();
+  DateTime build(DateTime initValue) {
+    return initValue;
   }
 
   // 新しい文字データを保存する

@@ -5,6 +5,7 @@ import '../page/login_page.dart';
 import '../page/myhome_page.dart';
 import '../page/registration_page.dart';
 import '../page/training/training_list_page.dart';
+import '../page/weight/weight_edit_page.dart';
 import '../page/weight/weight_list_page.dart';
 import 'page_path.dart';
 
@@ -38,6 +39,14 @@ final goRouterProvider = Provider(
         builder: (context, state) {
           //final weights = state.pathParameters['weights']!;
           return WeightListPage();
+        },
+      ),
+      GoRoute(
+        path: PageId.weightedit.path,
+        name: PageId.weightedit.routeName,
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return WeightEditPage(id);
         },
       ),
       GoRoute(

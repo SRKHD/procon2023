@@ -6,12 +6,14 @@ import '../application/usecase/training/synchronize_healthia_trainings_usecase_i
 import '../application/usecase/user/update_user_name_impl.dart';
 import '../application/usecase/weight/delete_weight_usecase_impl.dart';
 import '../application/usecase/weight/synchronize_healthia_weights_usecase_impl.dart';
+import '../application/usecase/weight/update_weight_usecase_impl.dart';
 import '../domain/usecase/menu/add_menu_usecase.dart';
 import '../domain/usecase/menu/get_menus_usecase.dart';
 import '../domain/usecase/training/synchronize_healthia_trainings_usecase.dart';
 import '../domain/usecase/user/update_user_name_usecase.dart';
 import '../domain/usecase/weight/delete_weight_usecase.dart';
 import '../domain/usecase/weight/synchronize_healthia_weights_usecase.dart';
+import '../domain/usecase/weight/update_weight_usecase.dart';
 import 'notifier/evaluation/evaluation_provider.dart';
 import 'repository_module.dart';
 import '../application/usecase/evaluation/calculate_evaluation_impl.dart';
@@ -87,6 +89,12 @@ final addWeightUsecaseProvider = Provider<IAddWeightUsecase>(
 
 final deleteWeightUsecaseProvider = Provider<IDeleteWeightUsecase>(
   (ref) => DeleteWeightUsecaseImpl(
+    repository: ref.watch(weightRepositoryProvider),
+  ),
+);
+
+final updateWeightUsecaseProvider = Provider<IUpdateWeightUsecase>(
+  (ref) => UpdateWeightUsecaseImpl(
     repository: ref.watch(weightRepositoryProvider),
   ),
 );

@@ -5,6 +5,7 @@ import '../../../domain/usecase/user/get_login_user_usecase.dart';
 import '../../../domain/usecase/weight/delete_weight_usecase.dart';
 import '../../../domain/usecase/weight/get_weights_usecase.dart';
 import '../../../domain/usecase/weight/synchronize_healthia_weights_usecase.dart';
+import '../../../domain/usecase/weight/update_weight_usecase.dart';
 import '../../state/weight/weight_state.dart';
 
 class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
@@ -12,13 +13,15 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
     required IGetLogInUserUsecase getLogInUserUsecase,
     required IGetWeightsUsecase getWeightsUsecase,
     required IAddWeightUsecase addWeightUsecase,
-    required IDeleteWeightUsecase deleteWeightsUsecase,
+    required IDeleteWeightUsecase deleteWeightUsecase,
+    required IUpdateWeightUsecase updateWeightUsecase,
     required ISynchronizeHealthiaWeightsUsecase
         synchronizeHealthiaWeightUsecase,
   })  : _getLogInUserUsecase = getLogInUserUsecase,
         _getWeightsUsecase = getWeightsUsecase,
-        _addWeightsUsecase = addWeightUsecase,
-        _deleteWeightsUsecase = deleteWeightsUsecase,
+        _addWeightUsecase = addWeightUsecase,
+        _deleteWeightUsecase = deleteWeightUsecase,
+        _updateWeightUsecase = updateWeightUsecase,
         _synchronizeHealthiaWeightUsecase = synchronizeHealthiaWeightUsecase,
         super(const AsyncLoading()) {
     _getLogInUserUsecase.execute().then((value) => _fetch(value.id));
@@ -26,8 +29,9 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
 
   final IGetLogInUserUsecase _getLogInUserUsecase;
   final IGetWeightsUsecase _getWeightsUsecase;
-  final IAddWeightUsecase _addWeightsUsecase;
-  final IDeleteWeightUsecase _deleteWeightsUsecase;
+  final IAddWeightUsecase _addWeightUsecase;
+  final IDeleteWeightUsecase _deleteWeightUsecase;
+  final IUpdateWeightUsecase _updateWeightUsecase;
   final ISynchronizeHealthiaWeightsUsecase _synchronizeHealthiaWeightUsecase;
 
   /// 一覧の同期
@@ -43,14 +47,23 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
     DateTime date,
     double value,
   ) {
-    _addWeightsUsecase.execute(userId, date, value);
+    _addWeightUsecase.execute(userId, date, value);
   }
 
   void delete(
     String userId,
     String id,
   ) {
-    _deleteWeightsUsecase.execute(userId, id);
+    _deleteWeightUsecase.execute(userId, id);
+  }
+
+  void update(
+    String userId,
+    String id,
+    DateTime date,
+    double value,
+  ) {
+    _updateWeightUsecase.execute(userId, id, date, value);
   }
 
   void synchronizeHealthia(

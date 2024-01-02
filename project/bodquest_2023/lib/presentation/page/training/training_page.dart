@@ -37,7 +37,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
 
     print(logInUserState.userId);
     print(logInUserState.userName);
-    final dateState = ref.watch(dateTimeNotifierProvider);
+    final dateState = ref.watch(dateTimeNotifierProvider(DateTime.now()));
 
     final textField = NumberTextField(
       controller: _controller,
@@ -65,7 +65,8 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
 
       if (picked != null) {
         setState(() {
-          final notifier = ref.watch(dateTimeNotifierProvider.notifier);
+          final notifier =
+              ref.watch(dateTimeNotifierProvider(dateState).notifier);
           notifier.update(picked);
         });
       }

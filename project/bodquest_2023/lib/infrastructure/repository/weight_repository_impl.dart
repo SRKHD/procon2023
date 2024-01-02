@@ -62,4 +62,9 @@ class WeightRepositoryImpl implements IWeightRepository {
   Future<int> delete(String userId, String id) {
     return fireStoreDataSource.delete(userId, id);
   }
+
+  @override
+  Future<int> update(String userId, String id, DateTime date, double value) {
+    return fireStoreDataSource.update(userId, id, date, value);
+  }
 }

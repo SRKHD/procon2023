@@ -4,6 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../component/weight/weight_chart.dart';
 import '../../notifier/weight/weight_list_provider.dart';
 import '../../component/weight/weight_listview.dart';
+import '../../router/go_router.dart';
+import '../../router/page_path.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 
@@ -20,7 +22,7 @@ class WeightListPage extends ConsumerWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: BrandColor.moriGreen,
-            title: const Text(L10n.weightlist),
+            title: const Text(L10n.list),
           ),
           body: Column(
             children: [
@@ -29,7 +31,13 @@ class WeightListPage extends ConsumerWidget {
                 flex: 2,
                 child: WeightListView(
                   weights: weights,
-                  onPressed: (userId, id) => {},
+                  onPressed: (userId, id) {
+                    final router = ref.read(goRouterProvider);
+                    router.pushNamed(
+                      PageId.weightedit.routeName,
+                      pathParameters: {'id': id},
+                    );
+                  },
                   onPressedDelete: (userId, id) => notifier.delete(userId, id),
                 ),
               ),

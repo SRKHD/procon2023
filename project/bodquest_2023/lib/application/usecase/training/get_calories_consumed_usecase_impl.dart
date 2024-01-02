@@ -1,7 +1,6 @@
-import 'package:bodquest_2023/domain/value/training_kind.dart';
-
 import '../../../domain/entity/training.dart';
 import '../../../domain/usecase/training/get_calories_consumed_usecase.dart';
+import '../../../domain/value/training_kind.dart';
 
 class GetCaloriesConsumedUsecaseImpl implements IGetCaloriesConsumedUsecase {
   @override

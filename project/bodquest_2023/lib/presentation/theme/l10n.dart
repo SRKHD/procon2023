@@ -7,7 +7,7 @@
 
 /// 文言一覧
 class L10n {
-  static const weightlist = '体重一覧';
+  static const list = '一覧';
   static const edit = '編集';
   static const createNew = '新規作成';
   static const delete = '削除';

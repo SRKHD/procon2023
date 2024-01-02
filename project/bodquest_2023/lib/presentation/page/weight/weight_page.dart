@@ -1,8 +1,8 @@
-import 'package:bodquest_2023/presentation/component/weight/weight_list_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../component/control/number_textfield.dart';
+import '../../component/weight/weight_list_button.dart';
 import '../../notifier/datetime_notifier.dart';
 import '../../notifier/text_notifier.dart';
 import '../../notifier/user/login_user_provider.dart';
@@ -30,7 +30,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(weightListNotifierProvider);
     final logInUserState = ref.watch(logInUserNotifierProvider);
-    final dateState = ref.watch(dateTimeNotifierProvider);
+    final dateState = ref.watch(dateTimeNotifierProvider(DateTime.now()));
 
     final textField = NumberTextField(
       controller: _controller,
@@ -49,7 +49,8 @@ class WeightPageState extends ConsumerState<WeightPage> {
 
       if (picked != null) {
         setState(() {
-          final notifier = ref.watch(dateTimeNotifierProvider.notifier);
+          final notifier =
+              ref.watch(dateTimeNotifierProvider(dateState).notifier);
           notifier.update(picked);
         });
       }
@@ -95,7 +96,6 @@ class WeightPageState extends ConsumerState<WeightPage> {
       final router = ref.read(goRouterProvider);
       router.pushNamed(
         PageId.weightlist.routeName,
-        //pathParameters: {'id': memo.id},
       );
     });
 

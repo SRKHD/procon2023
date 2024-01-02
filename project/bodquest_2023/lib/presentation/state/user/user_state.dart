@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/util/datetime_utils.dart';
 import '../../../domain/entity/user.dart';
 
 part 'user_state.freezed.dart';
@@ -17,8 +18,7 @@ class UserState with _$UserState {
     return UserState(
       name: user.name,
       thumbnailLink: user.thumbnail,
-      birthday:
-          '${user.birthday.year}年${user.birthday.month}月${user.birthday.day}日',
+      birthday: toJPNDateString(user.birthday),
       height: user.height,
     );
   }

@@ -1,8 +1,6 @@
-import 'package:bodquest_2023/domain/usecase/training/get_trainings_usecase.dart';
-import 'package:bodquest_2023/domain/value/user_gender.dart';
-
 import '../../../domain/entity/user.dart';
 import '../../../domain/usecase/user/get_ideal_usecase.dart';
+import '../../../domain/value/user_gender.dart';
 
 class GetIdealUsecaseImpl implements IGetIdealUsecase {
   @override
