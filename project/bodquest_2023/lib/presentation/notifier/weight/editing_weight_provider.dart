@@ -1,8 +1,8 @@
-import 'package:bodquest_2023/presentation/notifier/weight/weight_list_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/weight/weight_state.dart';
 import 'editing_weight_notifier.dart';
+import 'weight_list_provider.dart';
 
 final editingWeightNotifierProvider =
     StateNotifierProvider.family<EditingWeightNotifier, WeightState, String>(
