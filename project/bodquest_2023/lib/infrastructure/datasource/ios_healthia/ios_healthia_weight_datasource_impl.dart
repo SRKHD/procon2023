@@ -64,6 +64,7 @@ class IOSHealthiaWeightDatasourceImpl implements IiOSHealthiaWeightDatasource {
             // 結果をスナップ出力する
             for (var x in _healthDataList) {
               items.add(FugWeight(
+                id: '', // 自動生成されるので不要
                 userId: userId,
                 date: x.dateFrom,
                 timestamp: 0,
