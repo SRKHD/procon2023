@@ -17,7 +17,6 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final usecase = ref.watch(calculateEvaluationUsecase);
-    usecase.execute();
     final evaluationState = ref.watch(evaluationNotifierProvider);
     final tempRank = EvaluationRank.from(evaluationState.rank);
     const tempWeight = 67.5;
