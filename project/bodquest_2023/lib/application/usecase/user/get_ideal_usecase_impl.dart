@@ -4,7 +4,7 @@ import '../../../domain/value/user_gender.dart';
 
 class GetIdealUsecaseImpl implements IGetIdealUsecase {
   @override
-  Future<int> getEstimatedEnergyRequirements(User target) {
+  Future<int> getBaseEnergyExpenditure(User target) {
     // 一日の総消費カロリー(Total Daily Energy Expenditure: TDEE)
     return getBasalMetabolism(target).then(
         (basalMetabolism) => (1.2 * basalMetabolism).toInt()); // ほぼ運動しないと仮定。

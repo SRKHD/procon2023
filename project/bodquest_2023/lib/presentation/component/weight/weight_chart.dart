@@ -16,6 +16,7 @@ class WeightChart extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
+      flex: 1,
       child: ScrollableLineChart(
         dataSeries: weights,
         fx: (weight) => weight.timestamp.toDouble(),

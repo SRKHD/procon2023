@@ -4,13 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/util/datetime_utils.dart';
 import '../../component/control/number_textfield.dart';
 import '../../notifier/datetime_notifier.dart';
-import '../../notifier/evaluation/evaluation_provider.dart';
 import '../../notifier/text_notifier.dart';
-import '../../notifier/user/login_user_provider.dart';
 import '../../notifier/weight/editing_weight_provider.dart';
-import '../../notifier/weight/weight_list_provider.dart';
-import '../../router/go_router.dart';
-import '../../router/page_path.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 

@@ -43,6 +43,7 @@ class EditableCard extends ConsumerWidget {
     final textArea = Container(
       alignment: Alignment.centerLeft,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             title,
@@ -52,7 +53,7 @@ class EditableCard extends ConsumerWidget {
           ),
           Text(
             subtitle,
-            textAlign: TextAlign.right,
+            textAlign: TextAlign.left,
             style: BrandText.bodyS,
             maxLines: 1,
           ),

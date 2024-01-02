@@ -28,6 +28,7 @@ class WeightListPage extends ConsumerWidget {
             children: [
               WeightChart(weights: weights),
               Expanded(
+                flex: 2,
                 child: WeightListView(
                   weights: weights,
                   onPressed: (userId, id) {
