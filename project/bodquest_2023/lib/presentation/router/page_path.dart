@@ -4,6 +4,7 @@ enum PageId {
   registration,
   main,
   weightlist,
+  weightedit,
   traininglist,
 }
 
@@ -14,6 +15,7 @@ extension PagePath on PageId {
         PageId.registration => '/registration',
         PageId.main => '/main',
         PageId.weightlist => '/weight/list',
+        PageId.weightedit => '/weight/edit/:id',
         PageId.traininglist => '/training/list',
       };
 }
@@ -25,6 +27,7 @@ extension PageName on PageId {
         PageId.registration => 'registration',
         PageId.main => 'main',
         PageId.weightlist => 'weightlist',
+        PageId.weightedit => 'weightedit',
         PageId.traininglist => 'traininglist',
       };
 }

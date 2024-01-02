@@ -15,3 +15,14 @@ DateTime getPreWeek(DateTime baseDate) {
 DateTime getDayOnly(DateTime baseDate) {
   return DateTime(baseDate.year, baseDate.month, baseDate.day);
 }
+
+DateTime toDate(String value) {
+  var s = value.split('年');
+  final year = int.parse(s[0]);
+  s = s[1].split('月');
+  final month = int.parse(s[0]);
+  s = s[1].split('日');
+  final day = int.parse(s[0]);
+
+  return DateTime(year, month, day);
+}
