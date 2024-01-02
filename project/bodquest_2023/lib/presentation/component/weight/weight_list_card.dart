@@ -5,22 +5,33 @@ import '../control/editable_card.dart';
 class WeightListCard extends StatelessWidget {
   const WeightListCard({
     super.key,
-    required String userId,
-    required String date,
-    required double value,
-  })  : _date = date,
-        _value = value;
+    required this.userId,
+    required this.id,
+    required this.date,
+    required this.value,
+    required this.onPressed,
+    required this.onPressedDelete,
+  });
+  final String userId;
+  final String id;
+  final String date;
+  final double value;
 
-  final String _date;
-  final double _value;
+  /// コールバック カード選択
+  final Function(String, String) onPressed;
+
+  /// コールバック 削除
+  final Function(String, String) onPressedDelete;
 
   @override
   Widget build(BuildContext context) {
     return EditableCard(
-      title: _date,
-      subtitle: '$_value Kg',
-      onPressed: () => {},
-      onPressedDelete: () => {},
+      userId: userId,
+      id: id,
+      title: date,
+      subtitle: '$value Kg',
+      onPressed: onPressed,
+      onPressedDelete: onPressedDelete,
     );
   }
 }

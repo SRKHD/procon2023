@@ -8,6 +8,8 @@ import 'delete_button.dart';
 
 class EditableCard extends ConsumerWidget {
   const EditableCard({
+    required this.userId,
+    required this.id,
     required this.title,
     required this.subtitle,
     required this.onPressed,
@@ -15,14 +17,16 @@ class EditableCard extends ConsumerWidget {
     super.key,
   });
 
+  final String userId;
+  final String id;
   final String title;
   final String subtitle;
 
-  /// コールバック
-  final VoidCallback onPressed;
+  /// コールバック カード選択
+  final Function(String, String) onPressed;
 
   /// コールバック 削除
-  final VoidCallback onPressedDelete;
+  final Function(String, String) onPressedDelete;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -64,7 +68,7 @@ class EditableCard extends ConsumerWidget {
       child: Row(
         children: [
           const Spacer(),
-          DeleteButton(onPressed: onPressedDelete),
+          DeleteButton(onPressed: () => onPressedDelete(userId, id)),
         ],
       ),
     );
@@ -95,7 +99,7 @@ class EditableCard extends ConsumerWidget {
     return Card(
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: onPressed,
+        onTap: () => onPressed(userId, id),
         child: layouts,
       ),
     );

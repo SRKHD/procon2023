@@ -6,18 +6,18 @@ import 'weights_datasource.dart';
 
 class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
   @override
-  Stream<FugGetWeightsResponse> getWeights(String userId) {
+  Stream<FugGetWeightsResponse> get(String userId) {
     return FirebaseFirestore.instance
         .collection('weights')
         .where('userId', isEqualTo: userId)
         .snapshots()
         .map((value) => FugGetWeightsResponse(results: [
-              ...value.docs.map((doc) => FugWeight.fromJson(doc.data()))
+              ...value.docs.map((doc) => FugWeight.fromJson(doc.id, doc.data()))
             ]));
   }
 
   @override
-  Future<int> addWeight(String userId, DateTime date, double value) async {
+  Future<int> add(String userId, DateTime date, double value) async {
     await FirebaseFirestore.instance
         .collection('weights') // コレクションID
         .doc() // ドキュメントID
@@ -27,5 +27,14 @@ class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
       'value': value,
     }); // データ
     return 0;
+  }
+
+  @override
+  Future<int> delete(String userId, String id) {
+    FirebaseFirestore.instance
+        .collection('weights') // コレクションID
+        .doc(id)
+        .delete(); // ドキュメントID
+    return Future.value(0);
   }
 }

@@ -13,6 +13,7 @@ class WeightListPage extends ConsumerWidget {
   @override
   Widget build(context, WidgetRef ref) {
     final state = ref.watch(weightListNotifierProvider);
+    final notifier = ref.watch(weightListNotifierProvider.notifier);
     return state.when(
       data: (weights) {
         weights.sort((a, b) => a.timestamp.compareTo(b.timestamp));
@@ -27,6 +28,8 @@ class WeightListPage extends ConsumerWidget {
               Expanded(
                 child: WeightListView(
                   weights: weights,
+                  onPressed: (userId, id) => {},
+                  onPressedDelete: (userId, id) => notifier.delete(userId, id),
                 ),
               ),
             ],

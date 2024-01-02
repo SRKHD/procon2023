@@ -70,8 +70,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
       onPressed: () {
         final text = ref.watch(textNotifierProvider);
         final notifier = ref.read(weightListNotifierProvider.notifier);
-        notifier.addWeight(
-            logInUserState.userId, dateState, double.parse(text));
+        notifier.add(logInUserState.userId, dateState, double.parse(text));
         _controller.text = '';
       },
       label: Text('登録'),

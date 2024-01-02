@@ -21,7 +21,7 @@ class WeightRepositoryImpl implements IWeightRepository {
   @override
   Stream<List<Weight>> findAll(String userId) {
     try {
-      return fireStoreDataSource.getWeights(userId).map((event) =>
+      return fireStoreDataSource.get(userId).map((event) =>
           [...event.results.map((res) => weightFactory.createFromModel(res))]);
     } catch (e) {
       rethrow;
@@ -29,14 +29,14 @@ class WeightRepositoryImpl implements IWeightRepository {
   }
 
   @override
-  Future<int> addWeight(String userId, DateTime date, double value) {
-    return fireStoreDataSource.addWeight(userId, date, value);
+  Future<int> add(String userId, DateTime date, double value) {
+    return fireStoreDataSource.add(userId, date, value);
   }
 
   @override
-  Future<int> synchronizeHealthiaWeights(String userId, DateTime date) async {
+  Future<int> synchronizeHealthia(String userId, DateTime date) async {
     final prevMonth = getPrevMonth(date);
-    final stream = fireStoreDataSource.getWeights(userId);
+    final stream = fireStoreDataSource.get(userId);
     stream.listen(
       (event) {
         for (var element in event.results) {
@@ -51,10 +51,15 @@ class WeightRepositoryImpl implements IWeightRepository {
         if (_registeredDates.contains(value.date)) continue;
 
         if (value.date.isAfter(prevMonth)) {
-          addWeight(userId, value.date, value.value);
+          add(userId, value.date, value.value);
         }
       }
     });
     return Future.value(0);
+  }
+
+  @override
+  Future<int> delete(String userId, String id) {
+    return fireStoreDataSource.delete(userId, id);
   }
 }
