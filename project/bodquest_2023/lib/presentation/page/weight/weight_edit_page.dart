@@ -76,7 +76,7 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
 
         final resisterButton = ElevatedButton.icon(
           onPressed: () {
-            final text = ref.watch(textNotifierProvider);
+            final text = _controller.text; //ref.watch(textNotifierProvider);
             final notifier = ref.read(weightListNotifierProvider.notifier);
 
             notifier.update(
