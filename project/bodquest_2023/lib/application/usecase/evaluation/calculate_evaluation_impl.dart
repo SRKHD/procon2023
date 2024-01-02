@@ -13,13 +13,14 @@ import '../../../presentation/notifier/evaluation/evaluation_notifier.dart';
 
 class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   double _outgoing = 0;
+  double _basalOutgoing = 0;
   double _incoming = 0;
   double _targetActualOutgoing = 0;
   int _weightScore = 0;
   int _exerciseScore = 0;
 
   int get score {
-    final actualOutgoing = _outgoing - _incoming;
+    final actualOutgoing = _outgoing + _basalOutgoing - _incoming;
 
     final rate = _targetActualOutgoing == 0
         ? 1.0
@@ -88,6 +89,9 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
 
   Future<void> calcScore() async {
     var user = await getLogInUserUsecase.execute();
+
+    _basalOutgoing =
+        (await getIdealUsecase.getBaseEnergyExpenditure(user)).toDouble();
 
     // 今月一日
     final thresholdDay = _oneDayThisMonth();
