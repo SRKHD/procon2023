@@ -6,6 +6,10 @@ import 'evaluation_notifier.dart';
 
 final evaluationNotifierProvider =
     StateNotifierProvider<EvaluationNotifier, EvaluationState>(
-  (ref) => EvaluationNotifier(
-      EvaluationState(rank: EvaluationRank.g.value, score: 0)),
+  (ref) => EvaluationNotifier(EvaluationState(
+    rank: EvaluationRank.g.value,
+    score: 0,
+    weightScore: 0,
+    exerciseScore: 0,
+  )),
 );
