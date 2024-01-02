@@ -9,6 +9,7 @@ part 'training_state.freezed.dart';
 class TrainingState with _$TrainingState {
   factory TrainingState({
     required String userId,
+    required String id,
     required String kind,
     required String date,
     required int timestamp,
@@ -18,6 +19,7 @@ class TrainingState with _$TrainingState {
   factory TrainingState.fromEntity(Training target) {
     return TrainingState(
       userId: target.userId,
+      id: target.id,
       kind: target.kind.name,
       date: toJPNDateString(target.date),
       timestamp: target.timestamp,

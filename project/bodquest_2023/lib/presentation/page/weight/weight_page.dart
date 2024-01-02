@@ -11,7 +11,9 @@ import '../../router/go_router.dart';
 import '../../router/page_path.dart';
 
 class WeightPage extends ConsumerStatefulWidget {
-  const WeightPage({super.key});
+  WeightPage({super.key});
+
+  final initDate = DateTime.now();
 
   @override
   WeightPageState createState() => WeightPageState();
@@ -30,7 +32,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(weightListNotifierProvider);
     final logInUserState = ref.watch(logInUserNotifierProvider);
-    final dateState = ref.watch(dateTimeNotifierProvider(DateTime.now()));
+    final dateState = ref.watch(dateTimeNotifierProvider(widget.initDate));
 
     final textField = NumberTextField(
       controller: _controller,

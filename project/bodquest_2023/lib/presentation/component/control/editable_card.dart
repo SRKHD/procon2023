@@ -5,6 +5,7 @@ import '../../theme/colors.dart';
 import '../../theme/fonts.dart';
 import '../../theme/sizes.dart';
 import 'delete_button.dart';
+import 'status_image.dart';
 
 class EditableCard extends ConsumerWidget {
   const EditableCard({
@@ -12,6 +13,7 @@ class EditableCard extends ConsumerWidget {
     required this.id,
     required this.title,
     required this.subtitle,
+    required this.imagePath,
     required this.onPressed,
     required this.onPressedDelete,
     super.key,
@@ -21,6 +23,7 @@ class EditableCard extends ConsumerWidget {
   final String id;
   final String title;
   final String subtitle;
+  final String imagePath;
 
   /// コールバック カード選択
   final Function(String, String) onPressed;
@@ -36,7 +39,7 @@ class EditableCard extends ConsumerWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.all(RawSize.p8),
       color: BrandColor.moriGreen,
-      //child: StatusImage(status: memo.status),
+      child: StatusImage(path: imagePath),
     );
 
     /// 文字を表示するエリア

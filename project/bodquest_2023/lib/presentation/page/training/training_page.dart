@@ -14,7 +14,9 @@ import '../../router/go_router.dart';
 import '../../router/page_path.dart';
 
 class TrainingPage extends ConsumerStatefulWidget {
-  const TrainingPage({super.key});
+  TrainingPage({super.key});
+
+  final initDate = DateTime.now();
 
   @override
   TrainingPageState createState() => TrainingPageState();
@@ -32,12 +34,13 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
   @override
   Widget build(BuildContext context) {
     final trainingState = ref.watch(trainingListNotifierProvider);
-    final kindState = ref.watch(trainingKindNotifierProvider);
+    final kindState =
+        ref.watch(trainingKindNotifierProvider(TrainingKind.walk));
     final logInUserState = ref.watch(logInUserNotifierProvider);
 
     print(logInUserState.userId);
     print(logInUserState.userName);
-    final dateState = ref.watch(dateTimeNotifierProvider(DateTime.now()));
+    final dateState = ref.watch(dateTimeNotifierProvider(widget.initDate));
 
     final textField = NumberTextField(
       controller: _controller,
@@ -125,7 +128,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                TrainingKindDropdown(),
+                TrainingKindDropdown(kindState),
                 calenderComponents,
                 textComponents,
                 buttons,

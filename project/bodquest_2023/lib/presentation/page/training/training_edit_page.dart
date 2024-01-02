@@ -2,24 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/util/datetime_utils.dart';
+import '../../component/component_types.dart';
 import '../../component/control/number_textfield.dart';
+import '../../component/training/training_kind_dropdown.dart';
 import '../../notifier/datetime_notifier.dart';
+import '../../notifier/training/training_list_provider.dart';
 import '../../notifier/text_notifier.dart';
-import '../../notifier/weight/weight_list_provider.dart';
+import '../../notifier/training/training_kind_notifier.dart';
 import '../../router/go_router.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 
-class WeightEditPage extends ConsumerStatefulWidget {
-  const WeightEditPage(this.id, {super.key});
+class TrainingEditPage extends ConsumerStatefulWidget {
+  const TrainingEditPage(this.id, {super.key});
 
   final String id;
 
   @override
-  WeightEditPageState createState() => WeightEditPageState();
+  TrainingEditPageState createState() => TrainingEditPageState();
 }
 
-class WeightEditPageState extends ConsumerState<WeightEditPage> {
+class TrainingEditPageState extends ConsumerState<TrainingEditPage> {
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -30,20 +33,32 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    final itemsState = ref.watch(weightListNotifierProvider);
-    final textField = NumberTextField(
-      controller: _controller,
-      notifier: ref.watch(textNotifierProvider.notifier),
-      labelText: '体重',
-      hintText: '体重を入力',
-    );
+    final trainingState = ref.watch(trainingListNotifierProvider);
 
-    return itemsState.when(
-      data: (weights) {
-        final state = weights.firstWhere((element) => element.id == widget.id);
+    return trainingState.when(
+      data: (trainings) {
+        final state =
+            trainings.firstWhere((element) => element.id == widget.id);
         DateTime date = toDate(state.date);
-        final dateState = ref.watch(dateTimeNotifierProvider(date));
+        DateTime dateState = ref.watch(dateTimeNotifierProvider(date));
+        TrainingKind kindState = ref
+            .watch(trainingKindNotifierProvider(TrainingKind.from(state.kind)));
         _controller.text = state.value.toString();
+        final textField = NumberTextField(
+          controller: _controller,
+          notifier: ref.watch(textNotifierProvider.notifier),
+          labelText: 'トレーニング量',
+          hintText: switch (kindState) {
+            TrainingKind.walk => '歩いた歩数',
+            TrainingKind.run => '走った距離(m)',
+            TrainingKind.workOut => '筋トレ時間(分)',
+          },
+        );
+
+        final textComponents = SizedBox(
+          width: 300,
+          child: textField,
+        );
 
         Future<void> selectDate(BuildContext context) async {
           final DateTime? picked = await showDatePicker(
@@ -55,9 +70,9 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
 
           if (picked != null) {
             setState(() {
-              final dateNotifier =
+              final notifier =
                   ref.watch(dateTimeNotifierProvider(dateState).notifier);
-              dateNotifier.update(picked);
+              notifier.update(picked);
             });
           }
         }
@@ -77,10 +92,10 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
         final updateButton = ElevatedButton.icon(
           onPressed: () {
             final text = _controller.text; //ref.watch(textNotifierProvider);
-            final notifier = ref.read(weightListNotifierProvider.notifier);
+            final notifier = ref.read(trainingListNotifierProvider.notifier);
 
-            notifier.update(
-                state.userId, state.id, dateState, double.parse(text));
+            notifier.update(state.userId, state.id, kindState.value, dateState,
+                int.parse(text));
 
             final router = ref.read(goRouterProvider);
             router.pop();
@@ -103,8 +118,9 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                TrainingKindDropdown(kindState),
                 calenderComponents,
-                textField,
+                textComponents,
                 buttons,
               ],
             ),
