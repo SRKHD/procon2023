@@ -30,7 +30,7 @@ class WeightPageState extends ConsumerState<WeightPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(weightListNotifierProvider);
     final logInUserState = ref.watch(logInUserNotifierProvider);
-    final dateState = ref.watch(dateTimeNotifierProvider);
+    final dateState = ref.watch(dateTimeNotifierProvider(DateTime.now()));
 
     final textField = NumberTextField(
       controller: _controller,
@@ -49,7 +49,8 @@ class WeightPageState extends ConsumerState<WeightPage> {
 
       if (picked != null) {
         setState(() {
-          final notifier = ref.watch(dateTimeNotifierProvider.notifier);
+          final notifier =
+              ref.watch(dateTimeNotifierProvider(dateState).notifier);
           notifier.update(picked);
         });
       }

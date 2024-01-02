@@ -4,4 +4,5 @@ abstract interface class IFirestoreWeightsDataSource {
   Stream<FugGetWeightsResponse> get(String userId);
   Future<int> add(String userId, DateTime date, double value);
   Future<int> delete(String userId, String id);
+  Future<int> update(String userId, String id, DateTime date, double value);
 }

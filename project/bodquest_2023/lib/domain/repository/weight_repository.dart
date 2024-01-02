@@ -14,6 +14,13 @@ abstract interface class IWeightRepository {
     String id,
   );
 
+  Future<int> update(
+    String userId,
+    String id,
+    DateTime date,
+    double value,
+  );
+
   Future<int> synchronizeHealthia(
     String userId,
     DateTime date,

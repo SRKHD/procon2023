@@ -5,7 +5,8 @@ import '../../../core/util/datetime_utils.dart';
 import '../../component/control/number_textfield.dart';
 import '../../notifier/datetime_notifier.dart';
 import '../../notifier/text_notifier.dart';
-import '../../notifier/weight/editing_weight_provider.dart';
+import '../../notifier/weight/weight_list_provider.dart';
+import '../../router/go_router.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 
@@ -28,11 +29,7 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(editingWeightNotifierProvider(widget.id));
-    //final logInUserState = ref.watch(logInUserNotifierProvider);
-    final date = toDate(state.date);
-    _controller.text = state.value.toString();
-
+    final itemsState = ref.watch(weightListNotifierProvider);
     final textField = NumberTextField(
       controller: _controller,
       notifier: ref.watch(textNotifierProvider.notifier),
@@ -40,64 +37,92 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
       hintText: '体重を入力',
     );
 
-    Future<void> selectDate(BuildContext context) async {
-      final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: date,
-        firstDate: DateTime(2020),
-        lastDate: DateTime(2025),
-      );
+    return itemsState.when(
+      data: (weights) {
+        final state = weights.firstWhere((element) => element.id == widget.id);
+        DateTime date = toDate(state.date);
+        final dateState = ref.watch(dateTimeNotifierProvider(date));
+        _controller.text = state.value.toString();
 
-      if (picked != null) {
-        setState(() {
-          final notifier = ref.watch(dateTimeNotifierProvider.notifier);
-          notifier.update(picked);
-        });
-      }
-    }
+        Future<void> selectDate(BuildContext context) async {
+          final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: dateState,
+            firstDate: DateTime(2020),
+            lastDate: DateTime(2025),
+          );
 
-    final calenderComponents = Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('選択した日付: ${date.year}/${date.month}/${date.day}'),
-        ElevatedButton(
-          onPressed: () => selectDate(context),
-          child: const Text('日付選択'),
-        ),
-      ],
-    );
+          if (picked != null) {
+            setState(() {
+              final dateNotifier =
+                  ref.watch(dateTimeNotifierProvider(dateState).notifier);
+              //date = picked;
+              dateNotifier.update(picked);
+            });
+          }
+        }
 
-    final resisterButton = ElevatedButton.icon(
-      onPressed: () {
-        // final text = ref.watch(textNotifierProvider);
-        // final notifier = ref.read(weightListNotifierProvider.notifier);
-        //notifier.add(logInUserState.userId, dateState, double.parse(text));
-        //_controller.text = '';
-      },
-      label: Text('更新'),
-      icon: const Icon(Icons.add),
-    );
-
-    final buttons = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [resisterButton],
-    );
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: BrandColor.moriGreen,
-        title: const Text(L10n.edit),
-      ),
-      body: Center(
-        child: Column(
+        final calenderComponents = Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            calenderComponents,
-            textField,
-            buttons,
+          children: [
+            Text(
+                '選択した日付: ${dateState.year}/${dateState.month}/${dateState.day}'),
+            ElevatedButton(
+              onPressed: () => selectDate(context),
+              child: const Text('日付選択'),
+            ),
           ],
-        ),
-      ),
+        );
+
+        final resisterButton = ElevatedButton.icon(
+          onPressed: () {
+            final text = ref.watch(textNotifierProvider);
+            final notifier = ref.read(weightListNotifierProvider.notifier);
+
+            notifier.update(
+                state.userId, state.id, dateState, double.parse(text));
+
+            final router = ref.read(goRouterProvider);
+            router.pop();
+          },
+          label: Text('更新'),
+          icon: const Icon(Icons.autorenew),
+        );
+
+        final buttons = Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [resisterButton],
+        );
+
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: BrandColor.moriGreen,
+            title: const Text(L10n.edit),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                calenderComponents,
+                textField,
+                buttons,
+              ],
+            ),
+          ),
+        );
+      },
+      error: (error, _) {
+        return Center(
+          child: Text(
+            error.toString(),
+          ),
+        );
+      },
+      loading: () {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }
