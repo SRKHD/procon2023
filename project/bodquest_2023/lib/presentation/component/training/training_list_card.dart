@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/images.dart';
 import '../component_types.dart';
 import '../control/editable_card.dart';
 
@@ -29,14 +30,20 @@ class TrainingListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _kind = TrainingKind.from(kind);
     return EditableCard(
       userId: userId,
       id: id,
       title: date,
-      subtitle: switch (TrainingKind.from(kind)) {
+      subtitle: switch (_kind) {
         TrainingKind.walk => 'ウォーキング　　$value 歩',
         TrainingKind.run => 'ランニング　　$value m',
         TrainingKind.workOut => '筋トレ　　$value 分',
+      },
+      imagePath: switch (_kind) {
+        TrainingKind.walk => BrandImage.trainingWalk.path,
+        TrainingKind.run => BrandImage.trainingRun.path,
+        TrainingKind.workOut => BrandImage.trainingWorkOut.path,
       },
       onPressed: onPressed,
       onPressedDelete: onPressedDelete,

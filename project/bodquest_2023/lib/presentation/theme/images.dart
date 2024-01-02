@@ -14,3 +14,14 @@ enum RankImage {
   final String name;
   String get path => 'assets/images/$name';
 }
+
+enum BrandImage {
+  trainingWalk('training_walk.png'),
+  trainingRun('training_run.png'),
+  trainingWorkOut('training_workout.png');
+
+  const BrandImage(this.name);
+
+  final String name;
+  String get path => 'assets/images/$name';
+}

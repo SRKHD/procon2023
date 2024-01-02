@@ -30,6 +30,7 @@ class WeightListCard extends StatelessWidget {
       id: id,
       title: date,
       subtitle: '$value Kg',
+      imagePath: '',
       onPressed: onPressed,
       onPressedDelete: onPressedDelete,
     );
