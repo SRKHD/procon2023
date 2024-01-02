@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/util/datetime_utils.dart';
 import '../../../domain/entity/weight.dart';
 
 part 'weight_state.freezed.dart';
@@ -18,7 +19,7 @@ class WeightState with _$WeightState {
     return WeightState(
       userId: target.userId,
       id: target.id,
-      date: '${target.date.year}年${target.date.month}月${target.date.day}日',
+      date: toJPNDateString(target.date),
       timestamp: target.timestamp,
       value: target.value,
     );

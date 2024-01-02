@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/util/datetime_utils.dart';
 import '../../../domain/entity/menu.dart';
 
 part 'menu_state.freezed.dart';
@@ -21,7 +22,7 @@ class MenuState with _$MenuState {
     return MenuState(
       userId: target.userId,
       name: target.name,
-      date: '${target.date.year}年${target.date.month}月${target.date.day}日',
+      date: toJPNDateString(target.date),
       timestamp: target.timestamp,
       recipe: target.recipe,
       ingredient: target.ingredient,

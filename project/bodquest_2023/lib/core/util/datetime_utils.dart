@@ -26,3 +26,7 @@ DateTime toDate(String value) {
 
   return DateTime(year, month, day);
 }
+
+String toJPNDateString(DateTime value) {
+  return '${value.year}年${value.month}月${value.day}日';
+}
