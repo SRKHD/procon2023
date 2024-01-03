@@ -8,7 +8,9 @@ final menuListNotifierProvider =
     StateNotifierProvider<MenuListNotifier, AsyncValue<List<MenuState>>>(
   (ref) => MenuListNotifier(
     getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-    getMenusUsecase: ref.read(getMenusUsecaseProvider),
-    addMenuUsecase: ref.read(addMenuUsecaseProvider),
+    getUsecase: ref.read(getMenusUsecaseProvider),
+    addUsecase: ref.read(addMenuUsecaseProvider),
+    deleteUsecase: ref.read(deleteMenuUsecaseProvider),
+    updateUsecase: ref.read(updateMenuUsecaseProvider),
   ),
 );

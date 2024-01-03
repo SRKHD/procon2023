@@ -12,12 +12,12 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
         .where('userId', isEqualTo: userId)
         .snapshots()
         .map((value) => FugGetMealsResponse(results: [
-              ...value.docs.map((doc) => FugMeal.fromJson(doc.data()))
+              ...value.docs.map((doc) => FugMeal.fromJson(doc.id, doc.data()))
             ]));
   }
 
   @override
-  Future<int> addMeal(String userId, String name, DateTime date, int calorie,
+  Future<int> add(String userId, String name, DateTime date, int calorie,
       String imageFilePath) async {
     await FirebaseFirestore.instance
         .collection('meals') // コレクションID
@@ -30,5 +30,34 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
       'imageFilePath': imageFilePath,
     }); // データ
     return 0;
+  }
+
+  @override
+  Future<int> delete(String userId, String id) {
+    FirebaseFirestore.instance
+        .collection('meals') // コレクションID
+        .doc(id)
+        .delete(); // ドキュメントID
+    return Future.value(0);
+  }
+
+  @override
+  Future<int> update(String userId, String id, String name, DateTime date,
+      int calorie, String imageFilePath) {
+    try {
+      FirebaseFirestore.instance
+          .collection('meals') // コレクションID
+          .doc(id) // ドキュメントID
+          .update({
+        'userId': userId,
+        'name': name,
+        'date': Timestamp.fromDate(date),
+        'calorie': calorie,
+        'imageFilePath': imageFilePath,
+      }); // データ
+    } catch (e) {
+      print(e);
+    }
+    return Future.value(0);
   }
 }

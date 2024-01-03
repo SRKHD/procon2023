@@ -17,7 +17,7 @@ class MenuRepositoryImpl implements IMenuRepository {
   final IMenuFactory weightFactory;
 
   @override
-  Stream<List<Menu>> findAll(String userId) {
+  Stream<List<Menu>> get(String userId) {
     try {
       return fireStoreDataSource.getMenus(userId).asyncMap((response) =>
           Future.wait(response.results
@@ -28,14 +28,30 @@ class MenuRepositoryImpl implements IMenuRepository {
   }
 
   @override
-  Future<int> addMenu(String userId, String name, DateTime date, String recipe,
+  Future<int> add(String userId, String name, DateTime date, String recipe,
       String ingredient, int calorie, String imageFilePath) {
     final storagePath = '${userId}_${name}_image';
     if (imageFilePath != '') {
       firebaseStorageSource.addFile(storagePath, imageFilePath);
     }
 
-    return fireStoreDataSource.addMenu(
+    return fireStoreDataSource.add(
         userId, name, date, recipe, ingredient, calorie, storagePath);
+  }
+
+  @override
+  Future<int> delete(String userId, String id) {
+    return fireStoreDataSource.delete(userId, id);
+  }
+
+  @override
+  Future<int> update(String userId, String id, String name, DateTime date,
+      String recipe, String ingredient, int calorie, String imageFilePath) {
+    final storagePath = '${userId}_${name}_image';
+    if (imageFilePath != '') {
+      firebaseStorageSource.addFile(storagePath, imageFilePath);
+    }
+    return fireStoreDataSource.update(
+        userId, id, name, date, recipe, ingredient, calorie, imageFilePath);
   }
 }
