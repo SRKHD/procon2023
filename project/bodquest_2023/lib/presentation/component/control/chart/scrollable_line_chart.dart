@@ -152,7 +152,7 @@ class _ScrollableLineChartState<T> extends State<ScrollableLineChart<T>> {
           });
         },
         onHorizontalDragUpdate: (details) {
-          final scaleFactor = (_maxX - _minX) / constraints.maxWidth;
+          final scaleFactor = _windowWidth / constraints.maxWidth;
           setState(() {
             _windowCenter -= details.delta.dx * scaleFactor;
             _clampWindowCenter();
