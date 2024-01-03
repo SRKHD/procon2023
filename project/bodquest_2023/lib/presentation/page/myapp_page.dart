@@ -2,7 +2,7 @@ import 'package:bodquest_2023/presentation/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../component/control/browser_adapter.dart';
+import '../component/control/size_adapter.dart';
 import '../router/go_router.dart';
 import '../theme/fonts.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends ConsumerWidget {
       routeInformationProvider: router.routeInformationProvider,
       debugShowCheckedModeBanner: false,
       builder: (_, child) {
-        return BrowserAdapter(child: child);
+        return SizeAdapter(child: child);
       },
       theme: ThemeData(
         fontFamily: BrandText.bodyS.fontFamily,

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../../theme/sizes.dart';
 
-/// ブラウザでもスマホと同じ比率で表示
-class BrowserAdapter extends StatelessWidget {
-  const BrowserAdapter({
+/// サイズ調整
+/// ブラウザ：スマホと同じ比率で表示
+/// スマホ：上下に空白を入れる
+class SizeAdapter extends StatelessWidget {
+  const SizeAdapter({
     super.key,
     required this.child,
   });
@@ -34,7 +36,11 @@ class BrowserAdapter extends StatelessWidget {
         ),
       );
     }
-    // Web以外のときは何もしない
-    return child ?? const SizedBox.shrink();
+    return Scaffold(
+        backgroundColor: Colors.grey,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          child: child,
+        ));
   }
 }
