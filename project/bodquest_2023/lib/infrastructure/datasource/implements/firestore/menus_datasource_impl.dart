@@ -1,31 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../model/firestore/meal/fug_get_meals_response.dart';
-import '../../model/firestore/meal/fug_meal.dart';
-import 'meals_datasource.dart';
+import '../../../model/firestore/menu/fug_get_menus_response.dart';
+import '../../../model/firestore/menu/fug_menu.dart';
+import '../../interface/firestore/menus_datasource.dart';
 
-class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
+class FirestoreMenusDataSourceImpl implements IFirestoreMenusDataSource {
   @override
-  Stream<FugGetMealsResponse> getMeals(String userId) {
+  Stream<FugGetMenusResponse> getMenus(String userId) {
     return FirebaseFirestore.instance
-        .collection('meals')
+        .collection('menus')
         .where('userId', isEqualTo: userId)
         .snapshots()
-        .map((value) => FugGetMealsResponse(results: [
-              ...value.docs.map((doc) => FugMeal.fromJson(doc.id, doc.data()))
+        .map((value) => FugGetMenusResponse(results: [
+              ...value.docs.map((doc) => FugMenu.fromJson(doc.id, doc.data()))
             ]));
   }
 
   @override
-  Future<int> add(String userId, String name, DateTime date, int calorie,
-      String imageFilePath) async {
+  Future<int> add(String userId, String name, DateTime date, String recipe,
+      String ingredient, int calorie, String imageFilePath) async {
     await FirebaseFirestore.instance
-        .collection('meals') // コレクションID
+        .collection('menus') // コレクションID
         .doc() // ドキュメントID
         .set({
       'userId': userId,
       'name': name,
       'date': Timestamp.fromDate(date),
+      'recipe': recipe,
+      'ingredient': ingredient,
       'calorie': calorie,
       'imageFilePath': imageFilePath,
     }); // データ
@@ -35,7 +37,7 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
   @override
   Future<int> delete(String userId, String id) {
     FirebaseFirestore.instance
-        .collection('meals') // コレクションID
+        .collection('menus') // コレクションID
         .doc(id)
         .delete(); // ドキュメントID
     return Future.value(0);
@@ -43,15 +45,17 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
 
   @override
   Future<int> update(String userId, String id, String name, DateTime date,
-      int calorie, String imageFilePath) {
+      String recipe, String ingredient, int calorie, String imageFilePath) {
     try {
       FirebaseFirestore.instance
-          .collection('meals') // コレクションID
+          .collection('menus') // コレクションID
           .doc(id) // ドキュメントID
           .update({
         'userId': userId,
         'name': name,
         'date': Timestamp.fromDate(date),
+        'recipe': recipe,
+        'ingredient': ingredient,
         'calorie': calorie,
         'imageFilePath': imageFilePath,
       }); // データ

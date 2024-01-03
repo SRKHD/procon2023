@@ -2,8 +2,8 @@ import '../../core/util/datetime_utils.dart';
 import '../../domain/entity/weight.dart';
 import '../../domain/factory/weight/weight_factory.dart';
 import '../../domain/repository/weight_repository.dart';
-import '../datasource/firestore/weights_datasource.dart';
-import '../datasource/ios_healthia/ios_healthia_weight_datasource.dart';
+import '../datasource/interface/firestore/weights_datasource.dart';
+import '../datasource/interface/ios_healthia/ios_healthia_weight_datasource.dart';
 
 class WeightRepositoryImpl implements IWeightRepository {
   WeightRepositoryImpl({

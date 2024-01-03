@@ -1,4 +1,4 @@
-import '../../model/firestore/user/fug_get_users_response.dart';
+import '../../../model/firestore/user/fug_get_users_response.dart';
 
 abstract interface class IFirestoreUsersDataSource {
   Future<FugGetUsersResponse> getUsers({int results});

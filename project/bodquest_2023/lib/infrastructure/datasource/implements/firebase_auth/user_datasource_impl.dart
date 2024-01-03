@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../model/firestore/user/fug_user_login.dart';
-import 'user_datasource.dart';
+import '../../../model/firestore/user/fug_user_login.dart';
+import '../../interface/firebase_auth/user_datasource.dart';
 
 class FirebaseAuthUserDataSourceImpl implements IFirebaseAuthUserDataSource {
   @override

@@ -2,8 +2,8 @@ import '../../core/util/datetime_utils.dart';
 import '../../domain/entity/training.dart';
 import '../../domain/factory/training/training_factory.dart';
 import '../../domain/repository/training_repository.dart';
-import '../datasource/firestore/trainings_datasource.dart';
-import '../datasource/ios_healthia/ios_healthia_training_datasource.dart';
+import '../datasource/interface/firestore/trainings_datasource.dart';
+import '../datasource/interface/ios_healthia/ios_healthia_training_datasource.dart';
 
 class TrainingRepositoryImpl implements ITrainingRepository {
   TrainingRepositoryImpl({

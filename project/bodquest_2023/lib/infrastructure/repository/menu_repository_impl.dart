@@ -1,8 +1,8 @@
 import '../../domain/entity/menu.dart';
 import '../../domain/factory/menu/menu_factory.dart';
 import '../../domain/repository/menu_repository.dart';
-import '../datasource/firebase_storage/storage_datasource.dart';
-import '../datasource/firestore/menus_datasource.dart';
+import '../datasource/interface/firebase_storage/storage_datasource.dart';
+import '../datasource/interface/firestore/menus_datasource.dart';
 
 class MenuRepositoryImpl implements IMenuRepository {
   MenuRepositoryImpl({

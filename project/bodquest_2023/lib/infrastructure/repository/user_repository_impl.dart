@@ -2,8 +2,8 @@ import '../../domain/entity/user.dart';
 import '../../domain/factory/user/user_factory.dart';
 import '../../domain/repository/user_repository.dart';
 import '../../domain/value/user_gender.dart';
-import '../datasource/firebase_auth/user_datasource.dart';
-import '../datasource/firestore/users_datasource.dart';
+import '../datasource/interface/firebase_auth/user_datasource.dart';
+import '../datasource/interface/firestore/users_datasource.dart';
 
 class UserRepositoryImpl implements IUserRepository {
   UserRepositoryImpl({

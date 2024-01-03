@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../core/exception/network_exception.dart';
-import '../../model/firestore/user/fug_get_users_response.dart';
-import 'users_datasource.dart';
+import '../../../../core/exception/network_exception.dart';
+import '../../../model/firestore/user/fug_get_users_response.dart';
+import '../../interface/firestore/users_datasource.dart';
 
 class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
   @override

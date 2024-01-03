@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../model/firestore/weight/fug_get_weights_response.dart';
-import '../../model/firestore/weight/fug_weight.dart';
-import 'weights_datasource.dart';
+import '../../../model/firestore/weight/fug_get_weights_response.dart';
+import '../../../model/firestore/weight/fug_weight.dart';
+import '../../interface/firestore/weights_datasource.dart';
 
 class FirestoreWeightsDataSourceImpl implements IFirestoreWeightsDataSource {
   @override

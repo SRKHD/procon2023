@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 
-import 'storage_datasource.dart';
+import '../../interface/firebase_storage/storage_datasource.dart';
 
 class FirebaseStorageDataSourceImpl implements IFirebaseStorageDataSource {
   @override

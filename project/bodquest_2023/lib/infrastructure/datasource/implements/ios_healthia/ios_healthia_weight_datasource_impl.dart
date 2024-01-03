@@ -3,53 +3,36 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:health/health.dart';
 
-import '../../../core/util/datetime_utils.dart';
-import '../../model/firestore/training/fug_get_trainings_response.dart';
-import '../../model/firestore/training/fug_training.dart';
-import '../../model/firestore/training/fug_training_kind.dart';
-import 'ios_healthia_training_datasource.dart';
+import '../../../../core/util/datetime_utils.dart';
+import '../../../model/firestore/weight/fug_get_weights_response.dart';
+import '../../../model/firestore/weight/fug_weight.dart';
+import '../../interface/ios_healthia/ios_healthia_weight_datasource.dart';
 
-class IOSHealthiaTrainingDatasourceImpl
-    implements IiOSHealthiaTrainingDatasource {
+class IOSHealthiaWeightDatasourceImpl implements IiOSHealthiaWeightDatasource {
   // アプリで使用するHealthFactoryを作成する
   HealthFactory health = HealthFactory();
   List<HealthDataPoint> _healthDataList = [];
-  List<FugTraining> _items = [];
-
-  void addItems(
-      String userId, FugTrainingKind kind, Map<DateTime, int> values) {
-    values.forEach((key, value) {
-      _items.add(FugTraining(
-        id: '', // 自動生成されるので不要
-        userId: userId,
-        kind: kind,
-        date: key,
-        timestamp: 0,
-        value: value,
-      ));
-    });
-  }
 
   @override
-  Stream<FugGetTrainingsResponse> getTrainings(String userId) {
+  Stream<FugGetWeightsResponse> getWeights(String userId) {
     // 取得する型を定義する
     final types = [
-      HealthDataType.STEPS,
-      // HealthDataType.WEIGHT,
+      // HealthDataType.STEPS,
+      HealthDataType.WEIGHT,
       // HealthDataType.HEIGHT,
       // HealthDataType.BLOOD_GLUCOSE,
       // // iOSではこの行をコメント解除してください - iOSでのみ利用可能
-      HealthDataType.DISTANCE_WALKING_RUNNING,
+      // HealthDataType.DISTANCE_WALKING_RUNNING,
     ];
 
     // パーミッション対応
     final permissions = [
-      HealthDataAccess.READ,
       // HealthDataAccess.READ,
+      HealthDataAccess.READ,
       // HealthDataAccess.READ,
       // HealthDataAccess.READ,
       // // typesの要素数と合わせる必要があるため、1つ追加
-      HealthDataAccess.READ,
+      // HealthDataAccess.READ,
     ];
 
     // 過去24時間以内のデータを取得する
@@ -57,7 +40,8 @@ class IOSHealthiaTrainingDatasourceImpl
     //final prevDays = getPrevMonth(now);
     final prevDays = getPreWeek(now);
 
-    final controller = StreamController<FugGetTrainingsResponse>();
+    final controller = StreamController<FugGetWeightsResponse>();
+    List<FugWeight> items = [];
 
     // データ型へのアクセスを要求する
     // READアクセスのみ必要なので、厳密にはpermissionsは必要ない
@@ -77,30 +61,20 @@ class IOSHealthiaTrainingDatasourceImpl
             // 重複データは除外する
             _healthDataList = HealthFactory.removeDuplicates(_healthDataList);
 
-            final Map<DateTime, int> walkMap = {};
-            final Map<DateTime, int> runMap = {};
+            // 結果をスナップ出力する
             for (var x in _healthDataList) {
-              final day = getDayOnly(x.dateFrom);
-              if (x.type == HealthDataType.STEPS) {
-                double value = double.parse(x.value.toString());
-                if (walkMap.containsKey(day)) {
-                  value += walkMap[day]!;
-                }
-                walkMap[day] = value.toInt();
-              } else {
-                double value = double.parse(x.value.toString());
-                if (runMap.containsKey(day)) {
-                  value += runMap[day]!;
-                }
-                runMap[day] = value.toInt();
-              }
+              items.add(FugWeight(
+                id: '', // 自動生成されるので不要
+                userId: userId,
+                date: x.dateFrom,
+                timestamp: 0,
+                value: double.parse(x.value.toString()),
+              ));
               if (kDebugMode) {
                 print(x);
               }
             }
-            addItems(userId, FugTrainingKind.walk, walkMap);
-            addItems(userId, FugTrainingKind.run, runMap);
-            controller.add(FugGetTrainingsResponse(results: _items));
+            controller.add(FugGetWeightsResponse(results: items));
             return controller.stream;
           });
         } catch (error) {

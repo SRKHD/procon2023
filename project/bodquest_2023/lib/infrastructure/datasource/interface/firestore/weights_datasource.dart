@@ -1,4 +1,4 @@
-import '../../model/firestore/weight/fug_get_weights_response.dart';
+import '../../../model/firestore/weight/fug_get_weights_response.dart';
 
 abstract interface class IFirestoreWeightsDataSource {
   Stream<FugGetWeightsResponse> get(String userId);
