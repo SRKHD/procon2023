@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../notifier/user/login_user_provider.dart';
-import '../notifier/user/user_list_provider.dart';
+import '../provider/user/login_user_provider.dart';
+import '../provider/user/user_list_provider.dart';
 
 class UserPage extends ConsumerStatefulWidget {
   const UserPage({super.key});

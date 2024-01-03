@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/training/training_state.dart';
 import '../../usecaese_provider_module.dart';
-import 'training_list_notifier.dart';
+import '../../notifier/training/training_list_notifier.dart';
 
 final trainingListNotifierProvider = StateNotifierProvider<TrainingListNotifier,
     AsyncValue<List<TrainingState>>>(

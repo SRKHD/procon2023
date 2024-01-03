@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/user/user_state.dart';
 import '../../usecaese_provider_module.dart';
-import 'user_list_notifier.dart';
+import '../../notifier/user/user_list_notifier.dart';
 
 final userListNotifierProvider =
     StateNotifierProvider<UserListNotifier, AsyncValue<List<UserState>>>(

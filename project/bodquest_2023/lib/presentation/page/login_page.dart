@@ -10,7 +10,7 @@ import 'package:sign_in_button/sign_in_button.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/exception/firebasse_auth_exception.dart';
-import '../notifier/user/user_list_provider.dart';
+import '../provider/user/user_list_provider.dart';
 
 class LogInPage extends ConsumerStatefulWidget {
   @override

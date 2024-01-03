@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/meal/meal_state.dart';
 import '../../usecaese_provider_module.dart';
-import 'meal_list_notifier.dart';
+import '../../notifier/meal/meal_list_notifier.dart';
 
 final mealListNotifierProvider =
     StateNotifierProvider<MealListNotifier, AsyncValue<List<MealState>>>(

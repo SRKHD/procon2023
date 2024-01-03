@@ -6,10 +6,10 @@ import '../../component/control/number_textfield.dart';
 import '../../component/training/training_kind_dropdown.dart';
 import '../../component/training/training_list_button.dart';
 import '../../notifier/datetime_notifier.dart';
-import '../../notifier/training/training_list_provider.dart';
+import '../../provider/training/training_list_provider.dart';
 import '../../notifier/text_notifier.dart';
 import '../../notifier/training/training_kind_notifier.dart';
-import '../../notifier/user/login_user_provider.dart';
+import '../../provider/user/login_user_provider.dart';
 import '../../router/go_router.dart';
 import '../../router/page_path.dart';
 
