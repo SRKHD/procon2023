@@ -25,3 +25,16 @@ enum BrandImage {
   final String name;
   String get path => 'assets/images/$name';
 }
+
+enum TabImage {
+  home('tab_home.png'),
+  user('tab_user.png'),
+  weight('tab_weight.png'),
+  training('tab_training.png'),
+  setting('tab_setting.png');
+
+  const TabImage(this.name);
+
+  final String name;
+  String get path => 'assets/images/$name';
+}
