@@ -9,6 +9,7 @@ part 'menu_state.freezed.dart';
 class MenuState with _$MenuState {
   factory MenuState({
     required String userId,
+    required String id,
     required String name,
     required String date,
     required int timestamp,
@@ -21,6 +22,7 @@ class MenuState with _$MenuState {
   factory MenuState.fromEntity(Menu target) {
     return MenuState(
       userId: target.userId,
+      id: target.id,
       name: target.name,
       date: toJPNDateString(target.date),
       timestamp: target.timestamp,

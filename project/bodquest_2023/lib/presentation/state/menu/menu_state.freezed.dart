@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MenuState {
   String get userId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   int get timestamp => throw _privateConstructorUsedError;
@@ -37,6 +38,7 @@ abstract class $MenuStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String userId,
+      String id,
       String name,
       String date,
       int timestamp,
@@ -60,6 +62,7 @@ class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? name = null,
     Object? date = null,
     Object? timestamp = null,
@@ -72,6 +75,10 @@ class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -115,6 +122,7 @@ abstract class _$$MenuStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {String userId,
+      String id,
       String name,
       String date,
       int timestamp,
@@ -136,6 +144,7 @@ class __$$MenuStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? name = null,
     Object? date = null,
     Object? timestamp = null,
@@ -148,6 +157,10 @@ class __$$MenuStateImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -186,6 +199,7 @@ class __$$MenuStateImplCopyWithImpl<$Res>
 class _$MenuStateImpl implements _MenuState {
   _$MenuStateImpl(
       {required this.userId,
+      required this.id,
       required this.name,
       required this.date,
       required this.timestamp,
@@ -196,6 +210,8 @@ class _$MenuStateImpl implements _MenuState {
 
   @override
   final String userId;
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -213,7 +229,7 @@ class _$MenuStateImpl implements _MenuState {
 
   @override
   String toString() {
-    return 'MenuState(userId: $userId, name: $name, date: $date, timestamp: $timestamp, recipe: $recipe, ingredient: $ingredient, calorie: $calorie, imageURL: $imageURL)';
+    return 'MenuState(userId: $userId, id: $id, name: $name, date: $date, timestamp: $timestamp, recipe: $recipe, ingredient: $ingredient, calorie: $calorie, imageURL: $imageURL)';
   }
 
   @override
@@ -222,6 +238,7 @@ class _$MenuStateImpl implements _MenuState {
         (other.runtimeType == runtimeType &&
             other is _$MenuStateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.timestamp, timestamp) ||
@@ -235,8 +252,8 @@ class _$MenuStateImpl implements _MenuState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, name, date, timestamp,
-      recipe, ingredient, calorie, imageURL);
+  int get hashCode => Object.hash(runtimeType, userId, id, name, date,
+      timestamp, recipe, ingredient, calorie, imageURL);
 
   @JsonKey(ignore: true)
   @override
@@ -248,6 +265,7 @@ class _$MenuStateImpl implements _MenuState {
 abstract class _MenuState implements MenuState {
   factory _MenuState(
       {required final String userId,
+      required final String id,
       required final String name,
       required final String date,
       required final int timestamp,
@@ -258,6 +276,8 @@ abstract class _MenuState implements MenuState {
 
   @override
   String get userId;
+  @override
+  String get id;
   @override
   String get name;
   @override

@@ -4,6 +4,7 @@ import '../../entity/menu.dart';
 abstract interface class IMenuFactory {
   /// [Menu]を生成する
   Menu create({
+    required String id,
     required String userId,
     required String name,
     required DateTime date,

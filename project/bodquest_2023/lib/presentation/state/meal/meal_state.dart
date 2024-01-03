@@ -9,6 +9,7 @@ part 'meal_state.freezed.dart';
 class MealState with _$MealState {
   factory MealState({
     required String userId,
+    required String id,
     required String name,
     required String date,
     required int timestamp,
@@ -19,6 +20,7 @@ class MealState with _$MealState {
   factory MealState.fromEntity(Meal target) {
     return MealState(
       userId: target.userId,
+      id: target.id,
       name: target.name,
       date: toJPNDateString(target.date),
       timestamp: target.timestamp,

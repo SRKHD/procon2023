@@ -1,5 +1,6 @@
 class FugMenu {
   FugMenu({
+    required this.id,
     required this.userId,
     required this.name,
     required this.date,
@@ -10,6 +11,7 @@ class FugMenu {
     required this.imageFilePath,
   });
 
+  final String id;
   final String userId;
   final String name;
   final DateTime date;
@@ -19,9 +21,10 @@ class FugMenu {
   final int calorie;
   final String imageFilePath;
 
-  factory FugMenu.fromJson(json) {
+  factory FugMenu.fromJson(String docId, json) {
     DateTime date = json['date'].toDate();
     return FugMenu(
+      id: docId,
       userId: json['userId'],
       name: json['name'],
       date: date,

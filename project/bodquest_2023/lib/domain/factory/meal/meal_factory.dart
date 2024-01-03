@@ -4,6 +4,7 @@ import '../../entity/meal.dart';
 abstract interface class IMealFactory {
   /// [Meal]を生成する
   Meal create({
+    required String id,
     required String userId,
     required String name,
     required DateTime date,

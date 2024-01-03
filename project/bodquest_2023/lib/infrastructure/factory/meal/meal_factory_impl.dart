@@ -10,6 +10,7 @@ class MealFactoryImpl implements IMealFactory {
 
   @override
   Meal create({
+    required String id,
     required String userId,
     required String name,
     required DateTime date,
@@ -18,6 +19,7 @@ class MealFactoryImpl implements IMealFactory {
     required String imageFilePath,
   }) {
     return Meal(
+      id: id,
       userId: userId,
       name: name,
       calorie: calorie,
@@ -32,6 +34,7 @@ class MealFactoryImpl implements IMealFactory {
     return firebaseStorageSource
         .getURL(meal.imageFilePath)
         .then((value) => Meal(
+              id: meal.id,
               userId: meal.userId,
               name: meal.name,
               date: meal.date,
