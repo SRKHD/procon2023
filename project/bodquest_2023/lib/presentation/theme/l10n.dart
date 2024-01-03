@@ -7,12 +7,18 @@
 
 /// 文言一覧
 class L10n {
-  static const list = '一覧';
-  static const edit = '編集';
-  static const createNew = '新規作成';
-  static const delete = '削除';
-  static const save = '保存';
+  static const list = 'List';
+  static const edit = 'Edit';
+  static const createNew = 'New';
+  static const delete = 'Delete';
+  static const save = 'Save';
   static const ok = 'OK';
+
+  static const home = 'Home';
+  static const user = 'User Setting';
+  static const weight = 'Weight';
+  static const training = 'Training';
+  static const setting = 'Setting';
 
   static const tooLongTextMesage = '入力文字が長すぎます';
 }

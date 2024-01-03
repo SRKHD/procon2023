@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../component/training/training_listview.dart';
-import '../../notifier/training/training_list_provider.dart';
+import '../../provider/training/training_list_provider.dart';
 import '../../router/go_router.dart';
 import '../../router/page_path.dart';
 import '../../theme/colors.dart';

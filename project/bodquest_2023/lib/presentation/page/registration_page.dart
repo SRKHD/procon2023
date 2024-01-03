@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/exception/firebasse_auth_exception.dart';
-import '../notifier/user/user_list_provider.dart';
+import '../provider/user/user_list_provider.dart';
 
 // アカウント登録ページ
 class RegistrationPage extends ConsumerStatefulWidget {

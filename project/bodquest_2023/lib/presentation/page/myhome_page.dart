@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'health_sample_page.dart';
-import '../component/main/main_bottom_navigation_bar.dart';
+// import '../component/main/main_bottom_navigation_bar.dart';
 import '../component/main/main_left_drawer.dart';
 import 'sample_counter_page.dart';
 import '../notifier/index_notifier.dart';
@@ -34,7 +34,7 @@ class MyHomePage extends ConsumerWidget {
       // ),
       drawer: MainLeftDrawer(),
       body: pages[index],
-      bottomNavigationBar: MainBottomNavigationBar(),
+      // bottomNavigationBar: MainBottomNavigationBar(),
     );
   }
 }

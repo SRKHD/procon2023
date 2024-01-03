@@ -7,7 +7,7 @@ import '../component/home/chara_image.dart';
 import '../component/home/level_text.dart';
 import '../component/home/pace_text.dart';
 import '../component/home/rank_text.dart';
-import '../notifier/evaluation/evaluation_provider.dart';
+import '../provider/evaluation/evaluation_provider.dart';
 import '../router/go_router.dart';
 import '../router/page_path.dart';
 import '../theme/sizes.dart';

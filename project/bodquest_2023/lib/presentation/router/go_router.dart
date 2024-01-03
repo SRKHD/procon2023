@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../page/base_root_page.dart';
 import '../page/login_page.dart';
-import '../page/myhome_page.dart';
 import '../page/registration_page.dart';
 import '../page/training/training_edit_page.dart';
 import '../page/training/training_list_page.dart';
@@ -31,8 +31,7 @@ final goRouterProvider = Provider(
       GoRoute(
         path: PageId.main.path,
         name: PageId.main.routeName,
-        builder: (context, state) =>
-            MyHomePage(title: 'Flutter Demo Home Page'),
+        builder: (context, state) => BaseRootPage(),
       ),
       GoRoute(
         path: PageId.weightlist.path,

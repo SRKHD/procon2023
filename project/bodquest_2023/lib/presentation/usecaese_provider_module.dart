@@ -26,7 +26,7 @@ import '../domain/usecase/user/update_user_name_usecase.dart';
 import '../domain/usecase/weight/delete_weight_usecase.dart';
 import '../domain/usecase/weight/synchronize_healthia_weights_usecase.dart';
 import '../domain/usecase/weight/update_weight_usecase.dart';
-import 'notifier/evaluation/evaluation_provider.dart';
+import 'provider/evaluation/evaluation_provider.dart';
 import 'repository_module.dart';
 import '../application/usecase/evaluation/calculate_evaluation_impl.dart';
 import '../application/usecase/meal/add_meal_usecase_impl.dart';
