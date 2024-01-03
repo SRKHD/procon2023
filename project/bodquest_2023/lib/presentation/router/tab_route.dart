@@ -26,11 +26,6 @@ class TabRoute {
 // 実際のデータを決めていく
 final routes = [
   TabRoute(
-    body: () => MyHomePage(title: 'Flutter Demo Home Page'),
-    icon: TabImage.home.path,
-    label: L10n.home,
-  ),
-  TabRoute(
     body: () => UserPage(),
     icon: TabImage.user.path,
     label: L10n.user,
@@ -39,6 +34,11 @@ final routes = [
     body: () => WeightPage(),
     icon: TabImage.weight.path,
     label: L10n.weight,
+  ),
+  TabRoute(
+    body: () => MyHomePage(title: 'Flutter Demo Home Page'),
+    icon: TabImage.home.path,
+    label: L10n.home,
   ),
   TabRoute(
     body: () => TrainingPage(),

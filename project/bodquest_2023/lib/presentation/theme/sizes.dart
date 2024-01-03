@@ -43,6 +43,8 @@ class DesignSize {
     required this.highlightW,
   });
 
+  static const double aspectRatio = 10.0 / 16.0;
+
   final double tabBarH; // タブバーの高さ
   final double overflowH; // アイコンが上にはみ出す高さ
   final double dividerW; // 区切り線の幅
@@ -58,7 +60,7 @@ class DesignSize {
   static const expectedW = 1200.0;
 
   factory DesignSize(double actualW) {
-    final r = actualW / expectedW;
+    final r = (actualW / expectedW) * aspectRatio;
     return DesignSize._(
       tabBarH: r * 200.0,
       overflowH: r * 25.0,

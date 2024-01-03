@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 
 import '../page/base_root_page.dart';
 import '../page/login_page.dart';
-import '../page/myhome_page.dart';
 import '../page/registration_page.dart';
 import '../page/training/training_edit_page.dart';
 import '../page/training/training_list_page.dart';

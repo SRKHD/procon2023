@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../provider/pagecontroller_provider.dart';
+import '../component/ability_tab_bar.dart';
+import '../provider/function_tab_provider.dart';
 import '../router/tab_route.dart';
 import '../theme/sizes.dart';
 
@@ -24,10 +25,10 @@ class BaseRootPage extends ConsumerWidget {
               itemBuilder: (_, i) => routes[i].body(),
             ),
           ),
-          // SizedBox(
-          //   height: design.tabBarH,
-          //   //child: const TabBar(),
-          // ),
+          SizedBox(
+            height: design.tabBarH,
+            child: const AbilityTabBar(),
+          ),
         ],
       ),
     );
