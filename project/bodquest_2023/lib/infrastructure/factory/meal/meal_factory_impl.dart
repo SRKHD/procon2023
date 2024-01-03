@@ -1,6 +1,6 @@
 import '../../../domain/entity/meal.dart';
 import '../../../domain/factory/meal/meal_factory.dart';
-import '../../datasource/firebase_storage/storage_datasource.dart';
+import '../../datasource/interface/firebase_storage/storage_datasource.dart';
 import '../../model/firestore/meal/fug_meal.dart';
 
 class MealFactoryImpl implements IMealFactory {

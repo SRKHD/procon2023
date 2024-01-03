@@ -1,4 +1,4 @@
-import '../../model/firestore/training/fug_get_trainings_response.dart';
+import '../../../model/firestore/training/fug_get_trainings_response.dart';
 
 abstract interface class IFirestoreTrainingsDataSource {
   Stream<FugGetTrainingsResponse> get(String userId);

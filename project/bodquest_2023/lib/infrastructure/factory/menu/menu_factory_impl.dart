@@ -1,6 +1,6 @@
 import '../../../domain/entity/menu.dart';
 import '../../../domain/factory/menu/menu_factory.dart';
-import '../../datasource/firebase_storage/storage_datasource.dart';
+import '../../datasource/interface/firebase_storage/storage_datasource.dart';
 import '../../model/firestore/menu/fug_menu.dart';
 
 class MenuFactoryImpl implements IMenuFactory {

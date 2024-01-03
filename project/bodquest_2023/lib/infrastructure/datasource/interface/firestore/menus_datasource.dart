@@ -1,4 +1,4 @@
-import '../../model/firestore/menu/fug_get_menus_response.dart';
+import '../../../model/firestore/menu/fug_get_menus_response.dart';
 
 abstract interface class IFirestoreMenusDataSource {
   Stream<FugGetMenusResponse> getMenus(String userId);

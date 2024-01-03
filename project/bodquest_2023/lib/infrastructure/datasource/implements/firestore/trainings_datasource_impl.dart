@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../model/firestore/training/fug_get_trainings_response.dart';
-import '../../model/firestore/training/fug_training.dart';
-import 'trainings_datasource.dart';
+import '../../../model/firestore/training/fug_get_trainings_response.dart';
+import '../../../model/firestore/training/fug_training.dart';
+import '../../interface/firestore/trainings_datasource.dart';
 
 class FirestoreTrainingsDataSourceImpl
     implements IFirestoreTrainingsDataSource {

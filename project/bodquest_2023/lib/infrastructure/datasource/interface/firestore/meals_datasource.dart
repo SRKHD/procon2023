@@ -1,4 +1,4 @@
-import '../../model/firestore/meal/fug_get_meals_response.dart';
+import '../../../model/firestore/meal/fug_get_meals_response.dart';
 
 abstract interface class IFirestoreMealsDataSource {
   Stream<FugGetMealsResponse> getMeals(String userId);
