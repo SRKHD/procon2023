@@ -11,7 +11,7 @@ class EvaluationRankNotifier extends _$EvaluationRankNotifier {
     return EvaluationRank.g;
   }
 
-  void updateEvaluationRank(String value) {
+  void update(String value) {
     state = EvaluationRank.from(value);
   }
 }

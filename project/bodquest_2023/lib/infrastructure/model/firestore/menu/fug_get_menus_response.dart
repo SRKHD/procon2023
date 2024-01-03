@@ -7,7 +7,8 @@ class FugGetMenusResponse {
     required this.results,
   });
 
-  factory FugGetMenusResponse.fromJson(Map<String, dynamic>? json) {
-    return FugGetMenusResponse(results: [FugMenu.fromJson(json)]);
+  factory FugGetMenusResponse.fromJson(
+      String docId, Map<String, dynamic>? json) {
+    return FugGetMenusResponse(results: [FugMenu.fromJson(docId, json)]);
   }
 }

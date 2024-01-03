@@ -1,7 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../application/usecase/meal/delete_meal_usecase_impl.dart';
+import '../application/usecase/meal/update_meal_usecase_impl.dart';
 import '../application/usecase/menu/add_menu_usecase_impl.dart';
+import '../application/usecase/menu/delete_menu_usecase_impl.dart';
 import '../application/usecase/menu/get_menus_usecase_impl.dart';
+import '../application/usecase/menu/update_menu_usecase_impl.dart';
 import '../application/usecase/training/delete_training_usecase_impl.dart';
 import '../application/usecase/training/synchronize_healthia_trainings_usecase_impl.dart';
 import '../application/usecase/training/update_training_usecase_impl.dart';
@@ -9,8 +13,12 @@ import '../application/usecase/user/update_user_name_impl.dart';
 import '../application/usecase/weight/delete_weight_usecase_impl.dart';
 import '../application/usecase/weight/synchronize_healthia_weights_usecase_impl.dart';
 import '../application/usecase/weight/update_weight_usecase_impl.dart';
+import '../domain/usecase/meal/delete_meal_usecase.dart';
+import '../domain/usecase/meal/update_meal_usecase.dart';
 import '../domain/usecase/menu/add_menu_usecase.dart';
+import '../domain/usecase/menu/delete_menu_usecase.dart';
 import '../domain/usecase/menu/get_menus_usecase.dart';
+import '../domain/usecase/menu/update_menu_usecase.dart';
 import '../domain/usecase/training/delete_training_usecase.dart';
 import '../domain/usecase/training/synchronize_healthia_trainings_usecase.dart';
 import '../domain/usecase/training/update_training_usecase.dart';
@@ -162,6 +170,18 @@ final addMealUsecaseProvider = Provider<IAddMealUsecase>(
   ),
 );
 
+final deleteMealUsecaseProvider = Provider<IDeleteMealUsecase>(
+  (ref) => DeleteMealUsecaseImpl(
+    repository: ref.watch(mealRepositoryProvider),
+  ),
+);
+
+final updateMealUsecaseProvider = Provider<IUpdateMealUsecase>(
+  (ref) => UpdateMealUsecaseImpl(
+    repository: ref.watch(mealRepositoryProvider),
+  ),
+);
+
 /// Evaluation
 ///
 ///
@@ -189,6 +209,18 @@ final getMenusUsecaseProvider = Provider<IGetMenusUsecase>(
 
 final addMenuUsecaseProvider = Provider<IAddMenuUsecase>(
   (ref) => AddMenuUsecaseImpl(
+    repository: ref.watch(menuRepositoryProvider),
+  ),
+);
+
+final deleteMenuUsecaseProvider = Provider<IDeleteMenuUsecase>(
+  (ref) => DeleteMenuUsecaseImpl(
+    repository: ref.watch(menuRepositoryProvider),
+  ),
+);
+
+final updateMenuUsecaseProvider = Provider<IUpdateMenuUsecase>(
+  (ref) => UpdateMenuUsecaseImpl(
     repository: ref.watch(menuRepositoryProvider),
   ),
 );

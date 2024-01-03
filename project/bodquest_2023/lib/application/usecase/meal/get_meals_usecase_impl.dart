@@ -11,6 +11,6 @@ class GetMealsUsecaseImpl implements IGetMealsUsecase {
 
   @override
   Stream<List<Meal>> execute(String userId) {
-    return mealRepository.findAll(userId);
+    return mealRepository.get(userId);
   }
 }

@@ -11,24 +11,23 @@ import '../../state/weight/weight_state.dart';
 class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
   WeightListNotifier({
     required IGetLogInUserUsecase getLogInUserUsecase,
-    required IGetWeightsUsecase getWeightsUsecase,
-    required IAddWeightUsecase addWeightUsecase,
-    required IDeleteWeightUsecase deleteWeightUsecase,
-    required IUpdateWeightUsecase updateWeightUsecase,
-    required ISynchronizeHealthiaWeightsUsecase
-        synchronizeHealthiaWeightUsecase,
+    required IGetWeightsUsecase getUsecase,
+    required IAddWeightUsecase addUsecase,
+    required IDeleteWeightUsecase deleteUsecase,
+    required IUpdateWeightUsecase updateUsecase,
+    required ISynchronizeHealthiaWeightsUsecase synchronizeHealthiaUsecase,
   })  : _getLogInUserUsecase = getLogInUserUsecase,
-        _getWeightsUsecase = getWeightsUsecase,
-        _addWeightUsecase = addWeightUsecase,
-        _deleteWeightUsecase = deleteWeightUsecase,
-        _updateWeightUsecase = updateWeightUsecase,
-        _synchronizeHealthiaWeightUsecase = synchronizeHealthiaWeightUsecase,
+        _getUsecase = getUsecase,
+        _addWeightUsecase = addUsecase,
+        _deleteWeightUsecase = deleteUsecase,
+        _updateWeightUsecase = updateUsecase,
+        _synchronizeHealthiaWeightUsecase = synchronizeHealthiaUsecase,
         super(const AsyncLoading()) {
     _getLogInUserUsecase.execute().then((value) => _fetch(value.id));
   }
 
   final IGetLogInUserUsecase _getLogInUserUsecase;
-  final IGetWeightsUsecase _getWeightsUsecase;
+  final IGetWeightsUsecase _getUsecase;
   final IAddWeightUsecase _addWeightUsecase;
   final IDeleteWeightUsecase _deleteWeightUsecase;
   final IUpdateWeightUsecase _updateWeightUsecase;
@@ -36,7 +35,7 @@ class WeightListNotifier extends StateNotifier<AsyncValue<List<WeightState>>> {
 
   /// 一覧の同期
   Future<void> _fetch(String userId) async {
-    _getWeightsUsecase.execute(userId).listen((weights) {
+    _getUsecase.execute(userId).listen((weights) {
       state = AsyncValue.data(
           weights.map((weight) => WeightState.fromEntity(weight)).toList());
     }).onError((e) => print(e));

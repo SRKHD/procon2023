@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MealState {
   String get userId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   int get timestamp => throw _privateConstructorUsedError;
@@ -35,6 +36,7 @@ abstract class $MealStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String userId,
+      String id,
       String name,
       String date,
       int timestamp,
@@ -56,6 +58,7 @@ class _$MealStateCopyWithImpl<$Res, $Val extends MealState>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? name = null,
     Object? date = null,
     Object? timestamp = null,
@@ -66,6 +69,10 @@ class _$MealStateCopyWithImpl<$Res, $Val extends MealState>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -101,6 +108,7 @@ abstract class _$$MealStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {String userId,
+      String id,
       String name,
       String date,
       int timestamp,
@@ -120,6 +128,7 @@ class __$$MealStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? id = null,
     Object? name = null,
     Object? date = null,
     Object? timestamp = null,
@@ -130,6 +139,10 @@ class __$$MealStateImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -160,6 +173,7 @@ class __$$MealStateImplCopyWithImpl<$Res>
 class _$MealStateImpl implements _MealState {
   _$MealStateImpl(
       {required this.userId,
+      required this.id,
       required this.name,
       required this.date,
       required this.timestamp,
@@ -168,6 +182,8 @@ class _$MealStateImpl implements _MealState {
 
   @override
   final String userId;
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -181,7 +197,7 @@ class _$MealStateImpl implements _MealState {
 
   @override
   String toString() {
-    return 'MealState(userId: $userId, name: $name, date: $date, timestamp: $timestamp, calorie: $calorie, imageURL: $imageURL)';
+    return 'MealState(userId: $userId, id: $id, name: $name, date: $date, timestamp: $timestamp, calorie: $calorie, imageURL: $imageURL)';
   }
 
   @override
@@ -190,6 +206,7 @@ class _$MealStateImpl implements _MealState {
         (other.runtimeType == runtimeType &&
             other is _$MealStateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.timestamp, timestamp) ||
@@ -201,7 +218,7 @@ class _$MealStateImpl implements _MealState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, userId, name, date, timestamp, calorie, imageURL);
+      runtimeType, userId, id, name, date, timestamp, calorie, imageURL);
 
   @JsonKey(ignore: true)
   @override
@@ -213,6 +230,7 @@ class _$MealStateImpl implements _MealState {
 abstract class _MealState implements MealState {
   factory _MealState(
       {required final String userId,
+      required final String id,
       required final String name,
       required final String date,
       required final int timestamp,
@@ -221,6 +239,8 @@ abstract class _MealState implements MealState {
 
   @override
   String get userId;
+  @override
+  String get id;
   @override
   String get name;
   @override

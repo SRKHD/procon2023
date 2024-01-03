@@ -1,7 +1,7 @@
 import '../entity/weight.dart';
 
 abstract interface class IWeightRepository {
-  Stream<List<Weight>> findAll(String userId);
+  Stream<List<Weight>> get(String userId);
 
   Future<int> add(
     String userId,

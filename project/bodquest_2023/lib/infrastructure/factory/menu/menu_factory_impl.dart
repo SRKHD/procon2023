@@ -10,6 +10,7 @@ class MenuFactoryImpl implements IMenuFactory {
 
   @override
   Menu create({
+    required String id,
     required String userId,
     required String name,
     required DateTime date,
@@ -20,6 +21,7 @@ class MenuFactoryImpl implements IMenuFactory {
     required String imageFilePath,
   }) {
     return Menu(
+      id: id,
       userId: userId,
       name: name,
       timestamp: timestamp,
@@ -35,6 +37,7 @@ class MenuFactoryImpl implements IMenuFactory {
   Future<Menu> createFromModel(FugMenu meal) {
     return firebaseStorageSource.getURL(meal.imageFilePath).then(
           (value) => Menu(
+            id: meal.id,
             userId: meal.userId,
             name: meal.name,
             date: meal.date,

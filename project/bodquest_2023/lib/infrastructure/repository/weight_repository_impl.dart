@@ -19,7 +19,7 @@ class WeightRepositoryImpl implements IWeightRepository {
   final List<DateTime> _registeredDates = [];
 
   @override
-  Stream<List<Weight>> findAll(String userId) {
+  Stream<List<Weight>> get(String userId) {
     try {
       return fireStoreDataSource.get(userId).map((event) =>
           [...event.results.map((res) => weightFactory.createFromModel(res))]);

@@ -1,4 +1,5 @@
 class FugMeal {
+  final String id;
   final String userId;
   final String name;
   final DateTime date;
@@ -7,6 +8,7 @@ class FugMeal {
   final String imageFilePath;
 
   FugMeal({
+    required this.id,
     required this.userId,
     required this.name,
     required this.date,
@@ -15,9 +17,10 @@ class FugMeal {
     required this.imageFilePath,
   });
 
-  factory FugMeal.fromJson(json) {
+  factory FugMeal.fromJson(String docId, json) {
     DateTime date = json['date'].toDate();
     return FugMeal(
+      id: docId,
       userId: json['userId'],
       name: json['name'],
       date: date,

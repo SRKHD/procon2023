@@ -96,7 +96,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
     // 今月一日
     final thresholdDay = _oneDayThisMonth();
 
-    trainingRepository.findAll(user.id).listen((trainings) {
+    trainingRepository.get(user.id).listen((trainings) {
       _outgoing = trainings
           .where((training) => training.date.isAfter(thresholdDay))
           .map((training) => getCaloriesConsumedUsecase.get(training))
@@ -110,7 +110,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
       updateState(score);
     });
 
-    mealRepository.findAll(user.id).listen((meals) {
+    mealRepository.get(user.id).listen((meals) {
       _incoming = meals
           .where((meal) => meal.date.isAfter(thresholdDay))
           .map((meal) => meal.calorie)
@@ -120,7 +120,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
       updateState(score);
     });
 
-    weightRepository.findAll(user.id).listen((weights) {
+    weightRepository.get(user.id).listen((weights) {
       weights.sort((a, b) => a.timestamp.compareTo(b.timestamp));
 
       final baseWeight = weights

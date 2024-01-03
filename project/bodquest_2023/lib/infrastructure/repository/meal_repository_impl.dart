@@ -17,7 +17,7 @@ class MealRepositoryImpl implements IMealRepository {
   final IMealFactory weightFactory;
 
   @override
-  Stream<List<Meal>> findAll(String userId) {
+  Stream<List<Meal>> get(String userId) {
     try {
       return fireStoreDataSource.getMeals(userId).asyncMap((response) =>
           Future.wait(response.results
@@ -28,14 +28,29 @@ class MealRepositoryImpl implements IMealRepository {
   }
 
   @override
-  Future<int> addMeal(String userId, String name, DateTime date, int calorie,
+  Future<int> add(String userId, String name, DateTime date, int calorie,
       String imageFilePath) {
     final storagePath = '${userId}_${name}_image';
     if (imageFilePath != '') {
       firebaseStorageSource.addFile(storagePath, imageFilePath);
     }
 
-    return fireStoreDataSource.addMeal(
-        userId, name, date, calorie, storagePath);
+    return fireStoreDataSource.add(userId, name, date, calorie, storagePath);
+  }
+
+  @override
+  Future<int> delete(String userId, String id) {
+    return fireStoreDataSource.delete(userId, id);
+  }
+
+  @override
+  Future<int> update(String userId, String id, String name, DateTime date,
+      int calorie, String imageFilePath) {
+    final storagePath = '${userId}_${name}_image';
+    if (imageFilePath != '') {
+      firebaseStorageSource.addFile(storagePath, imageFilePath);
+    }
+    return fireStoreDataSource.update(
+        userId, id, name, date, calorie, imageFilePath);
   }
 }

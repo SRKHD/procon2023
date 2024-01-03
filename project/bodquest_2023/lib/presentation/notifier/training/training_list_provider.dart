@@ -8,11 +8,11 @@ final trainingListNotifierProvider = StateNotifierProvider<TrainingListNotifier,
     AsyncValue<List<TrainingState>>>(
   (ref) => TrainingListNotifier(
     getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-    getTrainingsUsecase: ref.read(getTrainingsUsecaseProvider),
-    addTrainingUsecase: ref.read(addTrainingUsecaseProvider),
-    deleteTrainingUsecase: ref.read(deleteTrainingUsecaseProvider),
-    updateTrainingUsecase: ref.read(updateTrainingUsecaseProvider),
-    synchronizeHealthiaTrainingUsecase:
+    getUsecase: ref.read(getTrainingsUsecaseProvider),
+    addUsecase: ref.read(addTrainingUsecaseProvider),
+    deleteUsecase: ref.read(deleteTrainingUsecaseProvider),
+    updateUsecase: ref.read(updateTrainingUsecaseProvider),
+    synchronizeHealthiaUsecase:
         ref.read(synchronizeHealthiaTrainingsUsecaseProvider),
   ),
 );

@@ -4,9 +4,9 @@ import '../../../domain/usecase/weight/add_weight_usecase.dart';
 class AddWeightUsecaseImpl implements IAddWeightUsecase {
   AddWeightUsecaseImpl({
     required IWeightRepository repository,
-  }) : weightRepository = repository;
+  }) : _repository = repository;
 
-  final IWeightRepository weightRepository;
+  final IWeightRepository _repository;
 
   @override
   Future<int> execute(
@@ -14,6 +14,6 @@ class AddWeightUsecaseImpl implements IAddWeightUsecase {
     DateTime date,
     double value,
   ) {
-    return weightRepository.add(userId, date, value);
+    return _repository.add(userId, date, value);
   }
 }

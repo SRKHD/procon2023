@@ -8,7 +8,9 @@ final mealListNotifierProvider =
     StateNotifierProvider<MealListNotifier, AsyncValue<List<MealState>>>(
   (ref) => MealListNotifier(
     getLogInUserUsecase: ref.read(getLogInUserUsecaseProvider),
-    getMealsUsecase: ref.read(getMealsUsecaseProvider),
-    addMealUsecase: ref.read(addMealUsecaseProvider),
+    getUsecase: ref.read(getMealsUsecaseProvider),
+    addUsecase: ref.read(addMealUsecaseProvider),
+    deleteUsecase: ref.read(deleteMealUsecaseProvider),
+    updateUsecase: ref.read(updateMealUsecaseProvider),
   ),
 );
