@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 
-import '../theme/colors.dart';
+import '../../theme/colors.dart';
 
 enum AppState {
   DATA_NOT_FETCHED,
