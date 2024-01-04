@@ -11,17 +11,17 @@ class MealRepositoryImpl implements IMealRepository {
     required IMealFactory factory,
   })  : fireStoreDataSource = dataSource,
         firebaseStorageSource = dataStorage,
-        weightFactory = factory;
+        mealFactory = factory;
   final IFirestoreMealsDataSource fireStoreDataSource;
   final IFirebaseStorageDataSource firebaseStorageSource;
-  final IMealFactory weightFactory;
+  final IMealFactory mealFactory;
 
   @override
   Stream<List<Meal>> get(String userId) {
     try {
       return fireStoreDataSource.getMeals(userId).asyncMap((response) =>
           Future.wait(response.results
-              .map((result) => weightFactory.createFromModel(result))));
+              .map((result) => mealFactory.createFromModel(result))));
     } catch (e) {
       rethrow;
     }
