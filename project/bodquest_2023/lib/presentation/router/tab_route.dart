@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../page/myhome_page.dart';
+import '../page/sample/yolov5/yolov5_sample_page.dart';
 import '../page/training/training_page.dart';
 import '../page/user_page.dart';
 import '../page/weight/weight_page.dart';
@@ -52,7 +53,7 @@ final routes = [
     label: L10n.recipe,
   ),
   TabRoute(
-    body: () => Placeholder(),
+    body: () => YOLOv5Sample(),
     icon: TabImage.setting.path,
     label: L10n.setting,
   ),

@@ -61,6 +61,12 @@ dependencies:
   fl_chart:
   # google
   google_sign_in:
+  #yolov5
+  tflite_flutter:
+  tflite_flutter_helper:
+  camera:
+  simple_logger:
+  cupertino_icons:
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +102,8 @@ flutter:
     # - assets/google_fonts/
     - assets/fonts/
     # - assets/stub/
+    #yolov5
+    - assets/
   fonts:
     - family: NotoSansJP
       fonts:
