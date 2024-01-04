@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 /// 値の意味を含まないサイズ一覧定義
 class RawSize {
   static const p1 = 1.0;
@@ -43,7 +45,7 @@ class DesignSize {
     required this.highlightW,
   });
 
-  static const double aspectRatio = 10.0 / 16.0;
+  static const double aspectRatio = kIsWeb ? 10.0 / 16.0 : 1.0;
 
   final double tabBarH; // タブバーの高さ
   final double overflowH; // アイコンが上にはみ出す高さ
@@ -60,18 +62,28 @@ class DesignSize {
   static const expectedW = 1200.0;
 
   factory DesignSize(double actualW) {
-    final r = (actualW / expectedW) * aspectRatio;
+    final r = (actualW / expectedW);
+    const tabCount = 6;
+    // タブ数5で調整されている
+    const adjustedRatio = kIsWeb ? 0.95 : 1.0;
+    final baseTabWidth = 400 * r * aspectRatio * adjustedRatio;
+    //print('baseTabWidth $baseTabWidth');
+    final tabWidth = baseTabWidth * (5 / tabCount);
+    //print('tabwidth $tabWidth');
+
+    const adjustFontRation = kIsWeb ? 0.5 : 1.0;
+
     return DesignSize._(
       tabBarH: r * 200.0,
       overflowH: r * 25.0,
       dividerW: r * 4.0,
       padding: r * 15.0,
       arrowW: r * 40.0,
-      fontSize: r * 32.0,
+      fontSize: r * 32.0 * adjustFontRation,
       fontBorderW: r * 6.0,
       fontSpacing: r * 2.0,
       iconH: r * 170.0,
-      highlightW: r * 400.0,
+      highlightW: tabWidth, //r * tabWidth,
       shadowH: r * 18.0,
     );
   }
