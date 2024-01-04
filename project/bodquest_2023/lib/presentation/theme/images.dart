@@ -33,7 +33,8 @@ enum TabImage {
   training('tab_training.png'),
   setting('tab_setting.png'),
   arrowLeft('arrow_left.png'),
-  arrowRight('arrow_right.png');
+  arrowRight('arrow_right.png'),
+  recipe('tab_recipe.png');
 
   const TabImage(this.name);
 

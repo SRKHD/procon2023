@@ -4,6 +4,7 @@ import '../page/myhome_page.dart';
 import '../page/training/training_page.dart';
 import '../page/user_page.dart';
 import '../page/weight/weight_page.dart';
+import '../page/recipe_page.dart';
 import '../theme/images.dart';
 import '../theme/l10n.dart';
 
@@ -44,6 +45,11 @@ final routes = [
     body: () => TrainingPage(),
     icon: TabImage.training.path,
     label: L10n.training,
+  ),
+  TabRoute(
+    body: () => RecipePage(),
+    icon: TabImage.recipe.path,
+    label: L10n.recipe,
   ),
   TabRoute(
     body: () => Placeholder(),
