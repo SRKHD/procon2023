@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image/image.dart' as image_lib;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 
 import 'classifier.dart';
@@ -12,6 +13,9 @@ import 'recognition.dart';
 
 //typedef Reader = T Function<T>(ProviderBase<T> provider);
 final recognitionsProvider = StateProvider<List<Recognition>>((ref) => []);
+
+// @riverpod
+// Size withSize() => 0;
 
 final mlCameraProvider =
     FutureProvider.autoDispose.family<MLCamera, Size>((ref, size) async {

@@ -7,7 +7,7 @@ part of 'training_kind_notifier.dart';
 // **************************************************************************
 
 String _$trainingKindNotifierHash() =>
-    r'6f7314b4b2cbb9a10638b0ea276f8f44676fd94b';
+    r'e55c883703b68a3eadb7cbfa8b43bb011469bc5f';
 
 /// Copied from Dart SDK
 class _SystemHash {

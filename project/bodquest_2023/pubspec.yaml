@@ -66,7 +66,7 @@ dependencies:
   tflite_flutter_helper:
   camera:
   simple_logger:
-  cupertino_icons:
+  # cupertino_icons:
 
 dev_dependencies:
   flutter_test:
