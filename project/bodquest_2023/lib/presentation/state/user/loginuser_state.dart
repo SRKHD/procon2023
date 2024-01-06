@@ -8,5 +8,6 @@ class LogInUserState with _$LogInUserState {
     required String userId,
     required String userName,
     required double userHeight,
+    required String userGender,
   }) = _LogInUserState;
 }

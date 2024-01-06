@@ -16,6 +16,7 @@ class UserPageState extends ConsumerState<UserPage> {
   String _userName = "";
   DateTime _dateTime = DateTime.now();
   double _height = 0;
+  String _gender = "";
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,35 @@ class UserPageState extends ConsumerState<UserPage> {
                 _userName = value;
               },
             )),
+
+        // 性別
+        Padding(
+          padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 15.0),
+          child: Row(
+            children: [
+              Radio(
+                  value: 'male',
+                  groupValue: _gender,
+                  onChanged: (value) {
+                    setState(() {
+                      _gender = value!;
+                    });
+                  }),
+              SizedBox(width: 10.0),
+              Text('男性'),
+              Radio(
+                  value: 'female',
+                  groupValue: _gender,
+                  onChanged: (value) {
+                    setState(() {
+                      _gender = value!;
+                    });
+                  }),
+              SizedBox(width: 10.0),
+              Text('女性'),
+            ],
+          ),
+        ),
 
         // 生年月日
         Padding(
@@ -79,7 +109,7 @@ class UserPageState extends ConsumerState<UserPage> {
           onPressed: () {
             final notifier = ref.read(userListNotifierProvider.notifier);
             notifier.updateUserInfo(
-                logInUserState.userId, _userName, _dateTime, _height);
+                logInUserState.userId, _userName, _dateTime, _height, _gender);
           },
           label: Text('保存'),
           icon: const Icon(Icons.save),
