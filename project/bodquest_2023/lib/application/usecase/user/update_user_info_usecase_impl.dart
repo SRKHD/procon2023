@@ -1,5 +1,5 @@
 import '../../../domain/repository/user_repository.dart';
-import '../../../domain/usecase/user/update_user_name_usecase.dart';
+import '../../../domain/usecase/user/update_user_info_usecase.dart';
 
 class UpdateUserInfoUsecaseImpl implements IUpdateUserInfoUsecase {
   final IUserRepository userRepository;
