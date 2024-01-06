@@ -3,8 +3,8 @@ enum TrainingKind {
   run('run'), // ランニング
   workOut('workOut'); // 筋トレ
 
-  final String value;
-  const TrainingKind(this.value);
+  final String stringValue;
+  const TrainingKind(this.stringValue);
 
   factory TrainingKind.from(String value) {
     switch (value) {

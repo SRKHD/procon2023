@@ -9,8 +9,8 @@ enum EvaluationRank {
   a('A'),
   s('S');
 
-  final String value;
-  const EvaluationRank(this.value);
+  final String stringValue;
+  const EvaluationRank(this.stringValue);
 
   factory EvaluationRank.from(String value) {
     switch (value) {

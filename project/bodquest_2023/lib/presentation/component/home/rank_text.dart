@@ -12,7 +12,7 @@ class RankText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text('Rank:'), Text(rank.value)],
+      children: [Text('Rank:'), Text(rank.stringValue)],
     );
   }
 }
