@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/value/training_kind.dart';
 import '../../theme/images.dart';
-import '../component_types.dart';
 import '../control/editable_card.dart';
 
 class TrainingListCard extends StatelessWidget {

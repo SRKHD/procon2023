@@ -1,18 +1,17 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../component/component_types.dart';
-
-part 'training_kind_notifier.g.dart';
+import '../../state/training/training_kind_state.dart';
 
 /// トレーニング種類を状態管理
-@riverpod
-class TrainingKindNotifier extends _$TrainingKindNotifier {
-  @override
-  TrainingKind build(TrainingKind initValue) {
-    return initValue;
-  }
+class TrainingKindNotifier extends StateNotifier<TrainingKindState> {
+  TrainingKindNotifier(
+    super.initValue,
+  );
 
-  void update(String value) {
-    state = TrainingKind.from(value);
+  /// 現在の状態
+  TrainingKindState get value => state;
+
+  void update(TrainingKindState value) {
+    state = value;
   }
 }

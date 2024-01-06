@@ -7,7 +7,7 @@ part of 'evaluation_rank_notifier.dart';
 // **************************************************************************
 
 String _$evaluationRankNotifierHash() =>
-    r'efa79198c4d217d60f066d3908bf7b637c3dc596';
+    r'a7637cb6f9295c1a0afd378edf6a77f00f717f83';
 
 /// See also [EvaluationRankNotifier].
 @ProviderFor(EvaluationRankNotifier)

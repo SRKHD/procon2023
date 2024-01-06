@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../component/component_types.dart';
+import '../../../domain/value/training_kind.dart';
 import '../../component/control/number_textfield.dart';
 import '../../component/training/training_kind_dropdown.dart';
 import '../../component/training/training_list_button.dart';
 import '../../notifier/datetime_notifier.dart';
+import '../../provider/training/training_kind_provider.dart';
 import '../../provider/training/training_list_provider.dart';
 import '../../notifier/text_notifier.dart';
-import '../../notifier/training/training_kind_notifier.dart';
 import '../../provider/user/login_user_provider.dart';
 import '../../router/go_router.dart';
 import '../../router/page_path.dart';
@@ -46,7 +46,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       controller: _controller,
       notifier: ref.watch(textNotifierProvider.notifier),
       labelText: 'トレーニング量',
-      hintText: switch (kindState) {
+      hintText: switch (kindState.kind) {
         TrainingKind.walk => '歩いた歩数',
         TrainingKind.run => '走った距離(m)',
         TrainingKind.workOut => '筋トレ時間(分)',
@@ -91,8 +91,8 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
         final text = ref.watch(textNotifierProvider);
         // print('保存されている文字は: $text');
         final notifier = ref.read(trainingListNotifierProvider.notifier);
-        notifier.add(
-            logInUserState.userId, kindState.name, dateState, int.parse(text));
+        notifier.add(logInUserState.userId, kindState.kind.value, dateState,
+            int.parse(text));
         _controller.text = '';
       },
       label: Text('登録'),
@@ -128,7 +128,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                TrainingKindDropdown(kindState),
+                TrainingKindDropdown(kindState.kind),
                 calenderComponents,
                 textComponents,
                 buttons,
