@@ -9,8 +9,9 @@ class UpdateUserInfoUsecaseImpl implements IUpdateUserInfoUsecase {
   }) : userRepository = repository;
 
   @override
-  Future<int> execute(
-      String userId, String userName, DateTime birthday, double height) {
-    return userRepository.updateUserInfo(userId, userName, birthday, height);
+  Future<int> execute(String userId, String userName, DateTime birthday,
+      double height, String gender) {
+    return userRepository.updateUserInfo(
+        userId, userName, birthday, height, gender);
   }
 }

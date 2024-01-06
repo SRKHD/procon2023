@@ -78,8 +78,9 @@ class UserPageState extends ConsumerState<UserPage> {
         ElevatedButton.icon(
           onPressed: () {
             final notifier = ref.read(userListNotifierProvider.notifier);
+            // TODO：gender対応
             notifier.updateUserInfo(
-                logInUserState.userId, _userName, _dateTime, _height);
+                logInUserState.userId, _userName, _dateTime, _height, '');
           },
           label: Text('保存'),
           icon: const Icon(Icons.save),
