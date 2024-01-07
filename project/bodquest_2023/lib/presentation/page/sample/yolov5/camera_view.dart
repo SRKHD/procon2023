@@ -15,7 +15,7 @@ class CameraView extends StatefulWidget {
   /// Constructor
   const CameraView(this.resultsCallback, this.resultsCallbackClassification);
   @override
-  _CameraViewState createState() => _CameraViewState();
+  State<CameraView> createState() => _CameraViewState();
 }
 
 class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
@@ -98,6 +98,7 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
       // the display width of image on screen is
       // same as screenWidth while maintaining the aspectRatio
+      // ignore: use_build_context_synchronously
       Size screenSize = MediaQuery.of(context).size;
       CameraViewSingleton.screenSize = screenSize;
       CameraViewSingleton.ratio = screenSize.width / previewSize.height;

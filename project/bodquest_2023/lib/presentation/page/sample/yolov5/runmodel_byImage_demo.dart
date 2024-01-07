@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'dart:async';
+// ignore_for_file: file_names
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
 import 'package:flutter_pytorch/pigeon.dart';
@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 class RunModelByImageDemo extends StatefulWidget {
   @override
-  _RunModelByImageDemoState createState() => _RunModelByImageDemoState();
+  State<RunModelByImageDemo> createState() => _RunModelByImageDemoState();
 }
 
 class _RunModelByImageDemoState extends State<RunModelByImageDemo> {
@@ -56,7 +56,7 @@ class _RunModelByImageDemoState extends State<RunModelByImageDemo> {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     objDetect = await _objectModel
         .getImagePredictionList(await File(image!.path).readAsBytes());
-    objDetect.forEach((element) {
+    for (var element in objDetect) {
       print({
         "score": element?.score,
         "className": element?.className,
@@ -70,7 +70,7 @@ class _RunModelByImageDemoState extends State<RunModelByImageDemo> {
           "bottom": element?.rect.bottom,
         },
       });
-    });
+    }
     setState(() {
       //this.objDetect = objDetect;
       _image = File(image.path);
@@ -84,7 +84,7 @@ class _RunModelByImageDemoState extends State<RunModelByImageDemo> {
         await File(image!.path).readAsBytes(),
         minimumScore: 0.1,
         IOUThershold: 0.3);
-    objDetect.forEach((element) {
+    for (var element in objDetect) {
       print({
         "score": element?.score,
         "className": element?.className,
@@ -98,7 +98,7 @@ class _RunModelByImageDemoState extends State<RunModelByImageDemo> {
           "bottom": element?.rect.bottom,
         },
       });
-    });
+    }
     setState(() {
       //this.objDetect = objDetect;
       _image = File(image.path);
@@ -113,7 +113,7 @@ class _RunModelByImageDemoState extends State<RunModelByImageDemo> {
     //labels are 1000 random english words for show purposes
     print(image!.path);
     _imagePrediction = await _imageModel!
-        .getImagePrediction(await File(image!.path).readAsBytes());
+        .getImagePrediction(await File(image.path).readAsBytes());
 
     List<double?>? predictionList = await _imageModel!.getImagePredictionList(
       await File(image.path).readAsBytes(),

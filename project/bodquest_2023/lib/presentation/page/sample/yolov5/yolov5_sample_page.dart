@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //import 'home_screen.dart';
 
-import 'RunModelByCameraDemo.dart';
+import 'runmodel_bycamera_demo.dart';
 
 //import 'RunModelByImageDemo.dart';
 

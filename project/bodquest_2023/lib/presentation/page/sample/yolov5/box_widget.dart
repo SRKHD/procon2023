@@ -5,15 +5,14 @@ import 'camera_view_singleton.dart';
 
 /// Individual bounding box
 class BoxWidget extends StatelessWidget {
-  ResultObjectDetection result;
-  Color? boxesColor;
-  bool showPercentage;
+  final ResultObjectDetection result;
+  final Color? boxesColor;
+  final bool showPercentage;
   BoxWidget(
-      {Key? key,
+      {super.key,
       required this.result,
       this.boxesColor,
-      this.showPercentage = true})
-      : super(key: key);
+      this.showPercentage = true});
   @override
   Widget build(BuildContext context) {
     // Color for bounding box
@@ -57,11 +56,7 @@ class BoxWidget extends StatelessWidget {
             alignment: Alignment.centerRight,
             color: usedColor,
             child: Text(
-              (result.className ?? result.classIndex.toString()) +
-                  "_" +
-                  (showPercentage
-                      ? (result.score * 100).toStringAsFixed(2) + "%"
-                      : ""),
+              "${result.className ?? result.classIndex.toString()}_${showPercentage ? "${(result.score * 100).toStringAsFixed(2)}%" : ""}",
             ),
           ),
           Container(

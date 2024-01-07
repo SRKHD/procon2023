@@ -8,14 +8,12 @@ import 'package:image_picker/image_picker.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  File? _imageFile;
   late ModelObjectDetection _objectModel;
   String? _imagePrediction;
-  List? _prediction;
   File? _image;
   ImagePicker _picker = ImagePicker();
   bool objectDetection = false;
@@ -23,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadModel();
   }
@@ -39,13 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           //Image with Detections....
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 150,
               width: 300,
               child: objDetect.isNotEmpty
                   ? _image == null
                       ? Text('No image selected.')
-                      : _objectModel!.renderBoxesOnImage(_image!, objDetect)
+                      : _objectModel.renderBoxesOnImage(_image!, objDetect)
                   : _image == null
                       ? Text('No image selected.')
                       : Image.file(_image!),
@@ -97,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
         await File(image!.path).readAsBytes(),
         minimumScore: 0.1,
         IOUThershold: 0.3);
-    objDetect.forEach((element) {
+    for (var element in objDetect) {
       print({
         "score": element?.score,
         "className": element?.className,
@@ -111,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
           "bottom": element?.rect.bottom,
         },
       });
-    });
+    }
     setState(() {
-      _image = File(image!.path);
+      _image = File(image.path);
     });
   }
 }

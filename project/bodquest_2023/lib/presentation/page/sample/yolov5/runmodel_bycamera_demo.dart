@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pytorch/pigeon.dart';
 
@@ -8,7 +7,7 @@ import 'camera_view.dart';
 /// [RunModelByCameraDemo] stacks [CameraView] and [BoxWidget]s with bottom sheet for stats
 class RunModelByCameraDemo extends StatefulWidget {
   @override
-  _RunModelByCameraDemoState createState() => _RunModelByCameraDemoState();
+  State<RunModelByCameraDemo> createState() => _RunModelByCameraDemoState();
 }
 
 class _RunModelByCameraDemoState extends State<RunModelByCameraDemo> {
@@ -59,7 +58,7 @@ class _RunModelByCameraDemoState extends State<RunModelByCameraDemo> {
                 width: double.maxFinite,
                 decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.9),
-                    borderRadius: BORDER_RADIUS_BOTTOM_SHEET),
+                    borderRadius: border_radius_bottom_sheet),
                 child: SingleChildScrollView(
                   controller: scrollController,
                   child: Center(
@@ -74,7 +73,7 @@ class _RunModelByCameraDemoState extends State<RunModelByCameraDemo> {
                                 child: Column(
                                   children: [
                                     StatsRow(
-                                        'Classification:', '${classification}'),
+                                        'Classification:', '$classification'),
                                   ],
                                 ),
                               )
@@ -104,7 +103,7 @@ class _RunModelByCameraDemoState extends State<RunModelByCameraDemo> {
   void resultsCallback(List<ResultObjectDetection?> results) {
     setState(() {
       this.results = results;
-      results.forEach((element) {
+      for (var element in results) {
         print({
           "rect": {
             "left": element?.rect.left,
@@ -115,7 +114,7 @@ class _RunModelByCameraDemoState extends State<RunModelByCameraDemo> {
             "bottom": element?.rect.bottom,
           },
         });
-      });
+      }
     });
   }
 
@@ -125,9 +124,11 @@ class _RunModelByCameraDemoState extends State<RunModelByCameraDemo> {
     });
   }
 
-  static const BOTTOM_SHEET_RADIUS = Radius.circular(24.0);
-  static const BORDER_RADIUS_BOTTOM_SHEET = BorderRadius.only(
-      topLeft: BOTTOM_SHEET_RADIUS, topRight: BOTTOM_SHEET_RADIUS);
+  // ignore: constant_identifier_names
+  static const bottom_sheet_radius = Radius.circular(24.0);
+  // ignore: constant_identifier_names
+  static const border_radius_bottom_sheet = BorderRadius.only(
+      topLeft: bottom_sheet_radius, topRight: bottom_sheet_radius);
 }
 
 /// Row for one Stats field
