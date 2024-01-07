@@ -11,11 +11,12 @@ class AddMealUsecaseImpl implements IAddMealUsecase {
   @override
   Future<int> execute(
     String userId,
+    String kind,
     String name,
     DateTime date,
     int calorie,
     String imageFilePath,
   ) {
-    return mealRepository.add(userId, name, date, calorie, imageFilePath);
+    return mealRepository.add(userId, kind, name, date, calorie, imageFilePath);
   }
 }

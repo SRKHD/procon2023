@@ -6,6 +6,7 @@ abstract interface class IMealFactory {
   Meal create({
     required String id,
     required String userId,
+    required String kind,
     required String name,
     required DateTime date,
     required int timestamp,
