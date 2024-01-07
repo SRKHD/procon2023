@@ -33,11 +33,11 @@ class UserFactoryImpl implements IUserFactory {
   User createFromModel(FugUser user) {
     return User(
       id: user.login.uuid,
-      name: '${user.name.title} ${user.name.first} ${user.name.last}',
+      name: user.name.userName,
       gender: genderFactory.createFromModel(user.gender),
-      thumbnail: user.picture.thumbnail,
-      birthday: user.dob.date,
-      targetWeight: user.targetWeight,
+      thumbnail: '',
+      birthday: user.birthday,
+      targetWeight: 0.0,
       height: user.height,
     );
   }

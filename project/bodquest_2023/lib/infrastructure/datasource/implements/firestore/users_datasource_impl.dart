@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../core/exception/network_exception.dart';
+import '../../../model/firestore/user/fug_get_user_response.dart';
 import '../../../model/firestore/user/fug_get_users_response.dart';
 import '../../interface/firestore/users_datasource.dart';
 
@@ -28,12 +29,35 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
   }
 
   @override
+  Future<FugGetUserResponse> getLoginUser(String userId) async {
+    late FugGetUserResponse result;
+    try {
+      var userRef = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .get();
+
+      if (userRef.exists) {
+        result = FugGetUserResponse.fromJson(userRef.data());
+      } else {
+        throw NetworkException('FirestoreUsersDataSourceImpl getUsers() "/"');
+      }
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
+  @override
   Future<int> addUser(String userId) async {
     await FirebaseFirestore.instance
         .collection('users') // コレクションID
         .doc(userId) // ドキュメントID = ユーザーID
         .set({
       'userId': userId,
+      'userName': '',
+      'height': 0,
+      'gender': '',
     }); // データ
     return 0;
   }
