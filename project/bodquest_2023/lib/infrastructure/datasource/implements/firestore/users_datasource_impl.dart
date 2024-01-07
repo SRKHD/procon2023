@@ -33,7 +33,7 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
         .collection('users') // コレクションID
         .doc(userId) // ドキュメントID = ユーザーID
         .set({
-      'first': "プロコン",
+      'userId': userId,
     }); // データ
     return 0;
   }
@@ -45,6 +45,7 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
         .collection('users') // コレクションID
         .doc(userId) // ドキュメントID
         .set({
+      'userId': userId,
       'userName': userName,
       'birthday': Timestamp.fromDate(birthday),
       'height': height,
