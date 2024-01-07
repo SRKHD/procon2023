@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/util/datetime_utils.dart';
 import '../provider/user/login_user_provider.dart';
 import '../provider/user/user_list_provider.dart';
 
@@ -84,7 +83,7 @@ class UserPageState extends ConsumerState<UserPage> {
                   }),
               Text('女性'),
               Radio(
-                  value: "",
+                  value: "other",
                   groupValue: _gender,
                   onChanged: (value) {
                     setState(() {
@@ -101,9 +100,13 @@ class UserPageState extends ConsumerState<UserPage> {
             padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 0),
             child: Row(
               children: <Widget>[
-                Text("生年月日: ", style: TextStyle(fontSize: 18)),
+                Text("生年月日: ", style: TextStyle(fontSize: 16)),
                 Text(
-                    '  ${_dateTime.year}/${_dateTime.month}/${_dateTime.day}  '),
+                    _dateTime == DateTime(1500)
+                        ? '未設定'
+                        : '  ${_dateTime.year}/${_dateTime.month}/${_dateTime.day}  ',
+                    style: TextStyle(fontSize: 16)),
+                SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
                     DatePicker.showDatePicker(context,
