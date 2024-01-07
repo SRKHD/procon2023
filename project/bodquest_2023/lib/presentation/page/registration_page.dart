@@ -26,6 +26,13 @@ class RegistrationPageState extends ConsumerState<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    //登録ボタンの作成
+    final resisterButton = ElevatedButton.icon(
+      onPressed: () {},
+      label: Text('登録'),
+      icon: const Icon(Icons.add),
+    );
+
     return Scaffold(
       body: Center(
         child: Column(
