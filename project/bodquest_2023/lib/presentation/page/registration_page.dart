@@ -26,6 +26,41 @@ class RegistrationPageState extends ConsumerState<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    //登録ボタンの作成
+    final resisterButton = ElevatedButton.icon(
+      onPressed: () async {
+        if (_validPassword) {
+          try {
+            // メール/パスワードでユーザー登録
+            _result = await auth.createUserWithEmailAndPassword(
+              email: _email,
+              password: _password,
+            );
+
+            // 登録成功
+            // ホーム画面へ遷移
+            _user = _result.user!;
+            final notifier = ref.read(userListNotifierProvider.notifier);
+            notifier.addUser(_user.uid);
+            if (context.mounted) {
+              context.go('/main');
+            }
+          } on FirebaseAuthException catch (e) {
+            // 登録に失敗した場合
+            setState(() {
+              _infoText = AuthException(e.code).toString();
+            });
+          }
+        } else {
+          setState(() {
+            _infoText = 'パスワードは8文字以上です。';
+          });
+        }
+      },
+      label: Text('登録'),
+      icon: const Icon(Icons.add),
+    );
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -74,43 +109,9 @@ class RegistrationPageState extends ConsumerState<RegistrationPage> {
             ),
 
             ButtonTheme(
-              minWidth: 350.0,
-              // height: 100.0,
-              child: ElevatedButton(
-                child:
-                    Text('登録', style: TextStyle(fontWeight: FontWeight.bold)),
-                onPressed: () async {
-                  if (_validPassword) {
-                    try {
-                      // メール/パスワードでユーザー登録
-                      _result = await auth.createUserWithEmailAndPassword(
-                        email: _email,
-                        password: _password,
-                      );
-
-                      // 登録成功
-                      // ホーム画面へ遷移
-                      _user = _result.user!;
-                      final notifier =
-                          ref.read(userListNotifierProvider.notifier);
-                      notifier.addUser(_user.uid);
-                      if (context.mounted) {
-                        context.go('/main');
-                      }
-                    } on FirebaseAuthException catch (e) {
-                      // 登録に失敗した場合
-                      setState(() {
-                        _infoText = AuthException(e.code).toString();
-                      });
-                    }
-                  } else {
-                    setState(() {
-                      _infoText = 'パスワードは8文字以上です。';
-                    });
-                  }
-                },
-              ),
-            ),
+                minWidth: 350.0,
+                // height: 100.0,
+                child: resisterButton),
 
             Padding(
               padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 0),
