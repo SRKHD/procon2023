@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../notifier/text_notifier.dart';
 import '../provider/user/login_user_provider.dart';
 import '../provider/user/user_list_provider.dart';
 
@@ -17,14 +16,16 @@ class UserPageState extends ConsumerState<UserPage> {
   DateTime _dateTime = DateTime.now();
   double _height = 0;
   String _gender = "";
-
+  bool _isFirstLoad = true;
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _heightController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
 
   @override
   void dispose() {
     _userNameController.dispose();
     _heightController.dispose();
+    _genderController.dispose();
     super.dispose();
   }
 
@@ -33,7 +34,11 @@ class UserPageState extends ConsumerState<UserPage> {
     final logInUserState = ref.watch(logInUserNotifierProvider);
     _userNameController.text = logInUserState.userName;
     _heightController.text = logInUserState.userHeight.toString();
-
+    _genderController.text = logInUserState.userGender;
+    if (_isFirstLoad && logInUserState.userId.isNotEmpty) {
+      _gender = _genderController.text;
+      _isFirstLoad = false;
+    }
     return Scaffold(
         body: Center(
             child: Column(
@@ -54,7 +59,7 @@ class UserPageState extends ConsumerState<UserPage> {
 
         // 性別
         Padding(
-          padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 15.0),
+          padding: EdgeInsets.fromLTRB(15.0, 0, 25.0, 15.0),
           child: Row(
             children: [
               Radio(
@@ -65,7 +70,6 @@ class UserPageState extends ConsumerState<UserPage> {
                       _gender = value!;
                     });
                   }),
-              SizedBox(width: 10.0),
               Text('男性'),
               Radio(
                   value: 'female',
@@ -75,8 +79,16 @@ class UserPageState extends ConsumerState<UserPage> {
                       _gender = value!;
                     });
                   }),
-              SizedBox(width: 10.0),
               Text('女性'),
+              Radio(
+                  value: "",
+                  groupValue: _gender,
+                  onChanged: (value) {
+                    setState(() {
+                      _gender = value!;
+                    });
+                  }),
+              Text('未設定'),
             ],
           ),
         ),
