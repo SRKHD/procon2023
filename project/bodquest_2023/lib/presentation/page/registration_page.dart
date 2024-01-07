@@ -109,13 +109,9 @@ class RegistrationPageState extends ConsumerState<RegistrationPage> {
             ),
 
             ButtonTheme(
-              minWidth: 350.0,
-              // height: 100.0,
-              child: ElevatedButton(
-                  child:
-                      Text('登録', style: TextStyle(fontWeight: FontWeight.bold)),
-                  onPressed: () {}),
-            ),
+                minWidth: 350.0,
+                // height: 100.0,
+                child: resisterButton),
 
             Padding(
               padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 0),
