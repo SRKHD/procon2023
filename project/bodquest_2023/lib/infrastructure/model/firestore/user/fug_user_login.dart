@@ -7,10 +7,10 @@ class FugUserLogin {
     required this.username,
   });
 
-  factory FugUserLogin.fromJson(Map<String, dynamic> json) {
+  factory FugUserLogin.fromJson(String jsonUserId, String name) {
     return FugUserLogin(
-      uuid: json['uuid'],
-      username: json['username'],
+      uuid: jsonUserId,
+      username: name,
     );
   }
 }
