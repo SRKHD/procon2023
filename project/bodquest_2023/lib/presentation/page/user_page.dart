@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/util/datetime_utils.dart';
 import '../provider/user/login_user_provider.dart';
 import '../provider/user/user_list_provider.dart';
 
@@ -35,8 +36,10 @@ class UserPageState extends ConsumerState<UserPage> {
     _userNameController.text = logInUserState.userName;
     _heightController.text = logInUserState.userHeight.toString();
     _genderController.text = logInUserState.userGender;
+
     if (_isFirstLoad && logInUserState.userId.isNotEmpty) {
       _gender = _genderController.text;
+      _dateTime = DateTime.parse(logInUserState.userBirthday);
       _isFirstLoad = false;
     }
     return Scaffold(

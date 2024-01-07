@@ -20,6 +20,7 @@ mixin _$LogInUserState {
   String get userName => throw _privateConstructorUsedError;
   double get userHeight => throw _privateConstructorUsedError;
   String get userGender => throw _privateConstructorUsedError;
+  String get userBirthday => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LogInUserStateCopyWith<LogInUserState> get copyWith =>
@@ -33,7 +34,11 @@ abstract class $LogInUserStateCopyWith<$Res> {
       _$LogInUserStateCopyWithImpl<$Res, LogInUserState>;
   @useResult
   $Res call(
-      {String userId, String userName, double userHeight, String userGender});
+      {String userId,
+      String userName,
+      double userHeight,
+      String userGender,
+      String userBirthday});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$LogInUserStateCopyWithImpl<$Res, $Val extends LogInUserState>
     Object? userName = null,
     Object? userHeight = null,
     Object? userGender = null,
+    Object? userBirthday = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -71,6 +77,10 @@ class _$LogInUserStateCopyWithImpl<$Res, $Val extends LogInUserState>
           ? _value.userGender
           : userGender // ignore: cast_nullable_to_non_nullable
               as String,
+      userBirthday: null == userBirthday
+          ? _value.userBirthday
+          : userBirthday // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -84,7 +94,11 @@ abstract class _$$LogInUserStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId, String userName, double userHeight, String userGender});
+      {String userId,
+      String userName,
+      double userHeight,
+      String userGender,
+      String userBirthday});
 }
 
 /// @nodoc
@@ -102,6 +116,7 @@ class __$$LogInUserStateImplCopyWithImpl<$Res>
     Object? userName = null,
     Object? userHeight = null,
     Object? userGender = null,
+    Object? userBirthday = null,
   }) {
     return _then(_$LogInUserStateImpl(
       userId: null == userId
@@ -120,6 +135,10 @@ class __$$LogInUserStateImplCopyWithImpl<$Res>
           ? _value.userGender
           : userGender // ignore: cast_nullable_to_non_nullable
               as String,
+      userBirthday: null == userBirthday
+          ? _value.userBirthday
+          : userBirthday // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -131,7 +150,8 @@ class _$LogInUserStateImpl implements _LogInUserState {
       {required this.userId,
       required this.userName,
       required this.userHeight,
-      required this.userGender});
+      required this.userGender,
+      required this.userBirthday});
 
   @override
   final String userId;
@@ -141,10 +161,12 @@ class _$LogInUserStateImpl implements _LogInUserState {
   final double userHeight;
   @override
   final String userGender;
+  @override
+  final String userBirthday;
 
   @override
   String toString() {
-    return 'LogInUserState(userId: $userId, userName: $userName, userHeight: $userHeight, userGender: $userGender)';
+    return 'LogInUserState(userId: $userId, userName: $userName, userHeight: $userHeight, userGender: $userGender, userBirthday: $userBirthday)';
   }
 
   @override
@@ -158,12 +180,14 @@ class _$LogInUserStateImpl implements _LogInUserState {
             (identical(other.userHeight, userHeight) ||
                 other.userHeight == userHeight) &&
             (identical(other.userGender, userGender) ||
-                other.userGender == userGender));
+                other.userGender == userGender) &&
+            (identical(other.userBirthday, userBirthday) ||
+                other.userBirthday == userBirthday));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, userId, userName, userHeight, userGender);
+  int get hashCode => Object.hash(
+      runtimeType, userId, userName, userHeight, userGender, userBirthday);
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +202,8 @@ abstract class _LogInUserState implements LogInUserState {
       {required final String userId,
       required final String userName,
       required final double userHeight,
-      required final String userGender}) = _$LogInUserStateImpl;
+      required final String userGender,
+      required final String userBirthday}) = _$LogInUserStateImpl;
 
   @override
   String get userId;
@@ -188,6 +213,8 @@ abstract class _LogInUserState implements LogInUserState {
   double get userHeight;
   @override
   String get userGender;
+  @override
+  String get userBirthday;
   @override
   @JsonKey(ignore: true)
   _$$LogInUserStateImplCopyWith<_$LogInUserStateImpl> get copyWith =>

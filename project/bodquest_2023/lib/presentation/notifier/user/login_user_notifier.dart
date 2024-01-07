@@ -8,7 +8,11 @@ class LogInUserNotifier extends StateNotifier<LogInUserState> {
     required IGetLogInUserUsecase getLogInUserUsecase,
   })  : _getLogInUserUsecase = getLogInUserUsecase,
         super(LogInUserState(
-            userId: '', userName: '', userHeight: 0, userGender: '')) {
+            userId: '',
+            userName: '',
+            userHeight: 0,
+            userGender: '',
+            userBirthday: '')) {
     _fetch();
   }
 
@@ -21,7 +25,8 @@ class LogInUserNotifier extends StateNotifier<LogInUserState> {
         userId: user.id,
         userName: user.name,
         userHeight: user.height,
-        userGender: user.gender.name);
+        userGender: user.gender.name,
+        userBirthday: user.birthday.toString());
     //state = _getLogInUserUsecase.execute();
   }
 }
