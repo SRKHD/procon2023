@@ -30,16 +30,12 @@ class UserRepositoryImpl implements IUserRepository {
   }
 
   @override
-  Future<User> getLogInUser() {
-    return firebaseDataSource.getLoginUser().then((value) => Future.value(User(
-          id: value.uuid,
-          name: value.username,
-          gender: UserGender.other,
-          thumbnail: "thumbnail",
-          birthday: DateTime.now(),
-          targetWeight: 0,
-          height: 0,
-        )));
+  Future<User> getLogInUser() async {
+    // firebaseからIDを取得→IDを基にfirestoreからユーザー情報を取得
+    final userid = await firebaseDataSource.getLoginUser();
+    final fuguser = await fireStoreDataSource.getLoginUser(userid.uuid);
+
+    return userFactory.createFromModel(fuguser.result);
   }
 
   @override
