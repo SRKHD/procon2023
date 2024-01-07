@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../notifier/text_notifier.dart';
 import '../provider/user/login_user_provider.dart';
 import '../provider/user/user_list_provider.dart';
 
@@ -13,14 +14,26 @@ class UserPage extends ConsumerStatefulWidget {
 }
 
 class UserPageState extends ConsumerState<UserPage> {
-  String _userName = "";
   DateTime _dateTime = DateTime.now();
   double _height = 0;
   String _gender = "";
 
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _heightController = TextEditingController();
+
+  @override
+  void dispose() {
+    _userNameController.dispose();
+    _heightController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final logInUserState = ref.watch(logInUserNotifierProvider);
+    _userNameController.text = logInUserState.userName;
+    _heightController.text = logInUserState.userHeight.toString();
+
     return Scaffold(
         body: Center(
             child: Column(
@@ -35,10 +48,8 @@ class UserPageState extends ConsumerState<UserPage> {
         Padding(
             padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 15.0),
             child: TextFormField(
+              controller: _userNameController,
               decoration: InputDecoration(labelText: "ユーザー名"),
-              onChanged: (String value) {
-                _userName = value;
-              },
             )),
 
         // 性別
@@ -98,6 +109,7 @@ class UserPageState extends ConsumerState<UserPage> {
         Padding(
             padding: EdgeInsets.fromLTRB(25.0, 0, 25.0, 25.0),
             child: TextFormField(
+              controller: _heightController,
               decoration: InputDecoration(labelText: "身長 (cm)"),
               onChanged: (String value) {
                 _height = double.parse(value);
@@ -108,8 +120,8 @@ class UserPageState extends ConsumerState<UserPage> {
         ElevatedButton.icon(
           onPressed: () {
             final notifier = ref.read(userListNotifierProvider.notifier);
-            notifier.updateUserInfo(
-                logInUserState.userId, _userName, _dateTime, _height, _gender);
+            notifier.updateUserInfo(logInUserState.userId,
+                _userNameController.text, _dateTime, _height, _gender);
           },
           label: Text('保存'),
           icon: const Icon(Icons.save),
