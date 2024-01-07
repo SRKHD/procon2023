@@ -1,6 +1,7 @@
 enum FugUserGender {
   male('male'),
-  female('female');
+  female('female'),
+  none('');
 
   final String value;
   const FugUserGender(this.value);
@@ -11,6 +12,8 @@ enum FugUserGender {
         return FugUserGender.male;
       case 'female':
         return FugUserGender.female;
+      case '':
+        return FugUserGender.none;
       default:
         throw UnimplementedError();
     }
