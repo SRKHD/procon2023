@@ -1,6 +1,9 @@
+import 'fug_meal_kind.dart';
+
 class FugMeal {
   final String id;
   final String userId;
+  final FugMealKind kind;
   final String name;
   final DateTime date;
   final int timestamp;
@@ -10,6 +13,7 @@ class FugMeal {
   FugMeal({
     required this.id,
     required this.userId,
+    required this.kind,
     required this.name,
     required this.date,
     required this.timestamp,
@@ -22,6 +26,7 @@ class FugMeal {
     return FugMeal(
       id: docId,
       userId: json['userId'],
+      kind: FugMealKind.from(json['kind']),
       name: json['name'],
       date: date,
       timestamp: date.millisecondsSinceEpoch,

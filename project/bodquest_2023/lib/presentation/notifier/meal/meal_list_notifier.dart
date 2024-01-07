@@ -39,12 +39,13 @@ class MealListNotifier extends StateNotifier<AsyncValue<List<MealState>>> {
 
   void add(
     String userId,
+    String kind,
     String name,
     DateTime date,
     int calorie,
     String imageFilePath,
   ) {
-    _addUsecase.execute(userId, name, date, calorie, imageFilePath);
+    _addUsecase.execute(userId, kind, name, date, calorie, imageFilePath);
   }
 
   void delete(
@@ -57,11 +58,13 @@ class MealListNotifier extends StateNotifier<AsyncValue<List<MealState>>> {
   void update(
     String userId,
     String id,
+    String kind,
     String name,
     DateTime date,
     int calorie,
     String imageFilePath,
   ) {
-    _updateUsecase.execute(userId, id, name, date, calorie, imageFilePath);
+    _updateUsecase.execute(
+        userId, id, kind, name, date, calorie, imageFilePath);
   }
 }

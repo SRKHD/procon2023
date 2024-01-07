@@ -9,8 +9,9 @@ class UpdateMealUsecaseImpl implements IUpdateMealUsecase {
   final IMealRepository _repository;
 
   @override
-  Future<int> execute(String userId, String id, String name, DateTime date,
-      int calorie, String imageFilePath) {
-    return _repository.update(userId, id, name, date, calorie, imageFilePath);
+  Future<int> execute(String userId, String id, String kind, String name,
+      DateTime date, int calorie, String imageFilePath) {
+    return _repository.update(
+        userId, id, kind, name, date, calorie, imageFilePath);
   }
 }

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MealState {
   String get userId => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  String get kind => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   int get timestamp => throw _privateConstructorUsedError;
@@ -37,6 +38,7 @@ abstract class $MealStateCopyWith<$Res> {
   $Res call(
       {String userId,
       String id,
+      String kind,
       String name,
       String date,
       int timestamp,
@@ -59,6 +61,7 @@ class _$MealStateCopyWithImpl<$Res, $Val extends MealState>
   $Res call({
     Object? userId = null,
     Object? id = null,
+    Object? kind = null,
     Object? name = null,
     Object? date = null,
     Object? timestamp = null,
@@ -73,6 +76,10 @@ class _$MealStateCopyWithImpl<$Res, $Val extends MealState>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      kind: null == kind
+          ? _value.kind
+          : kind // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -109,6 +116,7 @@ abstract class _$$MealStateImplCopyWith<$Res>
   $Res call(
       {String userId,
       String id,
+      String kind,
       String name,
       String date,
       int timestamp,
@@ -129,6 +137,7 @@ class __$$MealStateImplCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? id = null,
+    Object? kind = null,
     Object? name = null,
     Object? date = null,
     Object? timestamp = null,
@@ -143,6 +152,10 @@ class __$$MealStateImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      kind: null == kind
+          ? _value.kind
+          : kind // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -174,6 +187,7 @@ class _$MealStateImpl implements _MealState {
   _$MealStateImpl(
       {required this.userId,
       required this.id,
+      required this.kind,
       required this.name,
       required this.date,
       required this.timestamp,
@@ -184,6 +198,8 @@ class _$MealStateImpl implements _MealState {
   final String userId;
   @override
   final String id;
+  @override
+  final String kind;
   @override
   final String name;
   @override
@@ -197,7 +213,7 @@ class _$MealStateImpl implements _MealState {
 
   @override
   String toString() {
-    return 'MealState(userId: $userId, id: $id, name: $name, date: $date, timestamp: $timestamp, calorie: $calorie, imageURL: $imageURL)';
+    return 'MealState(userId: $userId, id: $id, kind: $kind, name: $name, date: $date, timestamp: $timestamp, calorie: $calorie, imageURL: $imageURL)';
   }
 
   @override
@@ -207,6 +223,7 @@ class _$MealStateImpl implements _MealState {
             other is _$MealStateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.timestamp, timestamp) ||
@@ -218,7 +235,7 @@ class _$MealStateImpl implements _MealState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, userId, id, name, date, timestamp, calorie, imageURL);
+      runtimeType, userId, id, kind, name, date, timestamp, calorie, imageURL);
 
   @JsonKey(ignore: true)
   @override
@@ -231,6 +248,7 @@ abstract class _MealState implements MealState {
   factory _MealState(
       {required final String userId,
       required final String id,
+      required final String kind,
       required final String name,
       required final String date,
       required final int timestamp,
@@ -241,6 +259,8 @@ abstract class _MealState implements MealState {
   String get userId;
   @override
   String get id;
+  @override
+  String get kind;
   @override
   String get name;
   @override

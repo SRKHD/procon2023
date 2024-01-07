@@ -5,6 +5,7 @@ abstract interface class IMealRepository {
 
   Future<int> add(
     String userId,
+    String kind,
     String name,
     DateTime date,
     int calorie,
@@ -19,6 +20,7 @@ abstract interface class IMealRepository {
   Future<int> update(
     String userId,
     String id,
+    String kind,
     String name,
     DateTime date,
     int calorie,

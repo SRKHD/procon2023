@@ -10,6 +10,7 @@ class MealState with _$MealState {
   factory MealState({
     required String userId,
     required String id,
+    required String kind,
     required String name,
     required String date,
     required int timestamp,
@@ -21,6 +22,7 @@ class MealState with _$MealState {
     return MealState(
       userId: target.userId,
       id: target.id,
+      kind: target.kind.name,
       name: target.name,
       date: toJPNDateString(target.date),
       timestamp: target.timestamp,

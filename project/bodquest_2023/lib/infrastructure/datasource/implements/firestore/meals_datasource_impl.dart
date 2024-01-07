@@ -17,13 +17,14 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
   }
 
   @override
-  Future<int> add(String userId, String name, DateTime date, int calorie,
-      String imageFilePath) async {
+  Future<int> add(String userId, String kind, String name, DateTime date,
+      int calorie, String imageFilePath) async {
     await FirebaseFirestore.instance
         .collection('meals') // コレクションID
         .doc() // ドキュメントID
         .set({
       'userId': userId,
+      'kind': kind,
       'name': name,
       'date': Timestamp.fromDate(date),
       'calorie': calorie,
@@ -42,14 +43,15 @@ class FirestoreMealsDataSourceImpl implements IFirestoreMealsDataSource {
   }
 
   @override
-  Future<int> update(String userId, String id, String name, DateTime date,
-      int calorie, String imageFilePath) {
+  Future<int> update(String userId, String id, String kind, String name,
+      DateTime date, int calorie, String imageFilePath) {
     try {
       FirebaseFirestore.instance
           .collection('meals') // コレクションID
           .doc(id) // ドキュメントID
           .update({
         'userId': userId,
+        'kind': kind,
         'name': name,
         'date': Timestamp.fromDate(date),
         'calorie': calorie,
