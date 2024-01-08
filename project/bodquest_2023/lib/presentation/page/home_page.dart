@@ -59,7 +59,7 @@ class HomePage extends ConsumerWidget {
           onPressed: () {
             final router = ref.read(goRouterProvider);
             router.pushNamed(
-              PageId.meal.routeName,
+              PageId.meallist.routeName,
             );
           },
           percentBarGraphWidth: RawSize.p200,
