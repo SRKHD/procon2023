@@ -10,6 +10,7 @@ enum PageId {
   meal,
   meallist,
   mealedit,
+  recipelist,
 }
 
 /// 画面パス
@@ -25,6 +26,7 @@ extension PagePath on PageId {
         PageId.meal => '/meal',
         PageId.meallist => '/meal/meallist',
         PageId.mealedit => '/meal/mealedit/:id',
+        PageId.recipelist => '/meal/recipelist',
       };
 }
 
@@ -41,5 +43,6 @@ extension PageName on PageId {
         PageId.meal => 'meal',
         PageId.meallist => 'meallist',
         PageId.mealedit => 'mealedit',
+        PageId.recipelist => 'recipelist',
       };
 }

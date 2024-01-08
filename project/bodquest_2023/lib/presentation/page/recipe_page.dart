@@ -6,11 +6,13 @@ import '../component/component_types.dart';
 import '../component/control/number_textfield.dart';
 import '../component/meal/meal_kind_dropdown.dart';
 import '../component/meal/meal_list_button.dart';
+import '../component/menu/menu_list_button.dart';
 import '../notifier/datetime_notifier.dart';
 import '../notifier/meal/mealRegister_kind_notifier.dart';
 import '../notifier/meal/meal_kind_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../provider/meal/meal_list_provider.dart';
+import '../provider/menu/menu_list_provider.dart';
 import '../provider/user/login_user_provider.dart';
 import '../router/go_router.dart';
 import '../router/page_path.dart';
@@ -27,6 +29,8 @@ class RecipePage extends ConsumerStatefulWidget {
 class RecipePageState extends ConsumerState<RecipePage> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _calorieController = TextEditingController();
+  bool _isMeal = true;
+  String _label = "";
 
   @override
   void dispose() {
@@ -39,6 +43,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
   Widget build(BuildContext context) {
     final mealRegisterState =
         ref.watch(mealRegisterKindNotifierProvider(MealRegisterKind.meal));
+    _isMeal = mealRegisterState == MealRegisterKind.meal;
     final mealState = ref.watch(mealListNotifierProvider);
     final kindState = ref.watch(mealKindNotifierProvider(MealKind.breakfast));
     final logInUserState = ref.watch(logInUserNotifierProvider);
@@ -47,9 +52,10 @@ class RecipePageState extends ConsumerState<RecipePage> {
     print(logInUserState.userName);
     final dateState = ref.watch(dateTimeNotifierProvider(widget.initDate));
 
+    _label = _isMeal ? "食事" : "献立";
     final textField = TextFormField(
       controller: _controller,
-      decoration: InputDecoration(labelText: "食事"),
+      decoration: InputDecoration(labelText: _label),
     );
 
     final textComponents = SizedBox(
@@ -101,25 +107,40 @@ class RecipePageState extends ConsumerState<RecipePage> {
 
     final resisterButton = ElevatedButton.icon(
       onPressed: () {
-        final notifier = ref.read(mealListNotifierProvider.notifier);
-        var calorie =
-            _calorieController.text == '' ? '-1' : _calorieController.text;
-        notifier.add(logInUserState.userId, kindState.name, _controller.text,
-            dateState, int.parse(calorie), '');
-        _controller.text = '';
-        _calorieController.text = '';
+        if (_isMeal) {
+          final mealNotifier = ref.read(mealListNotifierProvider.notifier);
+          var calorie =
+              _calorieController.text == '' ? '-1' : _calorieController.text;
+          mealNotifier.add(logInUserState.userId, kindState.name,
+              _controller.text, dateState, int.parse(calorie), '');
+          _controller.text = '';
+          _calorieController.text = '';
+        } else {
+          final recipeNotifier = ref.read(menuListNotifierProvider.notifier);
+          recipeNotifier.add(logInUserState.userId, '', dateState,
+              _controller.text, '', -1, '');
+          _controller.text = '';
+        }
       },
       label: Text('登録'),
       icon: const Icon(Icons.add),
     );
 
-    final listButton = MealListButton(onPressed: () {
+    final mealListButton = MealListButton(onPressed: () {
       final router = ref.read(goRouterProvider);
       router.pushNamed(
         PageId.meallist.routeName,
       );
     });
 
+    final recipeListButton = MenuListButton(onPressed: () {
+      final router = ref.read(goRouterProvider);
+      router.pushNamed(
+        PageId.recipelist.routeName,
+      );
+    });
+
+    final listButton = _isMeal ? mealListButton : recipeListButton;
     return mealState.when(
       data: (meals) {
         return Scaffold(
@@ -129,10 +150,19 @@ class RecipePageState extends ConsumerState<RecipePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 MealRegisterKindDropDown(mealRegisterState),
-                MealKindDropdown(kindState),
-                calenderComponents,
+                Visibility(
+                  child: MealKindDropdown(kindState),
+                  visible: _isMeal,
+                ),
+                Visibility(
+                  child: calenderComponents,
+                  visible: _isMeal,
+                ),
                 textComponents,
-                calorieTextComponents,
+                Visibility(
+                  child: calorieTextComponents,
+                  visible: _isMeal,
+                ),
                 resisterButton,
               ],
             ),
