@@ -8,6 +8,7 @@ enum PageId {
   traininglist,
   trainingedit,
   meal,
+  meallist,
 }
 
 /// 画面パス
@@ -21,6 +22,7 @@ extension PagePath on PageId {
         PageId.traininglist => '/training/list',
         PageId.trainingedit => '/training/edit/:id',
         PageId.meal => '/meal',
+        PageId.meallist => '/meal/meallist',
       };
 }
 
@@ -35,5 +37,6 @@ extension PageName on PageId {
         PageId.traininglist => 'traininglist',
         PageId.trainingedit => 'trainingedit',
         PageId.meal => 'meal',
+        PageId.meallist => 'meallist',
       };
 }
