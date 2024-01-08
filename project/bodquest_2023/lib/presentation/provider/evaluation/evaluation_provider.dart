@@ -11,5 +11,6 @@ final evaluationNotifierProvider =
     score: 0,
     weightScore: 0,
     exerciseScore: 0,
+    mealScore: 0,
   )),
 );

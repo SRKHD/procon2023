@@ -20,6 +20,7 @@ mixin _$EvaluationState {
   int get score => throw _privateConstructorUsedError;
   int get weightScore => throw _privateConstructorUsedError;
   int get exerciseScore => throw _privateConstructorUsedError;
+  int get mealScore => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EvaluationStateCopyWith<EvaluationState> get copyWith =>
@@ -32,7 +33,12 @@ abstract class $EvaluationStateCopyWith<$Res> {
           EvaluationState value, $Res Function(EvaluationState) then) =
       _$EvaluationStateCopyWithImpl<$Res, EvaluationState>;
   @useResult
-  $Res call({String rank, int score, int weightScore, int exerciseScore});
+  $Res call(
+      {String rank,
+      int score,
+      int weightScore,
+      int exerciseScore,
+      int mealScore});
 }
 
 /// @nodoc
@@ -52,6 +58,7 @@ class _$EvaluationStateCopyWithImpl<$Res, $Val extends EvaluationState>
     Object? score = null,
     Object? weightScore = null,
     Object? exerciseScore = null,
+    Object? mealScore = null,
   }) {
     return _then(_value.copyWith(
       rank: null == rank
@@ -70,6 +77,10 @@ class _$EvaluationStateCopyWithImpl<$Res, $Val extends EvaluationState>
           ? _value.exerciseScore
           : exerciseScore // ignore: cast_nullable_to_non_nullable
               as int,
+      mealScore: null == mealScore
+          ? _value.mealScore
+          : mealScore // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -82,7 +93,12 @@ abstract class _$$EvaluationStateImplCopyWith<$Res>
       __$$EvaluationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String rank, int score, int weightScore, int exerciseScore});
+  $Res call(
+      {String rank,
+      int score,
+      int weightScore,
+      int exerciseScore,
+      int mealScore});
 }
 
 /// @nodoc
@@ -100,6 +116,7 @@ class __$$EvaluationStateImplCopyWithImpl<$Res>
     Object? score = null,
     Object? weightScore = null,
     Object? exerciseScore = null,
+    Object? mealScore = null,
   }) {
     return _then(_$EvaluationStateImpl(
       rank: null == rank
@@ -118,6 +135,10 @@ class __$$EvaluationStateImplCopyWithImpl<$Res>
           ? _value.exerciseScore
           : exerciseScore // ignore: cast_nullable_to_non_nullable
               as int,
+      mealScore: null == mealScore
+          ? _value.mealScore
+          : mealScore // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -129,7 +150,8 @@ class _$EvaluationStateImpl implements _EvaluationState {
       {required this.rank,
       required this.score,
       required this.weightScore,
-      required this.exerciseScore});
+      required this.exerciseScore,
+      required this.mealScore});
 
   @override
   final String rank;
@@ -139,10 +161,12 @@ class _$EvaluationStateImpl implements _EvaluationState {
   final int weightScore;
   @override
   final int exerciseScore;
+  @override
+  final int mealScore;
 
   @override
   String toString() {
-    return 'EvaluationState(rank: $rank, score: $score, weightScore: $weightScore, exerciseScore: $exerciseScore)';
+    return 'EvaluationState(rank: $rank, score: $score, weightScore: $weightScore, exerciseScore: $exerciseScore, mealScore: $mealScore)';
   }
 
   @override
@@ -155,12 +179,14 @@ class _$EvaluationStateImpl implements _EvaluationState {
             (identical(other.weightScore, weightScore) ||
                 other.weightScore == weightScore) &&
             (identical(other.exerciseScore, exerciseScore) ||
-                other.exerciseScore == exerciseScore));
+                other.exerciseScore == exerciseScore) &&
+            (identical(other.mealScore, mealScore) ||
+                other.mealScore == mealScore));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, rank, score, weightScore, exerciseScore);
+  int get hashCode => Object.hash(
+      runtimeType, rank, score, weightScore, exerciseScore, mealScore);
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +201,8 @@ abstract class _EvaluationState implements EvaluationState {
       {required final String rank,
       required final int score,
       required final int weightScore,
-      required final int exerciseScore}) = _$EvaluationStateImpl;
+      required final int exerciseScore,
+      required final int mealScore}) = _$EvaluationStateImpl;
 
   @override
   String get rank;
@@ -185,6 +212,8 @@ abstract class _EvaluationState implements EvaluationState {
   int get weightScore;
   @override
   int get exerciseScore;
+  @override
+  int get mealScore;
   @override
   @JsonKey(ignore: true)
   _$$EvaluationStateImplCopyWith<_$EvaluationStateImpl> get copyWith =>
