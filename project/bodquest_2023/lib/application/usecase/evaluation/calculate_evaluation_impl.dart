@@ -18,6 +18,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   double _targetActualOutgoing = 0;
   int _weightScore = 0;
   int _exerciseScore = 0;
+  int _mealScore = 0;
 
   int get score {
     final actualOutgoing = _outgoing + _basalOutgoing - _incoming;
@@ -81,6 +82,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
       score: score.clamp(0, 100),
       weightScore: _weightScore.clamp(0, 100),
       exerciseScore: _exerciseScore.clamp(0, 100),
+      mealScore: _mealScore.clamp(0, 100),
       rank: getRank(score).value,
     );
     print(newValue);
@@ -116,6 +118,16 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
           .map((meal) => meal.calorie)
           .reduce((value, element) => value + element)
           .toDouble();
+
+      final scoringRange = meals
+          .where((meal) => meal.date.isAfter(thresholdDay))
+          .map((meal) => meal.calorie);
+
+      final scoreRate =
+          scoringRange.where((cal) => cal <= _basalOutgoing).length /
+              scoringRange.length;
+
+      _mealScore = (scoreRate * 100).toInt();
 
       updateState(score);
     });
