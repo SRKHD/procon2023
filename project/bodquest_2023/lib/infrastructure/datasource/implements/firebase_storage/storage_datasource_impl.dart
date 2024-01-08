@@ -18,6 +18,8 @@ class FirebaseStorageDataSourceImpl implements IFirebaseStorageDataSource {
 
   @override
   Future<String> getURL(String storagePath) {
+    if (storagePath == '') return Future.value('');
+
     final Reference ref = FirebaseStorage.instance.ref().child(storagePath);
     return ref.getDownloadURL();
   }

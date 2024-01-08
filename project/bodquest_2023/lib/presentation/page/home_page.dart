@@ -56,7 +56,12 @@ class HomePage extends ConsumerWidget {
         ),
         ItemEvaluationPanel(
           title: '食事',
-          onPressed: () {},
+          onPressed: () {
+            final router = ref.read(goRouterProvider);
+            router.pushNamed(
+              PageId.meal.routeName,
+            );
+          },
           percentBarGraphWidth: RawSize.p200,
           percentBarGraphHeight: RawSize.p32,
           percentBarGraphValue: evaluationState.mealScore,

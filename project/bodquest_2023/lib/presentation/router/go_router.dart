@@ -1,3 +1,4 @@
+import 'package:bodquest_2023/presentation/page/meal/meal_list_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -61,6 +62,13 @@ final goRouterProvider = Provider(
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return TrainingEditPage(id);
+        },
+      ),
+      GoRoute(
+        path: PageId.meallist.path,
+        name: PageId.meallist.routeName,
+        builder: (context, state) {
+          return MealListPage();
         },
       ),
     ];
