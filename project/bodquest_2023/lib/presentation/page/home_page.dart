@@ -59,7 +59,7 @@ class HomePage extends ConsumerWidget {
           onPressed: () {},
           percentBarGraphWidth: RawSize.p200,
           percentBarGraphHeight: RawSize.p32,
-          percentBarGraphValue: 90,
+          percentBarGraphValue: evaluationState.mealScore,
         ),
         LevelText(
           level: tempLevel,
