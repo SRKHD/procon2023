@@ -9,5 +9,6 @@ class EvaluationState with _$EvaluationState {
     required int score,
     required int weightScore,
     required int exerciseScore,
+    required int mealScore,
   }) = _EvaluationState;
 }
