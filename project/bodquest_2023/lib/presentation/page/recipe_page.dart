@@ -28,6 +28,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _calorieController = TextEditingController();
   bool _isMeal = true;
+  String _label = "";
 
   @override
   void dispose() {
@@ -49,9 +50,10 @@ class RecipePageState extends ConsumerState<RecipePage> {
     print(logInUserState.userName);
     final dateState = ref.watch(dateTimeNotifierProvider(widget.initDate));
 
+    _label = _isMeal ? "食事" : "献立";
     final textField = TextFormField(
       controller: _controller,
-      decoration: InputDecoration(labelText: "食事"),
+      decoration: InputDecoration(labelText: _label),
     );
 
     final textComponents = SizedBox(
