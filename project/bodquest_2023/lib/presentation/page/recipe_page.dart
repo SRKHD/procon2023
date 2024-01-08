@@ -6,11 +6,13 @@ import '../component/component_types.dart';
 import '../component/control/number_textfield.dart';
 import '../component/meal/meal_kind_dropdown.dart';
 import '../component/meal/meal_list_button.dart';
+import '../component/menu/menu_list_button.dart';
 import '../notifier/datetime_notifier.dart';
 import '../notifier/meal/mealRegister_kind_notifier.dart';
 import '../notifier/meal/meal_kind_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../provider/meal/meal_list_provider.dart';
+import '../provider/menu/menu_list_provider.dart';
 import '../provider/user/login_user_provider.dart';
 import '../router/go_router.dart';
 import '../router/page_path.dart';
@@ -124,13 +126,21 @@ class RecipePageState extends ConsumerState<RecipePage> {
       icon: const Icon(Icons.add),
     );
 
-    final listButton = MealListButton(onPressed: () {
+    final mealListButton = MealListButton(onPressed: () {
       final router = ref.read(goRouterProvider);
       router.pushNamed(
         PageId.meallist.routeName,
       );
     });
 
+    final recipeListButton = MenuListButton(onPressed: () {
+      final router = ref.read(goRouterProvider);
+      router.pushNamed(
+        PageId.recipelist.routeName,
+      );
+    });
+
+    final listButton = _isMeal ? mealListButton : recipeListButton;
     return mealState.when(
       data: (meals) {
         return Scaffold(
