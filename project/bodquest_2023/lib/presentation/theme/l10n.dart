@@ -18,7 +18,7 @@ class L10n {
   static const user = 'User Setting';
   static const weight = 'Weight';
   static const training = 'Training';
-  static const setting = 'Setting';
+  //static const setting = 'Setting';
   static const meal = 'Meal';
 
   static const tooLongTextMesage = '入力文字が長すぎます';
