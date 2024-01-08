@@ -27,6 +27,7 @@ class RecipePage extends ConsumerStatefulWidget {
 class RecipePageState extends ConsumerState<RecipePage> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _calorieController = TextEditingController();
+  bool _isMeal = true;
 
   @override
   void dispose() {
@@ -39,6 +40,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
   Widget build(BuildContext context) {
     final mealRegisterState =
         ref.watch(mealRegisterKindNotifierProvider(MealRegisterKind.meal));
+    _isMeal = mealRegisterState == MealRegisterKind.meal;
     final mealState = ref.watch(mealListNotifierProvider);
     final kindState = ref.watch(mealKindNotifierProvider(MealKind.breakfast));
     final logInUserState = ref.watch(logInUserNotifierProvider);
@@ -129,10 +131,19 @@ class RecipePageState extends ConsumerState<RecipePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 MealRegisterKindDropDown(mealRegisterState),
-                MealKindDropdown(kindState),
-                calenderComponents,
+                Visibility(
+                  child: MealKindDropdown(kindState),
+                  visible: _isMeal,
+                ),
+                Visibility(
+                  child: calenderComponents,
+                  visible: _isMeal,
+                ),
                 textComponents,
-                calorieTextComponents,
+                Visibility(
+                  child: calorieTextComponents,
+                  visible: _isMeal,
+                ),
                 resisterButton,
               ],
             ),
