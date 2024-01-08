@@ -34,7 +34,7 @@ enum TabImage {
   setting('tab_setting.png'),
   arrowLeft('arrow_left.png'),
   arrowRight('arrow_right.png'),
-  recipe('tab_recipe.png');
+  meal('tab_meal.png');
 
   const TabImage(this.name);
 

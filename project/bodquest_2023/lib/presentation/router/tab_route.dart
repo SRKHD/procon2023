@@ -48,8 +48,8 @@ final routes = [
   ),
   TabRoute(
     body: () => RecipePage(),
-    icon: TabImage.recipe.path,
-    label: L10n.recipe,
+    icon: TabImage.meal.path,
+    label: L10n.meal,
   ),
   TabRoute(
     body: () => Placeholder(),
