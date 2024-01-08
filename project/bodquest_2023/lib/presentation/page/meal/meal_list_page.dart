@@ -31,7 +31,7 @@ class MealListPage extends ConsumerWidget {
                   onPressed: (userId, id) {
                     final router = ref.read(goRouterProvider);
                     router.pushNamed(
-                      PageId.meal.routeName,
+                      PageId.mealedit.routeName,
                       pathParameters: {'id': id},
                     );
                   },
