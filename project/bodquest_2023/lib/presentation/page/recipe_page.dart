@@ -105,13 +105,16 @@ class RecipePageState extends ConsumerState<RecipePage> {
 
     final resisterButton = ElevatedButton.icon(
       onPressed: () {
-        final notifier = ref.read(mealListNotifierProvider.notifier);
-        var calorie =
-            _calorieController.text == '' ? '-1' : _calorieController.text;
-        notifier.add(logInUserState.userId, kindState.name, _controller.text,
-            dateState, int.parse(calorie), '');
-        _controller.text = '';
-        _calorieController.text = '';
+        if (_isMeal) {
+          final mealNotifier = ref.read(mealListNotifierProvider.notifier);
+          var calorie =
+              _calorieController.text == '' ? '-1' : _calorieController.text;
+          mealNotifier.add(logInUserState.userId, kindState.name,
+              _controller.text, dateState, int.parse(calorie), '');
+          _controller.text = '';
+          _calorieController.text = '';
+        } else {
+        }
       },
       label: Text('登録'),
       icon: const Icon(Icons.add),
