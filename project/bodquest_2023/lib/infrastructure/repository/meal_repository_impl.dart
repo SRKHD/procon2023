@@ -36,7 +36,7 @@ class MealRepositoryImpl implements IMealRepository {
     }
 
     return fireStoreDataSource.add(
-        userId, kind, name, date, calorie, storagePath);
+        userId, kind, name, date, calorie, imageFilePath);
   }
 
   @override
