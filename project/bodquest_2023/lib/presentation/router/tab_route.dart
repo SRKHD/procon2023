@@ -51,9 +51,9 @@ final routes = [
     icon: TabImage.meal.path,
     label: L10n.meal,
   ),
-  TabRoute(
-    body: () => Placeholder(),
-    icon: TabImage.setting.path,
-    label: L10n.setting,
-  ),
+  //TabRoute(
+  //body: () => Placeholder(),
+  //icon: TabImage.setting.path,
+  //label: L10n.setting,
+  //),
 ];
