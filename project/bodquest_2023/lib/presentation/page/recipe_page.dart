@@ -114,6 +114,10 @@ class RecipePageState extends ConsumerState<RecipePage> {
           _controller.text = '';
           _calorieController.text = '';
         } else {
+          final recipeNotifier = ref.read(menuListNotifierProvider.notifier);
+          recipeNotifier.add(logInUserState.userId, '', dateState,
+              _controller.text, '', -1, '');
+          _controller.text = '';
         }
       },
       label: Text('登録'),
