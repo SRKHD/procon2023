@@ -1,13 +1,13 @@
 enum RankImage {
   rankUnknown('unknown.png'),
-  rankG('rank_g.png'),
-  rankF('rank_f.png'),
-  rankE('rank_e.png'),
-  rankD('rank_d.png'),
-  rankC('rank_c.png'),
-  rankB('rank_b.png'),
-  rankA('rank_a.png'),
-  rankS('rank_s.png');
+  rankG('tree_rank_g.png'),
+  rankF('tree_rank_f.png'),
+  rankE('tree_rank_e.png'),
+  rankD('tree_rank_d.png'),
+  rankC('tree_rank_c.png'),
+  rankB('tree_rank_b.png'),
+  rankA('tree_rank_a.png'),
+  rankS('tree_rank_s.png');
 
   const RankImage(this.name);
 
