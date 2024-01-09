@@ -1,3 +1,4 @@
+import 'package:bodquest_2023/presentation/usecaese_provider_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,15 +18,15 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final eval = ref.watch(calculateEvaluationUsecase); // NOTE: 消さない。
     final evaluationState = ref.watch(evaluationNotifierProvider);
     final tempRank = EvaluationRank.from(evaluationState.rank);
-    const tempWeight = 67.5;
     //const tempLevel = 17;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         PaceText(
-          expectedWeight: tempWeight,
+          expectedWeight: evaluationState.predictedWeight,
         ),
         ItemEvaluationPanel(
           title: '体重',

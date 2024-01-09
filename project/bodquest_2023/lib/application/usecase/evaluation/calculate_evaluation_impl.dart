@@ -95,7 +95,6 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
       rank: getRank(score).value,
       predictedWeight: _predictedWeight,
     );
-    print(newValue);
     evaluationNotifier.update(newValue);
   }
 
