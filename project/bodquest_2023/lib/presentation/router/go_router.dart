@@ -1,10 +1,10 @@
-import 'package:bodquest_2023/presentation/page/meal/meal_list_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../page/base_root_page.dart';
 import '../page/login_page.dart';
 import '../page/meal/meal_edit_page.dart';
+import '../page/meal/meal_list_page.dart';
 import '../page/menu/menu_list_page.dart';
 import '../page/registration_page.dart';
 import '../page/training/training_edit_page.dart';

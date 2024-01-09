@@ -1,9 +1,9 @@
-import 'package:bodquest_2023/presentation/state/training/training_kind_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/value/training_kind.dart';
 import '../../provider/training/training_kind_provider.dart';
+import '../../state/training/training_kind_state.dart';
 
 /// トレーニング種類を選ぶドロップダウン
 class TrainingKindDropdown extends ConsumerWidget {

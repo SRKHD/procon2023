@@ -1,4 +1,3 @@
-import 'package:bodquest_2023/presentation/component/meal/mealregister_kind_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -7,6 +6,7 @@ import '../../domain/value/meal_register_kind.dart';
 import '../component/control/number_textfield.dart';
 import '../component/meal/meal_kind_dropdown.dart';
 import '../component/meal/meal_list_button.dart';
+import '../component/meal/mealregister_kind_dropdown.dart';
 import '../component/menu/menu_list_button.dart';
 import '../notifier/meal/meal_register_kind_notifier.dart';
 import '../notifier/meal/meal_kind_notifier.dart';

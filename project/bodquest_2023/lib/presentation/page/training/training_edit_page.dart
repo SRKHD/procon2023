@@ -1,4 +1,3 @@
-import 'package:bodquest_2023/presentation/state/datetime_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,6 +10,7 @@ import '../../provider/training/training_kind_provider.dart';
 import '../../provider/training/training_list_provider.dart';
 import '../../notifier/text_notifier.dart';
 import '../../router/go_router.dart';
+import '../../state/datetime_state.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 
