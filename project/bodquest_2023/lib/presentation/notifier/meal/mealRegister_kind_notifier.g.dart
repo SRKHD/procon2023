@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'mealRegister_kind_notifier.dart';
+part of 'mealregister_kind_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator

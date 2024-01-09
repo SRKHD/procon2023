@@ -71,7 +71,7 @@ class DesignSize {
     final tabWidth = baseTabWidth * (5 / tabCount);
     //print('tabwidth $tabWidth');
 
-    const adjustFontRation = kIsWeb ? 0.5 : 1.0;
+    const adjustFontRation = kIsWeb ? 0.8 : 1.0;
 
     return DesignSize._(
       tabBarH: r * 200.0,

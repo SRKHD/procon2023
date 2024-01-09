@@ -2,7 +2,6 @@ import 'package:bodquest_2023/presentation/state/menu/menu_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../state/menu/menu_state.dart';
 import 'menu_list_card.dart';
 
 class MenuListView extends ConsumerWidget {

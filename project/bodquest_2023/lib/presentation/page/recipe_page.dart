@@ -1,4 +1,4 @@
-import 'package:bodquest_2023/presentation/component/meal/mealRegister_kind_dropdown.dart';
+import 'package:bodquest_2023/presentation/component/meal/mealregister_kind_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,7 +8,7 @@ import '../component/meal/meal_kind_dropdown.dart';
 import '../component/meal/meal_list_button.dart';
 import '../component/menu/menu_list_button.dart';
 import '../notifier/datetime_notifier.dart';
-import '../notifier/meal/mealRegister_kind_notifier.dart';
+import '../notifier/meal/mealregister_kind_notifier.dart';
 import '../notifier/meal/meal_kind_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../provider/meal/meal_list_provider.dart';

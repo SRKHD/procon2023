@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/value/evaluation_rank.dart';
 import '../component/control/item_evaluation_panel.dart';
 import '../component/home/chara_image.dart';
-import '../component/home/level_text.dart';
+//import '../component/home/level_text.dart';
 import '../component/home/pace_text.dart';
 import '../component/home/rank_text.dart';
 import '../provider/evaluation/evaluation_provider.dart';
@@ -20,13 +20,10 @@ class HomePage extends ConsumerWidget {
     final evaluationState = ref.watch(evaluationNotifierProvider);
     final tempRank = EvaluationRank.from(evaluationState.rank);
     const tempWeight = 67.5;
-    const tempLevel = 17;
+    //const tempLevel = 17;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        RankText(
-          rank: tempRank,
-        ),
         PaceText(
           expectedWeight: tempWeight,
         ),
@@ -66,8 +63,11 @@ class HomePage extends ConsumerWidget {
           percentBarGraphHeight: RawSize.p32,
           percentBarGraphValue: evaluationState.mealScore,
         ),
-        LevelText(
-          level: tempLevel,
+        // LevelText(
+        //   level: tempLevel,
+        // ),
+        RankText(
+          rank: tempRank,
         ),
         CharaImage(rank: tempRank)
       ],
