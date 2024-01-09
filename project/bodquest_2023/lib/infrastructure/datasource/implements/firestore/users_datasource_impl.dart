@@ -18,7 +18,7 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
       List<FugUser> userList = querySnapshot.docs
           .map((doc) {
             return FugGetUsersResponse.fromJson(doc.data()).results;
-        })
+          })
           .expand((userList) => userList)
           .toList();
 
@@ -60,7 +60,7 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
       'userId': userId,
       'userName': '',
       'height': 0,
-      'gender': '',
+      'gender': 'other',
     }); // データ
     return 0;
   }

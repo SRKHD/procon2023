@@ -12,7 +12,7 @@ enum FugUserGender {
         return FugUserGender.male;
       case 'female':
         return FugUserGender.female;
-      case '':
+      case 'other':
         return FugUserGender.none;
       default:
         throw UnimplementedError();
