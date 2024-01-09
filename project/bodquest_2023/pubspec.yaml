@@ -61,6 +61,10 @@ dependencies:
   fl_chart:
   # google
   google_sign_in:
+  # YOLOv5
+  flutter_pytorch:
+  camera: #^0.9.8+1
+  image_picker: #^0.8.5+3
 
 dev_dependencies:
   flutter_test:
