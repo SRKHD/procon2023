@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:bodquest_2023/presentation/component/meal/mealRegister_kind_dropdown.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../component/component_types.dart';
 import '../component/control/number_textfield.dart';
@@ -27,11 +31,13 @@ class RecipePage extends ConsumerStatefulWidget {
 class RecipePageState extends ConsumerState<RecipePage> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _calorieController = TextEditingController();
+  final TextEditingController _imageController = TextEditingController();
 
   @override
   void dispose() {
     _controller.dispose();
     _calorieController.dispose();
+    _imageController.dispose();
     super.dispose();
   }
 
@@ -105,9 +111,10 @@ class RecipePageState extends ConsumerState<RecipePage> {
         var calorie =
             _calorieController.text == '' ? '-1' : _calorieController.text;
         notifier.add(logInUserState.userId, kindState.name, _controller.text,
-            dateState, int.parse(calorie), '');
+            dateState, int.parse(calorie), _imageController.text);
         _controller.text = '';
         _calorieController.text = '';
+        _imageController.text = '';
       },
       label: Text('登録'),
       icon: const Icon(Icons.add),
@@ -119,6 +126,46 @@ class RecipePageState extends ConsumerState<RecipePage> {
         PageId.meallist.routeName,
       );
     });
+
+    Future upload() async {
+      // 画像をスマホのギャラリーから取得
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      // 画像を取得できた場合はFirebaseStorageにアップロードする
+      if (image != null) {
+        final imageFile = File(image.path);
+        FirebaseStorage storage = FirebaseStorage.instance;
+        try {
+          _imageController.text = image.path;
+          await storage.ref('sample.png').putFile(imageFile);
+        } catch (e) {
+          print(e);
+        }
+      }
+      return;
+    }
+
+    final imageButton = ElevatedButton.icon(
+      onPressed: () async {
+        await upload();
+      },
+      label: Text('画像登録'),
+      icon: const Icon(Icons.add),
+    );
+
+    final imageText = TextFormField(
+      controller: _imageController,
+      enabled: false,
+    );
+
+    final imageTextComponent = SizedBox(
+      width: 300,
+      child: imageText,
+    );
+
+    final registerImage = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [imageButton, imageTextComponent],
+    );
 
     return mealState.when(
       data: (meals) {
@@ -134,6 +181,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
                 textComponents,
                 calorieTextComponents,
                 resisterButton,
+                registerImage,
               ],
             ),
           ),
