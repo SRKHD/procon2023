@@ -1,4 +1,3 @@
-import 'package:bodquest_2023/presentation/usecaese_provider_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,6 +11,7 @@ import '../provider/evaluation/evaluation_provider.dart';
 import '../router/go_router.dart';
 import '../router/page_path.dart';
 import '../theme/sizes.dart';
+import '../usecaese_provider_module.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});

@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/util/datetime_utils.dart';
 import '../../component/control/number_textfield.dart';
-import '../../notifier/datetime_notifier.dart';
 import '../../notifier/text_notifier.dart';
 import '../../notifier/weight/weight_list_provider.dart';
+import '../../provider/datetime_provider.dart';
 import '../../router/go_router.dart';
+import '../../state/datetime_state.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 
@@ -42,13 +43,13 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
       data: (weights) {
         final state = weights.firstWhere((element) => element.id == widget.id);
         DateTime date = toDate(state.date);
-        final dateState = ref.watch(dateTimeNotifierProvider(date));
+        final dateState = ref.watch(datetimeNotifierProvider(date));
         _controller.text = state.value.toString();
 
         Future<void> selectDate(BuildContext context) async {
           final DateTime? picked = await showDatePicker(
             context: context,
-            initialDate: dateState,
+            initialDate: dateState.value,
             firstDate: DateTime(2020),
             lastDate: DateTime(2025),
           );
@@ -56,8 +57,8 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
           if (picked != null) {
             setState(() {
               final dateNotifier =
-                  ref.watch(dateTimeNotifierProvider(dateState).notifier);
-              dateNotifier.update(picked);
+                  ref.watch(datetimeNotifierProvider(dateState.value).notifier);
+              dateNotifier.update(DateTimeState(value: picked));
             });
           }
         }
@@ -66,7 +67,7 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                '選択した日付: ${dateState.year}/${dateState.month}/${dateState.day}'),
+                '選択した日付: ${dateState.value.year}/${dateState.value.month}/${dateState.value.day}'),
             ElevatedButton(
               onPressed: () => selectDate(context),
               child: const Text('日付選択'),
@@ -80,7 +81,7 @@ class WeightEditPageState extends ConsumerState<WeightEditPage> {
             final notifier = ref.read(weightListNotifierProvider.notifier);
 
             notifier.update(
-                state.userId, state.id, dateState, double.parse(text));
+                state.userId, state.id, dateState.value, double.parse(text));
 
             final router = ref.read(goRouterProvider);
             router.pop();

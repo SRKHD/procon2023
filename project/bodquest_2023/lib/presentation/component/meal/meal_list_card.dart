@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../component_types.dart';
-
+import '../../../domain/value/meal_kind.dart';
 import '../control/editable_card.dart';
 
 class MealListCard extends StatelessWidget {
