@@ -8,18 +8,22 @@ part 'user_state.freezed.dart';
 @freezed
 class UserState with _$UserState {
   factory UserState({
+    required String id,
     required String name,
     required String thumbnailLink,
     required String birthday,
     required double height,
+    required String gender,
   }) = _UserState;
 
   factory UserState.fromEntity(User user) {
     return UserState(
+      id: user.id,
       name: user.name,
       thumbnailLink: user.thumbnail,
-      birthday: toJPNDateString(user.birthday),
+      birthday: user.birthday.toString(),
       height: user.height,
+      gender: user.gender.name,
     );
   }
 }

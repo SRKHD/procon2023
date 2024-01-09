@@ -16,10 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserState {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get thumbnailLink => throw _privateConstructorUsedError;
   String get birthday => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
+  String get gender => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStateCopyWith<UserState> get copyWith =>
@@ -32,7 +34,12 @@ abstract class $UserStateCopyWith<$Res> {
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
   $Res call(
-      {String name, String thumbnailLink, String birthday, double height});
+      {String id,
+      String name,
+      String thumbnailLink,
+      String birthday,
+      double height,
+      String gender});
 }
 
 /// @nodoc
@@ -48,12 +55,18 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? thumbnailLink = null,
     Object? birthday = null,
     Object? height = null,
+    Object? gender = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -70,6 +83,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as double,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -83,7 +100,12 @@ abstract class _$$UserStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name, String thumbnailLink, String birthday, double height});
+      {String id,
+      String name,
+      String thumbnailLink,
+      String birthday,
+      double height,
+      String gender});
 }
 
 /// @nodoc
@@ -97,12 +119,18 @@ class __$$UserStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? thumbnailLink = null,
     Object? birthday = null,
     Object? height = null,
+    Object? gender = null,
   }) {
     return _then(_$UserStateImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -119,6 +147,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as double,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -127,11 +159,15 @@ class __$$UserStateImplCopyWithImpl<$Res>
 
 class _$UserStateImpl implements _UserState {
   _$UserStateImpl(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.thumbnailLink,
       required this.birthday,
-      required this.height});
+      required this.height,
+      required this.gender});
 
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -140,10 +176,12 @@ class _$UserStateImpl implements _UserState {
   final String birthday;
   @override
   final double height;
+  @override
+  final String gender;
 
   @override
   String toString() {
-    return 'UserState(name: $name, thumbnailLink: $thumbnailLink, birthday: $birthday, height: $height)';
+    return 'UserState(id: $id, name: $name, thumbnailLink: $thumbnailLink, birthday: $birthday, height: $height, gender: $gender)';
   }
 
   @override
@@ -151,17 +189,19 @@ class _$UserStateImpl implements _UserState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserStateImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.thumbnailLink, thumbnailLink) ||
                 other.thumbnailLink == thumbnailLink) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday) &&
-            (identical(other.height, height) || other.height == height));
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.gender, gender) || other.gender == gender));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, thumbnailLink, birthday, height);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, thumbnailLink, birthday, height, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -172,11 +212,15 @@ class _$UserStateImpl implements _UserState {
 
 abstract class _UserState implements UserState {
   factory _UserState(
-      {required final String name,
+      {required final String id,
+      required final String name,
       required final String thumbnailLink,
       required final String birthday,
-      required final double height}) = _$UserStateImpl;
+      required final double height,
+      required final String gender}) = _$UserStateImpl;
 
+  @override
+  String get id;
   @override
   String get name;
   @override
@@ -185,6 +229,8 @@ abstract class _UserState implements UserState {
   String get birthday;
   @override
   double get height;
+  @override
+  String get gender;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>

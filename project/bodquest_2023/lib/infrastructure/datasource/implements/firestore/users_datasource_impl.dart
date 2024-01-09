@@ -3,28 +3,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../core/exception/network_exception.dart';
 import '../../../model/firestore/user/fug_get_user_response.dart';
 import '../../../model/firestore/user/fug_get_users_response.dart';
+import '../../../model/firestore/user/fug_user.dart';
 import '../../interface/firestore/users_datasource.dart';
 
 class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
   @override
   Future<FugGetUsersResponse> getUsers({int results = 10}) async {
-    final usersRef = FirebaseFirestore.instance
-        .collection('users') // コレクションID
-        .doc();
+    final usersRef = FirebaseFirestore.instance.collection('users');
 
     FugGetUsersResponse result = FugGetUsersResponse(results: []);
-    usersRef
-        .get()
-        .then((docSnapshot) {
-          if (docSnapshot.exists) {
-            result = FugGetUsersResponse.fromJson(docSnapshot.data());
-          } else {
-            throw NetworkException(
-                'FirestoreUsersDataSourceImpl getUsers() "/"');
-          }
+    try {
+      final querySnapshot = await usersRef.get();
+
+      List<FugUser> userList = querySnapshot.docs
+          .map((doc) {
+            return FugGetUsersResponse.fromJson(doc.data()).results;
         })
-        .catchError((e) => print(e))
-        .whenComplete(() => print('get user complete'));
+          .expand((userList) => userList)
+          .toList();
+
+      result =
+          FugGetUsersResponse(results: userList); // リストをFugGetUsersResponseにセット
+    } catch (e) {
+      print(e);
+      throw NetworkException('FirestoreUsersDataSourceImpl getUsers() "/"');
+    }
     return result;
   }
 

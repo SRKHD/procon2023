@@ -8,9 +8,6 @@ class FugGetUsersResponse {
   });
 
   factory FugGetUsersResponse.fromJson(Map<String, dynamic>? json) {
-    return FugGetUsersResponse(
-      results:
-          json?['results'].map<FugUser>((e) => FugUser.fromJson(e)).toList(),
-    );
+    return FugGetUsersResponse(results: [FugUser.fromJson(json)]);
   }
 }
