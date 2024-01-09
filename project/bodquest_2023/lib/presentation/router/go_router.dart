@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../page/base_root_page.dart';
 import '../page/login_page.dart';
 import '../page/meal/meal_edit_page.dart';
+import '../page/menu/menu_list_page.dart';
 import '../page/registration_page.dart';
 import '../page/training/training_edit_page.dart';
 import '../page/training/training_list_page.dart';
@@ -78,6 +79,13 @@ final goRouterProvider = Provider(
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           return MealEditPage(id);
+        },
+      ),
+      GoRoute(
+        path: PageId.recipelist.path,
+        name: PageId.recipelist.routeName,
+        builder: (context, state) {
+          return MenuListPage();
         },
       ),
     ];
