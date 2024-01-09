@@ -8,8 +8,8 @@ import '../../router/page_path.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 
-class MealListPage extends ConsumerWidget {
-  const MealListPage({super.key});
+class MenuListPage extends ConsumerWidget {
+  const MenuListPage({super.key});
 
   @override
   Widget build(context, WidgetRef ref) {
