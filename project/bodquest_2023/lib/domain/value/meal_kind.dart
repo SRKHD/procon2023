@@ -4,8 +4,8 @@ enum MealKind {
   dinner('dinner'), // 夕食
   snack('snack'); // 間食
 
-  final String value;
-  const MealKind(this.value);
+  final String stringValue;
+  const MealKind(this.stringValue);
 
   factory MealKind.from(String value) {
     switch (value) {

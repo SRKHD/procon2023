@@ -1,18 +1,16 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/value/meal_register_kind.dart';
+import '../../state/meal/meal_register_kind_state.dart';
 
-part 'meal_register_kind_notifier.g.dart';
+class MealRegisterKindNotifier extends StateNotifier<MealRegisterKindState> {
+  MealRegisterKindNotifier(
+    super.initValue,
+  );
 
-/// 食事登録の種類を状態管理
-@riverpod
-class MealRegisterKindNotifier extends _$MealRegisterKindNotifier {
-  @override
-  MealRegisterKind build(MealRegisterKind initValue) {
-    return initValue;
-  }
+  /// 現在の状態
+  MealRegisterKindState get value => state;
 
-  void update(String value) {
-    state = MealRegisterKind.from(value);
+  void update(MealRegisterKindState value) {
+    state = value;
   }
 }

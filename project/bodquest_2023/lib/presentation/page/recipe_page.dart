@@ -8,11 +8,11 @@ import '../component/meal/meal_kind_dropdown.dart';
 import '../component/meal/meal_list_button.dart';
 import '../component/meal/mealregister_kind_dropdown.dart';
 import '../component/menu/menu_list_button.dart';
-import '../notifier/meal/meal_register_kind_notifier.dart';
-import '../notifier/meal/meal_kind_notifier.dart';
 import '../notifier/text_notifier.dart';
 import '../provider/datetime_provider.dart';
+import '../provider/meal/meal_kind_provider.dart';
 import '../provider/meal/meal_list_provider.dart';
+import '../provider/meal/meal_register_kind_provider.dart';
 import '../provider/menu/menu_list_provider.dart';
 import '../provider/user/login_user_provider.dart';
 import '../router/go_router.dart';
@@ -45,7 +45,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
   Widget build(BuildContext context) {
     final mealRegisterState =
         ref.watch(mealRegisterKindNotifierProvider(MealRegisterKind.meal));
-    _isMeal = mealRegisterState == MealRegisterKind.meal;
+    _isMeal = mealRegisterState.value == MealRegisterKind.meal;
     final mealState = ref.watch(mealListNotifierProvider);
     final kindState = ref.watch(mealKindNotifierProvider(MealKind.breakfast));
     final logInUserState = ref.watch(logInUserNotifierProvider);
@@ -114,7 +114,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
           final mealNotifier = ref.read(mealListNotifierProvider.notifier);
           var calorie =
               _calorieController.text == '' ? '-1' : _calorieController.text;
-          mealNotifier.add(logInUserState.userId, kindState.name,
+          mealNotifier.add(logInUserState.userId, kindState.value.stringValue,
               _controller.text, dateState.value, int.parse(calorie), '');
           _controller.text = '';
           _calorieController.text = '';
@@ -152,10 +152,10 @@ class RecipePageState extends ConsumerState<RecipePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                MealRegisterKindDropDown(mealRegisterState),
+                MealRegisterKindDropDown(mealRegisterState.value),
                 Visibility(
                   visible: _isMeal,
-                  child: MealKindDropdown(kindState),
+                  child: MealKindDropdown(kindState.value),
                 ),
                 Visibility(
                   visible: _isMeal,

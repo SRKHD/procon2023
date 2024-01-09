@@ -1,8 +1,9 @@
+import 'package:bodquest_2023/presentation/state/meal/meal_kind_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/value/meal_kind.dart';
-import '../../notifier/meal/meal_kind_notifier.dart';
+import '../../provider/meal/meal_kind_provider.dart';
 
 /// 食事の種類を選ぶドロップダウン
 class MealKindDropdown extends ConsumerWidget {
@@ -37,11 +38,12 @@ class MealKindDropdown extends ConsumerWidget {
 
     /// ドロップダウン本体
     return DropdownButton(
-      value: state,
+      value: state.value,
       items: items, // すべての選択肢たち
       onChanged: (newValue) {
-        final notifier = ref.read(mealKindNotifierProvider(state).notifier);
-        notifier.update(newValue!.value);
+        final notifier =
+            ref.read(mealKindNotifierProvider(state.value).notifier);
+        notifier.update(MealKindState(value: newValue!));
       },
       focusColor: Colors.transparent, // 余計な影をなくす
     );

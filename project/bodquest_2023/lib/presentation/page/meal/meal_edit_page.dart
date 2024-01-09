@@ -5,9 +5,9 @@ import '../../../core/util/datetime_utils.dart';
 import '../../../domain/value/meal_kind.dart';
 import '../../component/control/number_textfield.dart';
 import '../../component/meal/meal_kind_dropdown.dart';
-import '../../notifier/meal/meal_kind_notifier.dart';
 import '../../notifier/text_notifier.dart';
 import '../../provider/datetime_provider.dart';
+import '../../provider/meal/meal_kind_provider.dart';
 import '../../provider/meal/meal_list_provider.dart';
 import '../../router/go_router.dart';
 import '../../state/datetime_state.dart';
@@ -43,7 +43,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
         final state = meals.firstWhere((element) => element.id == widget.id);
         DateTime date = toDate(state.date);
         final dateState = ref.watch(datetimeNotifierProvider(date));
-        MealKind kindState =
+        final kindState =
             ref.watch(mealKindNotifierProvider(MealKind.from(state.kind)));
         _controller.text = state.name.toString();
         _calorieController.text = state.calorie.toString();
@@ -107,7 +107,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
             var calorie =
                 _calorieController.text == '' ? '-1' : _calorieController.text;
 
-            notifier.update(state.userId, state.id, kindState.value,
+            notifier.update(state.userId, state.id, kindState.value.stringValue,
                 _controller.text, dateState.value, int.parse(calorie), '');
 
             final router = ref.read(goRouterProvider);
@@ -131,7 +131,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                MealKindDropdown(kindState),
+                MealKindDropdown(kindState.value),
                 calenderComponents,
                 textComponents,
                 calorieTextComponents,
