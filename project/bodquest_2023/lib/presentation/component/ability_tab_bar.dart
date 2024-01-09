@@ -6,7 +6,7 @@ import '../router/tab_route.dart';
 import '../theme/colors.dart';
 import '../theme/sizes.dart';
 import '../theme/tabbar_config.dart';
-import 'ability_tabItem.dart';
+import 'ability_tabitem.dart';
 
 /// タブバー
 class AbilityTabBar extends StatelessWidget {

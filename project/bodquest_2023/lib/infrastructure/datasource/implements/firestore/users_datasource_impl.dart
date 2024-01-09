@@ -22,6 +22,7 @@ class FirestoreUsersDataSourceImpl implements IFirestoreUsersDataSource {
                 'FirestoreUsersDataSourceImpl getUsers() "/"');
           }
         })
+        // ignore: invalid_return_type_for_catch_error
         .catchError((e) => print(e))
         .whenComplete(() => print('get user complete'));
     return result;
