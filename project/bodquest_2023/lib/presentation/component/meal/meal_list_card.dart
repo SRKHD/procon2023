@@ -13,6 +13,7 @@ class MealListCard extends StatelessWidget {
     required this.date,
     required this.name,
     required this.calorie,
+    required this.imageURL,
     required this.onPressed,
     required this.onPressedDelete,
   });
@@ -22,6 +23,7 @@ class MealListCard extends StatelessWidget {
   final String date;
   final String name;
   final int calorie;
+  final String imageURL;
 
   /// コールバック カード選択
   final Function(String, String) onPressed;
@@ -43,7 +45,7 @@ class MealListCard extends StatelessWidget {
         MealKind.dinner => '夕食　　$name$calorieText',
         MealKind.snack => '間食　　$name$calorieText',
       },
-      imagePath: '',
+      imagePath: imageURL,
       onPressed: onPressed,
       onPressedDelete: onPressedDelete,
     );

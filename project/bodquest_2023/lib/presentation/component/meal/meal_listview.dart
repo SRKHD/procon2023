@@ -31,6 +31,7 @@ class MealListView extends ConsumerWidget {
         date: meals[index].date,
         name: meals[index].name,
         calorie: meals[index].calorie,
+        imageURL: meals[index].imageURL,
         onPressed: onPressed,
         onPressedDelete: onPressedDelete,
       ),
