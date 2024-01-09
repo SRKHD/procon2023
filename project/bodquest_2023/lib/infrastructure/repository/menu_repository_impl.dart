@@ -36,7 +36,7 @@ class MenuRepositoryImpl implements IMenuRepository {
     }
 
     return fireStoreDataSource.add(
-        userId, name, date, recipe, ingredient, calorie, storagePath);
+        userId, name, date, recipe, ingredient, calorie, imageFilePath);
   }
 
   @override

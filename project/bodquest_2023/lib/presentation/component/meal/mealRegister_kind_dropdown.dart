@@ -23,7 +23,7 @@ class MealRegisterKindDropDown extends ConsumerWidget {
       ),
       DropdownMenuItem(
         value: MealRegisterKind.recipe,
-        child: Text('レシピ登録'),
+        child: Text('献立登録'),
       ),
     ];
 
