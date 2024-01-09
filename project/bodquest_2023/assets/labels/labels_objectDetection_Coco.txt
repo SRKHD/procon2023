@@ -44,16 +44,16 @@ fork
 knife
 spoon
 bowl
-banana
-apple
-sandwich
-orange
-broccoli
-carrot
-hot dog
-pizza
-donut
-cake
+banana 84kcal
+apple 135kcal
+sandwich 304kcal
+orange 50kcal
+broccoli 50kcal
+carrot 58kcal
+hot dog 292kcal
+pizza 565kcal
+donut 215kcal
+cake 315kcal
 chair
 couch
 potted plant
