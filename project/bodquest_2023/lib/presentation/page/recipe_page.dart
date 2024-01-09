@@ -151,17 +151,17 @@ class RecipePageState extends ConsumerState<RecipePage> {
               children: <Widget>[
                 MealRegisterKindDropDown(mealRegisterState),
                 Visibility(
-                  child: MealKindDropdown(kindState),
                   visible: _isMeal,
+                  child: MealKindDropdown(kindState),
                 ),
                 Visibility(
-                  child: calenderComponents,
                   visible: _isMeal,
+                  child: calenderComponents,
                 ),
                 textComponents,
                 Visibility(
-                  child: calorieTextComponents,
                   visible: _isMeal,
+                  child: calorieTextComponents,
                 ),
                 resisterButton,
               ],
