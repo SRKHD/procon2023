@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/value/meal_kind.dart';
 import '../../notifier/meal/meal_kind_notifier.dart';
-import '../component_types.dart';
 
 /// 食事の種類を選ぶドロップダウン
 class MealKindDropdown extends ConsumerWidget {

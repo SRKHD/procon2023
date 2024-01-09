@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/value/meal_register_kind.dart';
 import '../../notifier/meal/mealregister_kind_notifier.dart';
-import '../component_types.dart';
 
 /// 登録の種類を選ぶドロップダウン
 class MealRegisterKindDropDown extends ConsumerWidget {

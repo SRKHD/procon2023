@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/util/datetime_utils.dart';
-import '../../component/component_types.dart';
+import '../../../domain/value/meal_kind.dart';
 import '../../component/control/number_textfield.dart';
 import '../../component/meal/meal_kind_dropdown.dart';
 import '../../notifier/datetime_notifier.dart';

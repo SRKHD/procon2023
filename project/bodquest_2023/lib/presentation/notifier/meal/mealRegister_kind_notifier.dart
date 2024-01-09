@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../component/component_types.dart';
+import '../../../domain/value/meal_register_kind.dart';
 
 part 'mealregister_kind_notifier.g.dart';
 
