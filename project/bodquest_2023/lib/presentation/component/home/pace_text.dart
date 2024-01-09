@@ -12,7 +12,7 @@ class PaceText extends StatelessWidget {
       children: [
         Text('30日後の予想体重'),
         Text(
-          '$expectedWeight kg',
+          '${expectedWeight.toStringAsFixed(2)} kg',
           style: TextStyle(fontSize: RawSize.p60),
         ),
       ],

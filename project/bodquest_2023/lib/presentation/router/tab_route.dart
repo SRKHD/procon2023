@@ -27,9 +27,9 @@ class TabRoute {
 // 実際のデータを決めていく
 final routes = [
   TabRoute(
-    body: () => UserPage(),
-    icon: TabImage.user.path,
-    label: L10n.user,
+    body: () => TrainingPage(),
+    icon: TabImage.training.path,
+    label: L10n.training,
   ),
   TabRoute(
     body: () => WeightPage(),
@@ -42,14 +42,14 @@ final routes = [
     label: L10n.home,
   ),
   TabRoute(
-    body: () => TrainingPage(),
-    icon: TabImage.training.path,
-    label: L10n.training,
-  ),
-  TabRoute(
     body: () => RecipePage(),
     icon: TabImage.meal.path,
     label: L10n.meal,
+  ),
+  TabRoute(
+    body: () => UserPage(),
+    icon: TabImage.user.path,
+    label: L10n.setting,
   ),
   //TabRoute(
   //body: () => Placeholder(),

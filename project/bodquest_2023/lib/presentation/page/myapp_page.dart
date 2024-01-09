@@ -1,9 +1,9 @@
-import 'package:bodquest_2023/presentation/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../component/control/size_adapter.dart';
 import '../router/go_router.dart';
+import '../theme/colors.dart';
 import '../theme/fonts.dart';
 
 class MyApp extends ConsumerWidget {

@@ -1,17 +1,16 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/value/evaluation_rank.dart';
+import '../../state/evaluation/evaluation_rank_state.dart';
 
-part 'evaluation_rank_notifier.g.dart';
+class EvaluationRankNotifier extends StateNotifier<EvaluationRankState> {
+  EvaluationRankNotifier(
+    super.initValue,
+  );
 
-@riverpod
-class EvaluationRankNotifier extends _$EvaluationRankNotifier {
-  @override
-  EvaluationRank build() {
-    return EvaluationRank.g;
-  }
+  /// 現在の状態
+  EvaluationRankState get value => state;
 
-  void update(String value) {
-    state = EvaluationRank.from(value);
+  void update(EvaluationRankState value) {
+    state = value;
   }
 }

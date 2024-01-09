@@ -1,26 +1,16 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/* ここはファイル名と合わせること! */
-part 'datetime_notifier.g.dart';
+import '../state/datetime_state.dart';
 
-/*
-  保存 > generatorコマンド を忘れないでね！
+class DateTimeNotifier extends StateNotifier<DateTimeState> {
+  DateTimeNotifier(
+    super.initValue,
+  );
 
-  flutter pub run build_runner build --delete-conflicting-outputs
-*/
+  /// 現在の状態
+  DateTimeState get value => state;
 
-/// -----------------------------------------------------------
-/// ノティファイヤー & 自動で作られるプロバイダー - 文字を保存しておく
-/// -----------------------------------------------------------
-@riverpod
-class DateTimeNotifier extends _$DateTimeNotifier {
-  @override
-  DateTime build(DateTime initValue) {
-    return initValue;
-  }
-
-  // 新しい文字データを保存する
-  void update(DateTime newDateTime) {
-    state = newDateTime;
+  void update(DateTimeState value) {
+    state = value;
   }
 }

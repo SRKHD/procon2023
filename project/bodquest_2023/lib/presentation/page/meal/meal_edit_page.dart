@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/util/datetime_utils.dart';
-import '../../component/component_types.dart';
+import '../../../domain/value/meal_kind.dart';
 import '../../component/control/number_textfield.dart';
 import '../../component/meal/meal_kind_dropdown.dart';
-import '../../notifier/datetime_notifier.dart';
-import '../../notifier/meal/meal_kind_notifier.dart';
 import '../../notifier/text_notifier.dart';
+import '../../provider/datetime_provider.dart';
+import '../../provider/meal/meal_kind_provider.dart';
 import '../../provider/meal/meal_list_provider.dart';
 import '../../router/go_router.dart';
+import '../../state/datetime_state.dart';
 import '../../theme/colors.dart';
 import '../../theme/l10n.dart';
 
@@ -41,8 +42,8 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
       data: (meals) {
         final state = meals.firstWhere((element) => element.id == widget.id);
         DateTime date = toDate(state.date);
-        DateTime dateState = ref.watch(dateTimeNotifierProvider(date));
-        MealKind kindState =
+        final dateState = ref.watch(datetimeNotifierProvider(date));
+        final kindState =
             ref.watch(mealKindNotifierProvider(MealKind.from(state.kind)));
         _controller.text = state.name.toString();
         _calorieController.text = state.calorie.toString();
@@ -74,7 +75,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
         Future<void> selectDate(BuildContext context) async {
           final DateTime? picked = await showDatePicker(
             context: context,
-            initialDate: dateState,
+            initialDate: dateState.value,
             firstDate: DateTime(2020),
             lastDate: DateTime(2025),
           );
@@ -82,8 +83,8 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
           if (picked != null) {
             setState(() {
               final notifier =
-                  ref.watch(dateTimeNotifierProvider(dateState).notifier);
-              notifier.update(picked);
+                  ref.watch(datetimeNotifierProvider(dateState.value).notifier);
+              notifier.update(DateTimeState(value: picked));
             });
           }
         }
@@ -92,7 +93,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                '選択した日付: ${dateState.year}/${dateState.month}/${dateState.day}'),
+                '選択した日付: ${dateState.value.year}/${dateState.value.month}/${dateState.value.day}'),
             ElevatedButton(
               onPressed: () => selectDate(context),
               child: const Text('日付選択'),
@@ -106,8 +107,8 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
             var calorie =
                 _calorieController.text == '' ? '-1' : _calorieController.text;
 
-            notifier.update(state.userId, state.id, kindState.value,
-                _controller.text, dateState, int.parse(calorie), '');
+            notifier.update(state.userId, state.id, kindState.value.stringValue,
+                _controller.text, dateState.value, int.parse(calorie), '');
 
             final router = ref.read(goRouterProvider);
             router.pop();
@@ -130,7 +131,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                MealKindDropdown(kindState),
+                MealKindDropdown(kindState.value),
                 calenderComponents,
                 textComponents,
                 calorieTextComponents,
