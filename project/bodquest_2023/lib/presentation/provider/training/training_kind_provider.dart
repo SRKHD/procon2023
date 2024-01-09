@@ -6,7 +6,7 @@ import '../../notifier/training/training_kind_notifier.dart';
 
 final trainingKindNotifierProvider = StateNotifierProvider.family<
     TrainingKindNotifier, TrainingKindState, TrainingKind>(
-  (ref, kind) {
-    return TrainingKindNotifier(TrainingKindState(kind: kind));
+  (ref, value) {
+    return TrainingKindNotifier(TrainingKindState(value: value));
   },
 );

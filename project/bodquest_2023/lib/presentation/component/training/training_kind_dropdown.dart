@@ -34,12 +34,12 @@ class TrainingKindDropdown extends ConsumerWidget {
 
     /// ドロップダウン本体
     return DropdownButton(
-      value: state.kind,
+      value: state.value,
       items: items, // すべての選択肢たち
       onChanged: (newValue) {
         final notifier =
-            ref.read(trainingKindNotifierProvider(state.kind).notifier);
-        notifier.update(TrainingKindState(kind: newValue!));
+            ref.read(trainingKindNotifierProvider(state.value).notifier);
+        notifier.update(TrainingKindState(value: newValue!));
       },
       focusColor: Colors.transparent, // 余計な影をなくす
     );

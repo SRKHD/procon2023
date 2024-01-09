@@ -1,3 +1,4 @@
+import 'package:bodquest_2023/presentation/state/datetime_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -5,7 +6,7 @@ import '../../../domain/value/training_kind.dart';
 import '../../component/control/number_textfield.dart';
 import '../../component/training/training_kind_dropdown.dart';
 import '../../component/training/training_list_button.dart';
-import '../../notifier/datetime_notifier.dart';
+import '../../provider/datetime_provider.dart';
 import '../../provider/training/training_kind_provider.dart';
 import '../../provider/training/training_list_provider.dart';
 import '../../notifier/text_notifier.dart';
@@ -40,13 +41,13 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
 
     print(logInUserState.userId);
     print(logInUserState.userName);
-    final dateState = ref.watch(dateTimeNotifierProvider(widget.initDate));
+    final dateState = ref.watch(datetimeNotifierProvider(widget.initDate));
 
     final textField = NumberTextField(
       controller: _controller,
       notifier: ref.watch(textNotifierProvider.notifier),
       labelText: 'トレーニング量',
-      hintText: switch (kindState.kind) {
+      hintText: switch (kindState.value) {
         TrainingKind.walk => '歩いた歩数',
         TrainingKind.run => '走った距離(m)',
         TrainingKind.workOut => '筋トレ時間(分)',
@@ -61,7 +62,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
     Future<void> selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
         context: context,
-        initialDate: dateState,
+        initialDate: dateState.value,
         firstDate: DateTime(2020),
         lastDate: DateTime(2025),
       );
@@ -69,8 +70,8 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
       if (picked != null) {
         setState(() {
           final notifier =
-              ref.watch(dateTimeNotifierProvider(dateState).notifier);
-          notifier.update(picked);
+              ref.watch(datetimeNotifierProvider(dateState.value).notifier);
+          notifier.update(DateTimeState(value: picked));
         });
       }
     }
@@ -78,7 +79,8 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
     final calenderComponents = Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('選択した日付: ${dateState.year}/${dateState.month}/${dateState.day}'),
+        Text(
+            '選択した日付: ${dateState.value.year}/${dateState.value.month}/${dateState.value.day}'),
         ElevatedButton(
           onPressed: () => selectDate(context),
           child: const Text('日付選択'),
@@ -91,8 +93,8 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
         final text = ref.watch(textNotifierProvider);
         // print('保存されている文字は: $text');
         final notifier = ref.read(trainingListNotifierProvider.notifier);
-        notifier.add(logInUserState.userId, kindState.kind.value, dateState,
-            int.parse(text));
+        notifier.add(logInUserState.userId, kindState.value.stringValue,
+            dateState.value, int.parse(text));
         _controller.text = '';
       },
       label: Text('登録'),
@@ -102,7 +104,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
     final synchronizeHealthiaButton = ElevatedButton.icon(
       onPressed: () {
         final notifier = ref.read(trainingListNotifierProvider.notifier);
-        notifier.synchronizeHealthia(logInUserState.userId, dateState);
+        notifier.synchronizeHealthia(logInUserState.userId, dateState.value);
       },
       label: Text(''),
       icon: const Icon(Icons.downloading),
@@ -128,7 +130,7 @@ class TrainingPageState extends ConsumerState<TrainingPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                TrainingKindDropdown(kindState.kind),
+                TrainingKindDropdown(kindState.value),
                 calenderComponents,
                 textComponents,
                 buttons,

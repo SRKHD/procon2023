@@ -83,7 +83,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
       weightScore: _weightScore.clamp(0, 100),
       exerciseScore: _exerciseScore.clamp(0, 100),
       mealScore: _mealScore.clamp(0, 100),
-      rank: getRank(score).value,
+      rank: getRank(score).stringValue,
     );
     print(newValue);
     evaluationNotifier.update(newValue);
