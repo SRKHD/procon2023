@@ -129,6 +129,17 @@ class RecipePageState extends ConsumerState<RecipePage> {
       icon: const Icon(Icons.add),
     );
 
+    final yolov5Button = ElevatedButton.icon(
+      onPressed: () {
+        final router = ref.read(goRouterProvider);
+        router.pushNamed(
+          PageId.yolov5.routeName,
+        );
+      },
+      label: Text('スキャン'),
+      icon: const Icon(Icons.search),
+    );
+
     final mealListButton = MealListButton(onPressed: () {
       final router = ref.read(goRouterProvider);
       router.pushNamed(
@@ -166,7 +177,13 @@ class RecipePageState extends ConsumerState<RecipePage> {
                   visible: _isMeal,
                   child: calorieTextComponents,
                 ),
-                resisterButton,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    resisterButton,
+                    yolov5Button,
+                  ],
+                ),
               ],
             ),
           ),
