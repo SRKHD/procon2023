@@ -19,9 +19,18 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
   int _weightScore = 0;
   int _exerciseScore = 0;
   int _mealScore = 0;
+  double _predictedWeight = 0;
+
+  double _latestWeight = 0;
 
   int get score {
     final actualOutgoing = _outgoing + _basalOutgoing - _incoming;
+
+    final actualOutgoingPerDay = actualOutgoing / DateTime.now().day;
+
+    // 脂肪1kg当たりのカロリー(7200kcal)から30日後の体重を予測。
+    final predictedCalorie = actualOutgoingPerDay * 30;
+    _predictedWeight = _latestWeight + predictedCalorie / 7200;
 
     final rate = _targetActualOutgoing == 0
         ? 1.0
@@ -84,8 +93,8 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
       exerciseScore: _exerciseScore.clamp(0, 100),
       mealScore: _mealScore.clamp(0, 100),
       rank: getRank(score).value,
+      predictedWeight: _predictedWeight,
     );
-    print(newValue);
     evaluationNotifier.update(newValue);
   }
 
@@ -139,6 +148,8 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
           .where((weight) => weight.date.isBefore(thresholdDay))
           .lastOrNull
           ?.value;
+
+      _latestWeight = weights.lastOrNull?.value ?? 0;
 
       // 目標との差分はすべて脂肪と仮定.
       final fatWeight = baseWeight == null ? 0 : user.targetWeight - baseWeight;
