@@ -114,7 +114,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
           .reduce((value, element) => value + element);
 
       // TODO: Replace constant.
-      const target = 1000; // 今月の目標消費カロリー.
+      const target = 7200 * 3; // 今月の目標消費カロリー: 3kg * 7200kcal
 
       _exerciseScore = (_outgoing / target * 100).toInt();
 
@@ -133,8 +133,8 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
           .map((meal) => meal.calorie);
 
       final scoreRate =
-          scoringRange.where((cal) => cal <= _basalOutgoing).length /
-              scoringRange.length;
+          scoringRange.where((cal) => cal <= _basalOutgoing).length.toDouble() /
+              30;
 
       _mealScore = (scoreRate * 100).toInt();
 

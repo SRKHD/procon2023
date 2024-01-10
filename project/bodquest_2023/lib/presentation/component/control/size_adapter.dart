@@ -16,10 +16,11 @@ class SizeAdapter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb) {
+/*     if (kIsWeb) {
       return Scaffold(
         backgroundColor: Colors.grey,
-        body: Center(
+        body:
+            child /* Center(
           child: AspectRatio(
             // aspectRatio: 9.0 / 16.0,
             aspectRatio: DesignSize.aspectRatio,
@@ -33,13 +34,14 @@ class SizeAdapter extends StatelessWidget {
               child: child,
             ),
           ),
-        ),
+        ) */
+        ,
       );
-    }
+    } */
     return Scaffold(
         backgroundColor: Colors.grey,
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
+          padding: const EdgeInsets.only(top: 15),
           child: child,
         ));
   }

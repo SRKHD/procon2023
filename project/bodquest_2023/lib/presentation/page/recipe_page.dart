@@ -155,52 +155,52 @@ class RecipePageState extends ConsumerState<RecipePage> {
     });
 
     final listButton = _isMeal ? mealListButton : recipeListButton;
-    return mealState.when(
-      data: (meals) {
-        return Scaffold(
-          floatingActionButton: listButton,
-          body: Center(
-            child: Column(
+    // return mealState.when(
+    //   data: (meals) {
+    return Scaffold(
+      floatingActionButton: listButton,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            MealRegisterKindDropDown(mealRegisterState.value),
+            Visibility(
+              visible: _isMeal,
+              child: MealKindDropdown(kindState.value),
+            ),
+            Visibility(
+              visible: _isMeal,
+              child: calenderComponents,
+            ),
+            textComponents,
+            Visibility(
+              visible: _isMeal,
+              child: calorieTextComponents,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                MealRegisterKindDropDown(mealRegisterState.value),
-                Visibility(
-                  visible: _isMeal,
-                  child: MealKindDropdown(kindState.value),
-                ),
-                Visibility(
-                  visible: _isMeal,
-                  child: calenderComponents,
-                ),
-                textComponents,
-                Visibility(
-                  visible: _isMeal,
-                  child: calorieTextComponents,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    resisterButton,
-                    yolov5Button,
-                  ],
-                ),
+              children: [
+                resisterButton,
+                yolov5Button,
               ],
             ),
-          ),
-        );
-      },
-      error: (error, _) {
-        return Center(
-          child: Text(
-            error.toString(),
-          ),
-        );
-      },
-      loading: () {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
+          ],
+        ),
+      ),
     );
+    // },
+    // error: (error, _) {
+    // return Center(
+    // child: Text(
+    // error.toString(),
+    // ),
+    // );
+    // },
+    // // loading: () {
+    //   return const Center(
+    //     child: CircularProgressIndicator(),
+    //   );
+    // },
+    // );
   }
 }
