@@ -30,7 +30,7 @@ class CalculateEvaluationUsecaseImpl implements ICalculateEvaluationUsecase {
 
     // 脂肪1kg当たりのカロリー(7200kcal)から30日後の体重を予測。
     final predictedCalorie = actualOutgoingPerDay * 30;
-    _predictedWeight = _latestWeight + predictedCalorie / 7200;
+    _predictedWeight = _latestWeight - predictedCalorie / 7200;
 
     final rate = _targetActualOutgoing == 0
         ? 1.0
