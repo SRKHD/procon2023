@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../entity/meal.dart';
 
 abstract interface class IMealRepository {
@@ -9,7 +11,7 @@ abstract interface class IMealRepository {
     String name,
     DateTime date,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   );
 
   Future<int> delete(
@@ -24,6 +26,6 @@ abstract interface class IMealRepository {
     String name,
     DateTime date,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   );
 }

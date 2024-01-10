@@ -1,13 +1,12 @@
-import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:bodquest_2023/presentation/component/meal/mealRegister_kind_dropdown.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../component/component_types.dart';
 import '../component/control/number_textfield.dart';
+import '../component/meal/mealRegister_kind_dropdown.dart';
 import '../component/meal/meal_kind_dropdown.dart';
 import '../component/meal/meal_list_button.dart';
 import '../notifier/datetime_notifier.dart';
@@ -33,6 +32,8 @@ class RecipePageState extends ConsumerState<RecipePage> {
   final TextEditingController _calorieController = TextEditingController();
   final TextEditingController _imageController = TextEditingController();
 
+  Uint8List? registrationImage;
+
   @override
   void dispose() {
     _controller.dispose();
@@ -48,6 +49,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
     final mealState = ref.watch(mealListNotifierProvider);
     final kindState = ref.watch(mealKindNotifierProvider(MealKind.breakfast));
     final logInUserState = ref.watch(logInUserNotifierProvider);
+    final picker = ImagePicker();
 
     print(logInUserState.userId);
     print(logInUserState.userName);
@@ -111,10 +113,11 @@ class RecipePageState extends ConsumerState<RecipePage> {
         var calorie =
             _calorieController.text == '' ? '-1' : _calorieController.text;
         notifier.add(logInUserState.userId, kindState.name, _controller.text,
-            dateState, int.parse(calorie), _imageController.text);
+            dateState, int.parse(calorie), registrationImage);
         _controller.text = '';
         _calorieController.text = '';
         _imageController.text = '';
+        registrationImage = null;
       },
       label: Text('登録'),
       icon: const Icon(Icons.add),
@@ -127,26 +130,24 @@ class RecipePageState extends ConsumerState<RecipePage> {
       );
     });
 
-    Future upload() async {
-      // 画像をスマホのギャラリーから取得
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      // 画像を取得できた場合はFirebaseStorageにアップロードする
-      if (image != null) {
-        final imageFile = File(image.path);
-        FirebaseStorage storage = FirebaseStorage.instance;
-        try {
-          _imageController.text = image.path;
-          await storage.ref('sample.png').putFile(imageFile);
-        } catch (e) {
-          print(e);
-        }
-      }
-      return;
+    Future<Uint8List?> galleryImagePicker() async {
+      XFile? file = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 90,
+      );
+
+      if (file != null)
+        return await file.readAsBytes(); // convert into Uint8List.
+      return null;
     }
 
     final imageButton = ElevatedButton.icon(
       onPressed: () async {
-        await upload();
+        final Uint8List? image = await galleryImagePicker();
+        if (image != null) {
+          registrationImage = image;
+          setState(() {});
+        }
       },
       label: Text('画像登録'),
       icon: const Icon(Icons.add),
@@ -182,6 +183,12 @@ class RecipePageState extends ConsumerState<RecipePage> {
                 calorieTextComponents,
                 resisterButton,
                 registerImage,
+                registrationImage == null
+                    ? const Text('画像が選択されていません')
+                    : Image.memory(
+                        registrationImage!,
+                        fit: BoxFit.cover,
+                      ),
               ],
             ),
           ),
