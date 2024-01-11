@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../../domain/entity/menu.dart';
 import '../../domain/factory/menu/menu_factory.dart';
 import '../../domain/repository/menu_repository.dart';
@@ -29,14 +31,15 @@ class MenuRepositoryImpl implements IMenuRepository {
 
   @override
   Future<int> add(String userId, String name, DateTime date, String recipe,
-      String ingredient, int calorie, String imageFilePath) {
+      String ingredient, int calorie, Uint8List? imageData) async {
     final storagePath = '${userId}_${name}_image';
-    if (imageFilePath != '') {
-      firebaseStorageSource.addFile(storagePath, imageFilePath);
+    String imagePath = '';
+    if (imageData != null) {
+      imagePath = await firebaseStorageSource.addFile(storagePath, imageData);
     }
 
     return fireStoreDataSource.add(
-        userId, name, date, recipe, ingredient, calorie, imageFilePath);
+        userId, name, date, recipe, ingredient, calorie, imagePath);
   }
 
   @override
@@ -45,13 +48,21 @@ class MenuRepositoryImpl implements IMenuRepository {
   }
 
   @override
-  Future<int> update(String userId, String id, String name, DateTime date,
-      String recipe, String ingredient, int calorie, String imageFilePath) {
+  Future<int> update(
+      String userId,
+      String id,
+      String name,
+      DateTime date,
+      String recipe,
+      String ingredient,
+      int calorie,
+      Uint8List? imageData) async {
     final storagePath = '${userId}_${name}_image';
-    if (imageFilePath != '') {
-      firebaseStorageSource.addFile(storagePath, imageFilePath);
+    String imagePath = '';
+    if (imageData != null) {
+      imagePath = await firebaseStorageSource.addFile(storagePath, imageData);
     }
     return fireStoreDataSource.update(
-        userId, id, name, date, recipe, ingredient, calorie, imageFilePath);
+        userId, id, name, date, recipe, ingredient, calorie, imagePath);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../entity/menu.dart';
 
 abstract interface class IMenuRepository {
@@ -10,7 +12,7 @@ abstract interface class IMenuRepository {
     String recipe,
     String ingredient,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   );
 
   Future<int> delete(
@@ -26,6 +28,6 @@ abstract interface class IMenuRepository {
     String recipe,
     String ingredient,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   );
 }

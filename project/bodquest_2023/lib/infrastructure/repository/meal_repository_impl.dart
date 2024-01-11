@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../../domain/entity/meal.dart';
 import '../../domain/factory/meal/meal_factory.dart';
 import '../../domain/repository/meal_repository.dart';
@@ -29,14 +31,15 @@ class MealRepositoryImpl implements IMealRepository {
 
   @override
   Future<int> add(String userId, String kind, String name, DateTime date,
-      int calorie, String imageFilePath) {
+      int calorie, Uint8List? imageData) async {
     final storagePath = '${userId}_${name}_image';
-    if (imageFilePath != '') {
-      firebaseStorageSource.addFile(storagePath, imageFilePath);
+    String imagePath = '';
+    if (imageData != null) {
+      imagePath = await firebaseStorageSource.addFile(storagePath, imageData);
     }
 
     return fireStoreDataSource.add(
-        userId, kind, name, date, calorie, imageFilePath);
+        userId, kind, name, date, calorie, imagePath);
   }
 
   @override
@@ -46,12 +49,14 @@ class MealRepositoryImpl implements IMealRepository {
 
   @override
   Future<int> update(String userId, String id, String kind, String name,
-      DateTime date, int calorie, String imageFilePath) {
+      DateTime date, int calorie, Uint8List? imageData) async {
     final storagePath = '${userId}_${name}_image';
-    if (imageFilePath != '') {
-      firebaseStorageSource.addFile(storagePath, imageFilePath);
+    String imagePath = '';
+    if (imageData != null) {
+      imagePath = await firebaseStorageSource.addFile(storagePath, imageData);
     }
+
     return fireStoreDataSource.update(
-        userId, id, kind, name, date, calorie, imageFilePath);
+        userId, id, kind, name, date, calorie, imagePath);
   }
 }

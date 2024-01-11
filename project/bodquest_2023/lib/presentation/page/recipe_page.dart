@@ -1,12 +1,15 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../domain/value/meal_kind.dart';
 import '../../domain/value/meal_register_kind.dart';
 import '../component/control/number_textfield.dart';
+import '../component/meal/mealRegister_kind_dropdown.dart';
 import '../component/meal/meal_kind_dropdown.dart';
 import '../component/meal/meal_list_button.dart';
-import '../component/meal/mealregister_kind_dropdown.dart';
 import '../component/menu/menu_list_button.dart';
 import '../notifier/text_notifier.dart';
 import '../provider/datetime_provider.dart';
@@ -34,6 +37,8 @@ class RecipePageState extends ConsumerState<RecipePage> {
   bool _isMeal = true;
   String _label = "";
 
+  Uint8List? registrationImage;
+
   @override
   void dispose() {
     _controller.dispose();
@@ -49,6 +54,7 @@ class RecipePageState extends ConsumerState<RecipePage> {
     final mealState = ref.watch(mealListNotifierProvider);
     final kindState = ref.watch(mealKindNotifierProvider(MealKind.breakfast));
     final logInUserState = ref.watch(logInUserNotifierProvider);
+    final picker = ImagePicker();
 
     print(logInUserState.userId);
     print(logInUserState.userName);
@@ -114,14 +120,20 @@ class RecipePageState extends ConsumerState<RecipePage> {
           final mealNotifier = ref.read(mealListNotifierProvider.notifier);
           var calorie =
               _calorieController.text == '' ? '-1' : _calorieController.text;
-          mealNotifier.add(logInUserState.userId, kindState.value.stringValue,
-              _controller.text, dateState.value, int.parse(calorie), '');
+          mealNotifier.add(
+              logInUserState.userId,
+              kindState.value.stringValue,
+              _controller.text,
+              dateState.value,
+              int.parse(calorie),
+              registrationImage);
           _controller.text = '';
           _calorieController.text = '';
+          registrationImage = null;
         } else {
           final recipeNotifier = ref.read(menuListNotifierProvider.notifier);
           recipeNotifier.add(logInUserState.userId, '', dateState.value,
-              _controller.text, '', -1, '');
+              _controller.text, '', -1, registrationImage);
           _controller.text = '';
         }
       },
@@ -154,6 +166,44 @@ class RecipePageState extends ConsumerState<RecipePage> {
       );
     });
 
+    Future<Uint8List?> galleryImagePicker() async {
+      XFile? file = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 90,
+      );
+
+      if (file != null)
+        return await file.readAsBytes(); // convert into Uint8List.
+      return null;
+    }
+
+    final imageButton = ElevatedButton.icon(
+      onPressed: () async {
+        final Uint8List? image = await galleryImagePicker();
+        if (image != null) {
+          registrationImage = image;
+          setState(() {});
+        }
+      },
+      label: Text('画像登録'),
+      icon: const Icon(Icons.add),
+    );
+
+    final imageTextComponent = SizedBox(
+      width: 300,
+      child: registrationImage == null
+          ? const Text('画像が選択されていません')
+          : Image.memory(
+              registrationImage!,
+              fit: BoxFit.cover,
+            ),
+    );
+
+    final registerImage = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [imageButton, imageTextComponent, Text('')],
+    );
+
     final listButton = _isMeal ? mealListButton : recipeListButton;
     return mealState.when(
       data: (meals) {
@@ -176,6 +226,10 @@ class RecipePageState extends ConsumerState<RecipePage> {
                 Visibility(
                   visible: _isMeal,
                   child: calorieTextComponents,
+                ),
+                Visibility(
+                  visible: _isMeal,
+                  child: registerImage,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
