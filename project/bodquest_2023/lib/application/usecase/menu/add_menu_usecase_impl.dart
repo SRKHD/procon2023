@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../../../domain/repository/menu_repository.dart';
 import '../../../domain/usecase/menu/add_menu_usecase.dart';
 
@@ -16,9 +18,9 @@ class AddMenuUsecaseImpl implements IAddMenuUsecase {
     String recipe,
     String ingredient,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   ) {
     return menuRepository.add(
-        userId, name, date, recipe, ingredient, calorie, imageFilePath);
+        userId, name, date, recipe, ingredient, calorie, imageData);
   }
 }

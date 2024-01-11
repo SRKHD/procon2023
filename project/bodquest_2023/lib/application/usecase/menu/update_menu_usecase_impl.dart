@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../../../domain/repository/menu_repository.dart';
 import '../../../domain/usecase/menu/update_menu_usecase.dart';
 
@@ -10,8 +12,8 @@ class UpdateMenuUsecaseImpl implements IUpdateMenuUsecase {
 
   @override
   Future<int> execute(String userId, String id, String name, DateTime date,
-      String recipe, String ingredient, int calorie, String imageFilePath) {
+      String recipe, String ingredient, int calorie, Uint8List? imageData) {
     return _repository.update(
-        userId, id, name, date, recipe, ingredient, calorie, imageFilePath);
+        userId, id, name, date, recipe, ingredient, calorie, imageData);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../../../domain/repository/meal_repository.dart';
 import '../../../domain/usecase/meal/add_meal_usecase.dart';
 
@@ -15,8 +17,8 @@ class AddMealUsecaseImpl implements IAddMealUsecase {
     String name,
     DateTime date,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   ) {
-    return mealRepository.add(userId, kind, name, date, calorie, imageFilePath);
+    return mealRepository.add(userId, kind, name, date, calorie, imageData);
   }
 }

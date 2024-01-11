@@ -107,8 +107,8 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
             var calorie =
                 _calorieController.text == '' ? '-1' : _calorieController.text;
 
-            notifier.update(state.userId, state.id, kindState.value.stringValue,
-                _controller.text, dateState.value, int.parse(calorie), '');
+            notifier.update(state.userId, state.id, kindState.value.toString(),
+                _controller.text, dateState.value, int.parse(calorie), null);
 
             final router = ref.read(goRouterProvider);
             router.pop();

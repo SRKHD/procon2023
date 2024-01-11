@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/usecase/meal/add_meal_usecase.dart';
@@ -43,9 +45,9 @@ class MealListNotifier extends StateNotifier<AsyncValue<List<MealState>>> {
     String name,
     DateTime date,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   ) {
-    _addUsecase.execute(userId, kind, name, date, calorie, imageFilePath);
+    _addUsecase.execute(userId, kind, name, date, calorie, imageData);
   }
 
   void delete(
@@ -62,9 +64,8 @@ class MealListNotifier extends StateNotifier<AsyncValue<List<MealState>>> {
     String name,
     DateTime date,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   ) {
-    _updateUsecase.execute(
-        userId, id, kind, name, date, calorie, imageFilePath);
+    _updateUsecase.execute(userId, id, kind, name, date, calorie, imageData);
   }
 }

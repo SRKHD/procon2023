@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 abstract interface class IUpdateMealUsecase {
   Future<int> execute(
     String userId,
@@ -6,6 +8,6 @@ abstract interface class IUpdateMealUsecase {
     String name,
     DateTime date,
     int calorie,
-    String imageFilePath,
+    Uint8List? imageData,
   );
 }

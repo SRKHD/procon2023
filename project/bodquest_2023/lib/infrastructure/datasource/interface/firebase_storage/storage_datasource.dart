@@ -1,4 +1,6 @@
+import 'dart:typed_data';
+
 abstract interface class IFirebaseStorageDataSource {
   Future<String> getURL(String storagePath);
-  Future<void> addFile(String storagePath, String filePath);
+  Future<String> addFile(String storagePath, Uint8List? filePath);
 }
