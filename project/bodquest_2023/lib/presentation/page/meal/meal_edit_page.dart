@@ -1,5 +1,8 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../core/util/datetime_utils.dart';
 import '../../../domain/value/meal_kind.dart';
@@ -27,6 +30,8 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _calorieController = TextEditingController();
 
+  Uint8List? registrationImage;
+
   @override
   void dispose() {
     _controller.dispose();
@@ -37,6 +42,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
   @override
   Widget build(BuildContext context) {
     final mealState = ref.watch(mealListNotifierProvider);
+    final picker = ImagePicker();
 
     return mealState.when(
       data: (meals) {
@@ -46,7 +52,12 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
         final kindState =
             ref.watch(mealKindNotifierProvider(MealKind.from(state.kind)));
         _controller.text = state.name.toString();
-        _calorieController.text = state.calorie.toString();
+        _calorieController.text =
+            state.calorie.toString() == '-1' ? '' : state.calorie.toString();
+
+        if (state.imageURL != '') {
+          Image.network(state.imageURL);
+        }
 
         final textField = TextFormField(
           controller: _controller,
@@ -101,13 +112,54 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
           ],
         );
 
+        Future<Uint8List?> galleryImagePicker() async {
+          XFile? file = await picker.pickImage(
+            source: ImageSource.gallery,
+            imageQuality: 90,
+          );
+
+          if (file != null)
+            return await file.readAsBytes(); // convert into Uint8List.
+          return null;
+        }
+
+        final imageButton = ElevatedButton.icon(
+          onPressed: () async {
+            final Uint8List? image = await galleryImagePicker();
+            if (image != null) {
+              registrationImage = image;
+              setState(() {});
+            }
+          },
+          label: Text('登録画像編集'),
+          icon: const Icon(Icons.edit),
+        );
+
+        final imageTextComponent = SizedBox(
+          width: 300,
+          child: state.imageURL == ''
+              ? const Text('')
+              : Image.network(state.imageURL),
+          // registrationImage == null
+          //     ? const Text('画像が選択されていません')
+          //     : Image.memory(
+          //         registrationImage!,
+          //         fit: BoxFit.cover,
+          //       ),
+        );
+
+        final registerImage = Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [imageButton, imageTextComponent, Text('')],
+        );
+
         final updateButton = ElevatedButton.icon(
           onPressed: () {
             final notifier = ref.read(mealListNotifierProvider.notifier);
             var calorie =
                 _calorieController.text == '' ? '-1' : _calorieController.text;
 
-            notifier.update(state.userId, state.id, kindState.value.toString(),
+            notifier.update(state.userId, state.id, kindState.value.stringValue,
                 _controller.text, dateState.value, int.parse(calorie), null);
 
             final router = ref.read(goRouterProvider);
@@ -135,6 +187,7 @@ class MealEditPageState extends ConsumerState<MealEditPage> {
                 calenderComponents,
                 textComponents,
                 calorieTextComponents,
+                registerImage,
                 buttons,
               ],
             ),
