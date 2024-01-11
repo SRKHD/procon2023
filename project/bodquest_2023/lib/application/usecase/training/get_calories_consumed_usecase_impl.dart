@@ -9,6 +9,15 @@ class GetCaloriesConsumedUsecaseImpl implements IGetCaloriesConsumedUsecase {
     const weight = 70;
 
     final met = _getMet(target.kind);
+
+    double min = target.value.toDouble();
+
+    if (target.kind == TrainingKind.run) {
+      min = min / 6400 * 60; // min = m / (6400m/h) * 60
+    } else if (target.kind == TrainingKind.walk) {
+      min = 10 * min / 1000; // 10min / 1000
+    }
+
     final hours = target.value / 60;
 
     return met * hours * weight * 1.05;
